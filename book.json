@@ -1,0 +1,54 @@
+{
+    "title": "ModelBox User Refference",
+    "description": "ModelBox指导书",
+    "author": "CE",
+    "language": "zh-hans",
+    "styles": {
+        "website": "style.css"
+    },
+    "plugins": [
+        "-lunr",
+        "-search",
+        "-livereload",
+        "-sharing",
+        "book-summary-scroll-position-saver",
+        "expandable-chapters",
+        "search-plus",
+        "splitter",
+        "tbfed-pagefooter",
+        "back-to-top-button",
+        "yahei",
+        "katex",
+        "theme-api",
+        "link-checker",
+        "theme-comscore"
+    ],
+    "pluginsConfig": {
+        "expandable-chapters": {},
+        "theme-api": {
+            "theme": "light"
+        },
+        "tbfed-pagefooter": {
+            "copyright": "&copy; 华为技术有限公司",
+            "modify_label": "文件修订时间：",
+            "modify_format": "YYYY-MM-DD HH:mm:ss"
+        },
+        "fontSettings": {
+            "theme": "white",
+            "family": "msyh",
+            "size": 2
+        }
+    },
+    "pdf": {
+        "toc": true,
+        "pageNumbers": true,
+        "fontSize": 18,
+        "paperSize": "a3",
+        "margin": {
+            "right": 30,
+            "left": 30,
+            "top": 30,
+            "bottom": 50
+        }
+    }
+}
