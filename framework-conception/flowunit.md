@@ -51,8 +51,8 @@ FlowUnit插件的加载流程如上图：
 
 |类别|类别说明|约束|常见的流单元|需要重写的接口|
 |--|--|--|--|--|
-|通用流单元|在处理数据时，流单元本身不关心数据之间的关联，只对当前数据做处理，并且不记录任何状态，则选择该类型。设置为该类型时，其一次process调用处理的数据可能来自多个数据处理任务，且process会并发调用，同一个任务内的数据在此时不保证处理的先后，当然数据处理完毕后会由框架重新收集排序，无需关心当前流单元对整个数据流后续的影响|输入buffer的数量必须与输出buffer的数量一致|resize,crop|Process|
-|流数据流单元|在处理数据时，流单元需假设每次process都是处理当前任务数据流的数据，针对当前数据流可能还需要保存状态，并且process在数据流上要保持顺序处理，此时应当选择流类型的流单元。设置为该类型时，框架会保证一个数据流的数据会顺序的进入process，不通数据流的数据会并发进入process，开发者无需关心数据之前是否是有序的，在process此处，已经由框架保证顺序。|输入buffer的数量无需与输出buffer的数量一致|decoder，encoder|DataPre,Process,DataPost|
+|通用流单元|在处理数据时，流单元本身不关心数据之间的关联，只对当前数据做处理，并且不记录任何状态，则选择该类型。设置为该类型时，其一次process调用处理的数据可能来自多个数据处理任务，且process会并发调用，同一个任务内的数据在此时不保证处理的先后，当然数据处理完毕后会由框架重新收集排序，无需关心当前流单元对整个数据流后续的影响|输入buffer的数量必须与输出buffer的数量一致|resize, crop|Process|
+|流数据流单元|在处理数据时，流单元需假设每次process都是处理当前任务数据流的数据，针对当前数据流可能还需要保存状态，并且process在数据流上要保持顺序处理，此时应当选择流类型的流单元。设置为该类型时，框架会保证一个数据流的数据会顺序的进入process，不通数据流的数据会并发进入process，开发者无需关心数据之前是否是有序的，在process此处，已经由框架保证顺序。|输入buffer的数量无需与输出buffer的数量一致|decoder, encoder|DataPre, Process, DataPost|
 
 1. 通用流单元  
 举例：  
@@ -70,9 +70,9 @@ MODELBOX_FLOWUNIT(ResizeFlowUnit, desc) {
 ```
 
 1. 流数据流单元  
-举例：  
+* 举例：  
 流数据流数据处理的是需要关注数据是否来自同一个数据流，且同一个数据流的数据处理要有先后顺序。比如一个视频编码的流单元，每次process处理时，都需要保证当前输入的数据来自同一个流，且可以获取到当前流的状态(编码器)，同时输入的数据都是顺序的，这样才能保证编码流单元正确的对每一路流进行编码。因此这个视频编码流单元必须设置为一个流数据流单元。关于流数据流单元数据运行的详细说明可以参考[流数据流单元数据处理](stream.md#流数据流单元数据处理)。  
-配置：  
+* 配置：  
 配置流单元为流数据流单元，需要在MODELBOX_FLOWUNIT中将desc配置为modelbox::STREAM。流数据流单元输出的buffer数量不一定与输入的buffer数量一致，默认情况下，输出输入的的buffer数量是认为不一致的，因此也是无法[匹配](stream.md#匹配)，如果需要两者匹配可以配置SetStreamSameCount(true)。
 
 ```c++
@@ -91,7 +91,7 @@ MODELBOX_FLOWUNIT(EncoderFlowUnit, desc) {
 
 |类别|类别说明|约束|常见的流单元|
 |--|--|--|--|
-|同级流单元|输出的数据与输入的数据属于同一层级|无|resize,crop,decoder,encoder|
+|同级流单元|输出的数据与输入的数据属于同一层级|无|resize, crop, decoder, encoder|
 |展开流单元|输出的数据是输入数据的下一层级，展开流单元将输入的每个Buffer展开为一个新的Stream，该Stream属于输入Stream下一级的Stream|输入只能是一个buffer，且必须有输出buffer|demuxer|
 |收拢流单元|输出的数据是输入数据的上一层级，收拢流单元是将输入Stream中的数据收齐后形成一个Buffer，该Buffer属于输入Stream上一级的Stream|输出只能是一个buffer|enmuxer|
 
@@ -131,7 +131,7 @@ MODELBOX_FLOWUNIT(DemuxerFlowUnit, desc) {
 条件流单元是通用流单元中的一种，当一个流单元的输出，在不同的条件下需要用不同的流程去处理时，就可以使用条件流单元来完成数据流的分支选择，使得同一路流可以在不同的流程处理，关于条件流单元的说明可以参考[条件流单元数据处理](stream.md#条件流单元数据处理)
 
 * 配置：  
-配置流单元为条件流单元，需要在MODELBOX_FLOWUNIT中将desc配置为modelbox::NORMAL，并且SetConditionType(modelbox::IF_ELSE)
+配置条件流单元时，需要在MODELBOX_FLOWUNIT中将desc配置为modelbox::NORMAL，并且SetConditionType(modelbox::IF_ELSE)
 
 ```c++
 MODELBOX_FLOWUNIT(ConditionFlowUnit, desc) {
@@ -150,11 +150,11 @@ MODELBOX_FLOWUNIT(ConditionFlowUnit, desc) {
 |类别|类别说明|需要重写的接口|
 |--|--|--|
 |同级通用流单元|输入输出的数据是同一级别的，输入的数据不会排序，直接放入Process中|Process|
-|同级流数据流单元|输入输出的数据是同一级别的，流开始会调用DataPre,流结束会调用DataPost，输入的数据会排序后放入Process中|DataPre,Process,DataPost|
+|同级流数据流单元|输入输出的数据是同一级别的，流开始会调用DataPre,流结束会调用DataPost，输入的数据会排序后放入Process中|DataPre, Process, DataPost|
 |展开通用流单元|输出的数据是输入数据的下一层级，输入的数据不会排序直接放入Process中|Process|
-|展开数据流流单元|输出的数据是输入数据的下一层级，流开始会调用DataPre,流结束会调用DataPost，输入的数据会排序后放入Process中|DataPre,Process,DataPost|
-|收拢通用流单元|输出的数据是输入数据的上一层级，流开始会调用DataPre,流结束会调用DataPost，输入的数据会会排序后放入Process中。两个流之间不会按照输入的顺序排序|DataPre,Process,DataPost|
-|收拢数据流流单元|输出的数据是输入数据的上一层级，流开始会调用DataPre,流结束会调用DataPost，输入的数据会排序后放入Process中。流之间会按照输入的顺序排序调用，在所有流开始之前会调用DataGroupPre,在所有的流结束之后会调用DataGroupPost|DataGroupPre,DataPre,Process,DataPost,DataGroupPost|
+|展开数据流流单元|输出的数据是输入数据的下一层级，流开始会调用DataPre,流结束会调用DataPost，输入的数据会排序后放入Process中|DataPre, Process, DataPost|
+|收拢通用流单元|输出的数据是输入数据的上一层级，流开始会调用DataPre,流结束会调用DataPost，输入的数据会会排序后放入Process中。两个流之间不会按照输入的顺序排序|DataPre, Process, DataPost|
+|收拢数据流流单元|输出的数据是输入数据的上一层级，流开始会调用DataPre,流结束会调用DataPost，输入的数据会排序后放入Process中。流之间会按照输入的顺序排序调用，在所有流开始之前会调用DataGroupPre,在所有的流结束之后会调用DataGroupPost|DataGroupPre, DataPre, Process, DataPost, DataGroupPost|
 
 ### 按业务类型分类
 
@@ -162,12 +162,12 @@ MODELBOX_FLOWUNIT(ConditionFlowUnit, desc) {
 
 |类别|类别说明|例子|
 |--|--|--|
-|输入类流单元|数据输入类功能组件，输入数据使用|http，filereader，obs等|
-|输出类流单元|数据输出类功能组件，输出数据使用|http，filewriter，obs等|
+|输入类流单元|数据输入类功能组件，输入数据使用|http, filereader, obs等|
+|输出类流单元|数据输出类功能组件，输出数据使用|http, filewriter, obs等|
 |图像类流单元|处理单个图像数据的功能组件，处理图像使用|resize, brightness等|
-|视频类流单元|处理视频数据的功能组件|demutex，decode，encode等|
+|视频类流单元|处理视频数据的功能组件|demutex, decode, encode等|
 |推理类流单元|调用推理功能进行推理的组件|tensorrt, tensorflow等|
-|预处理、后处理流单元|对tensor数据进行处理。|normalize，mean等|
+|预处理、后处理流单元|对tensor数据进行处理。|normalize, mean等|
 
 ### 流单元类型样例
 
@@ -185,7 +185,7 @@ MODELBOX_FLOWUNIT(ConditionFlowUnit, desc) {
 
     流程说明：
     1. FileReader文件读取，从目录中读取Video.mpeg路径信息。
-    1. 将文件数据发送给oDemux，VideoDemux将数据解开packet后发送给VideoDecoder。
+    1. 将文件数据发送给VideoDemux，VideoDemux将数据解开packet后发送给VideoDecoder。
     1. VideoDecode获取packet并解码为图像。
     1. 图像数据分别发送到两个流程，一个发送给ImageResize，一个发送给ImageRender。
     1. ImageResize将图像数据进行resize。
@@ -207,7 +207,7 @@ MODELBOX_FLOWUNIT(ConditionFlowUnit, desc) {
 |Video Decoder|视频解码|流数据类|视频类|输入是packet流，输出是独立的图像数据。
 |Image Resize|图像大小调整|通用类|图像类|输入是一张图像，输出也是一张图像。
 |Car Detect|车辆推理|通用类|推理类|输入是Tensor，输出是Tensor。
-|Box|框选取|通用类|后处理类|输入时tensor，输出时框信息。
+|Box|框选取|通用类|后处理类|输入是Tensor，输出是框信息。
 |Image Render|合并框图信息|通用类|图像类|输入是两组数据，图像和框图，输出是图像。
 |Video Encoder|视频编码|流数据类|视频类|输入是多张图像，输出是一个视频流。
 

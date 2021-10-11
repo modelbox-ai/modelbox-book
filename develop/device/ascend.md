@@ -6,7 +6,7 @@ ModelBox为更好的支持Stream并发编程，默认情况下，ModelBox的Asce
 
 ## Ascend ACL流单元接口
 
-ModelBox框架会自动管理Stream，开发流单元时，开发者可以通过process的入参获取到Stream，之后可以用于ACL接口的调用中。
+ModelBox框架会自动管理Stream，开发流单元时，开发者可以通过Process的入参获取到Stream，之后可以用于ACL接口的调用中。
 
 在实现流单元之前，Ascend ACL相关的流单元，需要从`AscendFlowUnit`派生，并实现`AscendProcess`接口。
 

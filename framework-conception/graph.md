@@ -1,12 +1,16 @@
 # 图
 
-在ModelBox中由多个flowunit进行连接构成的实际业务的执行集合就是图。图是ModelBox的主要组件，ModelBox的数据处理过程，完全按照图中的拓扑关系进行。之前已经介绍过图的基本使用，本章主要介绍图的连接约束,图的加载方式，图的执行原理及优先级
+在ModelBox中由多个flowunit进行连接构成的实际业务的执行集合就是图。图是ModelBox的主要组件，其数据处理过程，完全按照图中的拓扑关系进行。之前已经介绍过图的基本使用，本章主要介绍图的连接约束，图的加载方式，图的执行原理及优先级。
 
 ## 图的连接约束
 
 ### 输入输出的约束
 
-ModelBox中的图至少需要包含两种flowunit，source flowunit，sink flowunit。source flowunit只有输出无输入，如input，videoinput以及httpserver_sync_receive和httpserver_async_receive都属于这种流单元。sink flowunit只有输入无输出，如output，httpserver_sync_reply和httpserver_async_reply，都属于这种流单元。
+ModelBox中的图至少需要包含两种flowunit：source flowunit，sink flowunit。
+* source flowunit：
+    有输出无输入，如input，videoinput，httpserver_sync_receive和httpserver_async_receive。
+* sink flowunit：
+    有输入无输出，如output，httpserver_sync_reply和httpserver_async_reply。
 
 ModelBox的图只能有一个source flowunit，这里主要是因为ModelBox中的运行的数据需要[匹配](../framework-conception/stream.md#为什么需要匹配)，如果数据源是不同的，则其中的数据不一定能匹配。比如写了两个httpserver_sync_receive的flowunit，则会启动两个http服务来接受不同的请求，但无法确定两边的请求数量是否完全一致，如数量不一致时会出现无法匹配的情况，导致图中的数据无法正常运行。这里存在一个例外，即一个图中input flowunit是可以有多个的，因为对其输入做了强制匹配的要求，即多个input输入的buffer的数量必须是一样多的。
 
