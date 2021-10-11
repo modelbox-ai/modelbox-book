@@ -1,8 +1,8 @@
 # Python开发流单元
 
-Python开发流单元时，需要预先安装ModelBox的运行包，在release目录中，使用pip命令安装，然后再基于example改造，修改为相应的流单元组件。
+Python开发流单元时，需要预先安装ModelBox的运行包，在release目录中，使用[pip命令](../../get-start/compile.md#安装命令说明)安装，然后再基于example改造，修改为相应的流单元组件。
 
-样例工程可从源代码目录的`example/python/flowunit/`中获取，在开发之前，可以从[流单元概念](../../framework-conception/flowunit.md)章节了解流单的执行过程。
+样例工程可从源代码目录的`examples/flowunit/python/`中获取，在开发之前，可以从[流单元概念](../../framework-conception/flowunit.md)章节了解流单元的执行过程。
 
 ## Python API调用说明
 
@@ -18,7 +18,7 @@ FlowUnit开发分为两部分，一部分是`TOML配置`, 一部分是`FlowUnit`
 |Driver|Input<br/>Output|输入，输出属性|是|用于描述插件的输入，输出端口个数，名称，类型|
 |FlowUnit|FlowUnit::Open<br/>FlowUnit::Close|FlowUnit初始化|否|FlowUnit初始化、关闭，创建、释放相关的资源|
 |FlowUnit|FlowUnit::Process|FlowUnit数据处理|是|FlowUnit数据处理函数，读取数据数据，并处理后，输出数据|
-|FlowUnit|FlowUnit::DataPre<br/>FlowUnit::DataPost|Stream流数据开始，结束通知|部分|stream流数据开始时调用DataPre函数初始化状态数据，Stream流数据结束时释放状态数据，比如解码器上下文。|
+|FlowUnit|FlowUnit::DataPre<br/>FlowUnit::DataPost|Stream流数据开始，结束通知|部分|Stream流数据开始时调用DataPre函数初始化状态数据，Stream流数据结束时释放状态数据，比如解码器上下文。|
 |FlowUnit|FlowUnit::DataGroupPre<br/>FlowUnit::DataGroupPost|数据组归并开始，结束通知|部分|数据组归并，结束通知函数，当数据需要合并时，对一组数据进行上下文相关的操作。|
 
 ### Python流单元目录结构

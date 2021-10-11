@@ -6,11 +6,11 @@
 
 1. 根据服务器端硬件规格下载ModelBox开发镜像，如X86+GPU的服务器可以用如下命令下载：
 
-    `docker pull registry-cbu.huawei.com/modelbox/euler/modelbox_cuda101_develop:v1.0.8`
+    `docker pull modelbox/modelbox_cuda101_develop:v1.0.8`
 
     Arm+D310的服务器（如Atlas500）可以用如下命令下载：
 
-    `docker pull registry-cbu.huawei.com/modelbox/euler/modelbox_ascend_aarch64_develop:v1.0.8`
+    `docker pull /modelbox/modelbox_ascend_aarch64_develop:v1.0.8`
 
     其中cuda版本、镜像版本可以根据需要进行选择。下载成功后可以用docker images命令查看本机已有的镜像：
 
@@ -44,7 +44,7 @@
     -v /home:/home \
     -p $SSH_MAP_PORT:22 \
     -p $EDITOR_MAP_PORT:1104 $HTTP_DOCKER_PORT_COMMAND \
-    registry-cbu.huawei.com/modelbox/euler/modelbox_cuda101_develop:v1.0.8
+    modelbox/modelbox_cuda101_develop:v1.0.8
     ```
 
     *Arm+D310*版本可使用如下脚本：
@@ -70,7 +70,7 @@
     --device=/dev/davinci0 --device=/dev/davinci_manager --device=/dev/hisi_hdc --device=/dev/devmm_svm \
     --name $CONTAINER_NAME -v /opt/modelbox:/opt/modelbox -v /home:/home \
     -p $SSH_MAP_PORT:22 -p $EDITOR_MAP_PORT:1144 $HTTP_DOCKER_PORT_COMMAND \
-    registry-cbu.huawei.com/modelbox/euler/modelbox_ascend_aarch64_develop:v1.0.8
+    modelbox/modelbox_ascend_aarch64_develop:v1.0.8
     ```
 
     脚本中注明[modify]的地方都可以根据自己的需要修改

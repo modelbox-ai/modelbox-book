@@ -13,14 +13,14 @@ Python开发调用流程图时，需要安装python的运行包，然后再编�
 | API接口                                               | 参数说明                                                     | 函数说明                                                     |
 | ----------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Flow::init   | configfile: 指定config文件的路径<br />format： 指定图文件的格式，可选项为 FORMAT_AUTO,FORMAT_TOML，FORMAT_JSON | 初始化ModelBox服务，主要包含功能如下：<br />1. 读取driver参数，获取driver的扫描路径<br />2. 扫描指定路径下的driver文件，并创建driver实例<br />3. 加载流程图并转换为ModelBox可识别的模型<br />4. 初始化设备信息，性能跟踪和数据统计单元 |
-| Flow::init   | name: 指定的图的名称<br />graph: 存储图的字符串<br />format：指定图的格式 | 与上面Init的区别是，上面通过读取文件的方式，而此函数通过读取字符串的方式，其他功能相同 |
+| Flow::init   | name: 指定的图的名称<br />graph: 存储图的字符串<br />format：指定图的格式 | 与上面init的区别是，上面通过读取文件的方式，而此函数通过读取字符串的方式，其他功能相同 |
 | Flow::init    | config: Configuration指针，存储图信息  | 功能同上                                                     |
-| Flow::Build() | / | 用于构建图，将图模型转为可以运行的Node节点并且建立好数据通道 |
-| Flow::Run()    | / | 图的运行： 同步方式，图运行完成后返回  |
-| Flow::RunAsync  | / | 图的运行： 异步运行， 调用后直接返回， 通过调用Wait()函数判断运行是否结束 |
+| Flow::build() | / | 用于构建图，将图模型转为可以运行的Node节点并且建立好数据通道 |
+| Flow::run()    | / | 图的运行： 同步方式，图运行完成后返回  |
+| Flow::run_async  | / | 图的运行： 异步运行， 调用后直接返回， wait()函数判断运行是否结束 |
 | Flow::wait | millisecond: 超时时间， 以毫秒为单位<br />ret_val: 图运行的结果 | 等待图运行结束，当图的运行时间超过millisecond表示的时间时，则强制停止图的运行，并返回TIMEOUT |
-| Flow::Stop | / | 强制停止运行中的图 |
-| Flow::create_buffer_list   | / | 当图中的第一个节点为input节点时， 使用此函数可以创建一个输入的ExternalDataMap， 用户可以通过向ExternalDataMap数据中赋值并传递数据给Input节点。具体使用方法可参考[外部数据交互](./python.md#外部数据交互)章节 |
+| Flow::stop | / | 强制停止运行中的图 |
+| Flow::create_external_data_map   | / | 当图中的第一个节点为input节点时， 使用此函数可以创建一个输入的ExternalDataMap， 用户可以通过向ExternalDataMap数据中赋值并传递数据给Input节点。具体使用方法可参考[外部数据交互](./python.md#外部数据交互)章节 |
 
 ## Python SDK API调用说明
 
@@ -53,7 +53,7 @@ format = "graphviz"
 
 ## 导入ModelBox包
 
-编写时，需要import modelbox SDK。
+编写时，需要导入ModelBox的开发包。
 
 ```python
 import modelbox
@@ -62,7 +62,7 @@ import modelbox
 ## 基本接口
 
 ```python
-def RunFlow()
+def RunFlow():
     # 指定图文件路径
     flow_file = "/path/to/graph/flow-example.toml"
     flow = modelbox.Flow()
@@ -138,7 +138,7 @@ digraph demo {
 ```python
     # 从图中接收数据
     def recv_flow_data(extern_data):
-        out_buffer = extern_data.ExtOutputBufferList()
+        out_buffer = extern_data.create_buffer_list()
         # 使用创建的external对象从output接收数据
         while True:
             ret = extern_data.recv(out_buffer)

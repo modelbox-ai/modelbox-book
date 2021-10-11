@@ -1,8 +1,8 @@
 # 流单元开发
 
-在完成了流程图编排之后，还需通过流单元(FlowUnit)来实现应用的实际功能。ModelBox加载流单元后，根据图结构实例化为图中的各个节点。流单元需提供特定的接口，根据接口协议在数据处理的各个阶段对接口进行调用。
+在完成了流程图编排之后，还需通过流单元(FlowUnit)来实现应用的实际功能。ModelBox加载流单元后，根据图的结构，将实例化为图中的各个节点。流单元需提供特定的接口，根据接口协议，在数据处理的各个阶段对接口进行调用。
 
-有关流单元的详细介绍，请先阅读[框架概念](../../framework-conception/framework-conception.md)章节，以及后续的[流单元](../../framework-conception/flowunit.md)、[流](../../framework-conception/stream.md)章节内容。
+有关流单元的详细介绍，请先阅读[框架概念](../../framework-conception/framework-conception.md)章节，以及后续的[流单元](../../framework-conception/flowunit.md)、[数据流](../../framework-conception/stream.md)章节内容。
 
 本章节内容主要介绍流单元的开发过程。
 
@@ -13,7 +13,7 @@
 1. 先从Example中复制样例代码。
 1. 确定流单元类型。
 1. 修改Example代码的编译，TOML，源代码名称，和设置流单元的输入，输出，参数，以及运行设备信息。
-1. 根据需要实现FlowUnit的Open，DataPre，DataPost，Process，GroupPre，GroupPost，Close接口。
+1. 根据需要实现FlowUnit的Open，DataPre，DataPost，Process，DataGroupPre，DataGroupPost，Close接口。
 1. 编译连接外部组件，调用外部功能组件接口。
 1. 编译安装包。
 1. 流程图中配置使用流单元。
@@ -21,7 +21,7 @@
 ## 流单元类型
 
 在开发流单元时，应该先明确开发流单元处理数据的类型，业务的场景。再根据上述信息选择合适的流单元类型。
-具体流单元类型，请查看[流单元](../../framework-conception/flowunit.md)中的`分类`。在确认流单元类型后，需要对流单元进行如下参数的配置。
+具体流单元类型，请查看[流单元的分类](../../framework-conception/flowunit.md#分类)。在确认流单元类型后，需要对流单元进行如下参数的配置。
 
 流单元参数说明：
 
@@ -51,7 +51,7 @@
 |--|--|--|
 |通用流单元| 工作模式设置为NORMAL | |
 |条件流单元| 工作模式设置为NORMAL，并且条件类型设置为IF_ELSE | |
-|流数据流单元| 工作模式设置为STEAM | |
+|流数据流单元| 工作模式设置为STREAM | |
 |流数据拆分流单元| 工作模式设置为STREAM，并且输出类型设置为扩张 | |
 |流数据合并流单元| 工作模式设置为STREAM，并且输出类型设置为合并 | |
 |推理流单元| 只需准备好模型和配置toml文件即可 | | |
@@ -89,16 +89,15 @@
 
 #### 数据处理
 
-对应需实现的接口为`FlowUnit::Process`, Process为FlowUnit的核心函数。输入数据的处理、出输数据的构造都在此函数中实现。Process接口处理流程大致如下：
+对应需实现的接口为`FlowUnit::Process`, Process为FlowUnit的核心函数。输入数据的处理、输出数据的构造都在此函数中实现。Process接口处理流程大致如下：
 
 1. 从DataContext中获取Input输入BufferList，Output输出BufferList对象，参数为Port名称。
-1. 使用Output->Build申请输出内存，内存和设备相关，设备在DriverDesc的时候设置。如是CPU则是CP内存，如是GPU则是GPU显存。
-1. 循环处理每一个Input Buffer数据。
-1. 对每一个Input Buffer数据可使用Get获取元数据信息。
-1. 业务处理，根据需求对输入数据进行处理。
-1. 构造output_buffer，并使用output_buffer->Build申请输出内存，内存和设备相关，设备DriverDesc的时候设置。如是CPU则是CPU内存，如是GPU则是GPU显存。
-1. 对每一个Output Buffer数据可使用Set设置元数据信息。
-1. 返回成功后，ModelBox框架将数据发送到后续的流单元。
+2. 循环处理每一个Input Buffer数据。
+3. 对每一个Input Buffer数据可使用Get获取元数据信息。
+4. 业务处理，根据需求对输入数据进行处理。
+5. 构造output_buffer，并使用output_buffer->Build申请输出内存，内存和设备相关，设备DriverDesc的时候设置。如是CPU则是CPU内存，如是GPU则是GPU显存。
+6. 对每一个Output Buffer数据可使用Set设置元数据信息。
+7. 返回成功后，ModelBox框架将数据发送到后续的流单元。
 
 #### Stream流数据处理
 

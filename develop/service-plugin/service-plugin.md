@@ -4,7 +4,7 @@
 
 ### 什么是ModelBox服务插件
 
-服务插件是指ModelBox框架之上对外交互的组件，它可以用来作为AI应用和周边系统对接的桥梁。ModelBox框架提供了服务插件管理和扩展开发能力，用户可以定制化开发属于自己业务的插件来对接第三方平台，ModelBox框架可以将其加载并运行。在服务插件内可以完成流程图的加载和运行、任务的创建和启停，统计数据的收集等。同时，ModelBox框架可以支持多个服务插件的加载。
+服务插件是指基于ModelBox框架对外交互的组件，它可以用来作为AI应用和周边系统对接的桥梁。ModelBox框架提供了服务插件管理和扩展开发能力，用户可以定制化开发属于自己业务的插件来对接第三方平台，ModelBox框架可以将其加载并运行。在服务插件内可以完成流程图的加载和运行、任务的创建和启停，统计数据的收集等。同时，ModelBox框架可以支持多个服务插件的加载。
 
 ### 服务插件使用场景
 
@@ -41,7 +41,7 @@ ModelBox API按照类型包含：
 - JobManager：Job的管理，可以创建Job对象。
 - Task：处理数据源层面的作业，一个Task即对应一次数据分析，可以是一路视频流的分析，也可以是一个视频文件的分析。Task可以实现数据输入到流程图(需要配合Input节点使用)，也可以实现配置参数传递到功能单元。
 - TaskManager：Task的管理，可以创建Task对象。
-- OneShotTask: 继承自Task，专指一次task只有一次数据输入到流程图的场景，比如输入为一路视频流的地址，只会有一次数据传递给流程图，而后需要等待分析结果。所以OneShotTask还提供了task状态变化的回调注册接口。
+- OneShotTask: 继承自Task，一次task，专指只有一次数据输入到流程图的场景，比如输入为一路视频流的地址，只会有一次数据传递给流程图，而后需要等待分析结果。所以OneShotTask还提供了task状态变化的回调注册接口。
 - Session：会话信息，一个Task对应存在一个Session，Session中的数据可以在不同功能单元共享访问。
 
 具体接口如下表：
@@ -303,4 +303,4 @@ files = [
 1. 若采用tar.gz包安装的服务，modelbox.conf配置文件在对应的服务目录中。
 1. 开发者可扩展增加toml的配置项，在ModelBoxExamplePlugin::Init接口的configuration对象中获取即可。
 
-插件加入配置文件后，重启ModelBox Server生效， 同时服务插件日志统一收集到ModelBox日志。
+插件加入配置文件后，`systemctl restart modelbox`重启ModelBox Server生效， 同时服务插件日志将统一收集到ModelBox日志。

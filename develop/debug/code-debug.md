@@ -44,7 +44,7 @@ r
 
 #### vscode
 
-vscode调试，可以配置调试文件`.vscode/launch.json`，设置`program`和`args`两个配置项如下。
+vscode调试，可以先下载GDB插件，再配置调试文件`.vscode/launch.json`，设置`program`和`args`两个配置项如下。
 
 ```json
 "program": "modelbox-tool",
