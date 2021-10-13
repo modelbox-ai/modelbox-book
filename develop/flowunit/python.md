@@ -163,6 +163,7 @@ class SomeFlowunit(modelbox.FlowUnit):
 ```python
     def process(self, data_context):
         # 获取输入，输出控制对象。
+        # 此处的"Input"和"Output"必须与toml的端口名称一致
         inputs = data_context.input("Input")
         outputs = data_context.output("Output")
 
@@ -178,7 +179,6 @@ class SomeFlowunit(modelbox.FlowUnit):
 ```
 
 * Process接口处理流程大致如下：
-
     1. 从context中获取Input输入，Output输出对象，参数为Port名称。
     1. 循环处理每一个inputs数据。
     1. 将input数据转换为numpy对象，并编写process_data函数。
@@ -186,7 +186,6 @@ class SomeFlowunit(modelbox.FlowUnit):
     1. 设置output buffer的meta信息。
     1. 将output放入outputs结果集中。
     1. 返回处理结果。
-
 * Process的返回值说明
 
 |返回值|说明|
