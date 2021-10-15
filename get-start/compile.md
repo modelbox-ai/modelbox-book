@@ -93,7 +93,7 @@ ModelBox项目提供了docker镜像，里面包含了ModelBox编译运行所需�
     yum install ffmpeg cmake libcpprest
     ```
 
-## 编译和安装
+## 编译安装ModelBox
 
 1. 准备
 
@@ -141,14 +141,14 @@ ModelBox编译完成后，将生成配套OS安装的安装包，如deb、rpm包�
 
 |类型|名称|说明|
 |--|--|--|
-|运行库|modelbox-x.x.x-Linux-libmodelbox.[deb&#124;rpm]|ModelBox核心运行库。
+|运行库|modelbox-x.x.x-Linux-libmodelbox.[deb&#124;rpm]|modelbox核心运行库。
 |运行库|modelbox-x.x.x-Linux-graph-graphviz.[deb&#124;rpm]|图解析组件。
-|服务组件|modelbox-x.x.x-Linux-server.[deb&#124;rpm]|ModelBox Server服务组件。
-|运行库|modelbox-x.x.x-Linux-ascend-device-flowunit.[deb&#124;rpm]|Ascend设备SDK以及配套基础流单元组件。
-|运行库|modelbox-x.x.x-Linux-cpu-device-flowunit.[deb&#124;rpm]|Cuda设备SDK以及配套基础流单元组件。
-|运行库|modelbox-x.x.x-Linux-cuda-device-flowunit.[deb&#124;rpm]|CPU设备SDK以及配套基础流单元组件。
-|开发库|modelbox-x.x.x-Linux-libmodelbox-devel.[deb&#124;rpm]|ModelBox开发库。
-|开发库|modelbox-x.x.x-Linux-server-devel.[deb&#124;rpm]|ModelBox Server服务插件开发库。
+|服务组件|modelbox-x.x.x-Linux-server.[deb&#124;rpm]|modelbox server服务组件。
+|运行库|modelbox-x.x.x-Linux-ascend-device-flowunit.[deb&#124;rpm]|Ascend设备SDK以及配套基础功能单元组件。
+|运行库|modelbox-x.x.x-Linux-cpu-device-flowunit.[deb&#124;rpm]|Cuda设备SDK以及配套基础功能单元组件。
+|运行库|modelbox-x.x.x-Linux-cuda-device-flowunit.[deb&#124;rpm]|CPU设备SDK以及配套基础功能单元组件。
+|开发库|modelbox-x.x.x-Linux-libmodelbox-devel.[deb&#124;rpm]|modelbox开发库。
+|开发库|modelbox-x.x.x-Linux-server-devel.[deb&#124;rpm]|modelbox server服务插件开发库。
 |开发库|modelbox-x.x.x-Linux-ascend-device-flowunit-devel.[deb&#124;rpm]|Ascend设备开发库。
 |开发库|modelbox-x.x.x-Linux-cpu-device-flowunit-devel.[deb&#124;rpm]|CPU开发包。
 |开发库|modelbox-x.x.x-Linux-cuda-device-flowunit-devel.[deb&#124;rpm]|Cuda设备开发库。
@@ -183,7 +183,7 @@ ModelBox编译完成后，将生成配套OS安装的安装包，如deb、rpm包�
     pip install *.whl
     ```
 
-1. tar.gz包的使用。（可选，如果已经安装了deb|rpm包，则可不用安装tar.gz包）
+1. tar.gz包的使用（可选，如果已经安装了deb|rpm包，则可不用安装tar.gz包）
 
     ```shell
     tar xf modelbox-x.x.x-Linux.tar.gz
@@ -211,11 +211,11 @@ ModelBox编译完成后，将生成配套OS安装的安装包，如deb、rpm包�
 
 ## 启动服务
 
-如安装了`modelbox-x.x.x-Linux-server`，可以使用下述命令启动服务
+如安装了`modelbox-x.x.x-Linux-server`，可以使用下述命令启动服务。
 
 ```shell
 systemctl enable modelbox
 systemctl start modelbox
 ```
 
-关于ModelBox Server服务的配置，请查阅[运行服务](../server/server.md)章节
+关于ailfow server服务的配置，请查阅[运行服务](../server/server.md)章节。
