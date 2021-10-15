@@ -2,7 +2,7 @@
 
 ## ModelBox Plugin插件
 
-ModelBox Plugin插件用于对外提供服务，管理并运行流程图。此插件内置在ModelBox Server中。
+ModelBox Plugin插件用于对外提供服务，管理并运行流程图。此插件内置在Modelbox Server中。
 
 默认情况下，可以直接使用此插件执行相关的流程图功能。例如，新建任务后，将使用插件运行流程图，并将结果对外输出。
 
@@ -25,7 +25,7 @@ ModelBox Plugin插件配置文件和ModelBox Server主配置文件相同，即�
 | server.port      | ModelBox Plugin绑定的管理端口，默认为1104                                    |
 | server.flow_path | ModelBox Plugin加载flow配置文件的扫描路径。默认为/usr/local/etc/modelbox/graph |
 
-为确保ModelBox Plugin插件生效，请确保插件在`/usr/local/etc/modelbox/modelbox.conf`配置文件的`plugin.files`配置项中配置此插件，并在配置完成后，重启modelbox服务。
+为确保ModelBox Plugin插件生效，请确保插件在`/usr/local/etc/modelbox/modelbox.conf`配置文件的`plugin.files`配置项中配置此插件，并在配置完成后，重启ModelBox服务。
 
 ### 添加配置文件管理流程图
 
@@ -40,11 +40,11 @@ ModelBox Plugin支持通过添加流程图配置文件的形式自动执行流�
                         .
 ```
 
-配置文件复制到图存储目录后，可执行ModelBox Server服务重启命令`systemctl restart modelbox`生效.
+配置文件复制到图存储目录后，可执行ModelBox Server服务重启命令`systemctl restart modelbox`生效。
 
 注意：
 
-  1. ModelBox服务加载该目录下的所有文件作为flow作业，如果加载失败将跳过该flow，文件名将作为flow的作业名
+  1. ModelBox服务加载该目录下的所有文件作为flow作业，如果加载失败将跳过该flow，文件名将作为flow的作业名。
   1. 文件名不要包含特殊符号，并且后缀名为`.toml`。
   1. 如果修改该配置项，需要保证指定的目录存在并具有读权限，否则将加载失败。
   1. 路径可通过`server.flow_path`参数修改。
@@ -76,7 +76,7 @@ ModelBox服务当前提供动态增加flow作业，动态删除flow作业，查�
   ```
 
   * `job_id`： flow名字，用户自定义，建议不要包含特殊字符。
-  * `job_graph`：toml格式的图信息，graph的配置详见[图](../framework-conception/graph.md)
+  * `job_graph`：toml格式的图信息，graph的配置详见[图](../framework-conception/graph.md)。
 
 * 例子
 
@@ -117,7 +117,7 @@ ModelBox服务当前提供动态增加flow作业，动态删除flow作业，查�
     }
     ```
 
-  * `error_code`：错误码，参考[错误码](run-flow.md#错误码)
+  * `error_code`：错误码，参考[错误码](run-flow.md#错误码)。
   * `error_msg`：错误码对应的消息。
 
 ### 查询flow作业状态
@@ -186,7 +186,7 @@ ModelBox服务当前提供动态增加flow作业，动态删除flow作业，查�
   }
   ```
 
-  * `job_list`: flow列表。
+  * `job_list`: flow列表
 
 ### flow作业状态码
 

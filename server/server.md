@@ -37,7 +37,7 @@ ModelBox Serverf服务配置文件中包含主服务配置、插件、服务启�
 | 主服务配置       | /usr/local/etc/modelbox/modelbox.conf | 包含基本的配置信息，如插件路径，日志级别。                                                              |
 | 插件配置         | /usr/local/etc/modelbox/modelbox.conf | 和具体插件相关。                                                                                        |
 | 编排服务配置     | /usr/local/etc/modelbox/modelbox.conf | 包括编排服务的配置信息，详情可见[运行服务](./editor.md)中的[运行编排服务](./editor.md#配置启用Editor)   |
-| 访问控制列表     | /usr/local/etc/modelbox/modelbox.conf | 可访问ModelBox后端服务的白名单列表，详情可见[运行服务](./editor.md)中的[访问控制列表](./editor.md#访问控制列表) |
+| 访问控制列表     | /usr/local/etc/modelbox/modelbox.conf | 可访问modelbox后端服务的白名单列表，详情可见[运行服务](./editor.md)中的[ACL](./editor.md#ACL访问控制列表) |
 | 服务启动参数配置 | /usr/local/etc/modelbox/modelbox-opts | 支持配置ModelBox Server服务的启动参数。                                                                   |
 
 ### 主服务配置项
@@ -46,14 +46,14 @@ ModelBox Serverf服务配置文件中包含主服务配置、插件、服务启�
 
 | 配置项         | 配置功能                                                                                                             |
 | -------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `plugin.files` | ModelBox Server插件列表，顺序加载。                                                                                    |
+| `plugin.files` | Modelbox Server插件列表，顺序加载。                                                                                    |
 | `log.level`    | ModelBox服务日志级别，默认为INFO，支持DEBUG, INFO, NOTICE, WARN, ERROR, FATAL, OFF，如果指定OFF，将关闭日志打印。      |
 | `log.num`      | ModelBox服务日志归档文件个数最大值，默认为32，当归档日志超过该阈值时，最旧归档日志文件将删除。                         |
 | `log.path`     | ModelBox服务日志文件路径，默认为`/var/log/modelbox/modelbox.log`。如果修改该配置项，需要保证日志目录存在且具有可读写权限。 |
 
 * 插件服务配置
 
-ModelBox启动后，会按照plugin.files配置的插件，顺序加载插件，各插件的配置，参考插件配置参数，默认`ModelBox plugin`插件的配置，可参考[运行流程图](run-flow.md)。
+ModelBox启动后，会按照plugin.files配置的插件，顺序加载插件，各插件的配置，参考插件配置参数，默认`Modelbox plugin`插件的配置，可参考[运行流程图](run-flow.md)。
 
 ModelBox服务中实现HTTP服务的可插拔模块，详见[ModelBox服务插件](../develop/service-plugin/service-plugin.md)。
 
@@ -79,12 +79,12 @@ ModelBox Server安装完成后，对应的安装目录如下
 
 | 文件路径                          | 说明                           |
 | --------------------------------- | ------------------------------ |
-| /usr/local/bin/modelbox             | ModelBox独立服务器主进程。       |
-| /usr/local/etc/modelbox             | ModelBox配置目录。               |
-| /usr/local/etc/modelbox/modelbox.conf | ModelBox主程序配置文件。         |
-| /usr/local/etc/modelbox/modelbox-opts | ModelBox主程序启动参数配置文件。 |
-| /usr/local/etc/modelbox/graph       | ModelBox执行程序图存储目录。     |
-| /lib/systemd/modelbox.systemd       | ModelBox服务启动systemd unit。   |
+| /usr/local/bin/modelbox             | modelbox独立服务器主进程。       |
+| /usr/local/etc/modelbox             | modelbox配置目录。               |
+| /usr/local/etc/modelbox/modelbox.conf | modelbox主程序配置文件。         |
+| /usr/local/etc/modelbox/modelbox-opts | modelbox主程序启动参数配置文件。 |
+| /usr/local/etc/modelbox/graph       | modelbox执行程序图存储目录。     |
+| /lib/systemd/modelbox.systemd       | modelbox服务启动systemd unit。   |
 | /usr/local/lib/libmodelbox-*.so     | libmodelbox，以及相关插件目录。  |
 
 ## ModelBox Server运行日志
