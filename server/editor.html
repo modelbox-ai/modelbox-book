@@ -273,7 +273,7 @@
                 <a href="../develop/flow/python.html">
             
                     
-                    python
+                    Python
             
                 </a>
             
@@ -318,7 +318,7 @@
                 <a href="../develop/flowunit/python.html">
             
                     
-                    python
+                    Python
             
                 </a>
             
@@ -331,7 +331,7 @@
                 <a href="../develop/flowunit/c++.html">
             
                     
-                    c++
+                    C++
             
                 </a>
             
@@ -497,7 +497,7 @@
                 <a href="../solution/modelbox-guide.html">
             
                     
-                    modelbox上手指南
+                    ModelBox上手指南
             
                 </a>
             
@@ -743,7 +743,7 @@
 </tr>
 <tr>
 <td>editor.ip</td>
-<td>Editor&#x5DE5;&#x5177;&#x76D1;&#x542C;IP&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;127.0.0.1&#xFF0C;&#x4E0D;&#x6307;&#x5B9A;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x548C;server.ip&#x4E00;&#x81F4;</td>
+<td>Editor&#x5DE5;&#x5177;&#x76D1;&#x542C;IP&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;127.0.0.1&#x3002;&#x4E0D;&#x6307;&#x5B9A;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x548C;server.ip&#x4E00;&#x81F4;</td>
 </tr>
 <tr>
 <td>editor.port</td>
@@ -769,7 +769,13 @@
 <p>&#x82E5;&#x9700;&#x8981;&#x5B9A;&#x5236;&#x5316;&#x7F16;&#x6392;&#x670D;&#x52A1;&#x542F;&#x52A8;&#x53C2;&#x6570;&#xFF0C;&#x53EF;&#x4EE5;&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x5177;&#x4F53;&#x4FEE;&#x6539;&#x6D41;&#x7A0B;&#x5982;&#x4E0B;&#xFF1A;</p>
 <ol>
 <li><p>&#x6253;&#x5F00;<code>/usr/local/etc/modelbox/modelbox.conf</code>&#xFF0C;&#x4FEE;&#x6539;&#x5176;&#x4E2D;&#x7684;&#x914D;&#x7F6E;&#x9879;&#xFF1A;</p>
-<pre><code class="lang-toml"> [plugin]
+<pre><code class="lang-toml"> [server]
+ # &#x5141;&#x8BB8;&#x8BBF;&#x95EE;&#x670D;&#x52A1;
+ ip = &quot;0.0.0.0&quot;
+ port = &quot;1104&quot;
+ flow_path = &quot;/usr/local/etc/modelbox/graph&quot;
+
+ [plugin]
  # &#x786E;&#x4FDD;Editor&#x7EC4;&#x4EF6;&#x52A0;&#x8F7D;&#x3002;
  files = [
      &quot;/usr/local/lib/modelbox-plugin-editor.so&quot;
@@ -836,12 +842,7 @@
 <ol>
 <li><p>&#x6253;&#x5F00;<code>/usr/local/etc/modelbox/modelbox.conf</code>&#xFF0C;&#x4FEE;&#x6539;&#x5176;&#x4E2D;&#x7684;&#x914D;&#x7F6E;&#x9879;&#xFF1A;
 &#x5047;&#x8BBE;&#x6253;&#x5F00;&#x7F16;&#x6392;UI&#x7684;&#x673A;&#x5668;&#x7684;IP&#x5730;&#x5740;&#x4E3A;10.11.12.13</p>
-<pre><code class="lang-shell"> [server]
- ip = &quot;127.0.0.1&quot;
- port = &quot;1104&quot;
- flow_path = &quot;/usr/local/etc/modelbox/graph&quot;
-
- [acl]
+<pre><code class="lang-shell"> [acl]
  allow = [
      &quot;10.11.12.13&quot;,
  ]
@@ -853,14 +854,20 @@
  ]
 </code></pre>
 <p> &#x5982;&#x679C;&#x6CA1;&#x6709;&#x914D;&#x7F6E;&#x4EFB;&#x4F55;&#x8BBF;&#x95EE;&#x767D;&#x540D;&#x5355;&#xFF0C;&#x5219;&#x5141;&#x8BB8;&#x6240;&#x6709;&#x4EBA;&#x7686;&#x53EF;&#x8BBF;&#x95EE;&#x3002;</p>
+<pre><code class="lang-shell">     # [acl]
+     # allow = [
+     #     &quot;10.11.12.13&quot;,
+     # ]
+</code></pre>
 </li>
 <li><p>&#x91CD;&#x542F;ModelBox Server&#x670D;&#x52A1;&#x4F7F;&#x914D;&#x7F6E;&#x751F;&#x6548;&#x3002;</p>
 <pre><code class="lang-shell"> systemctl restart modelbox
 </code></pre>
 </li>
 </ol>
+<p>&#x6CE8;&#x610F;&#xFF1A;1. &#x786E;&#x4FDD;<code>[editor]</code>&#x4E0B;<code>enable = true</code>&#x3002; </p>
 <footer class="page-footer"><span class="copyright">&#xA9; &#x534E;&#x4E3A;&#x6280;&#x672F;&#x6709;&#x9650;&#x516C;&#x53F8; all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2021-09-15 09:51:07
+2021-10-15 03:24:38
 </span></footer>
                                 
                                 </section>
@@ -894,7 +901,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"运行编排服务","level":"1.3.1","depth":2,"next":{"title":"运行流程图","level":"1.3.2","depth":2,"path":"server/run-flow.md","ref":"server/run-flow.md","articles":[]},"previous":{"title":"运行服务","level":"1.3","depth":1,"path":"server/server.md","ref":"server/server.md","articles":[{"title":"运行编排服务","level":"1.3.1","depth":2,"path":"server/editor.md","ref":"server/editor.md","articles":[]},{"title":"运行流程图","level":"1.3.2","depth":2,"path":"server/run-flow.md","ref":"server/run-flow.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy; 华为技术有限公司","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导书"},"file":{"path":"server/editor.md","mtime":"2021-09-15T09:51:07.205Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-09-15T09:51:49.534Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"运行编排服务","level":"1.3.1","depth":2,"next":{"title":"运行流程图","level":"1.3.2","depth":2,"path":"server/run-flow.md","ref":"server/run-flow.md","articles":[]},"previous":{"title":"运行服务","level":"1.3","depth":1,"path":"server/server.md","ref":"server/server.md","articles":[{"title":"运行编排服务","level":"1.3.1","depth":2,"path":"server/editor.md","ref":"server/editor.md","articles":[]},{"title":"运行流程图","level":"1.3.2","depth":2,"path":"server/run-flow.md","ref":"server/run-flow.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy; 华为技术有限公司","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导书"},"file":{"path":"server/editor.md","mtime":"2021-10-15T03:24:38.222Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-10-15T03:25:23.315Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

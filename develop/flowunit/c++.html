@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>c++ · ModelBox User Refference</title>
+        <title>C++ · ModelBox User Refference</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -273,7 +273,7 @@
                 <a href="../flow/python.html">
             
                     
-                    python
+                    Python
             
                 </a>
             
@@ -318,7 +318,7 @@
                 <a href="python.html">
             
                     
-                    python
+                    Python
             
                 </a>
             
@@ -331,7 +331,7 @@
                 <a href="c++.html">
             
                     
-                    c++
+                    C++
             
                 </a>
             
@@ -497,7 +497,7 @@
                 <a href="../../solution/modelbox-guide.html">
             
                     
-                    modelbox上手指南
+                    ModelBox上手指南
             
                 </a>
             
@@ -695,7 +695,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >c++</a>
+        <a href="../.." >C++</a>
     </h1>
 </div>
 
@@ -937,6 +937,7 @@ MODELBOX_FLOWUNIT(SomeFlowUnit, desc) {
 <pre><code class="lang-c++">modelbox::Status CVResizeFlowUnit::Process(
     <span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::DataContext&gt; ctx) {
   <span class="hljs-comment">// &#x83B7;&#x53D6;&#x8F93;&#x5165;&#xFF0C;&#x8F93;&#x51FA;Buffer&#x5BF9;&#x8C61;&#xFF0C;&quot;input&quot;, &quot;output&quot;&#x4E3A;&#x5BF9;&#x5E94;&#x6D41;&#x5355;&#x5143;Port&#x540D;&#x79F0;&#xFF0C;&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x4E2A;&#x3002;</span>
+  <span class="hljs-comment">// &#x6B64;&#x5904;&#x7684;&quot;Input&quot;&#x548C;&quot;Output&quot;&#x5FC5;&#x987B;&#x4E0E;toml&#x7684;&#x7AEF;&#x53E3;&#x540D;&#x79F0;&#x4E00;&#x81F4;</span>
   <span class="hljs-keyword">auto</span> input_bufs = ctx-&gt;Input(<span class="hljs-string">&quot;input&quot;</span>);
   <span class="hljs-keyword">auto</span> output_bufs = ctx-&gt;Output(<span class="hljs-string">&quot;output&quot;</span>);
 
@@ -1112,7 +1113,7 @@ modelbox::Status VideoDecoderFlowUnit::DataGroupPost(
 </ol>
 <p>&#x9700;&#x8981;&#x7279;&#x6B8A;&#x8BF4;&#x660E;&#x7684;&#x662F;&#x7F16;&#x8BD1;&#x751F;&#x6210;&#x7684;so&#x547D;&#x540D;&#x9700;&#x8981;<code>libmodelbox-</code>&#x5F00;&#x5934;&#xFF0C;&#x5426;&#x5219;ModelBox&#x65E0;&#x6CD5;&#x626B;&#x63CF;&#x5230;&#x3002;</p>
 <footer class="page-footer"><span class="copyright">&#xA9; &#x534E;&#x4E3A;&#x6280;&#x672F;&#x6709;&#x9650;&#x516C;&#x53F8; all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2021-09-15 09:51:07
+2021-10-15 03:24:38
 </span></footer>
                                 
                                 </section>
@@ -1146,7 +1147,7 @@ modelbox::Status VideoDecoderFlowUnit::DataGroupPost(
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"c++","level":"1.4.2.3","depth":3,"next":{"title":"服务插件","level":"1.4.3","depth":2,"path":"develop/service-plugin/service-plugin.md","ref":"develop/service-plugin/service-plugin.md","articles":[]},"previous":{"title":"python","level":"1.4.2.2","depth":3,"path":"develop/flowunit/python.md","ref":"develop/flowunit/python.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy; 华为技术有限公司","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导书"},"file":{"path":"develop/flowunit/c++.md","mtime":"2021-09-15T09:51:07.205Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-09-15T09:51:49.534Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"C++","level":"1.4.2.3","depth":3,"next":{"title":"服务插件","level":"1.4.3","depth":2,"path":"develop/service-plugin/service-plugin.md","ref":"develop/service-plugin/service-plugin.md","articles":[]},"previous":{"title":"Python","level":"1.4.2.2","depth":3,"path":"develop/flowunit/python.md","ref":"develop/flowunit/python.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy; 华为技术有限公司","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导书"},"file":{"path":"develop/flowunit/c++.md","mtime":"2021-10-15T03:24:38.222Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-10-15T03:25:23.315Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
