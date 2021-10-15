@@ -4,7 +4,7 @@
 
 ### 什么是ModelBox，ModelBox有什么功能？
 
-ModelBox是一个AI应用的推理框架，ModelBox通过编排和插件化的形式支持AI应用的开发，支持的数据有视频，音频，语音，文本，通用数据的编排处理，ModelBox的主要功能列表可参考[这里](../README.md#ModelBox主要功能)
+ModelBox是一个AI应用的推理框架，ModelBox通过编排和插件化的形式支持AI应用的开发，支持的数据有视频，音频，语音，文本，通用数据的编排处理，modelbox的主要功能列表可参考[这里](../README.md#ModelBox主要功能)
 
 ### 相比直接调用底层API开发AI业务，ModelBox有什么优势？
 
@@ -14,7 +14,7 @@ ModelBox解决的就是业务开发的周边问题，将周边问题交由ModelB
 
 ### ModelBox目前支持哪些框架训练的模型（TensorFlow、Caffe、PyTorch等）
 
-ModelBox框架里面包含了支持TensorFlow, Caffe, Pytorch模型运行所需的流单元Flowunit，我们称为推理流单元(Inference Flowunit)，这些推理流单元可以直接加载对应的模型文件，而不需要编写代码，只需提供一个简单的配置文件，即可将模型引入到ModelBox的流程中。目前支持的模型有TensorFlow, TensorRT, Ascend ACL模型。
+ModelBox框架里面包含了支持TensorFlow, Caffe, Pytorch模型运行所需的功能单元Flowunit，我们称为推理功能单元(Inference Flowunit)，这些推理功能单元可以直接加载对应的模型文件，而不需要编写代码，只需提供一个简单的配置文件，即可将模型引入到ModelBox的流程中。目前支持的模型有TensorFlow, TensorRT, Ascend ACL模型。
 
 ## ModelBox组件
 
@@ -25,9 +25,9 @@ ModelBox目前包含如下组件
 1. 微服务ModelBox Server
 1. 运行库ModelBox Library
 1. 维护工具ModelBox Tool
-1. CPU相关的流单元
-1. Huawei Ascend相关的流单元
-1. Cuda相关的流单元
+1. CPU相关的功能单元
+1. Huawei Ascend相关的功能单元
+1. Cuda相关的功能单元
 1. 可视化编辑工具
 
 ### ModelBox支持服务式吗？
@@ -36,7 +36,7 @@ ModelBox有专门的微服务程序，ModelBox Server，ModelBox Server内置了
 
 ### 如何调试ModelBox程序
 
-ModelBox本身为C++代码编写，开发者可以通过如下方式调试ModelBox程序和相关的流单元：
+ModelBox本身为C++代码编写，开发者可以通过如下方式调试ModelBox程序和相关的功能单元：
 
 1. GDB，IDE等工具调试
 1. ModelBox运行日志。
@@ -127,17 +127,17 @@ Seccomp是Secure computing mode的缩写。
 cat /etc/EulerLinux.conf
 ```
 
-## 流单元
+## 功能单元
 
-### 流单元的分类
+### 功能单元的分类
 
-流单元可以分为两大类
+功能单元可以分为两大类
 
-#### 1. 实际的流单元
+#### 1. 实际的功能单元
 
-由实际代码所实现，每套代码对应自己的流单元
+由实际代码所实现，每套代码对应自己的功能单元
 
-#### 2. 虚拟流单元
+#### 2. 虚拟功能单元
 
 只有一个in配置文件，所有的具体实现在一个tensorrt的模块中，端口名、数据类型都是通过配置文件配置的。
 
