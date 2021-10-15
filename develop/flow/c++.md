@@ -12,7 +12,7 @@ flow的运行流程可参考flow章节。
 
 | API接口  |     参数说明       |                                             函数说明                                                         |
 | ------- |------------------- | ------------------------------------------------------------------------------------------------------------ |
-| Flow::Init | configfile: 指定config文件的路径<br />format： 指定图文件的格式，可选项为 FORMAT_AUTO,FORMAT_TOML，FORMAT_JSON | 初始化ModelBox服务，主要包含功能如下：<br />1. 读取driver参数，获取driver的扫描路径<br />2. 扫描指定路径下的driver文件，并创建driver实例<br />3. 加载流程图并转换为ModelBox可识别的模型<br />4. 初始化设备信息，性能跟踪和数据统计单元 |
+| Flow::Init | configfile: 指定config文件的路径<br />format： 指定图文件的格式，可选项为 FORMAT_AUTO,FORMAT_TOML，FORMAT_JSON | 初始化modelbox服务，主要包含功能如下：<br />1. 读取driver参数，获取driver的扫描路径<br />2. 扫描指定路径下的driver文件，并创建driver实例<br />3. 加载流程图并转换为modelbox可识别的模型<br />4. 初始化设备信息，性能跟踪和数据统计单元 |
 | Flow::Init | name: 指定的图的名称<br />graph: 存储图的字符串<br />format：指定图的格式 | 与上面Init的区别是，上面通过读取文件的方式，而此函数通过读取字符串的方式，其他功能相同 |
 | Flow::Init | is: 图的输入流<br />fname: 输入的图名称 | 功能与上面Init相同， 区别在于输入采用的是流保存的图信息 |
 | Flow::Init | config: Configuration指针，存储图信息 | 功能同上 |
@@ -31,7 +31,7 @@ Flow流程图接口调用过程如下图所示。
 
 ![c++-sdk](../../assets/images/figure/develop/flow/c++-sdk.png)
 
-1. 安装C++ SDK包
+1. 安装C++ SDK包。
 1. 开发流程图，配置基础部分和图部分。
 1. 调用Flow::init接口，输入流程图文件。
 1. 调用Flow::build初始化流程图。
@@ -54,7 +54,7 @@ graphconf = '''digraph demo {
 format = "graphviz"
 ```
 
-## 导入ModelBox包
+## 导入modelbox包
 
 编写时，需要引入头文件。
 
@@ -163,7 +163,7 @@ modelbox::Status SendExternalData(std::shared_ptr<ExternalDataMap> ext_data, voi
 }
 ```
 
-* 代码从图中`output`端口接收数据
+* 代码从图中`output`端口接收数据。
 
 ```C++
 modelbox::Status RecvExternalData(std::shared_ptr<ExternalDataMap> ext_data) {
@@ -196,4 +196,4 @@ modelbox::Status RecvExternalData(std::shared_ptr<ExternalDataMap> ext_data) {
 
 ## C++日志
 
-默认情况，ModelBox的SDK输出日志到console，业务需要注册相关的日志处理函数，注册方法可参考[日志章节](../debug/log.md)
+默认情况，ModelBox的SDK输出日志到console，业务需要注册相关的日志处理函数，注册方法可参考[日志章节](../debug/log.md)。

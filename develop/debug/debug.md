@@ -1,4 +1,4 @@
-# Debug
+# debug
 
 ModelBox提供了多种调试方法，包含了业务运行，性能，和代码的调试。
 
@@ -8,10 +8,10 @@ ModelBox提供了多种调试方法，包含了业务运行，性能，和代码
 
 |语言|组件|调试方法|
 |--|--|--|
-|c++|ModelBox套件|编译[debug版本](../../get-start/compile.html#编译和安装)，GDB，日志。
-|c++|自开发服务|编译[debug版本](../../get-start/compile.html#编译和安装)，GDB，日志。
-|c++|流单元|编译[debug版本](../../get-start/compile.html#编译和安装)，GDB，日志，Profiling。
-|python|流单元|PDB，日志，Profiling。
+|c++|modelbox套件|编译debug版本，GDB，日志。
+|c++|自开发服务|编译debug版本，GDB，日志。
+|c++|功能单元|编译debug版本，GDB，日志，Profiling。
+|python|功能单元|PDB，日志，Profiling。
 
 上述表格中，使用GDB、PDB调试的，可以配合IDE完成。
 

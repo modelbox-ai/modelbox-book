@@ -4,11 +4,11 @@ Nvidia Cuda支持stream并发编程，什么是stream可参考[此处](https://d
 
 ModelBox为更好的支持Stream并发编程，默认情况下，ModelBox的Cuda接口全部采用Stream模式，开发者需要在编程时，使用Cuda的Stream接口以提升性能。
 
-## Cuda流单元接口
+## Cuda功能单元接口
 
-ModelBox框架会自动管理Stream，开发流单元时，开发者可以通过process的入参获取到Stream，之后可以用于Cuda接口的调用中。
+ModelBox框架会自动管理Stream，开发功能单元时，开发者可以通过process的入参获取到Stream，之后可以用于Cuda接口的调用中。
 
-在实现流单元之前，cuda相关的流单元，需要从`CudaFlowUnit`派生，并实现`CudaProcess`接口。
+在实现功能单元之前，cuda相关的功能单元，需要从`CudaFlowUnit`派生，并实现`CudaProcess`接口。
 
 ```c++
 class SomeCudaFlowUnit : public modelbox::CudaFlowUnit {
@@ -21,7 +21,7 @@ class SomeCudaFlowUnit : public modelbox::CudaFlowUnit {
 };
 ```
 
-除CudaProcess以外，其他接口和通用流单元一致，CudaProcess接口如下：
+除CudaProcess以外，其他接口和通用功能单元一致，CudaProcess接口如下：
 
 ```c++
 modelbox::Status ColorTransposeFlowUnit::CudaProcess(

@@ -1,8 +1,8 @@
-# c++开发流单元
+# c++开发功能单元
 
-c++开发流单元时，需要预先安装ModelBox的开发包，然后再基于example改造，修改为相应的流单元组件。
+c++开发功能单元时，需要预先安装modelbox的开发包，然后再基于example改造，修改为相应的功能单元组件。
 
-样例工程可从源代码目录的`example/flowunit/`中获取，在开发之前，可以从[流单元概念](../../framework-conception/flowunit.md)章节了解流单元的执行过程。
+样例工程可从源代码目录的`example/flowunit/`中获取，在开发之前，可以从[功能单元概念](../../framework-conception/flowunit.md)章节了解功能单元的执行过程。
 
 ## C++ API调用说明
 
@@ -10,12 +10,12 @@ FlowUnit接口调用过程如下图所示。
 
 ![flowunit-develop-flow](../../assets/images/figure/develop/flowunit/flowunit-develop-flow.png)
 
-FlowUnit开发分为三部分，`Driver`和`Factory`，分别设置插件属性和流单元属性，封装为易于接口，`FlowUnit`为流单元处理对象，三部分的需要实现的功能如下：
+FlowUnit开发分为三部分，`Driver`和`Factory`，分别设置插件属性和功能单元属性，封装为易于接口，`FlowUnit`为功能单元处理对象，三部分的需要实现的功能如下：
 
 | 组件     | 函数                                               | 功能                                 | 是否必须 | 实现功能                                                                                                                                         |
 | -------- | -------------------------------------------------- | ------------------------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Driver   | MODELBOX_DRIVER_FLOWUNIT                           | 设置插件属性                         | 是       | Driver属性设置接口，填写插件相关的描述信息，包括，插件名称，插件版本号，插件运行的设备类型，初始化函数，查询的细节描述信息，插件的配置参数列表。 |
-| Factory  | MODELBOX_FLOWUNIT                                  | 流单元属性设置接口，并注册到ModelBox | 是       | 填写ModelBox相关的输入，输出端口，参数设置等信息                                                                                                 |
+| Factory  | MODELBOX_FLOWUNIT                                  | 功能单元属性设置接口，并注册到ModelBox | 是       | 填写ModelBox相关的输入，输出端口，参数设置等信息                                                                                                 |
 | FlowUnit | FlowUnit::Open<br/>FlowUnit::Close                 | FlowUnit初始化                       | 否       | FlowUnit初始化、关闭，创建、释放相关的资源                                                                                                       |
 | FlowUnit | FlowUnit::Process                                  | FlowUnit数据处理                     | 是       | FlowUnit数据处理函数，读取数据数据，并处理后，输出数据                                                                                           |
 | FlowUnit | FlowUnit::DataPre<br/>FlowUnit::DataPost           | Stream流数据开始，结束通知           | 部分     | stream流数据开始时调用DataPre函数初始化状态数据，Stream流数据结束时释放状态数据，比如解码器上下文。                                              |
@@ -27,14 +27,14 @@ FlowUnit开发分为三部分，`Driver`和`Factory`，分别设置插件属性�
 
 | 设备类型 | 头文件                                          | 说明                      |
 | -------- | ----------------------------------------------- | ------------------------- |
-| cpu      | #include &lt;modelbox/device/cpu.h&gt;          | CPU类型的流单元           |
-| cuda     | #include &lt;modelbox/device/cuda.h&gt;         | Nvidia GPU类型的流单元    |
-| ascend   | #include &lt;modelbox/device/ascend.h&gt;       | Huawei Ascend类型的流单元 |
-| flowunit | #include &lt;modelbox/flowunit_api_helper.h&gt; | 流单元开发接口            |
+| cpu      | #include &lt;modelbox/device/cpu.h&gt;          | CPU类型的功能单元           |
+| cuda     | #include &lt;modelbox/device/cuda.h&gt;         | Nvidia GPU类型的功能单元    |
+| ascend   | #include &lt;modelbox/device/ascend.h&gt;       | Huawei Ascend类型的功能单元 |
+| flowunit | #include &lt;modelbox/flowunit_api_helper.h&gt; | 功能单元开发接口            |
 
 ### 创建模板工程
 
-ModelBox提供了模板创建工具，可以通过**ModelBox Tool**工具产生c++流单元的模板，具体的命令为
+ModelBox提供了模板创建工具，可以通过`modelbox-tool`工具产生c++功能单元的模板，具体的命令为
 
 ```shell
 modelbox-tool create -t c++ -n FlowUnitName -d /path/to/flowunit
@@ -42,7 +42,7 @@ modelbox-tool create -t c++ -n FlowUnitName -d /path/to/flowunit
 
 ### Driver接口说明
 
-Driver相关的接口，主要用于描述Drvier相关的属性，如Driver名称，版本号，设备类型，描述信息。FlowUnit流单元开发，这里只需修改流单元名称即可。
+Driver相关的接口，主要用于描述Drvier相关的属性，如Driver名称，版本号，设备类型，描述信息。FlowUnit功能单元开发，这里只需修改功能单元名称即可。
 
 #### 设置Driver相关属性
 
@@ -92,14 +92,14 @@ MODELBOX_FLOWUNIT(SomeFlowUnit, desc) {
 }
 ```
 
-设置流单元名称，工作模式，输入及输出的名称、类型。此处可以写多个流单元功能模块的描述，此描述等效于向框架注册流单元的信息，注册后框架扫描到so时，才能够正确按照名称对流单元进行加载。
+设置功能单元名称，工作模式，输入及输出的名称、类型。此处可以写多个功能单元功能模块的描述，此描述等效于向框架注册功能单元的信息，注册后框架扫描到so时，才能够正确按照名称对功能单元进行加载。
 
-* `SomeFlowUnit`：对应的插件流单元派生对象，从FlowUnit派生出来的类。
-* `MODELBOX_FLOWUNIT`: 一个Driver内部可以注册多个流单元，`MODELBOX_FLOWUNIT`可以设置多个不同的FlowUnit。
+* `SomeFlowUnit`：对应的插件功能单元派生对象，从FlowUnit派生出来的类。
+* `MODELBOX_FLOWUNIT`: 一个Driver内部可以注册多个功能单元，`MODELBOX_FLOWUNIT`可以设置多个不同的FlowUnit。
 
 ### FlowUnit接口说明
 
-流单元的数据处理的基本单元。如果流单元的工作模式是`modelbox::NORMAL`时，流单元会调用`::Open`、`::Process`、`::Close`接口；如果流单元的工作模式是`modelbox::STREAM`时，流单元会调用`::Open`、`::DataGroupPre`、`::DataPre`、`::Process`、`::DataPost`、`::DataGroupPost`、`::Close`接口；用户可根据实际需求实现对应接口。
+功能单元的数据处理的基本单元。如果功能单元的工作模式是`modelbox::NORMAL`时，功能单元会调用`::Open`、`::Process`、`::Close`接口；如果功能单元的工作模式是`modelbox::STREAM`时，功能单元会调用`::Open`、`::DataGroupPre`、`::DataPre`、`::Process`、`::DataPost`、`::DataGroupPost`、`::Close`接口；用户可根据实际需求实现对应接口。
 
 #### FlowUnit数据处理接口
 
@@ -107,12 +107,12 @@ MODELBOX_FLOWUNIT(SomeFlowUnit, desc) {
 class SomeFlowUnit : public modelbox::FlowUnit {
  public:
   modelbox::Status Open(const std::shared_ptr<modelbox::Configuration> &opts) {
-    // 流单元打开，读取配置
+    // 功能单元打开，读取配置
     return modelbox::STATUS_OK;
   }
 
   modelbox::Status Close() {
-    // 流单元关闭，释放资源
+    // 功能单元关闭，释放资源
     return modelbox::STATUS_OK;
   }
 
@@ -150,20 +150,20 @@ class SomeFlowUnit : public modelbox::FlowUnit {
 | Ascend | Huawei Ascend | [链接](../device/ascend.md) |
 | Cuda   | Nvidia Cuda   | [链接](../device/cuda.md)   |
 
-#### 流单元初始化、关闭接口
+#### 功能单元初始化、关闭接口
 
 对应需实现的接口为`FlowUnit::Open`、`FlowUnit::Close`，实现样例如下：
 
 ```c++
 modelbox::Status SomeFlowUnit::Open(
     const std::shared_ptr<modelbox::Configuration> &opts) {
-  // 获取流单元配置参数
+  // 获取功能单元配置参数
   auto pixel_format = opts->GetString("pixel_format", "bgr");
   return modelbox::STATUS_OK;
 }
 ```
 
-Open函数将在图初始化的时候调用，`const std::shared_ptr<modelbox::Configuration> &opts`为流单元的配置参数，可调用相关的接口获取配置，返回`modelbox::STATUS_OK`，表示初始化成功，否则初始化失败。
+Open函数将在图初始化的时候调用，`const std::shared_ptr<modelbox::Configuration> &opts`为功能单元的配置参数，可调用相关的接口获取配置，返回`modelbox::STATUS_OK`，表示初始化成功，否则初始化失败。
 
 ```c++
 modelbox::Status Close() {
@@ -180,7 +180,7 @@ Close函数将在图处理结束时调用，可用于释放相关的资源。
 ```c++
 modelbox::Status CVResizeFlowUnit::Process(
     std::shared_ptr<modelbox::DataContext> ctx) {
-  // 获取输入，输出Buffer对象，"input", "output"为对应流单元Port名称，可以有多个。
+  // 获取输入，输出Buffer对象，"input", "output"为对应功能单元Port名称，可以有多个。
   auto input_bufs = ctx->Input("input");
   auto output_bufs = ctx->Output("output");
   
@@ -337,12 +337,12 @@ modelbox::Status VideoDecoderFlowUnit::DataGroupPost(
 
 ### 编译安装
 
-生成的c++流单元模板中包含CMakeLists.txt文件，主要流程如下：
+生成的c++功能单元模板中包含CMakeLists.txt文件，主要流程如下：
 
-1. 设置流单元名称
-1. 链接流单元所需头文件
-1. 链接流单元所需库
+1. 设置功能单元名称
+1. 链接功能单元所需头文件
+1. 链接功能单元所需库
 1. 设置编译目标为动态库
-1. 指定流单元安装目录
+1. 指定功能单元安装目录
 
-需要特殊说明的是编译生成的so命名需要`libmodelbox-`开头，否则ModelBox无法扫描到。
+需要特殊说明的是编译生成的so命名需要`libmodelbox-`开头，否则modelbox无法扫描到。

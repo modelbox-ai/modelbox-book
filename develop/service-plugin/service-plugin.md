@@ -1,8 +1,8 @@
-# ModelBox服务插件
+# Modelbox服务插件
 
-## ModelBox服务插件介绍
+## Modelbox服务插件介绍
 
-### 什么是ModelBox服务插件
+### 什么是Modelbox服务插件
 
 服务插件是指ModelBox框架之上对外交互的组件，它可以用来作为AI应用和周边系统对接的桥梁。ModelBox框架提供了服务插件管理和扩展开发能力，用户可以定制化开发属于自己业务的插件来对接第三方平台，ModelBox框架可以将其加载并运行。在服务插件内可以完成流程图的加载和运行、任务的创建和启停，统计数据的收集等。同时，ModelBox框架可以支持多个服务插件的加载。
 
@@ -10,7 +10,7 @@
 
 服务插件在视频场景使用较为普遍，典型使用场景为：视频分析任务需要从外部平台或者组件下发到ModelBox框架进行任务分析时，需要通过服务插件来接受外部的请求并转化为ModelBox框架里的分析任务进行业务分析。同时服务插件也可以实现统计信息的收集并发送给外部运维平台，实现与外部系统的对接。
 
-ModelBox框架提供了预置的服务插件ModelBox Plugin，提供流程图的加载和运行, 见[运行流程图](../../server/run-flow.md)章节。在大部分情况下，可以直接使用ModelBox Plugin完成相应的业务功能，当某些场景下，ModelBox Plugin功能无法满足要求时，需要自定义开发服务插件，下面介绍服务插件的具体开发流程。
+ModelBox框架提供了预置的服务插件ModelBox Plugin，提供流程图的加载和运行, 见[运行流程图](server/run-flow.md)章节。在大部分情况下，可以直接使用ModelBox Plugin完成相应的业务功能，当某些场景下，ModelBox Plugin功能无法满足要求时，需要自定义开发服务插件，下面介绍服务插件的具体开发流程。
 
 ## 服务插件开发流程
 
@@ -141,10 +141,10 @@ install(TARGETS ${MODELBOX_SERVER_PLUGIN}
 #include <memory>
 
 // 插件需要实现的接口
-class ModelBoxExamplePlugin : public Plugin {
+class ModelboxExamplePlugin : public Plugin {
  public:
-  ModelBoxExamplePlugin(){};
-  ~ModelBoxExamplePlugin(){};
+  ModelboxExamplePlugin(){};
+  ~ModelboxExamplePlugin(){};
 
   // 插件初始化时调用。
   bool Init(std::shared_ptr<modelbox::Configuration> config) override;
@@ -157,7 +157,7 @@ class ModelBoxExamplePlugin : public Plugin {
 // 插件创建接口
 extern "C" {
 std::shared_ptr<Plugin> CreatePlugin() {
-    return std::make_shared<ModelBoxExamplePlugin>();
+    return std::make_shared<ModelboxExamplePlugin>();
 };
 }
 ```
@@ -166,31 +166,31 @@ std::shared_ptr<Plugin> CreatePlugin() {
 
     插件需要在此函数中，创建插件对象，返回智能指针。
 
-1. 再调用`Plugin::Init()`初始化插件，入参为TOML文件配置。
+2. 再调用`Plugin::Init()`初始化插件，入参为TOML文件配置。
 
     插件可在初始化函数中，获取配置，并调用插件自身的初始化功能。
 
-1. 再调用`Plugin::Start()`启动插件。
+3. 再调用`Plugin::Start()`启动插件。
 
     插件在Start函数中启动插件服务，申请相关的资源；此函数不能阻塞。
 
-1. 进程退出时，调用`Plugin::Stop()`停止插件功能。
+4. 进程退出时，调用`Plugin::Stop()`停止插件功能。
 
     插件在Stop函数中停止插件的功能，并释放相关的资源。
 
-1. 调用ModelBox Server，ModelBox Library相关接口。
+5. 调用ModelBox Server，ModelBox Library相关接口。
 
     插件调用ModelBox Server，以及ModelBox Library的API进行业务控制和运行。具体参考相关的API。
 
 #### Job创建流程
 
-使用场景为流程图不依赖于外部给其输入，直接加载即可运行场景。如图片推理服务，数据流可由流程图中的HTTP流单元产生数据，再比如流程图中读本地文件作为数据源的场景。
+使用场景为流程图不依赖于外部给其输入，直接加载即可运行场景。如图片推理服务，数据流可由流程图中的HTTP功能单元产生数据，再比如流程图中读本地文件作为数据源的场景。
 
   ```c++
    Job job_;
    JobManager job_manager_;
 
-  bool ModelBoxExamplePlugin::Init(std::shared_ptr<modelbox::Configuration> config)
+  bool ModelboxExamplePlugin::Init(std::shared_ptr<modelbox::Configuration> config)
   {
      //创建JobManager
      job_manager_ = std::make_shared<JobManager>();
@@ -203,7 +203,7 @@ std::shared_ptr<Plugin> CreatePlugin() {
      return ret;
   }
 
-  bool ModelBoxExamplePlugin::Start()
+  bool ModelboxExamplePlugin::Start()
   {
      job_->Build();
      job_->Run();
@@ -211,7 +211,7 @@ std::shared_ptr<Plugin> CreatePlugin() {
   }
 
 
-  bool ModelBoxExamplePlugin::Stop()
+  bool ModelboxExamplePlugin::Stop()
   {
      auto ret = job_->Stop();
      ret = job_manager_->DeleteJob("my_job");
@@ -225,12 +225,12 @@ std::shared_ptr<Plugin> CreatePlugin() {
 使用场景为流程图运行依赖与外部输入的场景，如分析的视频流信息需要由外部传入服务插件，再有服务插件创建Task，并把相应配置参数数据传递到流程图。
 
 ```c++
-  void ModelBoxExamplePlugin::ModelBoxTaskStatusCallback(modelbox::OneShotTask *task,
+  void ModelboxExamplePlugin::ModelBoxTaskStatusCallback(modelbox::OneShotTask *task,
                                      modelbox::TaskStatus status) {
     //实现任务结束或者任务异常时处理逻辑
     return;
   }
-  bool ModelBoxExamplePlugin::Start()
+  bool ModelboxExamplePlugin::Start()
   {
       job_->Build();
       job_->Run();
@@ -286,7 +286,7 @@ std::shared_ptr<Plugin> CreatePlugin() {
 
 ### 服务插件配置使用
 
-插件开发完成后，编译为SO文件。需要将插件加入ModelBox Server配置文件的`plugin.files`配置项插件配置列表中，即默认路径为`/usr/local/etc/modelbox/modelbox.conf`的`plugin.files`配置项。
+插件开发完成后，编译为SO文件。需要将插件加入Modelbox Server配置文件的`plugin.files`配置项插件配置列表中，即默认路径为`/usr/local/etc/modelbox/modelbox.conf`的`plugin.files`配置项。
 
 ```toml
 [plugin]
@@ -301,6 +301,6 @@ files = [
 1. modelbox-plugin.so为系统预置插件，可根据需要添加
 1. 插件按从上到下的顺序加载。
 1. 若采用tar.gz包安装的服务，modelbox.conf配置文件在对应的服务目录中。
-1. 开发者可扩展增加toml的配置项，在ModelBoxExamplePlugin::Init接口的configuration对象中获取即可。
+1. 开发者可扩展增加toml的配置项，在ModelboxExamplePlugin::Init接口的configuration对象中获取即可。
 
 插件加入配置文件后，重启ModelBox Server生效， 同时服务插件日志统一收集到ModelBox日志。

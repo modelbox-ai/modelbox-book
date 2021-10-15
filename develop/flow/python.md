@@ -12,7 +12,7 @@ Python开发调用流程图时，需要安装python的运行包，然后再编�
 
 | API接口                                               | 参数说明                                                     | 函数说明                                                     |
 | ----------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Flow::init   | configfile: 指定config文件的路径<br />format： 指定图文件的格式，可选项为 FORMAT_AUTO,FORMAT_TOML，FORMAT_JSON | 初始化ModelBox服务，主要包含功能如下：<br />1. 读取driver参数，获取driver的扫描路径<br />2. 扫描指定路径下的driver文件，并创建driver实例<br />3. 加载流程图并转换为ModelBox可识别的模型<br />4. 初始化设备信息，性能跟踪和数据统计单元 |
+| Flow::init   | configfile: 指定config文件的路径<br />format： 指定图文件的格式，可选项为 FORMAT_AUTO,FORMAT_TOML，FORMAT_JSON | 初始化modelbox服务，主要包含功能如下：<br />1. 读取driver参数，获取driver的扫描路径<br />2. 扫描指定路径下的driver文件，并创建driver实例<br />3. 加载流程图并转换为modelbox可识别的模型<br />4. 初始化设备信息，性能跟踪和数据统计单元 |
 | Flow::init   | name: 指定的图的名称<br />graph: 存储图的字符串<br />format：指定图的格式 | 与上面Init的区别是，上面通过读取文件的方式，而此函数通过读取字符串的方式，其他功能相同 |
 | Flow::init    | config: Configuration指针，存储图信息  | 功能同上                                                     |
 | Flow::Build() | / | 用于构建图，将图模型转为可以运行的Node节点并且建立好数据通道 |
@@ -51,7 +51,7 @@ graphconf = '''digraph demo {
 format = "graphviz"
 ```
 
-## 导入ModelBox包
+## 导入modelbox包
 
 编写时，需要import modelbox SDK。
 

@@ -1,4 +1,4 @@
-# Debug
+# debug
 
 代码调试使用对应语言的调试方法即可，c++使用gdb，python使用pdb。
 
@@ -23,7 +23,7 @@ make -j32
 
 ### 启动调试
 
-若是调试流单元，可以使用ModelBox Tool辅助调试。
+若是调试功能单元，可以使用modelbox-tool辅助调试。
 
 #### GDB命令
 
@@ -82,42 +82,6 @@ flow = modelbox.Flow()
 ```shell
 export MODELBOX_DEBUG_PYTHON=yes
 ```
-
-### Python流单元调试
-
-Python代码编写的流单元需要从Python启动后，设置上述环境变量才能调试。但Modelbox也提供了专门用于调试Python流单元的命令`modelbox-python-debug`。
-
-具体操作方法为：
-* IDE或调试工具设置启动程序为`modelbox-python-debug`;
-* `modelbox-python-debug`启动toml文件的流程图。
-  `modelbox-python-debug --flow [path/to/toml]`
-* IDE或调试工具打断点，启动调试。
-
-
-#### Vscode调试
-
-vscode调试，可以配置调试文件`.vscode/launch.json`，设置`program`和`args`两个配置项如下。
-
-```json
-{
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Python: modelbox",
-            "type": "python",
-            "request": "launch",
-            "program": "/usr/local/bin/modelbox-python-debug",
-            "args": [
-                "--flow",
-                "[/path/to/toml]"
-            ],
-            "console": "integratedTerminal"
-        }
-    ]
-}
-```
-
-将`[/path/to/toml]`替换为实际的toml文件路径，并对需要调试的python流单元设置断点。设置完成后，使用vscode的`F5`功能键进行调试。
 
 **注意**： 若启用失败，则需要先安装`pydevd`包。
 

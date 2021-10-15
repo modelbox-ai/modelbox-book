@@ -6,13 +6,13 @@ ModelBox提供了运行日志，对应的组件在运行时会输出相关的日
 
 ![logger-flow](../../assets/images/figure/develop/debug/logger-flow.png)
 
-C++，Python流单元、ModelBox库、插件调用ModelBox的日志函数后，由ModelBox的Logger将数据发送到appender，appender可注册不同的类型。
+C++，Python功能单元、ModelBox库、插件调用ModelBox的日志函数后，由ModelBox的Logger将数据发送到appender，appender可注册不同的类型。
 
 ModelBox的日志级别分为DEBUG, INFO, NOTICE, WARN, ERROR, FATAL。
 
 ## ModelBox Server日志
 
-ModelBox Server和Modelbox Tool中内置了File日志组件，在运行时，会将对应的日志记录到相关的文件中。对应的日志路径，配置方法如下：
+ModelBox Server/Tool内置了File日志组件，在运行时，会将对应的日志记录到相关的文件中。对应的日志路径，配置方法如下：
 
 |进程|日志路径|级别设置|
 |--|--|--|
@@ -29,7 +29,7 @@ export MODELBOX_CONSOLE_LOGLEVEL=INFO
 
 ## 日志SDK
 
-ModelBox日志提供了日志输出接口，日志appender捕获接口；流单元，ModelBox库，插件使用日志接口输出日志，业务模块使用appender捕获日志到对应的日志组件。
+ModelBox日志提供了日志输出接口，日志appender捕获接口；功能单元，ModelBox库，插件使用日志接口输出日志，业务模块使用appender捕获日志到对应的日志组件。
 
 日志输出信息包括
 
@@ -110,11 +110,13 @@ modelbox.fatal("this is fatal")
 ### Python日志捕获
 
 ```python
+
 # 导入相关的包
 import modelbox
 import datetime
 
 __log = modelbox.Log()
+
 
 # 日志捕获函数
 def LogCallback(level, file, lineno, func, msg):
@@ -135,8 +137,7 @@ def RegLog():
 RegLog()
 ```
 
-#### 流程
-
+* 流程：
   1. 编写自定义函数，函数原型为`logfunc(level, file, lineno, func, msg)`。
   1. 初始化日志对象`modelbox.Log()`。
   1. 将`logfunc`调用`modelbox.Log::reg`注册为日志处理函数

@@ -1,6 +1,6 @@
 # 性能统计
 
-ModelBox提供了统计流单元，以及运行任务的时间统计功能，开发者或维护人员可以开启性能统计功能，对流单元或运行状态进行调试和维护。
+ModelBox提供了统计功能单元，以及运行任务的时间统计功能，开发者或维护人员可以开启性能统计功能，对功能单元或运行状态进行调试和维护。
 
 ## 性能统计操作流程
 
@@ -20,9 +20,9 @@ ModelBox提供了统计流单元，以及运行任务的时间统计功能，开
 
 ```toml
 [profile]
-profile=true # 启用profile
-trace=true # 启用traceing
-dir="/tmp/modelbox/perf" # 设置跟踪文件路径
+profile="enable" # 启用profile
+trace="enable" # 启用traceing
+dir="/tmp/modelbox/perf" # 设置跟踪文件路径。
 ```
 
 通过配置profile和trace开关启用性能统计，dir配置存储跟踪文件路径；配置启动后，启动运行流程图，profile会每隔60s记录一次统计信息，trace会在任务执行过程中和结束时，输出统计信息。
