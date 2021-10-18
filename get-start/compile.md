@@ -19,32 +19,32 @@ ModelBox采用C++语言编写，工程编译软件是CMake，在编译ModelBox�
 |开发库|tensorflow|tensorflow推理支持|||否|tensorflow相关的模型推理功能
 |开发库|cpprest|http服务支持|||是|modelbox-server以及http相关的功能组件
 
-上述依赖可按需求选择，其中`是否必须`为“是”的依赖，必须要安装到编译环境中才能正常编译代码。
+上述依赖可按需求选择，其中`是否必须`为“是”的依赖，必须要安装到编译环境中才能正常编译代码。如果使用基于镜像的开发环境，可以省去这一步。
 
 ### Docker开发镜像
 
 ModelBox项目提供了docker镜像，里面包含了ModelBox编译运行所需的组件及预先安装的ModelBox，可以优先选择docker镜像进行应用的开发编译。
 
-1. 安装启动docker后，执行下列命令下载docker镜像：
+1. 安装启动docker后，执行下列命令下载内置了cuda10.1版本的docker镜像：
 
     ```shell
-    docker pull registry-cbu.huawei.com/modelbox/euler/modelbox_cuda101_develop:latest
+    docker pull modelbox/modelbox_cuda101_develop:latest
     ```
 
-    如果想要下载cuda10.0版本的镜像，可以选择使用以下命令
+    如果想要下载cuda10.2版本的镜像，可以选择使用以下命令
 
     ```shell
-    docker pull registry-cbu.huawei.com/modelbox/euler/modelbox_cuda100_develop:latest
+    docker pull modelbox/modelbox_cuda102_develop:latest
     ```
 
 1. 下载镜像之后，执行下列命令启动镜像
 
-    如果docker版本大于等于19.03，那么可以使用以下命令:
+    如果docker版本大于等于19.03，那么可以使用以下命令：
 
     ```shell
     docker run -itd --gpus all -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,video \
         --tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
-        registry-cbu.huawei.com/modelbox/euler/modelbox_cuda101_develop:latest 
+        modelbox/modelbox_cuda101_develop:latest 
     ```
 
     如果docker版本小于19.03, 则可以使用：
@@ -52,8 +52,10 @@ ModelBox项目提供了docker镜像，里面包含了ModelBox编译运行所需�
     ```shell
     docker run -itd --runtime=nvidia -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,video \
         --tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
-        registry-cbu.huawei.com/modelbox/euler/modelbox_cuda101_develop:latest 
+        modelbox/modelbox_cuda101_develop:latest 
     ```
+
+    docker版本可通过执行`docker version`来查询。
 
     如果需要在容器中进行gdb调试，需要在启动容器时添加如下选项：
 
@@ -76,6 +78,7 @@ ModelBox项目提供了docker镜像，里面包含了ModelBox编译运行所需�
 如有疑问，可参考[FAQ](../faq/faq.md)中的[docker](../faq/faq.md#docker启动脚本详解)相关内容
 
 ### 基于当前操作系统安装
+如果不想下载开发镜像，那么也可按上述依赖列表，自行基于当前操作系统进行安装。
 
 1. ubuntu操作系统
 
@@ -97,7 +100,7 @@ ModelBox项目提供了docker镜像，里面包含了ModelBox编译运行所需�
 
 1. 准备
 
-    编译ModelBox之前，需要准备好开发环境，请按上述依赖列表，安装相应的依赖组件，或者在镜像中进行编译。
+    编译ModelBox之前，需要准备好开发环境。或在镜像中进行编译，或按上述依赖列表，安装相应的依赖组件。
 
 1. 下载ModelBox代码
 

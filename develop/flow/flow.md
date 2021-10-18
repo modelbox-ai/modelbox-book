@@ -1,18 +1,26 @@
 # 流程图开发及运行
 
-流程图(Graph)是应用逻辑的表述，modelbox将根据流程图构建应用的处理逻辑，因此在应用开发中，流程图的开发是首要进行的，流程图开发完毕后，才能明确需要开发的功能单元。
+流程图(Graph)是应用逻辑的表述，modelbox将根据流程图构建应用的处理逻辑。
+因此在应用开发中，流程图的开发是首要进行的，流程图开发完毕后，才能明确需要开发的功能单元。
+
 
 ## 流程图开发模型
 
-流程图开发之前需要搞清几个概念： drivers， flowunit， node 以及 flow
+流程图开发之前需要搞清几个概念： drivers， flowunit， node 以及 flow。
 
-driver:  算子的实现单元， 实现的具体的算子是作为driver加载在modelbox中的， modelbox服务在启动的时候会加载指定目录下的所有的算子库作为driver并管理
 
-flowunit: driver是功能的抽象，那么flowunit就是功能的具体，当扫描完所有的driver之后，modelbox会读取toml文件中的配置，通过flowunit_name以及配置创建driver抽象的的实例，这个实例就称之为flowunit， 根据不同的配置创建了不同的配置参数实现了不同的功能。   当然除了纯粹的创建实例之外还增加了一些内存管理， 端口管理， 设备管理等功能，具体的请前往flowunit和device的页面查看。
+- driver:  
+  算子的实现单元， 实现的具体的算子是作为driver加载在modelbox中的， modelbox服务在启动的时候会加载指定目录下的所有的算子库作为driver并管理。
 
-node:  node作为实际的数据处理单元，集成了flowunit， device管理， 内存管理，端口管理等为一体， 一个node作为数据流中一个节点
+- flowunit: 
+  driver是功能的抽象，那么flowunit就是功能的具体，当扫描完所有的driver之后，modelbox会读取toml文件中的配置，通过flowunit_name以及配置创建driver抽象的的实例，这个实例就称之为flowunit， 根据不同的配置创建了不同的配置参数实现了不同的功能。   当然除了纯粹的创建实例之外还增加了一些内存管理， 端口管理， 设备管理等功能，具体的请前往flowunit和device的页面查看。
 
-flow: 一个图构建完成后就是一个flow， 一个flow由很多node构成， 并将node连接到一起。
+- node:  
+  node作为实际的数据处理单元，集成了flowunit， device管理， 内存管理，端口管理等为一体， 一个node作为数据流中一个节点。
+
+- flow: 
+  一个图构建完成后就是一个flow， 一个flow由多个node相连接构成。
+
 
 流程图的开发步骤分为四步：
 
@@ -21,13 +29,14 @@ graph LR
 A(图的创建) --> B(图的加载) --> C(图的构建)  --> D(图的运行)
 ```
 
-图的创建： 也叫图的定义，是开发者根据实际的业务需求，按照流程图的开发规范创建的流程图， 流程图中标识了功能单元的名称、配置以及数据流向
 
-图的加载： 用户通过调用modelbox的函数将图文件或者存储图的内存块加载到modelbox中， modelbox会根据配置解析出代码可识别的模型，如果图的配置有问题也会在此时发现并通过返回值获取。此时modelbox会根据配置中的flowunit以及device去查询当前已加载的驱动库是否有匹配的driver，只有当所有的driver都能正确查询到时，才能正确加载图。
+- 图的创建： 也叫图的定义，是开发者根据实际的业务需求，按照流程图的开发规范创建的流程图， 流程图中标识了功能单元的名称、配置以及数据流向。
 
-图的构建： 当用户调用对应的modelbox函数接口时， modelbox会将解析完毕的图模型转换为各个Node对象，并且创建好数据流通道。 此时所有的node都已经准备好，等有数据到来时既可以直接处理数据。
+- 图的加载： 用户通过调用modelbox的函数将图文件或者存储图的内存块加载到modelbox中， modelbox会根据配置解析出代码可识别的模型，如果图的配置有问题也会在此时发现并通过返回值获取。此时modelbox会根据配置中的flowunit以及device去查询当前已加载的驱动库是否有匹配的driver，只有当所有的driver都能正确查询到时，才能正确加载图。
 
-图的运行： 当用户调用函数接口时， modelbox会从用户配置的数据源读取数据并按照图构建的路径处理数据，并输出到用户指定的路径中。此时node从前面的节点中获取数据并调用flowunit的处理函数处理数据，并将处理后的数据输出到下一个node中，此时所有的node节点都已经运行起来了，直到数据结束或者用户手动终结流程。
+- 图的构建： 当用户调用对应的modelbox函数接口时， modelbox会将解析完毕的图模型转换为各个Node对象，并且创建好数据流通道。 此时所有的node都已经准备好，等有数据到来时既可以直接处理数据。
+
+- 图的运行： 当用户调用函数接口时， modelbox会从用户配置的数据源读取数据并按照图构建的路径处理数据，并输出到用户指定的路径中。此时node从前面的节点中获取数据并调用flowunit的处理函数处理数据，并将处理后的数据输出到下一个node中，此时所有的node节点都已经运行起来了，直到数据结束或者用户手动终结流程。
 
 ## 流程图开发
 
@@ -78,7 +87,7 @@ ModelBox默认情况，采用Graphviz DOT语法表达图，关于DOT语法，可
     
     ![graphviz](../assets/images/figure/framework-conception/graphviz.png)
 
-1. 则，Graphviz的表达：
+1. Graphviz的表达：
 
 ```toml
 digraph G {
@@ -95,9 +104,9 @@ digraph G {
 }
 ```
 
-1. 完成上述图构成后，即可将上述图，组成ModelBox可识别的配置文件。  
-    ModelBox可识别的配置文件采用[TOML配置格式](https://toml.io/cn/v1.0.0-rc.1)。  
-    生成TOML文件后，即可将配置文件加载到ModelBox中执行。
+2. 完成上述图构成后，即可将上述图，组成ModelBox可识别的配置文件。  
+   ModelBox可识别的配置文件采用[TOML配置格式](https://toml.io/cn/v1.0.0-rc.1)。  
+   生成TOML文件后，即可将配置文件加载到ModelBox中执行。
 
 ```toml
 [graph]

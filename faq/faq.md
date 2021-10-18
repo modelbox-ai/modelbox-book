@@ -57,7 +57,7 @@ ModelBox本身为C++代码编写，开发者可以通过如下方式调试ModelB
   如果想要下载其他cuda版本的镜像，可以选择使用以下命令。比如cuda10.1版本镜像，就是`modelbox_cuda101_develop`。其他版本均可以此类推。
 
   ```shell
-  docker pull registry-cbu.huawei.com/modelbox/euler/modelbox_cuda101_develop:latest
+  docker pull modelbox/modelbox_cuda101_develop:latest
   ```
 
   docker启动脚本中，请注意启动的镜像版本是否与自己所需的镜像版本一致。
@@ -69,7 +69,7 @@ ModelBox本身为C++代码编写，开发者可以通过如下方式调试ModelB
 ```shell
 docker run -itd --gpus all -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,video \
 --tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
-registry-cbu.huawei.com/modelbox/euler/modelbox_cuda101_develop:latest
+modelbox/modelbox_cuda101_develop:latest
 ```
 
 #### -itd
@@ -152,3 +152,12 @@ datacontext表示当前flowunit在当前流的数据buffer，可以设置输入�
 ### video_input
 
 video_input的repeat可以创建多个并发视频，并不是串行视频流
+
+
+
+## Modelbox Tool
+
+### develop mode already enabled
+
+在执行`modelbox-tool develop -e`开启开发者模式后，如果更改了默认位于`/usr/local/etc/modelbox/`的`modelbox.conf`配置文件的内容，需要先执行`modelbox-tool develop -d`来关闭开发者模式，再启动才行。
+

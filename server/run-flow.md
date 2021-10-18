@@ -80,7 +80,7 @@ ModelBox服务当前提供动态增加flow作业，动态删除flow作业，查�
 
 * 例子
 
-  命令：`curl -X POST --data @flow-example  http://127.0.0.1:1104/v1/modelbox/job`
+  命令：`curl -X PUT --data @flow-example  http://127.0.0.1:1104/v1/modelbox/job`
 
   flow-example文件内容：
   
@@ -94,7 +94,7 @@ ModelBox服务当前提供动态增加flow作业，动态删除flow作业，查�
             " digraph demo { ",
             "          httpserver_sync_receive[type=flowunit, flowunit=httpserver_sync_receive, device=cpu, deviceid=0, label=\"<Out_1>\", request_url=\"http://localhost:54321/example\", max_requests=10, time_out=5]",
             "          httpserver_sync_reply[type=flowunit, flowunit=httpserver_sync_reply, device=cpu, deviceid=0, label=\"<In_1>\"]",
-            "          httpserver_sync_receive:Out_1 -> httpserver_sync_reply:In_1",
+            "          httpserver_sync_receive:out_request_info -> httpserver_sync_reply:in_reply_info,
             "  }"
           ]
         },

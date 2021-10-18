@@ -11,6 +11,7 @@ modelbox的扩展能力如下：
 
 这些扩展能力将满足应用开发中的大部分需求。对于基本应用开发的场景下，开发者一般只需要关注应用图和功能单元的开发即可；在需要与外部系统交互以响应外部数据处理请求的场景下，则需要对modelbox服务插件进行自定义扩展；当应用需要支持的运行环境含有modelbox未支持的硬件设备时，则需要扩展开发推理加速设备支持模块；当AI应用需要作为组件被集成到其他系统中时，可以直接使用libmodelbox组件提供的API，完成应用的集成；并且modelbox支持多种语言的开发，可以选择擅长使用的语言快速完成应用。
 
+
 ## Modelbox开发套件
 
 modelbox的开发视图如下，图中绿色的部分是开发者可以自定义扩展的部分。
@@ -29,15 +30,20 @@ modelbox开发套件包含如下部分：
 
 1. 自定义应用
 
-    与modelbox server对应，如果业务需要更多的定制能力，业务可以直接使用ModelBox SDK提供的接口来驱动modelbox，支持的语言有c++，python。
+
+    与modelbox server对应，如果业务需要更多的定制能力，业务可以直接使用ModelBox SDK提供的接口来驱动ModelBox，支持的语言有c++，python。
+
+
 
 1. modelbox sdk
 
-    modelbox应用提供的开发API，包含了C++, python等多种语言的支持。开发者可以使用自己熟悉的语言进行集成或扩展。
+
+    ModelBox应用提供的开发API，包含了C++, python等多种语言的支持。开发者可以使用自己熟悉的语言进行集成或扩展。
+
 
 1. modelbox tool
 
-    modelbox运行，开发支撑工具，可用于检查图的正确性，调试单个图，查询可用的功能单元Flowunit，模型加密等功能。
+    ModelBox运行、开发支撑工具，可用于检查图的正确性，调试单个图，查询可用的流单元Flowunit，模型加密等功能。
 
 1. modelbox library
 
@@ -45,7 +51,7 @@ modelbox开发套件包含如下部分：
 
 1. flowunit
 
-    功能单元，modelbox的关键组成，处理数据关键组件，开发者主要开发的组件。
+    功能单元，ModelBox的关键组成，处理数据关键组件，开发者主要开发的组件。
 
 1. device
 

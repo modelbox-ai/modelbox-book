@@ -6,7 +6,9 @@ ModelBox提供了运行日志，对应的组件在运行时会输出相关的日
 
 ![logger-flow](../../assets/images/figure/develop/debug/logger-flow.png)
 
+
 C++，Python功能单元、ModelBox库、插件调用ModelBox的日志函数后，由ModelBox的Logger将数据发送到appender，appender可注册不同的类型。
+
 
 ModelBox的日志级别分为DEBUG, INFO, NOTICE, WARN, ERROR, FATAL。
 
@@ -16,7 +18,7 @@ ModelBox Server/Tool内置了File日志组件，在运行时，会将对应的�
 
 |进程|日志路径|级别设置|
 |--|--|--|
-|modelbox server|/var/log/modelbox/modelbox.log|/usr/local/etc/modelbox/modelbox.conf文件log字段的level。
+|modelbox server|/var/log/modelbox/modelbox.log|/usr/local/etc/modelbox/modelbox.conf配置文件中，log字段的level。
 |modelbox tool|/var/log/modelbox-tool.log|modelbox-tool命令参数。
 
 ## 默认console日志

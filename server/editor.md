@@ -30,7 +30,7 @@ ModelBox Server安装完成后，编排服务会通过插件的形式由ModelBox
 | 配置项目               | 配置说明                                                                  |
 | ---------------------- | ------------------------------------------------------------------------- |
 | editor.enable          | 是否启用Editor工具                                                        |
-| editor.ip              | Editor工具监听IP，默认为127.0.0.1，不指定的情况下，和server.ip一致        |
+| editor.ip              | Editor工具监听IP，默认为127.0.0.1。不指定的情况下，和server.ip一致       |
 | editor.port            | Editor工具监听端口，默认为1104，不指定情况下，和server.port一致           |
 | editor.root            | Editor前端UI路径，默认为/usr/local/share/modelbox/www                       |
 | editor.solution_graphs | Editor solution_graphs路径，默认为/usr/local/share/modelbox/solution/graphs |
@@ -54,20 +54,26 @@ modelbox-tool develop -e
 1. 打开`/usr/local/etc/modelbox/modelbox.conf`，修改其中的配置项：
 
     ```toml
+    [server]
+    # 允许访问服务
+    ip = "0.0.0.0"
+    port = "1104"
+    flow_path = "/usr/local/etc/modelbox/graph"
+    
     [plugin]
     # 确保Editor组件加载。
     files = [
         "/usr/local/lib/modelbox-plugin-editor.so"
     ]
-
+    
     [editor]
     # 启用Editor
     enable = true
-
+    
     # 设置绑定IP和端口。
     ip = "0.0.0.0"
     port = "1104"
-
+    
     # 指定前端UI路径，默认情况无需修改。
     root = "/usr/local/share/modelbox/www"
     solution_graphs = "/usr/local/share/modelbox/solution/graphs"
@@ -131,27 +137,30 @@ UI界面分为7个功能区域，其对应的功能如下：
    假设打开编排UI的机器的IP地址为10.11.12.13。
 
    ```shell
-    [server]
-    ip = "127.0.0.1"
-    port = "1104"
-    flow_path = "/usr/local/etc/modelbox/graph"
-
     [acl]
     allow = [
         "10.11.12.13",
     ]
-
+   
     [plugin]
     files = [
         "/usr/local/lib/modelbox-plugin.so",
         "/usr/local/lib/modelbox-plugin-editor.so"
     ]
-    ```
-
+   ```
+   
     如果没有配置任何访问白名单，则允许所有人皆可访问。
-
+    ```shell
+        # [acl]
+        # allow = [
+        #     "10.11.12.13",
+        # ]
+    ```
+   
 1. 重启ModelBox Server服务使配置生效。
 
     ```shell
     systemctl restart modelbox
     ```
+
+注意：1. 确保`[editor]`下`enable = true`。

@@ -21,7 +21,7 @@ ModelBox微服务插件，提供了开发为服务必要的API接口，对应的
 ModelBox插件可以调用的接口有：
 
 1. Job: 任务管理，可以添加，删除，查询图以及对应的任务。
-1. Config：配置读取，可以从modelbox-server的配置文件/usr/local/etc/modelbox/modelbox.conf中读取配置项。
+1. Config：配置读取，可以从ModelBox Server的配置文件/usr/local/etc/modelbox/modelbox.conf中读取配置项。
 1. Listener: http server，可以注册HTTP请求的URL事件。
 1. Timer: 定时器，可以注册定时任务，定时触发特定的函数。
 1. Modelbox Library: ModelBox运行库的所有API。
@@ -42,7 +42,7 @@ ModelBox Library包含`基础Base`部分和`功能`部分。基础部分用于�
 1. Config，图配置读取。
 1. Crypto，数据加解密。
 1. Status，错误返回接口。
-1. utils，工具函数。
+1. Utils，工具函数。
 1. Device， 设备抽象接口。
 1. Timer，定时器组件。
 1. ThreadPool，线程池组件。
@@ -51,7 +51,7 @@ ModelBox Library包含`基础Base`部分和`功能`部分。基础部分用于�
 1. OS Adapter API，OS抽象接口
 1. Driver，ModelBox插件接口。
 
-注意：python仅包含log, Status, Config组件接口。
+注意：python仅包含Log, Status, Config组件接口。
 
 ### ModelBox推理接口
 
@@ -69,4 +69,5 @@ ModelBox Library包含`基础Base`部分和`功能`部分。基础部分用于�
 
 ## 开发扩展
 
-modelbox server plugin，modelbox device，modelbox flowunit的扩展，请参考相关的开发指导。
+[ModelBox Server Plugin](../../develop/service-plugin/service-plugin.md)，[ModelBox Device](../../develop/device/device.md)，[ModelBox Flowunit](../../develop/flowunit/flowunit.md)的扩展，请参考相关的开发指导。
+

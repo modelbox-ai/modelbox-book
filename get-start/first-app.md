@@ -7,7 +7,7 @@
 1. 安装启动docker后，执行下列命令下载docker镜像
 
     ```shell
-    docker pull registry-cbu.huawei.com/modelbox/euler/modelbox_cuda101_develop:latest
+    docker pull modelbox/modelbox_cuda101_develop:latest
     ```
 
     如需要下载其他cuda版本的镜像，可参考[FAQ](../faq/faq.md)中的[其他版本的cuda](../faq/faq.md#其他版本的cuda)相关内容
@@ -34,7 +34,7 @@
         --tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
         --name $CONTAINER_NAME -v /opt/modelbox:/opt/modelbox -v /home:/home \
         -p $SSH_MAP_PORT:22 -p $EDITOR_MAP_PORT:1104 $HTTP_DOCKER_PORT_COMMAND \
-        registry-cbu.huawei.com/modelbox/euler/modelbox_cuda101_develop:latest 
+        modelbox/modelbox_cuda101_develop:latest 
     
     ```
 
@@ -45,7 +45,7 @@
         --tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
         --name $CONTAINER_NAME -v /opt/modelbox:/opt/modelbox -v /home:/home \
         -p $SSH_MAP_PORT:22 -p $EDITOR_MAP_PORT:1104 $HTTP_DOCKER_PORT_COMMAND \
-        registry-cbu.huawei.com/modelbox/euler/modelbox_cuda101_develop:latest 
+        modelbox/modelbox_cuda101_develop:latest 
     ```
 
    注意事项：
@@ -64,6 +64,8 @@
     modelbox-tool develop -e 
     ```
 
+
+然后按照提示，访问editor界面。
 如果访问被拒绝，可参考[运行编排服务](server/editor.md)中的[ACL访问控制列表](../server/editor.md#ACL访问控制列表)相关内容。
 
 ## 第一个应用开发
@@ -235,7 +237,7 @@ ModelBox提供基础功能单元，除此之外还需补充流程图中缺失的
 
   这里已经准备好测试脚本`/usr/local/share/modelbox/solution/graphs/mnist_detection/test_mnist.py`，测试图片是mnist测试集中的0数字。
 
-  直接运行`python test_mnist.py`得到结果为：
+  直接运行`python3 test_mnist.py`得到结果为：
 
   ``` json
   {

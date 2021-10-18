@@ -180,7 +180,10 @@ Close函数将在图处理结束时调用，可用于释放相关的资源。
 ```c++
 modelbox::Status CVResizeFlowUnit::Process(
     std::shared_ptr<modelbox::DataContext> ctx) {
+
   // 获取输入，输出Buffer对象，"input", "output"为对应功能单元Port名称，可以有多个。
+  // 此处的"Input"和"Output"必须与toml的端口名称一致。
+
   auto input_bufs = ctx->Input("input");
   auto output_bufs = ctx->Output("output");
   

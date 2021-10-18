@@ -14,22 +14,23 @@ flow的运行流程可参考flow章节。
 | ------- |------------------- | ------------------------------------------------------------------------------------------------------------ |
 | Flow::Init | configfile: 指定config文件的路径<br />format： 指定图文件的格式，可选项为 FORMAT_AUTO,FORMAT_TOML，FORMAT_JSON | 初始化modelbox服务，主要包含功能如下：<br />1. 读取driver参数，获取driver的扫描路径<br />2. 扫描指定路径下的driver文件，并创建driver实例<br />3. 加载流程图并转换为modelbox可识别的模型<br />4. 初始化设备信息，性能跟踪和数据统计单元 |
 | Flow::Init | name: 指定的图的名称<br />graph: 存储图的字符串<br />format：指定图的格式 | 与上面Init的区别是，上面通过读取文件的方式，而此函数通过读取字符串的方式，其他功能相同 |
-| Flow::Init | is: 图的输入流<br />fname: 输入的图名称 | 功能与上面Init相同， 区别在于输入采用的是流保存的图信息 |
+| Flow::Init | is: 图的输入流istream<br />fname: 输入的图名称 | 功能与上面Init相同， 区别在于输入的是流保存的图信息 |
 | Flow::Init | config: Configuration指针，存储图信息 | 功能同上 |
 | Flow::Build | / | 用于构建图，将图模型转为可以运行的Node节点并且建立好数据通道 |
 | Flow::Run | / | 图的运行： 同步方式，图运行完成后返回 |
 | Flow::RunAsync | / | 图的运行： 异步运行， 调用后直接返回， 通过调用Wait()函数判断运行是否结束 |
 | Flow::Wait | millisecond: 超时时间， 以毫秒为单位<br />ret_val: 图运行的结果 | 等待图运行结束，当图的运行时间超过millisecond表示的时间时，则强制停止图的运行，并返回TIMEOUT |
 | Flow::Stop() | / | 强制停止运行中的图 |
-| Flow::CreateExternalDataMap | / | 当图中的第一个节点为input节点时， 使用此函数可以创建一个输入的ExternalDataMap， 用户可以通过向ExternalDataMap数据中赋值并传递数据给Input节点。具体使用方法可参考“”外部数据交互“”章节 |
+| Flow::CreateExternalDataMap | / | 当图中的第一个节点为input节点时， 使用此函数可以创建一个输入的ExternalDataMap， 用户可以通过向ExternalDataMap数据中赋值并传递数据给Input节点。具体使用方法可参考[<外部数据交互>](./c++.md#外部数据交互)章节 |
 
 ## C++ SDK API调用说明
 
-C++开发调用流程图时，需要先安装C++的运行包，然后再编写C++函数，调用Flow执行API执行流程图。
+C++开发调用流程图时，需要先安装[C++的运行包](../../get-start/compile.md)，然后再编写C++函数，调用Flow的API来执行流程图。
 
 Flow流程图接口调用过程如下图所示。
 
 ![c++-sdk](../../assets/images/figure/develop/flow/c++-sdk.png)
+
 
 1. 安装C++ SDK包。
 1. 开发流程图，配置基础部分和图部分。
@@ -37,6 +38,7 @@ Flow流程图接口调用过程如下图所示。
 1. 调用Flow::build初始化流程图。
 1. 调用Flow::run_async，异步执行流程图。
 1. 调用Flow::wait等待结果。
+
 
 ## TOML流程图配置
 
