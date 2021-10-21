@@ -10,7 +10,10 @@
 
 ![flowunit-develop](../../assets/images/figure/develop/flowunit/flowunit-develop.png)
 
-1. 先从Example中复制样例代码。
+1. 可以通过modelbox-tool 创建流单元模板工程
+```shell
+   modelbox-tool create -t c++ -n xxx -d ./  
+```
 1. 确定流单元类型。
 1. 修改Example代码的编译，TOML，源代码名称，和设置流单元的输入，输出，参数，以及运行设备信息。
 1. 根据需要实现FlowUnit的Open，DataPre，DataPost，Process，DataGroupPre，DataGroupPost，Close接口。
@@ -25,36 +28,41 @@
 
 流单元参数说明：
 
-|配置参数|是否必须设置|参数类型|功能描述|
-|--|--|--|--|
-|流单元名称|是|String|流单元名称|
-|工作模式|是|FlowType|流单元工作模式|
-|添加流单元输入|是|FlowUnitInput|设置输入端口和内存位置|
-|添加流单元输出|是|FlowUnitOutput|设置输出端口和内存位置|
-|设置流单元参数|是|FlowUnitOption|设置流单元参数，包括参数名，类型，描述等信息|
-|流单元组类型|否|GroupType| |
-|设置Driver描述|否|bool| |
-|条件类型|否|ConditionType|是否为条件流单元|
-|输出类型|否|FlowOutputType|设置是否为扩张，或者合并流单元|
-|额外参数|否|String| |
-|流单元假名|否|String| |
-|设置输入输出buffer数量是否相同|否|bool|仅流类型可设置，标识是否允许输入buffer和输出buffer数量不一致|
-|设置输入是否连续|否|bool| |
-|内存是否连续|否|bool|是否组装为连续内存|
-|设置是否需要收齐buffer|否|bool|是否收集所有扩张的buffer。仅当收缩流单元需设置，默认false|
-|设置异常可见|否|bool| |
-|设置虚拟类型|否|bool| | |
+|配置项|C++函数接口|Python配置接口|必填|c++参数类型|功能描述|
+|--|--|--|--|--|--|
+|流单元名称|SetFlowUnitName|base.name|是|String|流单元名称|
+|流单元描述|SetDescription|base.description|否|String|流单元描述 |
+|流单元组类型|SetFlowUnitGroupType|--|否|GroupType|流单元分类 |
+|流单元工作模式|SetFlowType|base.stream|是|FlowType|流单元工作模式，分为NORMAL 和STREAM |
+|流单元输入端口|AddFlowUnitInput|input.*|是|FlowUnitInput|设置输入端口和数据存放设备|
+|流单元输出端口|AddFlowUnitOutput|output.*|是|FlowUnitOutput|设置输出端口和数据存放设备|
+|流单元配置参数|AddFlowUnitOption|config.*|是|FlowUnitOption|设置流单元配置参数，包括参数名，类型，描述等信息|
+|条件类型|SetConditionType|baes.condition|否|ConditionType|是否为条件流单元|
+|输出类型|SetOutputType|base.collapse/base.expand|否|FlowOutputType|设置是否为扩张或者合并流单元|
+|输入输出buffer数量是否相同|SetStreamSameCount|--|否|bool|仅STREAM类型流单元可设置，标识是否允许输入buffer和输出buffer数量不一致|
+|输入内存是否连续|SetInputContiguous|--|否|bool|是否要求输入内存是否是分配的连续空间 |
+|设置是否需要收齐buffer|SetCollapseAll|--|否|bool|是否收集所有扩张的buffer。仅当收缩流单元需设置，默认false|
+|异常是否可见|SetExceptionVisible|--|否|bool|本流单元是否处理前面流单元的异常消息|
+|是否为虚拟类型|SetVirtualType|--|否|bool| 虚拟流单元不可直接当作正常流单元使用|
+|设置资源调度策略|SetResourceNice|--|否|bool| false是表示本流单元优先抢占资源，默认true|
+|Driver名称|SetName|--|是|String|driver描述 |
+|Driver功能类型|SetClass|--|是|String|driver功能类型，流单元类型为DRIVER-FLOWUNIT|
+|Driver设备类型|SetType|base.device|是|String|driver描述，cuda/cpu/ascend类型  |
+|Driver版本号|SetVersion|base.version|是|String|driver版本号 |
+|Driver描述|SetDescription|base.description|是|String|driver功能描述 |
 
-不同流单元的配置如下：
+Driver和流单元的关系：Driver是Modelbox中各类插件的集合，流单元属于Driver中的一种类型。在C++语言中，一个Driver对应一个so，一个Driver可以支持多个流单元，即将多个流单元编译进一个so文件。而再python中，Driver和流单元一一对应。
 
-|流单元类型|配置参数|说明|
+根据业务类型，常用流单元的可以分为以下几类：
+
+|流单元类型|配置参数|适用场景|
 |--|--|--|
-|通用流单元| 工作模式设置为NORMAL | |
-|条件流单元| 工作模式设置为NORMAL，并且条件类型设置为IF_ELSE | |
-|流数据流单元| 工作模式设置为STREAM | |
-|流数据拆分流单元| 工作模式设置为STREAM，并且输出类型设置为扩张 | |
-|流数据合并流单元| 工作模式设置为STREAM，并且输出类型设置为合并 | |
-|推理流单元| 只需准备好模型和配置toml文件即可 | | |
+|通用流单元| 工作模式设置为NORMAL | 图像操作，如resize|
+|条件流单元| 工作模式设置为NORMAL，并且条件类型设置为IF_ELSE | 业务逻辑的分支判断|
+|流数据流单元| 工作模式设置为STREAM | 视频流的处理，可以感知任务的开始结束|
+|流数据拆分流单元| 工作模式设置为STREAM，并且输出类型设置为扩张 | 一张图片推理出多辆车，多每辆车做车牌检测，再讲整张图的所有车牌汇总|
+|流数据合并流单元| 工作模式设置为STREAM，并且输出类型设置为合并 | 一张图片推理出多辆车，多每辆车做车牌检测，再讲整张图的所有车牌汇总|
+|推理流单元| 只需准备好模型和配置toml文件即可 | |
 
 ## 流单元接口说明
 
@@ -159,10 +167,11 @@ DataContext是提供给当前流单元处理数据时的临时获取BufferList
 
 ## 多种语言开发流单元
 
-流单元的开发可以使用多种语言，开发者可以使用合适的语言进行开发。
+流单元的开发可以使用多种语言，开发者可以选择使用合适的语言进行开发，也可以多种方式混合。
 
-|方式|说明|适合类型|复杂度|连接|
-|--|--|--|--|--|
-|C++|C++ SDK形式|适合有高性能要求的功能开发，开发复杂度稍高。|⭐️⭐️⭐️|[指导](c++.md)|
-|Python|Python SDK形式|适合对性能要求不高的功能开发，可快速上线运行。|⭐️⭐️|[指导](python.md)|
-|模型|提供模型的形式|适合模型推理类功能的开发，直接提供模型即可运行，方便快捷。|⭐️|[指导](inference.md)|
+|方式|适合类型|复杂度|连接|
+|--|--|--|--|
+|C++|适合有高性能要求的功能开发，需要编译成so，开发复杂度稍高。|⭐️⭐️⭐️|[指导](c++.md)|
+|Python|适合对性能要求不高的功能开发，可快速上线运行。|⭐️⭐️|[指导](python.md)|
+|配置文件|适合模型推理类功能的开发，直接提供模型即可运行，方便快捷。|⭐️|[指导](inference.md)|
+

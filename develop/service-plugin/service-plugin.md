@@ -91,42 +91,15 @@ Listener监听组件可以注册http服务，监听相关的URI
 定时器组件可以用于启动定时任务
 
 ## 开发例子
-
-插件开发前，请确保：
-
 ### 准备工作
-
+插件开发前，请确保：
 1. ModelBox Server正确安装并运行。
 1. ModelBox Server Develop安装包正确安装。
 
-### 编写CMake文件
-
-编写cmake文件，将所有源代码编译为so动态库文件：
-
-```cmake
-cmake_minimum_required(VERSION 2.8.2)
-
-# 设置插件名称
-set(UNIT_NAME "example-plugin")
-project(modelbox-${UNIT_NAME})
-
-# 将当前目录下所有源代码文件加入工程
-file(GLOB_RECURSE MODELBOX_UNIT_SOURCE *.cpp *.cc *.c)
-include_directories(${CMAKE_CURRENT_LIST_DIR})
-
-# 编译插件文件，设置连接的库，生成example-plugin.so
-set(MODELBOX_SERVER_PLUGIN example-plugin)
-add_library(${MODELBOX_SERVER_PLUGIN} SHARED ${MODELBOX_UNIT_SOURCE})
-target_link_libraries(${MODELBOX_SERVER_PLUGIN} pthread)
-target_link_libraries(${MODELBOX_SERVER_PLUGIN} rt)
-
-# 设置系统安装路径和安装包名称为server-plugin-example
-install(TARGETS ${MODELBOX_SERVER_PLUGIN}
-    COMPONENT server-plugin-example
-    RUNTIME DESTINATION ${CMAKE_INSTALL_FULL_BINDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR}
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR}
-    )
+### 创建服务插件模板
+开发者可以通过modelbox-tool命名进行服务插件模板工程的创建，创建命令如下：
+```shell
+modelbox-tool create -t service-plugin -n PluginName -d ./
 ```
 
 ### 编写插件入口函数
@@ -161,7 +134,7 @@ std::shared_ptr<Plugin> CreatePlugin() {
 };
 }
 ```
-
+Modelbox加载服务插件流程如下：
 1. ModelBox Server先调用插件中的`CreatePlugin`函数创建插件对象。
 
     插件需要在此函数中，创建插件对象，返回智能指针。
@@ -184,7 +157,7 @@ std::shared_ptr<Plugin> CreatePlugin() {
 
 #### Job创建流程
 
-使用场景为流程图不依赖于外部给其输入，直接加载即可运行场景。如图片推理服务，数据流可由流程图中的HTTP流单元产生数据，再比如流程图中读本地文件作为数据源的场景。
+使用场景为流程图不依赖于外部给其输入，直接加载图配置即可运行场景。如图片推理服务，数据流可由流程图中的HTTP流单元产生数据，再比如流程图中读本地文件作为数据源的场景。
 
   ```c++
    Job job_;
@@ -222,7 +195,7 @@ std::shared_ptr<Plugin> CreatePlugin() {
 
 #### Task创建流程
 
-使用场景为流程图运行依赖与外部输入的场景，如分析的视频流信息需要由外部传入服务插件，再有服务插件创建Task，并把相应配置参数数据传递到流程图。
+使用场景为流程图运行依赖与外部输入的场景，如分析的视频流信息需要由外部传入服务插件，再用服务插件创建Task，并把相应配置参数数据传递到流程图。
 
 ```c++
   void ModelBoxExamplePlugin::ModelBoxTaskStatusCallback(modelbox::OneShotTask *task,
@@ -260,7 +233,7 @@ std::shared_ptr<Plugin> CreatePlugin() {
       }
       //填充用户自定义配置
       auto config = oneshot_task->GetSessionConfig();
-      config->SetProperty("nodes.{key}", "{vaule}");//config 使用方法见XXX
+      config->SetProperty("nodes.{key}", "{vaule}");//设置属性
       //注册Task状态变更回调函数
       oneshot_task->RegisterStatusCallback(
       [&](OneShotTask *task, TaskStatus status) {
@@ -279,7 +252,7 @@ std::shared_ptr<Plugin> CreatePlugin() {
           task_status != TaskStatus::FINISHED) {
           sleep(1);
       }
-      task_manager->stop();
+      task_manager->DeleteTaskById(oneshot_task->GetTaskId());
       return true;
 }
 ```
@@ -291,7 +264,7 @@ std::shared_ptr<Plugin> CreatePlugin() {
 ```toml
 [plugin]
 files = [
-    "/usr/local/lib/modelbox-plugin.so",
+    "/usr/local/lib/modelbox-plugin.so",   #由于不同操作系统目录结构存在差异，此路径也可能为 /usr/local/lib64/modelbox-plugin.so
     "/xxx/xxx/example-plugin.so" 
 ]
 ```

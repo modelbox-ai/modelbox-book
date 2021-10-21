@@ -1,19 +1,19 @@
 # 编译安装
 
-ModelBox采用C++语言编写，工程编译软件是CMake，在编译ModelBox之前，需要满足如下要求。
+ModelBox框架采用C++语言编写，工程编译软件是CMake，在编译ModelBox之前，需要满足如下要求。
 
-## 编译依赖
+## 编译依赖准备
 
 |类别|依赖|依赖说明|最低版本|推荐版本|是否必须|相关组件|
 |--|--|--|--|--|--|--|
 |编译器|gcc|gcc编译器|4.8|7.x|是|所有|
 |编译器|g++|g++编译器|4.8|7.x|是|所有|
-|编译器|Cmake|Cmake工具|2.9|3.5|是|所有|
+|编译器|CMake|CMake工具|2.9|3.5|是|所有|
 |OS|Linux|Linux操作系统|ubuntu16.04, centOS 7.2|ubuntu 18.04|是|所有|
 |运行时|nodejs|前端编译|10.x|V12.x|否|前端Editor
 |运行时|python|python编译|3.x|3.8|否|python支持
 |开发库|cuda|cuda支持|10.0|10.1|否|cuda支持
-|开发库|Ascend|Ascend支持|||否|Ascend支持
+|开发库|ascend|Ascend支持|||否|ascend支持
 |开发库|ffmpeg|视频解码编码支持|||否|视频相关功能
 |开发库|tensorrt|tensorrt模型推理|||否|tensorrt相关的模型推理功能
 |开发库|tensorflow|tensorflow推理支持|||否|tensorflow相关的模型推理功能
@@ -21,7 +21,7 @@ ModelBox采用C++语言编写，工程编译软件是CMake，在编译ModelBox�
 
 上述依赖可按需求选择，其中`是否必须`为“是”的依赖，必须要安装到编译环境中才能正常编译代码。如果使用基于镜像的开发环境，可以省去这一步。
 
-### Docker开发镜像
+### 基于Docker开发镜像
 
 ModelBox项目提供了docker镜像，里面包含了ModelBox编译运行所需的组件及预先安装的ModelBox，可以优先选择docker镜像进行应用的开发编译。
 

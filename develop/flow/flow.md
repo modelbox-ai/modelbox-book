@@ -49,7 +49,7 @@ A(图的创建) --> B(图的加载) --> C(图的构建)  --> D(图的运行)
 [log]
 level="DEBUG"
 [driver]
-dir="/usr/local/lib"
+dir=["dir1","dir2"]
 skip-default=false
 [graph]
 graphconf = '''digraph demo {
@@ -66,8 +66,8 @@ format = "graphviz"
 配置文件项目说明：
 
 1. \[driver\]：用于说明驱动加载路径。
-   - `dir`: 指定流单元等驱动加载路径，可以指定多个，逗号分隔。
-   - `skip-default`：是否跳过默认的`/usr/local/lib`路径。
+   - `dir`: 指定流单元等驱动加载路径，可以指定多个路径，通过[] 和 ，分隔。
+   - `skip-default`：true表示只扫描dir路径，false表示扫描系统目录和dir路径。
 1. \[graph\]：用于指定图的内容。
    - `format`指定流程图的格式，目前仅支持graphviz。
    - `graphconf`为内联graphviz流程图。
@@ -95,7 +95,7 @@ digraph G {
     node[shape=Mrecord]
 
     // 定义点属性
-    HTTP_REQUEST[flowunit=http, listen="0.0.0.0:80", label="{% raw %}{HTTP REQUEST|{OUT}}{% endraw %}"]
+    HTTP_REQUEST[flowunit=http, listen="127.0.0.1:8080", label="{% raw %}{HTTP REQUEST|{OUT}}{% endraw %}"]
     PROCESS[flowunit=json, label="{% raw %}{{IN}|PROCESS|{OUT}}{% endraw %}"]
     HTTP_RESPONSE[flowunit=http, label="{% raw %}{{IN}|HTTP RESPONSE}{% endraw %}"]
 
@@ -116,7 +116,7 @@ graphconf = '''
         node[shape=Mrecord]
 
         // 定义点属性
-        HTTP_REQUEST[flowunit=http, listen="0.0.0.0:80", label="{% raw %}{HTTP REQUEST|{OUT}}{% endraw %}"]
+        HTTP_REQUEST[flowunit=http, listen="127.0.0.1:8080", label="{% raw %}{HTTP REQUEST|{OUT}}{% endraw %}"]
         PROCESS[flowunit=json, label="{% raw %}{{IN}|PROCESS|{OUT}}{% endraw %}"]
         HTTP_RESPONSE[flowunit=http, label="{% raw %}{{IN}|HTTP RESPONSE}{% endraw %}"]
 
@@ -138,7 +138,7 @@ digraph G {
     node[shape=Mrecord]
 
     // 2. 定义点属性
-    HTTP_REQUEST[flowunit=http, listen="0.0.0.0:80", label="{% raw %}{HTTP REQUEST|{OUT}}{% endraw %}"]
+    HTTP_REQUEST[flowunit=http, listen="127.0.0.1:8080", label="{% raw %}{HTTP REQUEST|{OUT}}{% endraw %}"]
     PROCESS[flowunit=json, label="{% raw %}{{IN}|PROCESS|{OUT}}{% endraw %}"]
     HTTP_RESPONSE[flowunit=http, label="{% raw %}{{IN}|HTTP RESPONSE}{% endraw %}"]
 
@@ -228,5 +228,5 @@ digraph G {
 |--|--|--|--|--|
 |modelbox-server|使用ModelBox加载运行流程图|基本无需编程，只需要通过配置即可完成图的运行|⭐️⭐️⭐️|[指导](../../server/run-flow.md)|
 |modelbox-tool|ModelBox Tool调试|调试图时使用的工具，方便，快速检查结果是否正确|⭐️⭐️⭐️|[指导](../modelbox-tool/modelbox-tool.md)|
-|Python SDK|Python SDK形式|Python接口形式，方便开发者与当前python服务集成|⭐️⭐️|[指导](python.md)|
-|C++ SDK|C++ SDK形式|c++SDK形式，方便开发者与当前c/c++程序集成|⭐️⭐️|[指导](c++.md)|
+|Python SDK|Python SDK形式|Python接口形式，方便开发者与当前python服务集成|⭐️⭐️|[指导](../sdk/python.md)|
+|C++ SDK|C++ SDK形式|c++SDK形式，方便开发者与当前c/c++程序集成|⭐️⭐️|[指导](../sdk/c++.md)|

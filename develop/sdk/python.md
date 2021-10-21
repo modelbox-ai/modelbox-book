@@ -39,7 +39,8 @@ Flow流程图接口调用过程如下图所示。
 
 ```toml
 [driver]
-dir="/usr/local/lib"
+dir=""
+skip-default = false
 [graph]
 graphconf = '''digraph demo {
   input[type=input]

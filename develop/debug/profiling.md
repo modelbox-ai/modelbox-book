@@ -34,6 +34,6 @@ dir="/tmp/modelbox/perf" # 设置跟踪文件路径
 1. 打开chrome浏览器。
 1. 浏览器中输入`chrome://tracing/`。
 1. 点击界面中的`Load`按钮，加载trace的json文件。
-1. 加载成功后，将看到类似下面的timeline视图。
+1. 加载成功后，将看到类似下面的timeline视图。视图提供了选择统计、平移、缩放、时间间隔等基本功能可用于分析性能瓶颈
 
 ![timeline](../../assets/images/figure/develop/debug/perf-timeline.png)

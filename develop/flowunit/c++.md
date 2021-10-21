@@ -1,8 +1,6 @@
 # c++开发流单元
 
-c++开发流单元时，需要预先安装ModelBox的开发包，然后再基于example改造，修改为相应的流单元组件。
-
-样例工程可从源代码目录的`example/flowunit/`中获取，在开发之前，可以从[流单元概念](../../framework-conception/flowunit.md)章节了解流单元的执行过程。
+在开发之前，可以从[流单元概念](../../framework-conception/flowunit.md)章节了解流单元的执行过程。
 
 ## C++ API调用说明
 
@@ -17,7 +15,7 @@ FlowUnit开发分为三部分，`Driver`和`Factory`，分别设置插件属性�
 | Driver   | MODELBOX_DRIVER_FLOWUNIT                           | 设置插件属性                         | 是       | Driver属性设置接口，填写插件相关的描述信息，包括，插件名称，插件版本号，插件运行的设备类型，初始化函数，查询的细节描述信息，插件的配置参数列表。 |
 | Factory  | MODELBOX_FLOWUNIT                                  | 流单元属性设置接口，并注册到ModelBox | 是       | 填写ModelBox相关的输入，输出端口，参数设置等信息                                                                                                 |
 | FlowUnit | FlowUnit::Open<br/>FlowUnit::Close                 | FlowUnit初始化                       | 否       | FlowUnit初始化、关闭，创建、释放相关的资源                                                                                                       |
-| FlowUnit | FlowUnit::Process                                  | FlowUnit数据处理                     | 是       | FlowUnit数据处理函数，读取数据数据，并处理后，输出数据                                                                                           |
+| FlowUnit | FlowUnit::Process<br/>AscendFlowUnit::AscendProcess  <br/> CudaFlowUnit::CudaProcess                                 | FlowUnit数据处理                     | 是       | FlowUnit数据处理函数，读取数据数据，并处理后，输出数据                                                                                           |
 | FlowUnit | FlowUnit::DataPre<br/>FlowUnit::DataPost           | Stream流数据开始，结束通知           | 部分     | stream流数据开始时调用DataPre函数初始化状态数据，Stream流数据结束时释放状态数据，比如解码器上下文。                                              |
 | FlowUnit | FlowUnit::DataGroupPre<br/>FlowUnit::DataGroupPost | 数据组归并开始，结束通知             | 部分     | 数据组归并，结束通知函数，当数据需要合并时，对一组数据进行上下文相关的操作。                                                                     |
 
@@ -37,7 +35,7 @@ FlowUnit开发分为三部分，`Driver`和`Factory`，分别设置插件属性�
 ModelBox提供了模板创建工具，可以通过**ModelBox Tool**工具产生c++流单元的模板，具体的命令为
 
 ```shell
-modelbox-tool create -t c++ -n FlowUnitName -d /path/to/flowunit
+modelbox-tool create -t c++ -n FlowUnitName -d ./ProjectName/src/flowunit
 ```
 
 ### Driver接口说明
@@ -70,7 +68,7 @@ MODELBOX_DRIVER_FLOWUNIT(desc) {
 
 代码从上到下，分别设置Driver命令，类型，设备类型，描述信息，版本号。
 
-如果有需要Driver相关的初始化功能，可以通过通过`desc.Init`, `desc.Exit`设置回调函数。`desc.Init`在插件启用时调用，`desc.Exit`在插件关闭时调用。
+如果有需要Driver相关的初始化功能，可以通过`desc.Init`, `desc.Exit`设置回调函数。`desc.Init`在插件启用时调用，`desc.Exit`在插件关闭时调用。
 
 ### 设置FlowUnit相关属性
 
@@ -142,8 +140,8 @@ class SomeFlowUnit : public modelbox::FlowUnit {
   };
 };
 ```
-
-注意：Cuda编程的接口，与CPU编程的接口以及Ascend编程的接口稍有不同，具体参考下列编程接口
+#### 加速卡类型FlowUnit接口
+目前modelbox支持开发cuda 和 ascend类型的流单元，与cpu类型不同，cuda和ascend上进行编程存在stream的概念，所以接口上有些差异，具体参考下列编程接口
 
 | 设备   | 说明          | 连接                        |
 | ------ | ------------- | --------------------------- |
@@ -338,7 +336,7 @@ modelbox::Status VideoDecoderFlowUnit::DataGroupPost(
 
 ### 编译安装
 
-生成的c++流单元模板中包含CMakeLists.txt文件，主要流程如下：
+Modelbox C++工程统一使用CMake进行编译，通过Modelbox-tool生成的c++流单元模板中默认包含CMakeLists.txt文件，主要功能如下：
 
 1. 设置流单元名称
 1. 链接流单元所需头文件
@@ -346,4 +344,5 @@ modelbox::Status VideoDecoderFlowUnit::DataGroupPost(
 1. 设置编译目标为动态库
 1. 指定流单元安装目录
 
-需要特殊说明的是编译生成的so命名需要`libmodelbox-`开头，否则ModelBox无法扫描到。
+流单元编译生成的so命名需要以`libmodelbox-`开头，否则ModelBox无法扫描。
+通常情况开发cpu业务流单元，开发者无需修改CMakeLists.txt即可完成编译，当存在引入第三方库时、设置cuda/ascend类型、修改编译选项等等诉求时需要自行修改。

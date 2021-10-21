@@ -23,7 +23,7 @@ ModelBox提供了在线可视化编排的工具——Editor，在开发时，可
 
 ModelBox Server安装完成后，编排服务会通过插件的形式由ModelBox Server加载，并在网页浏览器上提供在线可视化编排服务。
 
-对应插件路径为`"/usr/local/lib/modelbox-plugin-editor.so"`。
+对应插件路径为`"/usr/local/lib/modelbox-plugin-editor.so"`(#由于不同操作系统目录结构存在差异，此路径也可能为 `"/usr/local/lib64/modelbox-plugin-editor.so"`，下文涉及系统lib库路径的地方均存在系统路径差异)。
 
 编排服务插件的配置文件路径为`/usr/local/etc/modelbox/modelbox.conf`，其配置项目如下：
 
@@ -63,7 +63,7 @@ modelbox-tool develop -e
     [plugin]
     # 确保Editor组件加载。
     files = [
-        "/usr/local/lib/modelbox-plugin-editor.so"
+        "/usr/local/lib/modelbox-plugin-editor.so" #
     ]
     
     [editor]
