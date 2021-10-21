@@ -25,24 +25,25 @@ flow的运行流程可参考flow章节。
 
 ## C++ SDK API调用说明
 
-C++开发调用流程图时，需要先安装[C++的运行包](../../get-start/compile.md)，然后再编写C++函数，调用Flow的API来执行流程图。
+C++开发调用流程图时，需要先安装C++的运行包，然后再编写C++函数，调用Flow执行API执行流程图。
 
 Flow流程图接口调用过程如下图所示。
 
 ![c++-sdk](../../assets/images/figure/develop/flow/c++-sdk.png)
 
 1. 安装C++ SDK包
-2. 开发流程图，配置基础部分和图部分。
-3. 调用Flow::init接口，输入流程图文件。
-4. 调用Flow::build初始化流程图。
-5. 调用Flow::run_async，异步执行流程图。
-6. 调用Flow::wait等待结果。
+1. 开发流程图，配置基础部分和图部分。
+1. 调用Flow::init接口，输入流程图文件。
+1. 调用Flow::build初始化流程图。
+1. 调用Flow::run_async，异步执行流程图。
+1. 调用Flow::wait等待结果。
 
 ## TOML流程图配置
 
 ```toml
 [driver]
-dir="/usr/local/lib"
+dir=""
+skip-default = false
 [graph]
 graphconf = '''digraph demo {
   input[type=input]

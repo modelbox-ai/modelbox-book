@@ -1,4 +1,9 @@
-# 运行流程图
+# 流程图运行
+Modelbox Server提供了如下方式加载运行流程图：
+
+1. 通过默认ModelBox Plugin插件自动加载
+1. 通过图形化UI运行流程图
+1. 通过Restful API运行流程图
 
 ## ModelBox Plugin插件
 
@@ -92,14 +97,15 @@ ModelBox服务当前提供动态增加flow作业，动态删除flow作业，查�
           "format":"graphviz",
           "graphconf": [
             " digraph demo { ",
-            "          httpserver_sync_receive[type=flowunit, flowunit=httpserver_sync_receive, device=cpu, deviceid=0, label=\"<Out_1>\", request_url=\"http://localhost:54321/example\", max_requests=10, time_out=5]",
-            "          httpserver_sync_reply[type=flowunit, flowunit=httpserver_sync_reply, device=cpu, deviceid=0, label=\"<In_1>\"]",
-            "          httpserver_sync_receive:out_request_info -> httpserver_sync_reply:in_reply_info,
+            "          httpserver_sync_receive[type=flowunit, flowunit=httpserver_sync_receive, device=cpu, deviceid=0, endpoint=\"http://127.0.0.1:8080/example\", max_requests=10, time_out=5000]",
+            "          httpserver_sync_reply[type=flowunit, flowunit=httpserver_sync_reply, device=cpu, deviceid=0]",
+            "          httpserver_sync_receive:out_request_info -> httpserver_sync_reply:in_reply_info",
             "  }"
           ]
         },
         "driver": {
-          "dir": "/usr/local/lib/"
+          "dir": "",
+          "skip-default": "false"
         }
       }
   }

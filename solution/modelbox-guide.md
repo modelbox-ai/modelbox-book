@@ -28,7 +28,7 @@
     EDITOR_MAP_PORT=1104
 
     # http server port [modify]
-    HTTP_SERVER_PORT=7788
+    HTTP_SERVER_PORT=8080
 
     # container name [modify]
     CONTAINER_NAME="modelbox_instance_`date +%s`_xxx"
@@ -59,7 +59,7 @@
     EDITOR_MAP_PORT=1144
 
     # http server port [modify]
-    HTTP_SERVER_PORT=7788
+    HTTP_SERVER_PORT=8080
 
     # container name [modify]
     CONTAINER_NAME="modelbox_instance_arm64_`date +%s`_xxx"
@@ -204,8 +204,8 @@
     …
     def process(self, data_context):
         # Process the data
-        in_data = data_context.input("Input")
-        out_data = data_context.output("Output")
+        in_data = data_context.input("in_1")
+        out_data = data_context.output("out_1")
 
         for buffer in in_data:
             width = buffer_img.get('width')
