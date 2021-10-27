@@ -259,7 +259,7 @@
                 <a href="../flowunit/flowunit.html">
             
                     
-                    流单元开发
+                    功能单元开发
             
                 </a>
             
@@ -555,7 +555,7 @@
                 <a href="../../framework-conception/flowunit.html">
             
                     
-                    流单元
+                    功能单元
             
                 </a>
             
@@ -644,7 +644,7 @@
                 <a href="../../flowunits/flowunits.html">
             
                     
-                    预置流单元
+                    预置功能单元
             
                 </a>
             
@@ -713,9 +713,9 @@
                                 <h1 id="ascend&#x5361;">Ascend&#x5361;</h1>
 <p>Huawei Ascend ACL&#x652F;&#x6301;&#x63A5;&#x53E3;&#x7F16;&#x7A0B;&#xFF0C;ACL&#x63A5;&#x53E3;&#x76F8;&#x5173;&#x7684;&#x4ECB;&#x7ECD;&#xFF0C;&#x8BF7;&#x70B9;&#x51FB;<a href="https://support.huawei.com/enterprise/en/doc/EDOC1100155021/50a12c70/acl-api-reference" target="_blank">&#x6B64;&#x5904;</a></p>
 <p>ModelBox&#x4E3A;&#x66F4;&#x597D;&#x7684;&#x652F;&#x6301;Stream&#x5E76;&#x53D1;&#x7F16;&#x7A0B;&#xFF0C;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;ModelBox&#x7684;Ascend ACL&#x63A5;&#x53E3;&#x5168;&#x90E8;&#x91C7;&#x7528;Stream&#x6A21;&#x5F0F;&#xFF0C;&#x5F00;&#x53D1;&#x8005;&#x9700;&#x8981;&#x5728;&#x7F16;&#x7A0B;&#x65F6;&#xFF0C;&#x4F7F;&#x7528;Ascend ACL&#x7684;Stream&#x63A5;&#x53E3;&#x4EE5;&#x63D0;&#x5347;&#x6027;&#x80FD;&#x3002;</p>
-<h2 id="ascend-acl&#x6D41;&#x5355;&#x5143;&#x63A5;&#x53E3;">Ascend ACL&#x6D41;&#x5355;&#x5143;&#x63A5;&#x53E3;</h2>
-<p>ModelBox&#x6846;&#x67B6;&#x4F1A;&#x81EA;&#x52A8;&#x7BA1;&#x7406;Stream&#xFF0C;&#x5F00;&#x53D1;&#x6D41;&#x5355;&#x5143;&#x65F6;&#xFF0C;&#x5F00;&#x53D1;&#x8005;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;Process&#x7684;&#x5165;&#x53C2;&#x83B7;&#x53D6;&#x5230;Stream&#xFF0C;&#x4E4B;&#x540E;&#x53EF;&#x4EE5;&#x7528;&#x4E8E;ACL&#x63A5;&#x53E3;&#x7684;&#x8C03;&#x7528;&#x4E2D;&#x3002;</p>
-<p>&#x5728;&#x5B9E;&#x73B0;&#x6D41;&#x5355;&#x5143;&#x4E4B;&#x524D;&#xFF0C;Ascend ACL&#x76F8;&#x5173;&#x7684;&#x6D41;&#x5355;&#x5143;&#xFF0C;&#x9700;&#x8981;&#x4ECE;<code>AscendFlowUnit</code>&#x6D3E;&#x751F;&#xFF0C;&#x5E76;&#x5B9E;&#x73B0;<code>AscendProcess</code>&#x63A5;&#x53E3;&#x3002;</p>
+<h2 id="ascend-acl&#x529F;&#x80FD;&#x5355;&#x5143;&#x63A5;&#x53E3;">Ascend ACL&#x529F;&#x80FD;&#x5355;&#x5143;&#x63A5;&#x53E3;</h2>
+<p>ModelBox&#x6846;&#x67B6;&#x4F1A;&#x81EA;&#x52A8;&#x7BA1;&#x7406;Stream&#xFF0C;&#x5F00;&#x53D1;&#x529F;&#x80FD;&#x5355;&#x5143;&#x65F6;&#xFF0C;&#x5F00;&#x53D1;&#x8005;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;Process&#x7684;&#x5165;&#x53C2;&#x83B7;&#x53D6;&#x5230;Stream&#xFF0C;&#x4E4B;&#x540E;&#x53EF;&#x4EE5;&#x7528;&#x4E8E;ACL&#x63A5;&#x53E3;&#x7684;&#x8C03;&#x7528;&#x4E2D;&#x3002;</p>
+<p>&#x5728;&#x5B9E;&#x73B0;&#x529F;&#x80FD;&#x5355;&#x5143;&#x4E4B;&#x524D;&#xFF0C;Ascend ACL&#x76F8;&#x5173;&#x7684;&#x529F;&#x80FD;&#x5355;&#x5143;&#xFF0C;&#x9700;&#x8981;&#x4ECE;<code>AscendFlowUnit</code>&#x6D3E;&#x751F;&#xFF0C;&#x5E76;&#x5B9E;&#x73B0;<code>AscendProcess</code>&#x63A5;&#x53E3;&#x3002;</p>
 <pre><code class="lang-c++"><span class="hljs-keyword">class</span> SomeAscendFlowUnit : <span class="hljs-keyword">public</span> modelbox::AscendFlowUnit {
  <span class="hljs-keyword">public</span>:
   SomeAscendFlowUnit() = <span class="hljs-keyword">default</span>;
@@ -725,7 +725,7 @@
   <span class="hljs-keyword">virtual</span> modelbox::<span class="hljs-function">Status <span class="hljs-title">AscendProcess</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::DataContext&gt; data_ctx, aclrtStream stream)</span></span>;
 };
 </code></pre>
-<p>&#x9664;AscendProcess&#x4EE5;&#x5916;&#xFF0C;&#x5176;&#x4ED6;&#x63A5;&#x53E3;&#x548C;&#x901A;&#x7528;&#x6D41;&#x5355;&#x5143;&#x4E00;&#x81F4;&#xFF0C;AscendProcess&#x63A5;&#x53E3;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>&#x9664;AscendProcess&#x4EE5;&#x5916;&#xFF0C;&#x5176;&#x4ED6;&#x63A5;&#x53E3;&#x548C;&#x901A;&#x7528;&#x529F;&#x80FD;&#x5355;&#x5143;&#x4E00;&#x81F4;&#xFF0C;AscendProcess&#x63A5;&#x53E3;&#x5982;&#x4E0B;&#xFF1A;</p>
 <pre><code class="lang-c++">modelbox::Status ColorTransposeFlowUnit::AscendProcess(
     <span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::DataContext&gt; data_ctx, aclrtStream stream) {
   <span class="hljs-keyword">auto</span> inputs = ctx-&gt;Input(<span class="hljs-string">&quot;input&quot;</span>);
@@ -756,7 +756,7 @@
 </code></pre>
 <p>&#x6570;&#x636E;&#x5904;&#x7406;&#x65F6;&#xFF0C;Ascend Stream&#x4F1A;&#x81EA;&#x52A8;&#x7531;ModelBox&#x6846;&#x67B6;&#x751F;&#x6210;&#xFF0C;&#x518D;&#x8C03;&#x7528;Ascend ACL&#x63A5;&#x53E3;&#x65F6;&#xFF0C;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x6B64;Stream&#x5BF9;&#x8C61;&#x5373;&#x53EF;&#x3002;</p>
 <footer class="page-footer"><span class="copyright">&#xA9; &#x534E;&#x4E3A;&#x6280;&#x672F;&#x6709;&#x9650;&#x516C;&#x53F8; all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2021-10-25 09:23:58
+2021-10-27 09:08:50
 </span></footer>
                                 
                                 </section>
@@ -790,7 +790,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Ascend","level":"1.4.8.1","depth":3,"next":{"title":"Nvidia Cuda","level":"1.4.8.2","depth":3,"path":"develop/device/cuda.md","ref":"develop/device/cuda.md","articles":[]},"previous":{"title":"设备接口","level":"1.4.8","depth":2,"path":"develop/device/device.md","ref":"develop/device/device.md","articles":[{"title":"Ascend","level":"1.4.8.1","depth":3,"path":"develop/device/ascend.md","ref":"develop/device/ascend.md","articles":[]},{"title":"Nvidia Cuda","level":"1.4.8.2","depth":3,"path":"develop/device/cuda.md","ref":"develop/device/cuda.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy; 华为技术有限公司","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导书"},"file":{"path":"develop/device/ascend.md","mtime":"2021-10-25T09:23:58.287Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-10-25T09:25:04.275Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Ascend","level":"1.4.8.1","depth":3,"next":{"title":"Nvidia Cuda","level":"1.4.8.2","depth":3,"path":"develop/device/cuda.md","ref":"develop/device/cuda.md","articles":[]},"previous":{"title":"设备接口","level":"1.4.8","depth":2,"path":"develop/device/device.md","ref":"develop/device/device.md","articles":[{"title":"Ascend","level":"1.4.8.1","depth":3,"path":"develop/device/ascend.md","ref":"develop/device/ascend.md","articles":[]},{"title":"Nvidia Cuda","level":"1.4.8.2","depth":3,"path":"develop/device/cuda.md","ref":"develop/device/cuda.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy; 华为技术有限公司","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导书"},"file":{"path":"develop/device/ascend.md","mtime":"2021-10-27T09:08:50.705Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-10-27T09:09:49.267Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

@@ -259,7 +259,7 @@
                 <a href="../flowunit/flowunit.html">
             
                     
-                    流单元开发
+                    功能单元开发
             
                 </a>
             
@@ -555,7 +555,7 @@
                 <a href="../../framework-conception/flowunit.html">
             
                     
-                    流单元
+                    功能单元
             
                 </a>
             
@@ -644,7 +644,7 @@
                 <a href="../../flowunits/flowunits.html">
             
                     
-                    预置流单元
+                    预置功能单元
             
                 </a>
             
@@ -724,7 +724,7 @@ make -j32
 <h3 id="&#x914D;&#x7F6E;&#x8C03;&#x8BD5;&#x6D41;&#x7A0B;&#x56FE;">&#x914D;&#x7F6E;&#x8C03;&#x8BD5;&#x6D41;&#x7A0B;&#x56FE;</h3>
 <p>&#x914D;&#x7F6E;&#x6784;&#x9020;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;flow&#x6D41;&#x7A0B;&#x56FE;&#xFF0C;&#x786E;&#x4FDD;&#x88AB;&#x8C03;&#x6D4B;&#x7EC4;&#x4EF6;&#x80FD;&#x88AB;&#x8C03;&#x7528;&#x3002;</p>
 <h3 id="&#x542F;&#x52A8;&#x8C03;&#x8BD5;">&#x542F;&#x52A8;&#x8C03;&#x8BD5;</h3>
-<p>&#x82E5;&#x662F;&#x8C03;&#x8BD5;&#x6D41;&#x5355;&#x5143;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;ModelBox Tool&#x8F85;&#x52A9;&#x8C03;&#x8BD5;&#x3002;</p>
+<p>&#x82E5;&#x662F;&#x8C03;&#x8BD5;&#x529F;&#x80FD;&#x5355;&#x5143;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;ModelBox Tool&#x8F85;&#x52A9;&#x8C03;&#x8BD5;&#x3002;</p>
 <h4 id="gdb&#x547D;&#x4EE4;">GDB&#x547D;&#x4EE4;</h4>
 <pre><code class="lang-shell">gdb modelbox-tool
 set args  -verbose -log-level info flow -run [path/to/graph.conf]
@@ -770,8 +770,8 @@ flow = modelbox.Flow()
 </ul>
 <pre><code class="lang-shell">export MODELBOX_DEBUG_PYTHON=yes
 </code></pre>
-<h3 id="python&#x6D41;&#x5355;&#x5143;&#x8C03;&#x8BD5;">Python&#x6D41;&#x5355;&#x5143;&#x8C03;&#x8BD5;</h3>
-<p>Python&#x4EE3;&#x7801;&#x7F16;&#x5199;&#x7684;&#x6D41;&#x5355;&#x5143;&#x9700;&#x8981;&#x4ECE;Python&#x542F;&#x52A8;&#x540E;&#xFF0C;&#x8BBE;&#x7F6E;&#x4E0A;&#x8FF0;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x624D;&#x80FD;&#x8C03;&#x8BD5;&#x3002;&#x4F46;Modelbox&#x4E5F;&#x63D0;&#x4F9B;&#x4E86;&#x4E13;&#x95E8;&#x7528;&#x4E8E;&#x8C03;&#x8BD5;Python&#x6D41;&#x5355;&#x5143;&#x7684;&#x547D;&#x4EE4;<code>modelbox-python-debug</code>&#x3002;</p>
+<h3 id="python&#x529F;&#x80FD;&#x5355;&#x5143;&#x8C03;&#x8BD5;">Python&#x529F;&#x80FD;&#x5355;&#x5143;&#x8C03;&#x8BD5;</h3>
+<p>Python&#x4EE3;&#x7801;&#x7F16;&#x5199;&#x7684;&#x529F;&#x80FD;&#x5355;&#x5143;&#x9700;&#x8981;&#x4ECE;Python&#x542F;&#x52A8;&#x540E;&#xFF0C;&#x8BBE;&#x7F6E;&#x4E0A;&#x8FF0;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x624D;&#x80FD;&#x8C03;&#x8BD5;&#x3002;&#x4F46;Modelbox&#x4E5F;&#x63D0;&#x4F9B;&#x4E86;&#x4E13;&#x95E8;&#x7528;&#x4E8E;&#x8C03;&#x8BD5;Python&#x529F;&#x80FD;&#x5355;&#x5143;&#x7684;&#x547D;&#x4EE4;<code>modelbox-python-debug</code>&#x3002;</p>
 <p>&#x5177;&#x4F53;&#x64CD;&#x4F5C;&#x65B9;&#x6CD5;&#x4E3A;&#xFF1A;</p>
 <ul>
 <li>IDE&#x6216;&#x8C03;&#x8BD5;&#x5DE5;&#x5177;&#x8BBE;&#x7F6E;&#x542F;&#x52A8;&#x7A0B;&#x5E8F;&#x4E3A;<code>modelbox-python-debug</code>;</li>
@@ -798,12 +798,12 @@ flow = modelbox.Flow()
     ]
 }
 </code></pre>
-<p>&#x5C06;<code>[/path/to/toml]</code>&#x66FF;&#x6362;&#x4E3A;&#x5B9E;&#x9645;&#x7684;toml&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#xFF0C;&#x5E76;&#x5BF9;&#x9700;&#x8981;&#x8C03;&#x8BD5;&#x7684;python&#x6D41;&#x5355;&#x5143;&#x8BBE;&#x7F6E;&#x65AD;&#x70B9;&#x3002;&#x8BBE;&#x7F6E;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x4F7F;&#x7528;vscode&#x7684;<code>F5</code>&#x529F;&#x80FD;&#x952E;&#x8FDB;&#x884C;&#x8C03;&#x8BD5;&#x3002;</p>
+<p>&#x5C06;<code>[/path/to/toml]</code>&#x66FF;&#x6362;&#x4E3A;&#x5B9E;&#x9645;&#x7684;toml&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#xFF0C;&#x5E76;&#x5BF9;&#x9700;&#x8981;&#x8C03;&#x8BD5;&#x7684;python&#x529F;&#x80FD;&#x5355;&#x5143;&#x8BBE;&#x7F6E;&#x65AD;&#x70B9;&#x3002;&#x8BBE;&#x7F6E;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x4F7F;&#x7528;vscode&#x7684;<code>F5</code>&#x529F;&#x80FD;&#x952E;&#x8FDB;&#x884C;&#x8C03;&#x8BD5;&#x3002;</p>
 <p><strong>&#x6CE8;&#x610F;</strong>&#xFF1A; &#x82E5;&#x542F;&#x7528;&#x5931;&#x8D25;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x5148;&#x5B89;&#x88C5;<code>pydevd</code>&#x5305;&#x3002;</p>
 <pre><code class="lang-shell">pip install pydevd
 </code></pre>
 <footer class="page-footer"><span class="copyright">&#xA9; &#x534E;&#x4E3A;&#x6280;&#x672F;&#x6709;&#x9650;&#x516C;&#x53F8; all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2021-10-25 09:23:58
+2021-10-27 09:08:50
 </span></footer>
                                 
                                 </section>
@@ -837,7 +837,7 @@ flow = modelbox.Flow()
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"代码调试","level":"1.4.6.1","depth":3,"next":{"title":"日志","level":"1.4.6.2","depth":3,"path":"develop/debug/log.md","ref":"develop/debug/log.md","articles":[]},"previous":{"title":"调试定位","level":"1.4.6","depth":2,"path":"develop/debug/debug.md","ref":"develop/debug/debug.md","articles":[{"title":"代码调试","level":"1.4.6.1","depth":3,"path":"develop/debug/code-debug.md","ref":"develop/debug/code-debug.md","articles":[]},{"title":"日志","level":"1.4.6.2","depth":3,"path":"develop/debug/log.md","ref":"develop/debug/log.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy; 华为技术有限公司","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导书"},"file":{"path":"develop/debug/code-debug.md","mtime":"2021-10-25T09:23:58.283Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-10-25T09:25:04.275Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"代码调试","level":"1.4.6.1","depth":3,"next":{"title":"日志","level":"1.4.6.2","depth":3,"path":"develop/debug/log.md","ref":"develop/debug/log.md","articles":[]},"previous":{"title":"调试定位","level":"1.4.6","depth":2,"path":"develop/debug/debug.md","ref":"develop/debug/debug.md","articles":[{"title":"代码调试","level":"1.4.6.1","depth":3,"path":"develop/debug/code-debug.md","ref":"develop/debug/code-debug.md","articles":[]},{"title":"日志","level":"1.4.6.2","depth":3,"path":"develop/debug/log.md","ref":"develop/debug/log.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy; 华为技术有限公司","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导书"},"file":{"path":"develop/debug/code-debug.md","mtime":"2021-10-27T09:08:50.705Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-10-27T09:09:49.267Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

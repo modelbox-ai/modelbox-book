@@ -259,7 +259,7 @@
                 <a href="flowunit.html">
             
                     
-                    流单元开发
+                    功能单元开发
             
                 </a>
             
@@ -555,7 +555,7 @@
                 <a href="../../framework-conception/flowunit.html">
             
                     
-                    流单元
+                    功能单元
             
                 </a>
             
@@ -644,7 +644,7 @@
                 <a href="../../flowunits/flowunits.html">
             
                     
-                    预置流单元
+                    预置功能单元
             
                 </a>
             
@@ -710,12 +710,12 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="c&#x5F00;&#x53D1;&#x6D41;&#x5355;&#x5143;">c++&#x5F00;&#x53D1;&#x6D41;&#x5355;&#x5143;</h1>
-<p>&#x5728;&#x5F00;&#x53D1;&#x4E4B;&#x524D;&#xFF0C;&#x53EF;&#x4EE5;&#x4ECE;<a href="../../framework-conception/flowunit.html">&#x6D41;&#x5355;&#x5143;&#x6982;&#x5FF5;</a>&#x7AE0;&#x8282;&#x4E86;&#x89E3;&#x6D41;&#x5355;&#x5143;&#x7684;&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#x3002;</p>
+                                <h1 id="c&#x5F00;&#x53D1;&#x529F;&#x80FD;&#x5355;&#x5143;">c++&#x5F00;&#x53D1;&#x529F;&#x80FD;&#x5355;&#x5143;</h1>
+<p>&#x5728;&#x5F00;&#x53D1;&#x4E4B;&#x524D;&#xFF0C;&#x53EF;&#x4EE5;&#x4ECE;<a href="../../framework-conception/flowunit.html">&#x529F;&#x80FD;&#x5355;&#x5143;&#x6982;&#x5FF5;</a>&#x7AE0;&#x8282;&#x4E86;&#x89E3;&#x529F;&#x80FD;&#x5355;&#x5143;&#x7684;&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#x3002;</p>
 <h2 id="c-api&#x8C03;&#x7528;&#x8BF4;&#x660E;">C++ API&#x8C03;&#x7528;&#x8BF4;&#x660E;</h2>
 <p>FlowUnit&#x63A5;&#x53E3;&#x8C03;&#x7528;&#x8FC7;&#x7A0B;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#x3002;</p>
 <p><img src="../../assets/images/figure/develop/flowunit/flowunit-develop-flow.png" alt="flowunit-develop-flow"></p>
-<p>FlowUnit&#x5F00;&#x53D1;&#x5206;&#x4E3A;&#x4E09;&#x90E8;&#x5206;&#xFF0C;<code>Driver</code>&#x548C;<code>Factory</code>&#xFF0C;&#x5206;&#x522B;&#x8BBE;&#x7F6E;&#x63D2;&#x4EF6;&#x5C5E;&#x6027;&#x548C;&#x6D41;&#x5355;&#x5143;&#x5C5E;&#x6027;&#xFF0C;&#x5C01;&#x88C5;&#x4E3A;&#x6613;&#x4E8E;&#x63A5;&#x53E3;&#xFF0C;<code>FlowUnit</code>&#x4E3A;&#x6D41;&#x5355;&#x5143;&#x5904;&#x7406;&#x5BF9;&#x8C61;&#xFF0C;&#x4E09;&#x90E8;&#x5206;&#x7684;&#x9700;&#x8981;&#x5B9E;&#x73B0;&#x7684;&#x529F;&#x80FD;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>FlowUnit&#x5F00;&#x53D1;&#x5206;&#x4E3A;&#x4E09;&#x90E8;&#x5206;&#xFF0C;<code>Driver</code>&#x548C;<code>Factory</code>&#xFF0C;&#x5206;&#x522B;&#x8BBE;&#x7F6E;&#x63D2;&#x4EF6;&#x5C5E;&#x6027;&#x548C;&#x529F;&#x80FD;&#x5355;&#x5143;&#x5C5E;&#x6027;&#xFF0C;&#x5C01;&#x88C5;&#x4E3A;&#x6613;&#x4E8E;&#x63A5;&#x53E3;&#xFF0C;<code>FlowUnit</code>&#x4E3A;&#x529F;&#x80FD;&#x5355;&#x5143;&#x5904;&#x7406;&#x5BF9;&#x8C61;&#xFF0C;&#x4E09;&#x90E8;&#x5206;&#x7684;&#x9700;&#x8981;&#x5B9E;&#x73B0;&#x7684;&#x529F;&#x80FD;&#x5982;&#x4E0B;&#xFF1A;</p>
 <table>
 <thead>
 <tr>
@@ -737,7 +737,7 @@
 <tr>
 <td>Factory</td>
 <td>MODELBOX_FLOWUNIT</td>
-<td>&#x6D41;&#x5355;&#x5143;&#x5C5E;&#x6027;&#x8BBE;&#x7F6E;&#x63A5;&#x53E3;&#xFF0C;&#x5E76;&#x6CE8;&#x518C;&#x5230;ModelBox</td>
+<td>&#x529F;&#x80FD;&#x5355;&#x5143;&#x5C5E;&#x6027;&#x8BBE;&#x7F6E;&#x63A5;&#x53E3;&#xFF0C;&#x5E76;&#x6CE8;&#x518C;&#x5230;ModelBox</td>
 <td>&#x662F;</td>
 <td>&#x586B;&#x5199;ModelBox&#x76F8;&#x5173;&#x7684;&#x8F93;&#x5165;&#xFF0C;&#x8F93;&#x51FA;&#x7AEF;&#x53E3;&#xFF0C;&#x53C2;&#x6570;&#x8BBE;&#x7F6E;&#x7B49;&#x4FE1;&#x606F;</td>
 </tr>
@@ -785,31 +785,31 @@
 <tr>
 <td>cpu</td>
 <td>#include &lt;modelbox/device/cpu.h&gt;</td>
-<td>CPU&#x7C7B;&#x578B;&#x7684;&#x6D41;&#x5355;&#x5143;</td>
+<td>CPU&#x7C7B;&#x578B;&#x7684;&#x529F;&#x80FD;&#x5355;&#x5143;</td>
 </tr>
 <tr>
 <td>cuda</td>
 <td>#include &lt;modelbox/device/cuda.h&gt;</td>
-<td>Nvidia GPU&#x7C7B;&#x578B;&#x7684;&#x6D41;&#x5355;&#x5143;</td>
+<td>Nvidia GPU&#x7C7B;&#x578B;&#x7684;&#x529F;&#x80FD;&#x5355;&#x5143;</td>
 </tr>
 <tr>
 <td>ascend</td>
 <td>#include &lt;modelbox/device/ascend.h&gt;</td>
-<td>Huawei Ascend&#x7C7B;&#x578B;&#x7684;&#x6D41;&#x5355;&#x5143;</td>
+<td>Huawei Ascend&#x7C7B;&#x578B;&#x7684;&#x529F;&#x80FD;&#x5355;&#x5143;</td>
 </tr>
 <tr>
 <td>flowunit</td>
 <td>#include &lt;modelbox/flowunit_api_helper.h&gt;</td>
-<td>&#x6D41;&#x5355;&#x5143;&#x5F00;&#x53D1;&#x63A5;&#x53E3;</td>
+<td>&#x529F;&#x80FD;&#x5355;&#x5143;&#x5F00;&#x53D1;&#x63A5;&#x53E3;</td>
 </tr>
 </tbody>
 </table>
 <h3 id="&#x521B;&#x5EFA;&#x6A21;&#x677F;&#x5DE5;&#x7A0B;">&#x521B;&#x5EFA;&#x6A21;&#x677F;&#x5DE5;&#x7A0B;</h3>
-<p>ModelBox&#x63D0;&#x4F9B;&#x4E86;&#x6A21;&#x677F;&#x521B;&#x5EFA;&#x5DE5;&#x5177;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;<strong>ModelBox Tool</strong>&#x5DE5;&#x5177;&#x4EA7;&#x751F;c++&#x6D41;&#x5355;&#x5143;&#x7684;&#x6A21;&#x677F;&#xFF0C;&#x5177;&#x4F53;&#x7684;&#x547D;&#x4EE4;&#x4E3A;</p>
+<p>ModelBox&#x63D0;&#x4F9B;&#x4E86;&#x6A21;&#x677F;&#x521B;&#x5EFA;&#x5DE5;&#x5177;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;<strong>ModelBox Tool</strong>&#x5DE5;&#x5177;&#x4EA7;&#x751F;c++&#x529F;&#x80FD;&#x5355;&#x5143;&#x7684;&#x6A21;&#x677F;&#xFF0C;&#x5177;&#x4F53;&#x7684;&#x547D;&#x4EE4;&#x4E3A;</p>
 <pre><code class="lang-shell">modelbox-tool create -t c++ -n FlowUnitName -d ./ProjectName/src/flowunit
 </code></pre>
 <h3 id="driver&#x63A5;&#x53E3;&#x8BF4;&#x660E;">Driver&#x63A5;&#x53E3;&#x8BF4;&#x660E;</h3>
-<p>Driver&#x76F8;&#x5173;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x63CF;&#x8FF0;Drvier&#x76F8;&#x5173;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x5982;Driver&#x540D;&#x79F0;&#xFF0C;&#x7248;&#x672C;&#x53F7;&#xFF0C;&#x8BBE;&#x5907;&#x7C7B;&#x578B;&#xFF0C;&#x63CF;&#x8FF0;&#x4FE1;&#x606F;&#x3002;FlowUnit&#x6D41;&#x5355;&#x5143;&#x5F00;&#x53D1;&#xFF0C;&#x8FD9;&#x91CC;&#x53EA;&#x9700;&#x4FEE;&#x6539;&#x6D41;&#x5355;&#x5143;&#x540D;&#x79F0;&#x5373;&#x53EF;&#x3002;</p>
+<p>Driver&#x76F8;&#x5173;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x63CF;&#x8FF0;Drvier&#x76F8;&#x5173;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x5982;Driver&#x540D;&#x79F0;&#xFF0C;&#x7248;&#x672C;&#x53F7;&#xFF0C;&#x8BBE;&#x5907;&#x7C7B;&#x578B;&#xFF0C;&#x63CF;&#x8FF0;&#x4FE1;&#x606F;&#x3002;FlowUnit&#x529F;&#x80FD;&#x5355;&#x5143;&#x5F00;&#x53D1;&#xFF0C;&#x8FD9;&#x91CC;&#x53EA;&#x9700;&#x4FEE;&#x6539;&#x529F;&#x80FD;&#x5355;&#x5143;&#x540D;&#x79F0;&#x5373;&#x53EF;&#x3002;</p>
 <h4 id="&#x8BBE;&#x7F6E;driver&#x76F8;&#x5173;&#x5C5E;&#x6027;">&#x8BBE;&#x7F6E;Driver&#x76F8;&#x5173;&#x5C5E;&#x6027;</h4>
 <pre><code class="lang-c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-string">&quot;modelbox/flowunit_api_helper.h&quot;</span></span>
 
@@ -848,23 +848,23 @@ MODELBOX_FLOWUNIT(SomeFlowUnit, desc) {
       modelbox::FlowUnitOutput(<span class="hljs-string">&quot;output&quot;</span>, modelbox::DEVICE_TYPE));
 }
 </code></pre>
-<p>&#x8BBE;&#x7F6E;&#x6D41;&#x5355;&#x5143;&#x540D;&#x79F0;&#xFF0C;&#x5DE5;&#x4F5C;&#x6A21;&#x5F0F;&#xFF0C;&#x8F93;&#x5165;&#x53CA;&#x8F93;&#x51FA;&#x7684;&#x540D;&#x79F0;&#x3001;&#x7C7B;&#x578B;&#x3002;&#x6B64;&#x5904;&#x53EF;&#x4EE5;&#x5199;&#x591A;&#x4E2A;&#x6D41;&#x5355;&#x5143;&#x529F;&#x80FD;&#x6A21;&#x5757;&#x7684;&#x63CF;&#x8FF0;&#xFF0C;&#x6B64;&#x63CF;&#x8FF0;&#x7B49;&#x6548;&#x4E8E;&#x5411;&#x6846;&#x67B6;&#x6CE8;&#x518C;&#x6D41;&#x5355;&#x5143;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x6CE8;&#x518C;&#x540E;&#x6846;&#x67B6;&#x626B;&#x63CF;&#x5230;so&#x65F6;&#xFF0C;&#x624D;&#x80FD;&#x591F;&#x6B63;&#x786E;&#x6309;&#x7167;&#x540D;&#x79F0;&#x5BF9;&#x6D41;&#x5355;&#x5143;&#x8FDB;&#x884C;&#x52A0;&#x8F7D;&#x3002;</p>
+<p>&#x8BBE;&#x7F6E;&#x529F;&#x80FD;&#x5355;&#x5143;&#x540D;&#x79F0;&#xFF0C;&#x5DE5;&#x4F5C;&#x6A21;&#x5F0F;&#xFF0C;&#x8F93;&#x5165;&#x53CA;&#x8F93;&#x51FA;&#x7684;&#x540D;&#x79F0;&#x3001;&#x7C7B;&#x578B;&#x3002;&#x6B64;&#x5904;&#x53EF;&#x4EE5;&#x5199;&#x591A;&#x4E2A;&#x529F;&#x80FD;&#x5355;&#x5143;&#x529F;&#x80FD;&#x6A21;&#x5757;&#x7684;&#x63CF;&#x8FF0;&#xFF0C;&#x6B64;&#x63CF;&#x8FF0;&#x7B49;&#x6548;&#x4E8E;&#x5411;&#x6846;&#x67B6;&#x6CE8;&#x518C;&#x529F;&#x80FD;&#x5355;&#x5143;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x6CE8;&#x518C;&#x540E;&#x6846;&#x67B6;&#x626B;&#x63CF;&#x5230;so&#x65F6;&#xFF0C;&#x624D;&#x80FD;&#x591F;&#x6B63;&#x786E;&#x6309;&#x7167;&#x540D;&#x79F0;&#x5BF9;&#x529F;&#x80FD;&#x5355;&#x5143;&#x8FDB;&#x884C;&#x52A0;&#x8F7D;&#x3002;</p>
 <ul>
-<li><code>SomeFlowUnit</code>&#xFF1A;&#x5BF9;&#x5E94;&#x7684;&#x63D2;&#x4EF6;&#x6D41;&#x5355;&#x5143;&#x6D3E;&#x751F;&#x5BF9;&#x8C61;&#xFF0C;&#x4ECE;FlowUnit&#x6D3E;&#x751F;&#x51FA;&#x6765;&#x7684;&#x7C7B;&#x3002;</li>
-<li><code>MODELBOX_FLOWUNIT</code>: &#x4E00;&#x4E2A;Driver&#x5185;&#x90E8;&#x53EF;&#x4EE5;&#x6CE8;&#x518C;&#x591A;&#x4E2A;&#x6D41;&#x5355;&#x5143;&#xFF0C;<code>MODELBOX_FLOWUNIT</code>&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x591A;&#x4E2A;&#x4E0D;&#x540C;&#x7684;FlowUnit&#x3002;</li>
+<li><code>SomeFlowUnit</code>&#xFF1A;&#x5BF9;&#x5E94;&#x7684;&#x63D2;&#x4EF6;&#x529F;&#x80FD;&#x5355;&#x5143;&#x6D3E;&#x751F;&#x5BF9;&#x8C61;&#xFF0C;&#x4ECE;FlowUnit&#x6D3E;&#x751F;&#x51FA;&#x6765;&#x7684;&#x7C7B;&#x3002;</li>
+<li><code>MODELBOX_FLOWUNIT</code>: &#x4E00;&#x4E2A;Driver&#x5185;&#x90E8;&#x53EF;&#x4EE5;&#x6CE8;&#x518C;&#x591A;&#x4E2A;&#x529F;&#x80FD;&#x5355;&#x5143;&#xFF0C;<code>MODELBOX_FLOWUNIT</code>&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x591A;&#x4E2A;&#x4E0D;&#x540C;&#x7684;FlowUnit&#x3002;</li>
 </ul>
 <h3 id="flowunit&#x63A5;&#x53E3;&#x8BF4;&#x660E;">FlowUnit&#x63A5;&#x53E3;&#x8BF4;&#x660E;</h3>
-<p>&#x6D41;&#x5355;&#x5143;&#x7684;&#x6570;&#x636E;&#x5904;&#x7406;&#x7684;&#x57FA;&#x672C;&#x5355;&#x5143;&#x3002;&#x5982;&#x679C;&#x6D41;&#x5355;&#x5143;&#x7684;&#x5DE5;&#x4F5C;&#x6A21;&#x5F0F;&#x662F;<code>modelbox::NORMAL</code>&#x65F6;&#xFF0C;&#x6D41;&#x5355;&#x5143;&#x4F1A;&#x8C03;&#x7528;<code>::Open</code>&#x3001;<code>::Process</code>&#x3001;<code>::Close</code>&#x63A5;&#x53E3;&#xFF1B;&#x5982;&#x679C;&#x6D41;&#x5355;&#x5143;&#x7684;&#x5DE5;&#x4F5C;&#x6A21;&#x5F0F;&#x662F;<code>modelbox::STREAM</code>&#x65F6;&#xFF0C;&#x6D41;&#x5355;&#x5143;&#x4F1A;&#x8C03;&#x7528;<code>::Open</code>&#x3001;<code>::DataGroupPre</code>&#x3001;<code>::DataPre</code>&#x3001;<code>::Process</code>&#x3001;<code>::DataPost</code>&#x3001;<code>::DataGroupPost</code>&#x3001;<code>::Close</code>&#x63A5;&#x53E3;&#xFF1B;&#x7528;&#x6237;&#x53EF;&#x6839;&#x636E;&#x5B9E;&#x9645;&#x9700;&#x6C42;&#x5B9E;&#x73B0;&#x5BF9;&#x5E94;&#x63A5;&#x53E3;&#x3002;</p>
+<p>&#x529F;&#x80FD;&#x5355;&#x5143;&#x7684;&#x6570;&#x636E;&#x5904;&#x7406;&#x7684;&#x57FA;&#x672C;&#x5355;&#x5143;&#x3002;&#x5982;&#x679C;&#x529F;&#x80FD;&#x5355;&#x5143;&#x7684;&#x5DE5;&#x4F5C;&#x6A21;&#x5F0F;&#x662F;<code>modelbox::NORMAL</code>&#x65F6;&#xFF0C;&#x529F;&#x80FD;&#x5355;&#x5143;&#x4F1A;&#x8C03;&#x7528;<code>::Open</code>&#x3001;<code>::Process</code>&#x3001;<code>::Close</code>&#x63A5;&#x53E3;&#xFF1B;&#x5982;&#x679C;&#x529F;&#x80FD;&#x5355;&#x5143;&#x7684;&#x5DE5;&#x4F5C;&#x6A21;&#x5F0F;&#x662F;<code>modelbox::STREAM</code>&#x65F6;&#xFF0C;&#x529F;&#x80FD;&#x5355;&#x5143;&#x4F1A;&#x8C03;&#x7528;<code>::Open</code>&#x3001;<code>::DataGroupPre</code>&#x3001;<code>::DataPre</code>&#x3001;<code>::Process</code>&#x3001;<code>::DataPost</code>&#x3001;<code>::DataGroupPost</code>&#x3001;<code>::Close</code>&#x63A5;&#x53E3;&#xFF1B;&#x7528;&#x6237;&#x53EF;&#x6839;&#x636E;&#x5B9E;&#x9645;&#x9700;&#x6C42;&#x5B9E;&#x73B0;&#x5BF9;&#x5E94;&#x63A5;&#x53E3;&#x3002;</p>
 <h4 id="flowunit&#x6570;&#x636E;&#x5904;&#x7406;&#x63A5;&#x53E3;">FlowUnit&#x6570;&#x636E;&#x5904;&#x7406;&#x63A5;&#x53E3;</h4>
 <pre><code class="lang-c++"><span class="hljs-keyword">class</span> SomeFlowUnit : <span class="hljs-keyword">public</span> modelbox::FlowUnit {
  <span class="hljs-keyword">public</span>:
   modelbox::<span class="hljs-function">Status <span class="hljs-title">Open</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::Configuration&gt; &amp;opts)</span> </span>{
-    <span class="hljs-comment">// &#x6D41;&#x5355;&#x5143;&#x6253;&#x5F00;&#xFF0C;&#x8BFB;&#x53D6;&#x914D;&#x7F6E;</span>
+    <span class="hljs-comment">// &#x529F;&#x80FD;&#x5355;&#x5143;&#x6253;&#x5F00;&#xFF0C;&#x8BFB;&#x53D6;&#x914D;&#x7F6E;</span>
     <span class="hljs-keyword">return</span> modelbox::STATUS_OK;
   }
 
   modelbox::<span class="hljs-function">Status <span class="hljs-title">Close</span><span class="hljs-params">()</span> </span>{
-    <span class="hljs-comment">// &#x6D41;&#x5355;&#x5143;&#x5173;&#x95ED;&#xFF0C;&#x91CA;&#x653E;&#x8D44;&#x6E90;</span>
+    <span class="hljs-comment">// &#x529F;&#x80FD;&#x5355;&#x5143;&#x5173;&#x95ED;&#xFF0C;&#x91CA;&#x653E;&#x8D44;&#x6E90;</span>
     <span class="hljs-keyword">return</span> modelbox::STATUS_OK;
   }
 
@@ -895,7 +895,7 @@ MODELBOX_FLOWUNIT(SomeFlowUnit, desc) {
 };
 </code></pre>
 <h4 id="&#x52A0;&#x901F;&#x5361;&#x7C7B;&#x578B;flowunit&#x63A5;&#x53E3;">&#x52A0;&#x901F;&#x5361;&#x7C7B;&#x578B;FlowUnit&#x63A5;&#x53E3;</h4>
-<p>&#x76EE;&#x524D;modelbox&#x652F;&#x6301;&#x5F00;&#x53D1;cuda &#x548C; ascend&#x7C7B;&#x578B;&#x7684;&#x6D41;&#x5355;&#x5143;&#xFF0C;&#x4E0E;cpu&#x7C7B;&#x578B;&#x4E0D;&#x540C;&#xFF0C;cuda&#x548C;ascend&#x4E0A;&#x8FDB;&#x884C;&#x7F16;&#x7A0B;&#x5B58;&#x5728;stream&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x6240;&#x4EE5;&#x63A5;&#x53E3;&#x4E0A;&#x6709;&#x4E9B;&#x5DEE;&#x5F02;&#xFF0C;&#x5177;&#x4F53;&#x53C2;&#x8003;&#x4E0B;&#x5217;&#x7F16;&#x7A0B;&#x63A5;&#x53E3;</p>
+<p>&#x76EE;&#x524D;ModelBox&#x652F;&#x6301;&#x5F00;&#x53D1;cuda &#x548C; ascend&#x7C7B;&#x578B;&#x7684;&#x529F;&#x80FD;&#x5355;&#x5143;&#xFF0C;&#x4E0E;cpu&#x7C7B;&#x578B;&#x4E0D;&#x540C;&#xFF0C;cuda&#x548C;ascend&#x4E0A;&#x8FDB;&#x884C;&#x7F16;&#x7A0B;&#x5B58;&#x5728;stream&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x6240;&#x4EE5;&#x63A5;&#x53E3;&#x4E0A;&#x6709;&#x4E9B;&#x5DEE;&#x5F02;&#xFF0C;&#x5177;&#x4F53;&#x53C2;&#x8003;&#x4E0B;&#x5217;&#x7F16;&#x7A0B;&#x63A5;&#x53E3;</p>
 <table>
 <thead>
 <tr>
@@ -917,16 +917,16 @@ MODELBOX_FLOWUNIT(SomeFlowUnit, desc) {
 </tr>
 </tbody>
 </table>
-<h4 id="&#x6D41;&#x5355;&#x5143;&#x521D;&#x59CB;&#x5316;&#x3001;&#x5173;&#x95ED;&#x63A5;&#x53E3;">&#x6D41;&#x5355;&#x5143;&#x521D;&#x59CB;&#x5316;&#x3001;&#x5173;&#x95ED;&#x63A5;&#x53E3;</h4>
+<h4 id="&#x529F;&#x80FD;&#x5355;&#x5143;&#x521D;&#x59CB;&#x5316;&#x3001;&#x5173;&#x95ED;&#x63A5;&#x53E3;">&#x529F;&#x80FD;&#x5355;&#x5143;&#x521D;&#x59CB;&#x5316;&#x3001;&#x5173;&#x95ED;&#x63A5;&#x53E3;</h4>
 <p>&#x5BF9;&#x5E94;&#x9700;&#x5B9E;&#x73B0;&#x7684;&#x63A5;&#x53E3;&#x4E3A;<code>FlowUnit::Open</code>&#x3001;<code>FlowUnit::Close</code>&#xFF0C;&#x5B9E;&#x73B0;&#x6837;&#x4F8B;&#x5982;&#x4E0B;&#xFF1A;</p>
 <pre><code class="lang-c++">modelbox::Status SomeFlowUnit::Open(
     <span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::Configuration&gt; &amp;opts) {
-  <span class="hljs-comment">// &#x83B7;&#x53D6;&#x6D41;&#x5355;&#x5143;&#x914D;&#x7F6E;&#x53C2;&#x6570;</span>
+  <span class="hljs-comment">// &#x83B7;&#x53D6;&#x529F;&#x80FD;&#x5355;&#x5143;&#x914D;&#x7F6E;&#x53C2;&#x6570;</span>
   <span class="hljs-keyword">auto</span> pixel_format = opts-&gt;GetString(<span class="hljs-string">&quot;pixel_format&quot;</span>, <span class="hljs-string">&quot;bgr&quot;</span>);
   <span class="hljs-keyword">return</span> modelbox::STATUS_OK;
 }
 </code></pre>
-<p>Open&#x51FD;&#x6570;&#x5C06;&#x5728;&#x56FE;&#x521D;&#x59CB;&#x5316;&#x7684;&#x65F6;&#x5019;&#x8C03;&#x7528;&#xFF0C;<code>const std::shared_ptr&lt;modelbox::Configuration&gt; &amp;opts</code>&#x4E3A;&#x6D41;&#x5355;&#x5143;&#x7684;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#xFF0C;&#x53EF;&#x8C03;&#x7528;&#x76F8;&#x5173;&#x7684;&#x63A5;&#x53E3;&#x83B7;&#x53D6;&#x914D;&#x7F6E;&#xFF0C;&#x8FD4;&#x56DE;<code>modelbox::STATUS_OK</code>&#xFF0C;&#x8868;&#x793A;&#x521D;&#x59CB;&#x5316;&#x6210;&#x529F;&#xFF0C;&#x5426;&#x5219;&#x521D;&#x59CB;&#x5316;&#x5931;&#x8D25;&#x3002;</p>
+<p>Open&#x51FD;&#x6570;&#x5C06;&#x5728;&#x56FE;&#x521D;&#x59CB;&#x5316;&#x7684;&#x65F6;&#x5019;&#x8C03;&#x7528;&#xFF0C;<code>const std::shared_ptr&lt;modelbox::Configuration&gt; &amp;opts</code>&#x4E3A;&#x529F;&#x80FD;&#x5355;&#x5143;&#x7684;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#xFF0C;&#x53EF;&#x8C03;&#x7528;&#x76F8;&#x5173;&#x7684;&#x63A5;&#x53E3;&#x83B7;&#x53D6;&#x914D;&#x7F6E;&#xFF0C;&#x8FD4;&#x56DE;<code>modelbox::STATUS_OK</code>&#xFF0C;&#x8868;&#x793A;&#x521D;&#x59CB;&#x5316;&#x6210;&#x529F;&#xFF0C;&#x5426;&#x5219;&#x521D;&#x59CB;&#x5316;&#x5931;&#x8D25;&#x3002;</p>
 <pre><code class="lang-c++">modelbox::<span class="hljs-function">Status <span class="hljs-title">Close</span><span class="hljs-params">()</span> </span>{
   <span class="hljs-keyword">return</span> modelbox::STATUS_OK;
 }
@@ -936,7 +936,7 @@ MODELBOX_FLOWUNIT(SomeFlowUnit, desc) {
 <p>&#x5BF9;&#x5E94;&#x9700;&#x5B9E;&#x73B0;&#x7684;&#x63A5;&#x53E3;&#x4E3A;<code>FlowUnit::Process</code>&#xFF0C;&#x5B9E;&#x73B0;&#x6837;&#x4F8B;&#x5982;&#x4E0B;&#xFF1A;</p>
 <pre><code class="lang-c++">modelbox::Status CVResizeFlowUnit::Process(
     <span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::DataContext&gt; ctx) {
-  <span class="hljs-comment">// &#x83B7;&#x53D6;&#x8F93;&#x5165;&#xFF0C;&#x8F93;&#x51FA;Buffer&#x5BF9;&#x8C61;&#xFF0C;&quot;input&quot;, &quot;output&quot;&#x4E3A;&#x5BF9;&#x5E94;&#x6D41;&#x5355;&#x5143;Port&#x540D;&#x79F0;&#xFF0C;&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x4E2A;&#x3002;</span>
+  <span class="hljs-comment">// &#x83B7;&#x53D6;&#x8F93;&#x5165;&#xFF0C;&#x8F93;&#x51FA;Buffer&#x5BF9;&#x8C61;&#xFF0C;&quot;input&quot;, &quot;output&quot;&#x4E3A;&#x5BF9;&#x5E94;&#x529F;&#x80FD;&#x5355;&#x5143;Port&#x540D;&#x79F0;&#xFF0C;&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x4E2A;&#x3002;</span>
   <span class="hljs-comment">// &#x6B64;&#x5904;&#x7684;&quot;Input&quot;&#x548C;&quot;Output&quot;&#x5FC5;&#x987B;&#x4E0E;toml&#x7684;&#x7AEF;&#x53E3;&#x540D;&#x79F0;&#x4E00;&#x81F4;</span>
   <span class="hljs-keyword">auto</span> input_bufs = ctx-&gt;Input(<span class="hljs-string">&quot;input&quot;</span>);
   <span class="hljs-keyword">auto</span> output_bufs = ctx-&gt;Output(<span class="hljs-string">&quot;output&quot;</span>);
@@ -1103,18 +1103,18 @@ modelbox::Status VideoDecoderFlowUnit::DataGroupPost(
 }
 </code></pre>
 <h3 id="&#x7F16;&#x8BD1;&#x5B89;&#x88C5;">&#x7F16;&#x8BD1;&#x5B89;&#x88C5;</h3>
-<p>Modelbox C++&#x5DE5;&#x7A0B;&#x7EDF;&#x4E00;&#x4F7F;&#x7528;CMake&#x8FDB;&#x884C;&#x7F16;&#x8BD1;&#xFF0C;&#x901A;&#x8FC7;Modelbox-tool&#x751F;&#x6210;&#x7684;c++&#x6D41;&#x5355;&#x5143;&#x6A21;&#x677F;&#x4E2D;&#x9ED8;&#x8BA4;&#x5305;&#x542B;CMakeLists.txt&#x6587;&#x4EF6;&#xFF0C;&#x4E3B;&#x8981;&#x529F;&#x80FD;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>Modelbox C++&#x5DE5;&#x7A0B;&#x7EDF;&#x4E00;&#x4F7F;&#x7528;CMake&#x8FDB;&#x884C;&#x7F16;&#x8BD1;&#xFF0C;&#x901A;&#x8FC7;Modelbox-tool&#x751F;&#x6210;&#x7684;c++&#x529F;&#x80FD;&#x5355;&#x5143;&#x6A21;&#x677F;&#x4E2D;&#x9ED8;&#x8BA4;&#x5305;&#x542B;CMakeLists.txt&#x6587;&#x4EF6;&#xFF0C;&#x4E3B;&#x8981;&#x529F;&#x80FD;&#x5982;&#x4E0B;&#xFF1A;</p>
 <ol>
-<li>&#x8BBE;&#x7F6E;&#x6D41;&#x5355;&#x5143;&#x540D;&#x79F0;</li>
-<li>&#x94FE;&#x63A5;&#x6D41;&#x5355;&#x5143;&#x6240;&#x9700;&#x5934;&#x6587;&#x4EF6;</li>
-<li>&#x94FE;&#x63A5;&#x6D41;&#x5355;&#x5143;&#x6240;&#x9700;&#x5E93;</li>
+<li>&#x8BBE;&#x7F6E;&#x529F;&#x80FD;&#x5355;&#x5143;&#x540D;&#x79F0;</li>
+<li>&#x94FE;&#x63A5;&#x529F;&#x80FD;&#x5355;&#x5143;&#x6240;&#x9700;&#x5934;&#x6587;&#x4EF6;</li>
+<li>&#x94FE;&#x63A5;&#x529F;&#x80FD;&#x5355;&#x5143;&#x6240;&#x9700;&#x5E93;</li>
 <li>&#x8BBE;&#x7F6E;&#x7F16;&#x8BD1;&#x76EE;&#x6807;&#x4E3A;&#x52A8;&#x6001;&#x5E93;</li>
-<li>&#x6307;&#x5B9A;&#x6D41;&#x5355;&#x5143;&#x5B89;&#x88C5;&#x76EE;&#x5F55;</li>
+<li>&#x6307;&#x5B9A;&#x529F;&#x80FD;&#x5355;&#x5143;&#x5B89;&#x88C5;&#x76EE;&#x5F55;</li>
 </ol>
-<p>&#x6D41;&#x5355;&#x5143;&#x7F16;&#x8BD1;&#x751F;&#x6210;&#x7684;so&#x547D;&#x540D;&#x9700;&#x8981;&#x4EE5;<code>libmodelbox-</code>&#x5F00;&#x5934;&#xFF0C;&#x5426;&#x5219;ModelBox&#x65E0;&#x6CD5;&#x626B;&#x63CF;&#x3002;
-&#x901A;&#x5E38;&#x60C5;&#x51B5;&#x5F00;&#x53D1;cpu&#x4E1A;&#x52A1;&#x6D41;&#x5355;&#x5143;&#xFF0C;&#x5F00;&#x53D1;&#x8005;&#x65E0;&#x9700;&#x4FEE;&#x6539;CMakeLists.txt&#x5373;&#x53EF;&#x5B8C;&#x6210;&#x7F16;&#x8BD1;&#xFF0C;&#x5F53;&#x5B58;&#x5728;&#x5F15;&#x5165;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#x65F6;&#x3001;&#x8BBE;&#x7F6E;cuda/ascend&#x7C7B;&#x578B;&#x3001;&#x4FEE;&#x6539;&#x7F16;&#x8BD1;&#x9009;&#x9879;&#x7B49;&#x7B49;&#x8BC9;&#x6C42;&#x65F6;&#x9700;&#x8981;&#x81EA;&#x884C;&#x4FEE;&#x6539;&#x3002;</p>
+<p>&#x529F;&#x80FD;&#x5355;&#x5143;&#x7F16;&#x8BD1;&#x751F;&#x6210;&#x7684;so&#x547D;&#x540D;&#x9700;&#x8981;&#x4EE5;<code>libmodelbox-</code>&#x5F00;&#x5934;&#xFF0C;&#x5426;&#x5219;ModelBox&#x65E0;&#x6CD5;&#x626B;&#x63CF;&#x3002;
+&#x901A;&#x5E38;&#x60C5;&#x51B5;&#x5F00;&#x53D1;cpu&#x4E1A;&#x52A1;&#x529F;&#x80FD;&#x5355;&#x5143;&#xFF0C;&#x5F00;&#x53D1;&#x8005;&#x65E0;&#x9700;&#x4FEE;&#x6539;CMakeLists.txt&#x5373;&#x53EF;&#x5B8C;&#x6210;&#x7F16;&#x8BD1;&#xFF0C;&#x5F53;&#x5B58;&#x5728;&#x5F15;&#x5165;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#x65F6;&#x3001;&#x8BBE;&#x7F6E;cuda/ascend&#x7C7B;&#x578B;&#x3001;&#x4FEE;&#x6539;&#x7F16;&#x8BD1;&#x9009;&#x9879;&#x7B49;&#x7B49;&#x8BC9;&#x6C42;&#x65F6;&#x9700;&#x8981;&#x81EA;&#x884C;&#x4FEE;&#x6539;&#x3002;</p>
 <footer class="page-footer"><span class="copyright">&#xA9; &#x534E;&#x4E3A;&#x6280;&#x672F;&#x6709;&#x9650;&#x516C;&#x53F8; all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2021-10-25 09:23:58
+2021-10-27 09:08:50
 </span></footer>
                                 
                                 </section>
@@ -1148,7 +1148,7 @@ modelbox::Status VideoDecoderFlowUnit::DataGroupPost(
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"C++","level":"1.4.2.3","depth":3,"next":{"title":"服务插件开发","level":"1.4.3","depth":2,"path":"develop/service-plugin/service-plugin.md","ref":"develop/service-plugin/service-plugin.md","articles":[]},"previous":{"title":"Python","level":"1.4.2.2","depth":3,"path":"develop/flowunit/python.md","ref":"develop/flowunit/python.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy; 华为技术有限公司","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导书"},"file":{"path":"develop/flowunit/c++.md","mtime":"2021-10-25T09:23:58.287Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-10-25T09:25:04.275Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"C++","level":"1.4.2.3","depth":3,"next":{"title":"服务插件开发","level":"1.4.3","depth":2,"path":"develop/service-plugin/service-plugin.md","ref":"develop/service-plugin/service-plugin.md","articles":[]},"previous":{"title":"Python","level":"1.4.2.2","depth":3,"path":"develop/flowunit/python.md","ref":"develop/flowunit/python.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy; 华为技术有限公司","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导书"},"file":{"path":"develop/flowunit/c++.md","mtime":"2021-10-27T09:08:50.705Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-10-27T09:09:49.267Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
