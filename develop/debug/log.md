@@ -6,7 +6,7 @@ ModelBox提供了运行日志，对应的组件在运行时会输出相关的日
 
 ![logger-flow](../../assets/images/figure/develop/debug/logger-flow.png)
 
-C++，Python流单元、ModelBox库、插件调用ModelBox的日志函数后，由ModelBox的Logger将数据发送到Appender，Appender可注册不同的类型。
+C++，Python功能单元、ModelBox库、插件调用ModelBox的日志函数后，由ModelBox的Logger将数据发送到Appender，Appender可注册不同的类型。
 
 ModelBox的日志级别分为DEBUG, INFO, NOTICE, WARN, ERROR, FATAL。
 
@@ -29,7 +29,7 @@ export MODELBOX_CONSOLE_LOGLEVEL=INFO
 
 ## 日志SDK
 
-ModelBox日志提供了日志输出接口，日志appender捕获接口；流单元，ModelBox库，插件使用日志接口输出日志，业务模块使用appender捕获日志到对应的日志组件。
+ModelBox日志提供了日志输出接口，日志appender捕获接口；功能单元，ModelBox库，插件使用日志接口输出日志，业务模块使用appender捕获日志到对应的日志组件。
 
 日志输出信息包括
 

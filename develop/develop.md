@@ -7,7 +7,7 @@ ModelBox的扩展能力如下：
 1. ModelBox服务插件扩展。
 1. ModelBox组件可任意集成。
 1. 推理加速设备支持扩展。
-1. 流单元的扩展及复用。
+1. 功能单元的扩展及复用。
 1. C++，Python等多语言的开发支持。
 
 
@@ -39,7 +39,7 @@ ModelBox开发套件包含如下部分：
 
 1. ModelBox Tool
 
-    ModelBox 开发调试工具，可用于检查图的正确性，调试单个图，查询可用的流单元Flowunit，模型加密等功能。
+    ModelBox 开发调试工具，可用于检查图的正确性，调试单个图，查询可用的功能单元Flowunit，模型加密等功能。
 
 1. ModelBox Library
 
@@ -47,7 +47,7 @@ ModelBox开发套件包含如下部分：
 
 1. ModelBox Flowunit
 
-    流单元，ModelBox的关键组成，处理数据的关键组件，也是开发者主要开发的组件。
+    功能单元，ModelBox的关键组成，处理数据的关键组件，也是开发者主要开发的组件。
 
 1. ModelBox Device
 
@@ -57,7 +57,7 @@ ModelBox开发套件包含如下部分：
 
 1. 基本AI应用开发场景
 
-   对于基本AI应用开发场景，开发者需要进行[流程图开发](flow/flow.md)和[流单元开发](flowunit/flowunit.md)：流程图开发需要将业务流程通过流单元编排的方式组织Modelbox可以识别的配置文件，流单元开发则是需要实现业务的基础功能。
+   对于基本AI应用开发场景，开发者需要进行[流程图开发](flow/flow.md)和[功能单元开发](flowunit/flowunit.md)：流程图开发需要将业务流程通过功能单元编排的方式组织Modelbox可以识别的配置文件，功能单元开发则是需要实现业务的基础功能。
 
 1. 与外部系统存在交互
 
@@ -78,7 +78,7 @@ ModelBox开发套件包含如下部分：
 
 1. 开发前准备
 
-    AI应用开发前需要准备好匹配当前modelbox版本支持的推理框架和版本的模型文件，否则无法进行推理。如果是采用tensorRT框架，还需要注意模型转换时的显卡类型需要与运行时的显卡类型匹配。
+    AI应用开发前需要准备好匹配当前ModelBox版本支持的推理框架和版本的模型文件，否则无法进行推理。如果是采用tensorRT框架，还需要注意模型转换时的显卡类型需要与运行时的显卡类型匹配。
 
 1. 创建工程
 
@@ -93,7 +93,7 @@ ModelBox开发套件包含如下部分：
         |---Cmake               //cmake脚本
         |---package             //打包脚本
         |---src
-            |---flowunit        //存放流单元代码
+            |---flowunit        //存放功能单元代码
                 ---flowunitA
                 ---flowunitB
             |---graph            //存放图配置
@@ -109,19 +109,19 @@ ModelBox开发套件包含如下部分：
 
 1. 流程图开发
 
-    梳理实际业务逻辑，设计拆分为多个流单元，再编排为图。具体开发流程可见[流程图开发](flow/flow.md)。
+    梳理实际业务逻辑，设计拆分为多个功能单元，再编排为图。具体开发流程可见[流程图开发](flow/flow.md)。
     修改图toml文件其他系统配置项，重点关注`driver.dir`路径是否正确。
 
-1. 流单元开发
+1. 功能单元开发
 
-    通过modelbox-tool创建对应语言的流单元模板，具体命令如下：
+    通过modelbox-tool创建对应语言的功能单元模板，具体命令如下：
     ```shell
     modelbox-tool create -t c++ -n [name] -d ./ProjectName/src/flowunit
     modelbox-tool create -t python -n [name] -d ./ProjectName/src/flowunit
     modelbox-tool create -t infer -n [name] -d ./ProjectName/src/flowunit
     ```
     命令执行后会生成对应文件和函数，注意name不可携带数字、中划线等特殊字符，建议是全英文。
-    模板创建完成后进行接口函数实现，具体开发流程可见[流单元开发](flowunit/flowunit.md)
+    模板创建完成后进行接口函数实现，具体开发流程可见[功能单元开发](flowunit/flowunit.md)
 
 1. 服务插件开发
     
@@ -132,11 +132,11 @@ ModelBox开发套件包含如下部分：
     modelbox-tool create -t service-plugin -n [name] -d ./ProjectName/src/service-plugin
     ```
     命令执行后会生成对应文件和函数，注意name不可携带数字、中划线等特殊字符，建议是全英文。
-    模板创建完成后进行接口函数实现，服务插件开发流程可见[流单元开发](service-plugin/service-plugin.md)
+    模板创建完成后进行接口函数实现，服务插件开发流程可见[功能单元开发](service-plugin/service-plugin.md)
 
 1. 功能调试
     
-    可以使用样例工程自带的测试框架进行流单元和图的用例测试。也可以安装在到当前系统进行调试。编译安装过程如下：
+    可以使用样例工程自带的测试框架进行功能单元和图的用例测试。也可以安装在到当前系统进行调试。编译安装过程如下：
     
     在工程最上级目录执行如下命令进行编译安装：
     ```shell
@@ -145,7 +145,7 @@ ModelBox开发套件包含如下部分：
     cmake ../ -DCMAKE_BUILD_TYPE=Debug
     make install
     ```
-    流单元so、服务插件so、python、模型文件、图配置等都会安装到Cmakelist中指定的路径（默认安装在 `/opt/modelbox/`目录下）。也可以通过 `make package` 进行打RPM包。 
+    功能单元so、服务插件so、python、模型文件、图配置等都会安装到Cmakelist中指定的路径（默认安装在 `/opt/modelbox/`目录下）。也可以通过 `make package` 进行打RPM包。 
 
     安装完成后可以通过modelbox-tool 在环境上运行图文件进行调试。命令如下：
     ```shell
@@ -159,5 +159,5 @@ ModelBox开发套件包含如下部分：
 
 1. 系统集成
 
-   通常情况使用modelbox服务运行图即可。如果有诉求需要将modelbox图的运行集成到其他进程时，可采用modelbox提供的sdk接口进行调用。具体可见[SDK API集成](sdk/sdk.md)。  
+   通常情况使用ModelBox服务运行图即可。如果有诉求需要将ModelBox图的运行集成到其他进程时，可采用ModelBox提供的sdk接口进行调用。具体可见[SDK API集成](sdk/sdk.md)。  
 

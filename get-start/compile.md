@@ -147,9 +147,9 @@ ModelBox编译完成后，将生成配套OS安装的安装包，如deb、rpm包�
 |运行库|modelbox-x.x.x-Linux-libmodelbox.[deb&#124;rpm]|ModelBox核心运行库。
 |运行库|modelbox-x.x.x-Linux-graph-graphviz.[deb&#124;rpm]|图解析组件。
 |服务组件|modelbox-x.x.x-Linux-server.[deb&#124;rpm]|ModelBox Server服务组件。
-|运行库|modelbox-x.x.x-Linux-ascend-device-flowunit.[deb&#124;rpm]|Ascend设备SDK以及配套基础流单元组件。
-|运行库|modelbox-x.x.x-Linux-cpu-device-flowunit.[deb&#124;rpm]|Cuda设备SDK以及配套基础流单元组件。
-|运行库|modelbox-x.x.x-Linux-cuda-device-flowunit.[deb&#124;rpm]|CPU设备SDK以及配套基础流单元组件。
+|运行库|modelbox-x.x.x-Linux-ascend-device-flowunit.[deb&#124;rpm]|Ascend设备SDK以及配套基础功能单元组件。
+|运行库|modelbox-x.x.x-Linux-cpu-device-flowunit.[deb&#124;rpm]|Cuda设备SDK以及配套基础功能单元组件。
+|运行库|modelbox-x.x.x-Linux-cuda-device-flowunit.[deb&#124;rpm]|CPU设备SDK以及配套基础功能单元组件。
 |开发库|modelbox-x.x.x-Linux-libmodelbox-devel.[deb&#124;rpm]|ModelBox开发库。
 |开发库|modelbox-x.x.x-Linux-server-devel.[deb&#124;rpm]|ModelBox Server服务插件开发库。
 |开发库|modelbox-x.x.x-Linux-ascend-device-flowunit-devel.[deb&#124;rpm]|Ascend设备开发库。

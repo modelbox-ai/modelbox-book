@@ -30,7 +30,7 @@ ModelBox Plugin插件配置文件和ModelBox Server主配置文件相同，即�
 | server.port      | ModelBox Plugin绑定的管理端口，默认为1104                                    |
 | server.flow_path | ModelBox Plugin加载flow配置文件的扫描路径。默认为/usr/local/etc/modelbox/graph |
 
-为确保ModelBox Plugin插件生效，请确保插件在`/usr/local/etc/modelbox/modelbox.conf`配置文件的`plugin.files`配置项中配置此插件，并在配置完成后，重启modelbox服务。
+为确保ModelBox Plugin插件生效，请确保插件在`/usr/local/etc/modelbox/modelbox.conf`配置文件的`plugin.files`配置项中配置此插件，并在配置完成后，重启ModelBox服务。
 
 ### 添加配置文件管理流程图
 

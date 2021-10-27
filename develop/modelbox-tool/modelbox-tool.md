@@ -39,7 +39,7 @@ modelbox-tool driver [-type flowunit] [-path dir1,dir2] [-details [-name name]] 
 ```
 -path为添加扫描路径，不携带时默认扫描系统目录，携带时，扫描系统目录和新增目录。
 
--name 为过滤参数，不携带时默认列出所有扫描到的结果，可以输入流单元名称进行过滤，也可以输入cpu/cuda/ascend进行设备类型过滤。
+-name 为过滤参数，不携带时默认列出所有扫描到的结果，可以输入功能单元名称进行过滤，也可以输入cpu/cuda/ascend进行设备类型过滤。
 
 ### 查询列表
 
@@ -77,7 +77,7 @@ modelbox-tool driver [-type flowunit] [-path dir1,dir2] [-details [-name name]] 
 
 ### 查询详细信息
 
-如需要查询具体流单元的功能说明，输入，输出名称和选项设置，可以用ModelBox Tool查询详细参数。
+如需要查询具体功能单元的功能说明，输入，输出名称和选项设置，可以用ModelBox Tool查询详细参数。
 
 常用命令如下：
 * 查询当前系统中driver的详细信息：
@@ -85,13 +85,13 @@ modelbox-tool driver [-type flowunit] [-path dir1,dir2] [-details [-name name]] 
     ```shell
     modelbox-tool driver -info -details -name [name] 
     ```
-* 查询当前系统中所有流单元的详细信息：
+* 查询当前系统中所有功能单元的详细信息：
 
     ```shell
     modelbox-tool driver -info -type flowunit -details -name cuda
     ```
 
-* 查询指定名称的流单元详细信息
+* 查询指定名称的功能单元详细信息
 
      ```shell
      modelbox-tool driver -info -type flowunit -details -name [name] -path [path/to/]
@@ -105,7 +105,7 @@ modelbox-tool driver [-type flowunit] [-path dir1,dir2] [-details [-name name]] 
 
 ### 运行调测流程图
 
-在开发过程中，可能需要临时调试图以及对应的流单元，这时，可以使用`modelbox-tool flow`命令组的命令。
+在开发过程中，可能需要临时调试图以及对应的功能单元，这时，可以使用`modelbox-tool flow`命令组的命令。
 
 * 执行图
 
@@ -126,17 +126,17 @@ modelbox-tool create [-t typename] [-n name]] [-d dir]
     modelbox-tool create -t project -n [name] -d [path/to/]
     ```
 
-* 创建c++流单元模板
+* 创建c++功能单元模板
     ```shell
     modelbox-tool create -t c++ -n [name] -d [path/to/src/flowunit]
     ```
 
-* 创建python流单元模板
+* 创建python功能单元模板
     ```shell
     modelbox-tool create -t python -n [name] -d [path/to/src/flowunit]
     ```
 
-* 创建推理流单元模板
+* 创建推理功能单元模板
     ```shell
     modelbox-tool create -t infer -n [name] -d [path/to/src/flowunit
     ```
@@ -144,7 +144,7 @@ modelbox-tool create [-t typename] [-n name]] [-d dir]
     ```shell
     modelbox-tool create -t service-plugin -n [name] -d [path/to/src/service-plugin]
     ```
-通常情况下，先创建工程模板，再在工程对应目录创建流单元或者服务插件。
+通常情况下，先创建工程模板，再在工程对应目录创建功能单元或者服务插件。
 
 ## Key功能
 

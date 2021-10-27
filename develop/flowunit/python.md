@@ -1,7 +1,7 @@
-# Python开发流单元
+# Python开发功能单元
 
-Python开发流单元时，需要预先安装ModelBox的运行包， 可参考[编译安装章节](../../get-start/compile.md#安装命令说明)，
-在开发之前，可以从[流单元概念](../../framework-conception/flowunit.md)章节了解流单的执行过程。
+Python开发功能单元时，需要预先安装ModelBox的运行包， 可参考[编译安装章节](../../get-start/compile.md#安装命令说明)，
+在开发之前，可以从[功能单元概念](../../framework-conception/flowunit.md)章节了解流单的执行过程。
 
 ## Python API调用说明
 
@@ -14,16 +14,16 @@ FlowUnit开发分为两部分，一部分是`TOML配置`, 一部分是`FlowUnit`
 |组件|函数|功能|是否必须|实现功能|
 |--|--|--|--|--|
 |TOML配置|base.*|设置Python插件基本属性|是|填写Python插件相关的描述信息，包括，插件名称，插件版本号，插件运行的设备类型，查询的细节描述信息，以及插件的Python入口信息。|
-|TOML配置|config.*|配置参数|是|可以自定义增加流单元配置参数|
+|TOML配置|config.*|配置参数|是|可以自定义增加功能单元配置参数|
 |TOML配置|input.* <br/> output.*|输入，输出端口属性|是|用于描述插件的输入，输出端口个数，名称，类型|
 |FlowUnit|FlowUnit::Open<br/>FlowUnit::Close|FlowUnit初始化|否|FlowUnit初始化、关闭，创建、释放相关的资源|
 |FlowUnit|FlowUnit::Process|FlowUnit数据处理|是|FlowUnit数据处理函数，读取数据数据，并处理后，输出数据|
 |FlowUnit|FlowUnit::DataPre<br/>FlowUnit::DataPost|Stream流数据开始，结束通知|部分|Stream流数据开始时调用DataPre函数初始化状态数据，Stream流数据结束时释放状态数据，比如解码器上下文。|
 |FlowUnit|FlowUnit::DataGroupPre<br/>FlowUnit::DataGroupPost|数据组归并开始，结束通知|部分|数据组归并，结束通知函数，当数据需要合并时，对一组数据进行上下文相关的操作。|
 
-### Python流单元目录结构
+### Python功能单元目录结构
 
-python流单元需要提供独立的toml配置文件，指定python流单元的基本属性。一般情况，目录结构为：
+python功能单元需要提供独立的toml配置文件，指定python功能单元的基本属性。一般情况，目录结构为：
 
 ```shell
 [FlowUnitName]
@@ -34,7 +34,7 @@ python流单元需要提供独立的toml配置文件，指定python流单元的�
 
 ### 创建模板代码
 
-ModelBox提供了模板创建工具，可以通过**ModelBox Tool**工具产生python流单元的模板，具体的命令为
+ModelBox提供了模板创建工具，可以通过**ModelBox Tool**工具产生python功能单元的模板，具体的命令为
 
 ```shell
 modelbox-tool create -t python -n FlowUnitName -d ./ProjectName/src/flowunit
@@ -47,19 +47,19 @@ ModelBox框架在初始化时，会扫描/path/to/flowunit/[FlowUnitName]目录�
 ```toml
 # 基础配置
 [base]
-name = "FlowUnit-Name" # 流单元名称
-device = "cpu" # 流单元运行的设备类型，python 流单元仅支持cpu类型。
-version = "x.x.x" # 流单元组件版本号
-description = "description" # 流单元功能描述信息
-entry = "python-module@SomeFlowunit" # python 流单元入口函数
-type = "python" # Python流单元时，此处为固定值
+name = "FlowUnit-Name" # 功能单元名称
+device = "cpu" # 功能单元运行的设备类型，python 功能单元仅支持cpu类型。
+version = "x.x.x" # 功能单元组件版本号
+description = "description" # 功能单元功能描述信息
+entry = "python-module@SomeFlowunit" # python 功能单元入口函数
+type = "python" # Python功能单元时，此处为固定值
 
 # 工作模式
-stream = false # 是否数据流单元
-condition  = false # 是否条件流单元
-collapse = false # 是否合并流单元
+stream = false # 是否数据功能单元
+condition  = false # 是否条件功能单元
+collapse = false # 是否合并功能单元
 collapse_all = false # 是否合并所有数据
-expand = false # 是否拆分流单元
+expand = false # 是否拆分功能单元
 
 # 默认配置值
 [config]
@@ -98,7 +98,7 @@ class SomeFlowunit(modelbox.FlowUnit):
         super().__init__()
 
     def open(self, config):
-        # 打开流单元，获取配置信息
+        # 打开功能单元，获取配置信息
         return modelbox.Status.StatusCode.STATUS_SUCCESS
 
     def process(self, data_context):
@@ -106,7 +106,7 @@ class SomeFlowunit(modelbox.FlowUnit):
         return modelbox.Status.StatusCode.STATUS_SUCCESS
 
     def close(self):
-        # 关闭流单元
+        # 关闭功能单元
         return modelbox.Status()
 
     def data_pre(self, data_context):
@@ -128,15 +128,15 @@ class SomeFlowunit(modelbox.FlowUnit):
 
 ### FlowUnit接口说明
 
-流单元的数据处理的基本单元。如果流单元的工作模式是`stream = false`时，流单元会调用`open`、`process`、`close`接口；如果流单元的工作模式是`stream = true`时，流单元会调用`open`、`data_group_pre`、`data_pre`、`process`、`data_post`、`data_group_post`、`close`接口；用户可根据实际需求实现对应接口。
+功能单元的数据处理的基本单元。如果功能单元的工作模式是`stream = false`时，功能单元会调用`open`、`process`、`close`接口；如果功能单元的工作模式是`stream = true`时，功能单元会调用`open`、`data_group_pre`、`data_pre`、`process`、`data_post`、`data_group_post`、`close`接口；用户可根据实际需求实现对应接口。
 
-#### 流单元初始化、关闭接口
+#### 功能单元初始化、关闭接口
 
 对应的需要实现的接口为`open`, `close`接口，实现样例如下：
 
 ```python
     def open(self, config):
-        # 打开流单元，获取配置信息。
+        # 打开功能单元，获取配置信息。
 
         # 获取用户配置。
         config_item = config.get_float("config", "default")
@@ -146,7 +146,7 @@ class SomeFlowunit(modelbox.FlowUnit):
         return modelbox.Status.StatusCode.STATUS_SUCCESS
 
     def close(self):
-        # 关闭流单元，返回关闭结果。
+        # 关闭功能单元，返回关闭结果。
         return modelbox.Status.StatusCode.STATUS_SUCCESS
 ```
 

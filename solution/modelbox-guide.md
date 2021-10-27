@@ -182,21 +182,21 @@
 
 1. 弹出的PotPlayer将会播放TOML文件中配置的mp4视频文件
 
-## 开发自己的流单元
+## 开发自己的功能单元
 
-第一个应用中使用的都是ModelBox自带的流单元，接下来我们用Python开发一个最简单的流单元，嵌入到上面的应用中：在画面左上方写上“Hello World”，再输出。
+第一个应用中使用的都是ModelBox自带的功能单元，接下来我们用Python开发一个最简单的功能单元，嵌入到上面的应用中：在画面左上方写上“Hello World”，再输出。
 
-### 新建流单元
+### 新建功能单元
 
 1. 在`vscode terminal`中执行`modelbox-tool create -t python -n HelloWorld -d path-to-flowunits`：
 
     ![modelbox-tool-create](../assets/images/figure/solution/modelbox-tool-create.png)
 
-    命令执行后将在指定路径下基于Python流单元模板生成HelloWorld流单元，包括一个py文件和一个toml配置文件：
+    命令执行后将在指定路径下基于Python功能单元模板生成HelloWorld功能单元，包括一个py文件和一个toml配置文件：
 
     ![modelbox-tool-helloworld](../assets/images/figure/solution/modelbox-tool-helloworld.png)
 
-1. 在`HelloWorld.toml`中配置该流单元的名称、类别、输入输出端口等信息，当前不用修改；HelloWorld.py中描述了该流单元的处理逻辑，这里我们增加OpenCV与numpy包的引用，修改其中的process函数如下：
+1. 在`HelloWorld.toml`中配置该功能单元的名称、类别、输入输出端口等信息，当前不用修改；HelloWorld.py中描述了该功能单元的处理逻辑，这里我们增加OpenCV与numpy包的引用，修改其中的process函数如下：
 
     ```python
     import cv2
@@ -259,7 +259,7 @@
     desc = "test for video streams"
     ```
 
-    其中[driver]配置项的dir中添加了HelloWorld流单元的路径，graphviz图定义中插入HelloWorld流单元，新的流程图如下所示：
+    其中[driver]配置项的dir中添加了HelloWorld功能单元的路径，graphviz图定义中插入HelloWorld功能单元，新的流程图如下所示：
 
     ![new-toml](../assets/images/figure/solution/new-toml.png)
 

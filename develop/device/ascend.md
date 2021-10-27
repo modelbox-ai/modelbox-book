@@ -4,11 +4,11 @@ Huawei Ascend ACL支持接口编程，ACL接口相关的介绍，请点击[此�
 
 ModelBox为更好的支持Stream并发编程，默认情况下，ModelBox的Ascend ACL接口全部采用Stream模式，开发者需要在编程时，使用Ascend ACL的Stream接口以提升性能。
 
-## Ascend ACL流单元接口
+## Ascend ACL功能单元接口
 
-ModelBox框架会自动管理Stream，开发流单元时，开发者可以通过Process的入参获取到Stream，之后可以用于ACL接口的调用中。
+ModelBox框架会自动管理Stream，开发功能单元时，开发者可以通过Process的入参获取到Stream，之后可以用于ACL接口的调用中。
 
-在实现流单元之前，Ascend ACL相关的流单元，需要从`AscendFlowUnit`派生，并实现`AscendProcess`接口。
+在实现功能单元之前，Ascend ACL相关的功能单元，需要从`AscendFlowUnit`派生，并实现`AscendProcess`接口。
 
 ```c++
 class SomeAscendFlowUnit : public modelbox::AscendFlowUnit {
@@ -21,7 +21,7 @@ class SomeAscendFlowUnit : public modelbox::AscendFlowUnit {
 };
 ```
 
-除AscendProcess以外，其他接口和通用流单元一致，AscendProcess接口如下：
+除AscendProcess以外，其他接口和通用功能单元一致，AscendProcess接口如下：
 
 ```c++
 modelbox::Status ColorTransposeFlowUnit::AscendProcess(
