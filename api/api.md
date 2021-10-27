@@ -7,7 +7,7 @@ ModelBox API包括了多种编程语言，有C++，python，具体API的支持�
 |--|--|--|--|
 |ModelBox Server Plugin| ModelBox微服务插件。|✔️|❌
 |ModelBox Library| ModelBox开发API。|✔️|✔️(不包含基础组件)
-|ModelBox FlowUnit | ModelBox流单元开发API。|✔️|✔️
+|ModelBox FlowUnit | ModelBox功能单元开发API。|✔️|✔️
 |ModelBox Device | 设备支持开发API。|✔️|❌
 
 下面具体说明各个组件的API组件信息。
@@ -55,13 +55,13 @@ ModelBox Library包含`基础Base`部分和`功能`部分。基础部分用于�
 
 ### ModelBox推理接口
 
-推理接口包含运行推理任务，和编写流单元的模块，包括如下组件
+推理接口包含运行推理任务，和编写功能单元的模块，包括如下组件
 
 1. Buffer: 数据接口，用于承载AI推理数据。
 1. Flow，推理启动接口，用于加载编排图，并启动推理任务。
-1. FlowUnit，流单元接口，用于扩展新的流单元组件。
+1. FlowUnit，功能单元接口，用于扩展新的功能单元组件。
 1. TensorList，Buffer操作接口，支持使用Tensor相关的接口操作Buffer。
-1. DataContext，支持FLowUint流单元开发的接口，用于获取流单元的输入，输出，和上下文的存储。
+1. DataContext，支持FLowUint功能单元开发的接口，用于获取功能单元的输入，输出，和上下文的存储。
 1. Session，会话上下文，用于开发存储和会话相关的信息。
 1. Statistics，统计接口，用于统计，获取相关组件的统计信息。
 

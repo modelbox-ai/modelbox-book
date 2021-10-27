@@ -24,7 +24,7 @@ ModelBox Server服务使用标准的systemd unit管理，启动管理服务，�
 * `sudo systemctl start modelbox.service`：启动ModelBox服务。
 * `sudo systemctl restart modelbox.service`：重启ModelBox服务。
 
-当在由于客观原因（如无权限等）无法通过systemctl启动的场景时，也可以通过二进制命令启动modelbox服务，命令如下：
+当在由于客观原因（如无权限等）无法通过systemctl启动的场景时，也可以通过二进制命令启动ModelBox服务，命令如下：
 ```shell
 export MALLOC_ARENA_MAX=2
 modelbox -c /usr/local/etc/modelbox/modelbox.conf -fV -p /var/run/modelbox/modelbox.pid
@@ -97,7 +97,7 @@ Modelbox服务相关配置文件和配置功能说明如下：
 
 * 插件服务配置
 
-除上述配置外，其他配置均为插件配置。ModelBox服务支持灵活的[ModelBox服务插件](../develop/service-plugin/service-plugin.md)加载，ModelBox启动后，会按照plugin.files配置的插件，顺序加载插件，各插件的配置参考各自插件配置参数。当前modelbox的可视化编排及流程图的restful api及通过服务插件实现, 每个插件有各自配置字段：
+除上述配置外，其他配置均为插件配置。ModelBox服务支持灵活的[ModelBox服务插件](../develop/service-plugin/service-plugin.md)加载，ModelBox启动后，会按照plugin.files配置的插件，顺序加载插件，各插件的配置参考各自插件配置参数。当前ModelBox的可视化编排及流程图的restful api及通过服务插件实现, 每个插件有各自配置字段：
 
 `modelbox-plugin`插件的配置，可参考[流程图运行](run-flow.md)。
 

@@ -26,25 +26,25 @@ ModelBox的图在拼接时会检查图中的节点的输入边的数据是否是
 
 ![match](../assets/images/figure/framework-conception/flowunit_match.png)
 
-在上图中，第一个数据流在经过通用flowunit后，其产生的数据流与之前输入的数据流是可以匹配的，因此其输入输出数据流都是流a。第二个数据流在经过流flowunit后，其产生的数据流与之前输入的数据流是不可以匹配的，因此输入的数据流是流a，而输出的数据流是流b，流a与流b之间是无法匹配的。当流单元的开发者确认流flowunit的输入输出数据是一样多的时候，可以在流flowunit中SetStreamSameCount(true)，增加了这个配置以后则输入和输出的数据都是流a，可以匹配。
+在上图中，第一个数据流在经过通用flowunit后，其产生的数据流与之前输入的数据流是可以匹配的，因此其输入输出数据流都是流a。第二个数据流在经过流flowunit后，其产生的数据流与之前输入的数据流是不可以匹配的，因此输入的数据流是流a，而输出的数据流是流b，流a与流b之间是无法匹配的。当功能单元的开发者确认流flowunit的输入输出数据是一样多的时候，可以在流flowunit中SetStreamSameCount(true)，增加了这个配置以后则输入和输出的数据都是流a，可以匹配。
 
 ![illegal_and_legal_graph_1](../assets/images/figure/framework-conception/illegal_and_legal_graph_1.png)
 
-用户在开发时可以根据输入的流是否匹配来检查一下自己的图是否合法，在上图中左侧的图因为某一条边上加入了stream流单元，产生了流b，流b与流a无法匹配，因此左图是一个非法图。将该stream流单元SetStreamSameCount(true)后其输出的流恢复为流a,可以匹配。因此右图可以正常运行。
+用户在开发时可以根据输入的流是否匹配来检查一下自己的图是否合法，在上图中左侧的图因为某一条边上加入了stream功能单元，产生了流b，流b与流a无法匹配，因此左图是一个非法图。将该stream功能单元SetStreamSameCount(true)后其输出的流恢复为流a,可以匹配。因此右图可以正常运行。
 
 ### 条件分支的约束
 
-在图中有条件流单元的情况下，主流不能与子流做匹配，只有等全部的子流聚合恢复为主流后才可以与主流进行匹配。子流和主流的关系在[条件流单元数据处理](../framework-conception/stream.md#条件流单元数据处理)有更详细的介绍
+在图中有条件功能单元的情况下，主流不能与子流做匹配，只有等全部的子流聚合恢复为主流后才可以与主流进行匹配。子流和主流的关系在[条件功能单元数据处理](../framework-conception/stream.md#条件功能单元数据处理)有更详细的介绍
 
 ![illegal_and_legal_graph_2](../assets/images/figure/framework-conception/illegal_and_legal_graph_2.png)
 
-如上图所示，在左图中经过条件流单元后，主流a会产生分流a1和分流a2，分流a1和分流a2都只有主流a的部分数据，因此不可以与主流a直接进行匹配，因此左图是非法的。在右图中，分流a1和分流a2在最后的通用流单元聚合后恢复成主流a，可以与主流a进行匹配，因此该图是合法的
+如上图所示，在左图中经过条件功能单元后，主流a会产生分流a1和分流a2，分流a1和分流a2都只有主流a的部分数据，因此不可以与主流a直接进行匹配，因此左图是非法的。在右图中，分流a1和分流a2在最后的通用功能单元聚合后恢复成主流a，可以与主流a进行匹配，因此该图是合法的
 
-同时条件流单元不允许在子流上添加流Flowunit，因为流Flowunit会按照主流中的序号顺序运行，而在子流中会出现缺失序号顺序的情况。如下图所示：
+同时条件功能单元不允许在子流上添加流Flowunit，因为流Flowunit会按照主流中的序号顺序运行，而在子流中会出现缺失序号顺序的情况。如下图所示：
 
 ![illegal_and_legal_graph_3](../assets/images/figure/framework-conception/illegal_and_legal_graph_3.png)
 
-左图是一个非法的图，因为其在condition流单元后的一个分路上加入了一个流Flowunit。右图将其流Flowunit设置为通用的Flowunit后，图恢复为合法图
+左图是一个非法的图，因为其在condition功能单元后的一个分路上加入了一个流Flowunit。右图将其流Flowunit设置为通用的Flowunit后，图恢复为合法图
 
 ### 层级的约束
 
@@ -52,7 +52,7 @@ ModelBox的图在拼接时会检查图中的节点的输入边的数据是否是
 
 ![illegal_and_legal_graph_4](../assets/images/figure/framework-conception/illegal_and_legal_graph_4.png)
 
-左图中父流a在通用Flowunit 2上与子流a1和子流a2是无法匹配的才，因此左图是非法的。在右图中，将子流a1和子流a2收拢成为父流a后即可以与通用流单元的另一路父流a进行匹配，因此右图是合法的
+左图中父流a在通用Flowunit 2上与子流a1和子流a2是无法匹配的才，因此左图是非法的。在右图中，将子流a1和子流a2收拢成为父流a后即可以与通用功能单元的另一路父流a进行匹配，因此右图是合法的
 
 ## 图的加载过程
 
