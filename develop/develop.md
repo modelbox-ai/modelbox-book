@@ -17,7 +17,7 @@ ModelBox的扩展能力如下：
 
 ModelBox的开发视图如下，图中绿色的部分是开发者可以自定义扩展的部分。
 
-![sdk](../assets/images/figure/develop/sdk.png)
+![sdk alt rect_w_800](../assets/images/figure/develop/sdk.png)
 
 ModelBox开发套件包含如下部分：
 

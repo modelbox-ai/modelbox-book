@@ -16,7 +16,7 @@ ModelBox API包括了多种编程语言，有C++，python，具体API的支持�
 
 ModelBox微服务插件，提供了开发为服务必要的API接口，对应的周边组件如下：
 
-![api-modelbox-server](../assets/images/figure/api/api-modelbox-server.png)
+![api-modelbox-server alt rect_w_1000](../assets/images/figure/api/api-modelbox-server.png)
 
 ModelBox插件可以调用的接口有：
 
@@ -30,7 +30,7 @@ ModelBox插件可以调用的接口有：
 
 ModelBox运行库，提供了对业务开发需要的API接口，对应的周边组件如下：
 
-![modelbox-lib](../assets/images/figure/api/modelbox-lib.png)
+![modelbox-lib alt rect_w_1280](../assets/images/figure/api/modelbox-lib.png)
 
 ModelBox Library包含`基础Base`部分和`功能`部分。基础部分用于支撑业务的运行，功能部分用于支撑AI推理的运行。
 

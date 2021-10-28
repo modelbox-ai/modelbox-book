@@ -16,7 +16,7 @@
 
     ![docker](../assets/images/figure/solution/docker.png)
 
-2. 启动ModelBox镜像，*X86+GPU*版本可使用如下脚本：
+1. 启动ModelBox镜像，*X86+GPU*版本可使用如下脚本：
 
     ```bash
     #! /bin/bash
@@ -75,7 +75,7 @@
 
     脚本中注明[modify]的地方都可以根据自己的需要修改
 
-3. 启动后可以用`docker ps –a|grep modelbox`看到本机已启动的所有镜像，其中镜像ID在第一列：
+1. 启动后可以用`docker ps –a|grep modelbox`看到本机已启动的所有镜像，其中镜像ID在第一列：
 
     ![docker-id](../assets/images/figure/solution/docker-id.png)
 
@@ -87,7 +87,7 @@
 
     ![docker-passwd](../assets/images/figure/solution/docker-passwd.png)
 
-4. 安装RTSP服务器，用于推送实时的RTSP视频流（注意是在容器外安装执行）。X86+GPU的服务器可以选择EasyDarwin，Arm版可以选择rtsp-simple-server。以rtsp-simple-server为例，下载链接为`https://github.com/aler9/rtsp-simple-server/releases`，下载后解压得到可执行文件和配置文件：
+1. 安装RTSP服务器，用于推送实时的RTSP视频流（注意是在容器外安装执行）。X86+GPU的服务器可以选择EasyDarwin，Arm版可以选择rtsp-simple-server。以rtsp-simple-server为例，下载链接为`https://github.com/aler9/rtsp-simple-server/releases`，下载后解压得到可执行文件和配置文件：
 
     ![docker-conf](../assets/images/figure/solution/docker-conf.png)
 

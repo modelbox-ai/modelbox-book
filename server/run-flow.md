@@ -13,12 +13,12 @@ ModelBox Plugin插件用于对外提供服务，管理并运行流程图。此�
 
 * ModelBox Plugin功能说明：
 
-![plugin-feature](../assets/images/figure/server/plugin-feature.png)
+![plugin-feature alt rect_w_1280](../assets/images/figure/server/plugin-feature.png)
 
 ModelBox Plugin主要提供两个功能。
 
 1. 添加配置文件管理流程图。
-2. 调用REST API执行流程图。
+1. 调用REST API执行流程图。
 
 ### ModelBox Plugin插件配置
 

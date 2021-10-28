@@ -8,7 +8,7 @@
 
 ## 功能单元开发流程
 
-![flowunit-develop](../../assets/images/figure/develop/flowunit/flowunit-develop.png)
+![flowunit-develop alt rect_w_600](../../assets/images/figure/develop/flowunit/flowunit-develop.png)
 
 1. 可以通过modelbox-tool 创建功能单元模板工程
 ```shell
@@ -100,12 +100,12 @@ Driver和功能单元的关系：Driver是Modelbox中各类插件的集合，功
 对应需实现的接口为`FlowUnit::Process`, Process为FlowUnit的核心函数。输入数据的处理、输出数据的构造都在此函数中实现。Process接口处理流程大致如下：
 
 1. 从DataContext中获取Input输入BufferList，Output输出BufferList对象，参数为Port名称。
-2. 循环处理每一个Input Buffer数据。
-3. 对每一个Input Buffer数据可使用Get获取元数据信息。
-4. 业务处理，根据需求对输入数据进行处理。
-5. 构造output_buffer，并使用output_buffer->Build申请输出内存，内存和设备相关，设备DriverDesc的时候设置。如是CPU则是CPU内存，如是GPU则是GPU显存。
-6. 对每一个Output Buffer数据可使用Set设置元数据信息。
-7. 返回成功后，ModelBox框架将数据发送到后续的功能单元。
+1. 循环处理每一个Input Buffer数据。
+1. 对每一个Input Buffer数据可使用Get获取元数据信息。
+1. 业务处理，根据需求对输入数据进行处理。
+1. 构造output_buffer，并使用output_buffer->Build申请输出内存，内存和设备相关，设备DriverDesc的时候设置。如是CPU则是CPU内存，如是GPU则是GPU显存。
+1. 对每一个Output Buffer数据可使用Set设置元数据信息。
+1. 返回成功后，ModelBox框架将数据发送到后续的功能单元。
 
 #### Stream流数据处理
 
@@ -122,7 +122,7 @@ Driver和功能单元的关系：Driver是Modelbox中各类插件的集合，功
 
 对应的处理代码和DataPre，DataPost类似，如下图
 
-![flowunit-collpase](../../assets/images/figure/develop/flowunit/flowunit-collpase.png)
+![flowunit-collpase alt rect_w_1000](../../assets/images/figure/develop/flowunit/flowunit-collpase.png)
 
 如要将输入Stream1，Stream2，...合并为一个Stream。则接口调用过程为
 

@@ -4,7 +4,7 @@
 
 ## 功能单元组成
 
-![flow-concept](../assets/images/figure/framework-conception/flowunit-component.png)
+![flowunit-component alt rect_w_1280](../assets/images/figure/framework-conception/flowunit-component.png)
 
 功能单元是数据处理的基本功能单元，实现可以是多种语言和设备类型的。
 
@@ -26,7 +26,7 @@ ModelBox可根据图中的配置，加载对应的功能单元实体功能组件
 
 ## 加载运行流程
 
-![flow-process](../assets/images/figure/framework-conception/flowunit-process.png)
+![flowunit-process alt rect_w_1280](../assets/images/figure/framework-conception/flowunit-process.png)
 
 FlowUnit插件的加载流程如上图：
 
@@ -181,7 +181,7 @@ MODELBOX_FLOWUNIT(ConditionFlowUnit, desc) {
 
 * **Flow流程图**
 
-    ![car-detected-flow](../assets/images/figure/framework-conception/car-detect-flow.png)
+    ![car-detect-flow alt rect_w_600](../assets/images/figure/framework-conception/car-detect-flow.png)
 
     流程说明：
     1. FileReader文件读取，从目录中读取Video.mpeg路径信息。

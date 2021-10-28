@@ -111,7 +111,7 @@ AI应用开发前需要准备好匹配当前modelbox版本支持的推理框架�
 
 流程图编排是根据实际情况将现有业务逻辑拆分为N个功能单元，再将功能单元串联成一个完整的业务的过程。功能单元分为ModelBox预置功能单元和用户自定义功能单元，当预置功能单元满足不了业务场景时，需要用户进行功能单元开发。有两种方式可编排流程图，第一种是使用UI进行可视化UI编排，第二种是直接编写图文件。具体可参考[流程图开发章节](../develop/flow/flow.md#流程图开发及运行)。这里采用第二种方式。
 
-![mnist-flowchart](../assets/images/figure/solution/mnist-flowchart.png)
+![mnist-flowchart alt rect_w_300](../assets/images/figure/solution/mnist-flowchart.png)
 
 如上图所示，根据业务流程可以将业务划分为5个功能单元，分别为接收http请求，MNIST预处理，MNIST模型推理，MNIST响应构造，发送http响应。对应图编排文件描述如下
 

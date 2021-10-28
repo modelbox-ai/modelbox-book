@@ -26,7 +26,7 @@ Python开发调用流程图时，需要安装python的运行包，然后再编�
 
 Flow流程图接口调用过程如下图所示。
 
-![python-sdk](../../assets/images/figure/develop/flow/python-sdk.png)
+![python-sdk alt rect_w_1000](../../assets/images/figure/develop/flow/python-sdk.png)
 
 1. 安装python SDK包
 1. 开发流程图，配置基础部分和图部分。

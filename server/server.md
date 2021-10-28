@@ -3,15 +3,15 @@
 
 ## Server服务使用流程
 
-![server-usage](../assets/images/figure/server/server-usage.png)
+![server-usage alt rect_w_600](../assets/images/figure/server/server-usage.png)
 
 Server服务是预编译好的可执行文件，在使用时，按照正常的服务流程使用，其流程为：
 
 1. 安装服务。
-2. 启动服务。
-3. 修改服务配置文件。
-4. 添加流程图。
-5. 管理扩展插件。
+1. 启动服务。
+1. 修改服务配置文件。
+1. 添加流程图。
+1. 管理扩展插件。
 
 ## 启动管理服务
 

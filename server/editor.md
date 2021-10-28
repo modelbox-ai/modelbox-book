@@ -8,14 +8,14 @@ ModelBox提供了在线可视化编排的工具——Editor，在开发时，可
 
 ## 编排服务开发使用流程
 
-![editor-feature](../assets/images/figure/server/editor-feature.png)
+![editor-feature alt rect_w_500](../assets/images/figure/server/editor-feature.png)
 
 1. 安装ModelBox server服务。
-2. 配置ModelBox Server。
-3. 配置启用编排服务。
-4. 浏览器访问Editor界面。
-5. 业务进行编排操作。
-6. 下发编排任务。
+1. 配置ModelBox Server。
+1. 配置启用编排服务。
+1. 浏览器访问Editor界面。
+1. 业务进行编排操作。
+1. 下发编排任务。
 
 编排服务集成在ModelBox Server中，默认情况下，编排服务未启用。可以参考下方《编排服务配置》章节来启用编排服务并加载Editor界面。
 

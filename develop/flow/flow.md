@@ -86,9 +86,9 @@ ModelBox默认情况，采用Graphviz DOT语法表达图，关于DOT语法，可
 - 当有请求时，调用PROCESS功能处理数据
 - 数据处理完成后，再将结果回应到客户端
 
-![graphviz](../../assets/images/figure/framework-conception/graphviz.png)
+![graphviz alt rect_w_280](../../assets/images/figure/framework-conception/graphviz.png)
 
-1. Graphviz的表达：
+Graphviz的表达：
 
 ```toml
 digraph G {
@@ -105,9 +105,7 @@ digraph G {
 }
 ```
 
-2. 完成上述图构成后，即可将上述图，组成ModelBox可识别的配置文件。  
-   ModelBox可识别的配置文件采用[TOML配置格式](https://toml.io/cn/v1.0.0-rc.1)。  
-   生成TOML文件后，即可将配置文件加载到ModelBox中执行。
+完成上述图构成后，即可将上述图，组成ModelBox可识别的配置文件。ModelBox可识别的配置文件采用[TOML配置格式](https://toml.io/cn/v1.0.0-rc.1)。生成TOML文件后，即可将配置文件加载到ModelBox中执行。
 
 ```toml
 [graph]
@@ -160,7 +158,7 @@ digraph G {
 
     digraph开头，[name]可以是字符串。
 
-2. 第二部分是点Node的定义
+1. 第二部分是点Node的定义
 
     - 格式
 
@@ -199,7 +197,7 @@ digraph G {
 
         上述配置表示，图输出点的名称为`graphoutput`，在使用SDK形式调用ModelBox时可以使用此名称接收图处理后的数据。
 
-3. 第三部分是点的关系定义
+1. 第三部分是点的关系定义
 
     - 格式
 
