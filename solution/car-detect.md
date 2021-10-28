@@ -4,7 +4,7 @@
 
 车牌检测流程如下图所示，video_input 功能单元接收视频流，往下分别经过 videodemuxer和videodecoder功能单元，videodecoder功能单元输出image，image经过前处理，包含resize、normalize之后，送给模型（car_inference是一个yolov3模型），模型将推理得到的bbox结果传入后续的后处理功能单元进行处理（car_yolobox），可得到 最终的bbox框，将bbox框和videodecoder出来的image一同送入draw_bbox中，将绘制完bbox的image传入videoencoder，即得到带有检测框的视频。
 
-![car-detect](../assets/images/figure/solution/car-detect-uml.png)
+![car-detect alt rect_w_400](../assets/images/figure/solution/car-detect-uml.png)
 
 上述提到的各个节点，在ModelBox中称为功能单元，模型图中的一个节点，编排功能单元构建运行图，运行图在ModelBox中的呈现形式为 toml文件。车辆检测运行toml文件内容如下：
 

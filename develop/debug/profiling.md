@@ -4,7 +4,7 @@ ModelBox提供了统计功能单元，以及运行任务的时间统计功能，
 
 ## 性能统计操作流程
 
-![perf](../../assets/images/figure/develop/debug/perf.png)
+![perf alt rect_w_600](../../assets/images/figure/develop/debug/perf.png)
 
 * 配置流程图。
 * 配置文件中指定启动profiling。

@@ -8,7 +8,7 @@ ModelBox提供了在线可视化编排的工具——Editor，在开发时，可
 
 ## 编排服务开发使用流程
 
-![editor-feature](../assets/images/figure/server/editor-feature.png)
+![editor-feature alt rect_w_500](../assets/images/figure/server/editor-feature.png)
 
 1. 安装ModelBox server服务。
 2. 配置ModelBox Server。

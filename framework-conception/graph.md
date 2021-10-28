@@ -24,7 +24,7 @@ ModelBox的图不支持出现回路的情况，因为回路会导致数据会循
 
 ModelBox的图在拼接时会检查图中的节点的输入边的数据是否是[匹配](../framework-conception/stream.md#为什么需要匹配)的。如果出现某个节点输入的边互相不匹配则会报告图非法。详细的图匹配规则如下所示：
 
-![match](../assets/images/figure/framework-conception/flowunit_match.png)
+![flowunit_match alt rect_w_800](../assets/images/figure/framework-conception/flowunit_match.png)
 
 在上图中，第一个数据流在经过通用flowunit后，其产生的数据流与之前输入的数据流是可以匹配的，因此其输入输出数据流都是流a。第二个数据流在经过流flowunit后，其产生的数据流与之前输入的数据流是不可以匹配的，因此输入的数据流是流a，而输出的数据流是流b，流a与流b之间是无法匹配的。当功能单元的开发者确认流flowunit的输入输出数据是一样多的时候，可以在流flowunit中SetStreamSameCount(true)，增加了这个配置以后则输入和输出的数据都是流a，可以匹配。
 
@@ -58,12 +58,12 @@ ModelBox的图在拼接时会检查图中的节点的输入边的数据是否是
 
 图的加载过程如下所示：
 
-![graph-process](../assets/images/figure/framework-conception/graph-process.png)
+![graph-process alt rect_w_400](../assets/images/figure/framework-conception/graph-process.png)
 
 ## 图的执行及优先级
 
 在图被放入调度器后，调度器会按照拓扑结构对图进行优先级排序，即越靠近出口的节点的优先级越高，这样做的目的是为了保证现有的请求可以尽快的完成，而不至于在入口处累计过多的buffer造成内存或显存的浪费。节点的优先级如下图所示：
 
-![graph-priority](../assets/images/figure/framework-conception/graph-priority.png)
+![graph-priority alt rect_w_500](../assets/images/figure/framework-conception/graph-priority.png)
 
 当图中的某个节点收到数据时，会触发调度器去使用一个线程去执行该节点的run函数，并处于running状态直到run函数执行完毕。当该节点处在running状态的时候，后续的收到的数据会填入该节点的接收队列，但并不会触发run函数，直到该节点执行完run函数。在run的过程中，数据会按照流或者batch切分成多份，放入不同的线程去执行。当线程数量不够时，高优先级的节点会优先放入待执行的队列中，已保证高优先节点可以更快的完成。

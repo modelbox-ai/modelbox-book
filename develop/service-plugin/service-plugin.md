@@ -16,11 +16,12 @@ ModelBox框架提供了预置的服务插件ModelBox Plugin，提供流程图的
 
 服务插件开发整体流程如下：
 
-![plugin-dev-flow](../../assets/images/figure/develop/server-plugin--dev-flow.png)
+![server-plugin--dev-flow alt rect_w_600](../../assets/images/figure/develop/server-plugin--dev-flow.png)
 
 ## 服务插件API
 
-![server-plugin](../../assets/images/figure/api/api-modelbox-server.png)
+![api-modelbox-server alt rect_w_1000](../../assets/images/figure/api/api-modelbox-server.png)
+
 
 ModelBox API按照类型包含：
 

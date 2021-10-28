@@ -6,7 +6,7 @@
 
 首先总体介绍基于ModelBox的应用开发流程，之后的章节将会对开发中的每个步骤进行详细的讲解。
 
-![flow](../assets/images/figure/get-start/flow.png)
+![flow alt rect_w_1280](../assets/images/figure/get-start/flow.png)
 
 如上图所示，这是一个典型的基于ModelBox的应用开发流程，这个流程看起来与其他应用开发流程类似。这里我们简单介绍一下每个开发的步骤：
 

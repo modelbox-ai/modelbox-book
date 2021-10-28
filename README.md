@@ -6,7 +6,7 @@
 ## ModelBox特点
 
 ||||
-|--|--|--|
+|:--:|:--:|:--:|
 | ![indifference](assets/images/figure/flow/indifference.png) |![extend](assets/images/figure/flow/extend.png) | ![reliable](assets/images/figure/flow/reliable.png)|
 |**易于开发**，AI推理业务可视化编排开发，功能模块化，丰富组件库；c++，python，java多语言支持。|**易于集成**，集成云上对接的组件，云上对接更容易。 |**高性能，高可靠**，pipeline并发运行，数据计算智能调度，资源管理调度精细化，业务运行更高效。 |
 |![standard](assets/images/figure/flow/standard.png)|![integrated](assets/images/figure/flow/integrated.png)|![flow](assets/images/figure/flow/flow.png)|
