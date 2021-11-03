@@ -33,15 +33,15 @@ FlowUnit插件的加载流程如上图：
 * 初始化过程
 
     1. ModelBox模块先扫描插件目录。
-    2. 对扫描到的插件，调用`DriverDescription`获取FlowUnit插件信息。信息包括功能单元名称，功能单元版本号，执行的硬件信息，描述信息，配置参数信息。
-    3. 当启动Flow时，则调用插件的`DriverInit`初始化插件。
-    4. 初始化插件完成后，调用`CreateDriverFactor`创建插件工厂类。
-    5. 之后调用`FLowUnitFactor::FlowUnitProbe`获取FlowUnit信息，信息包括输入，输出参数。
-    6. 初始化完成后，业务调用Flow初始化图。
-    7. 在图初始化时，首先通过图中指定的FlowUnit名称选择对应的FlowUnit实例化，调用实例化对象的`Flow::Open`初始化`FlowUnit`对象。
-    8. 图初始化完成后，若有数据达到，则调用当前节点实例的`Flow::Process`处理数据；若当前功能单元选择的类型是流，还会调用`Flow::DataPre`接口，再调用`Flow::Process`接口，流数据结束时，调用`Flow::DataPost`接口。
-    9. 当图运行完成后，则调用`Flow::Close`接口关闭图。
-    10. 整个Flow结束时，ModelBox模块卸载FlowUnit插件，调用插件的`DriverFini`函数清理资源。
+    1. 对扫描到的插件，调用`DriverDescription`获取FlowUnit插件信息。信息包括功能单元名称，功能单元版本号，执行的硬件信息，描述信息，配置参数信息。
+    1. 当启动Flow时，则调用插件的`DriverInit`初始化插件。
+    1. 初始化插件完成后，调用`CreateDriverFactor`创建插件工厂类。
+    1. 之后调用`FLowUnitFactor::FlowUnitProbe`获取FlowUnit信息，信息包括输入，输出参数。
+    1. 初始化完成后，业务调用Flow初始化图。
+    1. 在图初始化时，首先通过图中指定的FlowUnit名称选择对应的FlowUnit实例化，调用实例化对象的`Flow::Open`初始化`FlowUnit`对象。
+    1. 图初始化完成后，若有数据达到，则调用当前节点实例的`Flow::Process`处理数据；若当前功能单元选择的类型是流，还会调用`Flow::DataPre`接口，再调用`Flow::Process`接口，流数据结束时，调用`Flow::DataPost`接口。
+    1. 当图运行完成后，则调用`Flow::Close`接口关闭图。
+    1. 整个Flow结束时，ModelBox模块卸载FlowUnit插件，调用插件的`DriverFini`函数清理资源。
 
 ## 分类
 
@@ -184,17 +184,16 @@ MODELBOX_FLOWUNIT(ConditionFlowUnit, desc) {
     ![car-detect-flow alt rect_w_600](../assets/images/figure/framework-conception/car-detect-flow.png)
 
     流程说明：
-    1. FileReader文件读取，从目录中读取Video.mpeg路径信息。
-    2. 将文件数据发送给VideoDemux，VideoDemux将数据解开packet后发送给VideoDecoder。
-    3. VideoDecode获取packet并解码为图像。
-    4. 图像数据分别发送到两个流程，一个发送给ImageResize，一个发送给ImageRender。
-    5. ImageResize将图像数据进行resize。
-    6. resize后的图像，发送给CarDetect进行模型推理。
-    7. 推理后的数据发送给Box进行框信息处理。
-    8. Box输出框信息。
-    9. ImageRender接收两路输入，图像和框图信息，并对图像进行画框。
-    10. 画框后的图像，输出到编码器VideoEncoder。
-    11. VideoEncode对图像进行编码，并发送给RTSP服务器。
+    1. 将文件数据发送给VideoDemux，VideoDemux将数据解开packet后发送给VideoDecoder。
+    1. VideoDecode获取packet并解码为图像。
+    1. 图像数据分别发送到两个流程，一个发送给ImageResize，一个发送给ImageRender。
+    1. ImageResize将图像数据进行resize。
+    1. resize后的图像，发送给CarDetect进行模型推理。
+    1. 推理后的数据发送给Box进行框信息处理。
+    1. Box输出框信息。
+    1. ImageRender接收两路输入，图像和框图信息，并对图像进行画框。
+    1. 画框后的图像，输出到编码器VideoEncoder。
+    1. VideoEncode对图像进行编码，并发送给RTSP服务器。
 
     流程上，使用了8个功能单元，1个是输入类，3个是处理流数据的视频功能单元，其他是图像处理和推理类的通用功能单元。
 
