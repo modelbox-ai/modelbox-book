@@ -8,7 +8,7 @@
 
 ## 功能单元开发流程
 
-![flowunit-develop](../../assets/images/figure/develop/flowunit/flowunit-develop.png)
+![flowunit-develop alt rect_w_600](../../assets/images/figure/develop/flowunit/flowunit-develop.png)
 
 1. 可以通过modelbox-tool 创建功能单元模板工程
 ```shell
@@ -122,17 +122,17 @@ Driver和功能单元的关系：Driver是Modelbox中各类插件的集合，功
 
 对应的处理代码和DataPre，DataPost类似，如下图
 
-![flowunit-collpase](../../assets/images/figure/develop/flowunit/flowunit-collpase.png)
+![flowunit-collpase alt rect_w_1000](../../assets/images/figure/develop/flowunit/flowunit-collpase.png)
 
 如要将输入Stream1，Stream2，...合并为一个Stream。则接口调用过程为
 
 1. DataGroupPre
-1. DataPre, Stream1
-1. DataPost, Stream1
-1. DataPre, Stream2
-1. DataPost, Stream2
-1. ...
-1. DataGroupPost
+2. DataPre, Stream1
+3. DataPost, Stream1
+4. DataPre, Stream2
+5. DataPost, Stream2
+6. ...
+7. DataGroupPost
 
 在编写代码时，其过程和DataPre类似，差别在于合并时对一组数据的归并动作：GroupPre中获取数据，并在Post中打开output的数据流上下文， 每个DataPre，DataPost中处理每个数据，最后在GroupPost中结束数据的合并。
 

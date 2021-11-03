@@ -18,7 +18,7 @@ ModelBox的目标就是解决AI开发者在开发AI应用时的编程复杂度�
 
 ## ModelBox的核心概念
 
-![modelbox-server](../assets/images/figure/get-start/modelbox-server.png)
+![modelbox-server alt rect_w_1280](../assets/images/figure/get-start/modelbox-server.png)
 
 如图所示，开发者在使用ModelBox前，需要关注的基本核心概念包括：功能单元、流程图、和接收数据处理请求的部分（REST API、Service）。
 

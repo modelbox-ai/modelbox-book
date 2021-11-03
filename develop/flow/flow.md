@@ -86,7 +86,7 @@ ModelBox默认情况，采用Graphviz DOT语法表达图，关于DOT语法，可
 - 当有请求时，调用PROCESS功能处理数据
 - 数据处理完成后，再将结果回应到客户端
 
-![graphviz](../../assets/images/figure/framework-conception/graphviz.png)
+![graphviz alt rect_w_280](../../assets/images/figure/framework-conception/graphviz.png)
 
 1. Graphviz的表达：
 

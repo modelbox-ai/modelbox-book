@@ -209,7 +209,7 @@ modelbox-tool key -model [path/to/model]
 
 此命令组为`modelbox-tool server`
 
-![modelbox-tool-server](../../assets/images/figure/develop/modelbox-tool/principle.png)
+![principle alt rect_w_1280](../../assets/images/figure/develop/modelbox-tool/principle.png)
 
 server功能需要进行配置
 
