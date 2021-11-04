@@ -22,7 +22,6 @@ ModelBox框架提供了预置的服务插件ModelBox Plugin，提供流程图的
 
 ![api-modelbox-server alt rect_w_900](../../assets/images/figure/api/api-modelbox-server.png)
 
-
 ModelBox API按照类型包含：
 
 ### Plugin: 插件创建和启停等重载接口，此接口需要由用户实现

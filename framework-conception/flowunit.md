@@ -184,7 +184,6 @@ MODELBOX_FLOWUNIT(ConditionFlowUnit, desc) {
     ![car-detect-flow alt rect_w_600](../assets/images/figure/framework-conception/car-detect-flow.png)
 
     流程说明：
-    1. FileReader文件读取，从目录中读取Video.mpeg路径信息。
     1. 将文件数据发送给VideoDemux，VideoDemux将数据解开packet后发送给VideoDecoder。
     1. VideoDecode获取packet并解码为图像。
     1. 图像数据分别发送到两个流程，一个发送给ImageResize，一个发送给ImageRender。

@@ -24,11 +24,11 @@ ModelBox中流数据由Buffer组成，其结构如下：
 ![stream alt rect_w_1280](../assets/images/figure/framework-conception/stream.png)
 
 1. Buffer是组成stream的基本单位。
-1. BufferList是一个逻辑概念，主要用于批量处理一组Buffer数据。
-1. N(0 < N < ∞)个buffer组成一个stream
-1. 在stream中buffer有序号，标明buffer在流中的位置，位置是在流产生时决定的。
-1. 每个Buffer包含一个Meta结构，记录Buffer信息。
-1. 每个Stream包含一个Meta结构，记录Stream信息。
+2. BufferList是一个逻辑概念，主要用于批量处理一组Buffer数据。
+3. N(0 < N < ∞)个buffer组成一个stream
+4. 在stream中buffer有序号，标明buffer在流中的位置，位置是在流产生时决定的。
+5. 每个Buffer包含一个Meta结构，记录Buffer信息。
+6. 每个Stream包含一个Meta结构，记录Stream信息。
 
 ## 流的基本处理
 
@@ -82,7 +82,7 @@ ModelBox中流数据由Buffer组成，其结构如下：
 
 1. 在处理流之前，会触发DataPre调用，这里可以用来申请资源，DataPre中可以设置下一个Stream的Meta信息，如图中2-stream的Meta信息。
 
-1. 当流中最后一个数据处理完成后，将会触发DataPost调用，这里可以用来释放资源。
+2. 当流中最后一个数据处理完成后，将会触发DataPost调用，这里可以用来释放资源。
 
 ### 数据流层级
 

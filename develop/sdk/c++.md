@@ -32,11 +32,11 @@ Flow流程图接口调用过程如下图所示。
 ![api-modelbox-server alt rect_w_800](../../assets/images/figure/api/api-modelbox-server.png)
 
 1. 安装C++ SDK包
-1. 开发流程图，配置基础部分和图部分。
-1. 调用Flow::init接口，输入流程图文件。
-1. 调用Flow::build初始化流程图。
-1. 调用Flow::run_async，异步执行流程图。
-1. 调用Flow::wait等待结果。
+2. 开发流程图，配置基础部分和图部分。
+3. 调用Flow::init接口，输入流程图文件。
+4. 调用Flow::build初始化流程图。
+5. 调用Flow::run_async，异步执行流程图。
+6. 调用Flow::wait等待结果。
 
 ## TOML流程图配置
 
