@@ -1,6 +1,6 @@
 # Python开发功能单元
 
-Python开发功能单元时，需要预先安装ModelBox的运行包， 可参考[编译安装章节](../../get-start/compile.md#安装命令说明)，
+Python开发功能单元时，需要预先安装ModelBox的运行包， 可参考[编译安装章节](../../compile/compile.md#安装命令说明)，
 在开发之前，可以从[功能单元概念](../../framework-conception/flowunit.md)章节了解流单的执行过程。
 
 ## Python API调用说明
