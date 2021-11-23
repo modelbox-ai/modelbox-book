@@ -251,6 +251,7 @@ Modelbox加载服务插件流程如下：
           task_status != TaskStatus::ABNORMAL && 
           task_status != TaskStatus::FINISHED) {
           sleep(1);
+          task_status = iva_task->GetTaskStatus();
       }
       task_manager->DeleteTaskById(oneshot_task->GetTaskId());
       return true;
