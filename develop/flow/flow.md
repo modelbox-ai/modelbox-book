@@ -6,24 +6,6 @@
 
 ## 流程图开发模型
 
-### 流程图的开发的四个相关概念
-
-- driver:  
-  
-  功能单元的实现单元。实现的具体的功能单元是作为driver加载在ModelBox中的。ModelBox服务在启动的时候，会加载指定目录下的所有的功能单元，作为driver库并管理。
-
-- flowunit:
-  
-  driver是功能的抽象，那么flowunit就是功能的具体实现。当扫描完所有的driver之后，ModelBox会读取toml文件中的配置，通过flowunit_name以及配置创建driver抽象的实例，这个实例就称之为flowunit。根据不同的配置及配置参数，实现了不同的功能。当然除了创建实例的基本功能之外，还增加了一些例如内存管理、端口管理、设备管理等功能，详情请前往[flowunit](../flowunits/flowunits.md)和[device](../device/device.md)的页面查看。
-
-- node:  
-  
-  node是数据流中的节点。node作为实际的数据处理单元，集成了flowunit、device管理、内存管理、端口管理等功能。 
-
-- flow:
-  
-  一个图构建完成后就是一个flow， 一个flow由多个node相连接构成。
-
 ### 流程图的开发的四个步骤
 
 ```mermaid

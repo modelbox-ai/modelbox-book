@@ -85,7 +85,7 @@ export MODELBOX_DEBUG_PYTHON=yes
 
 ### Python功能单元调试
 
-Python代码编写的功能单元需要从Python启动后，设置上述环境变量才能调试。但Modelbox也提供了专门用于调试Python功能单元的命令`modelbox-python-debug`。
+Python代码编写的功能单元需要从Python启动后，设置上述环境变量才能调试。但ModelBox也提供了专门用于调试Python功能单元的命令`modelbox-python-debug`。
 
 具体操作方法为：
 * IDE或调试工具设置启动程序为`modelbox-python-debug`;

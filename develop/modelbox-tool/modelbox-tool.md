@@ -17,7 +17,7 @@ ModelBox Tool是ModelBox套件集成的一个开发、维护工具，提供了�
 ModelBox为标准的命令行工具，可以使用`modelbox-tool -h`查看详细的帮助说明。
 
 ## help功能
-用于显示Modelbox各命令组帮助信息
+用于显示ModelBox各命令组帮助信息
 
 * 查询各命令组帮助信息
     ```shell

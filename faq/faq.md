@@ -155,7 +155,7 @@ video_input的repeat可以创建多个并发视频，并不是串行视频流
 
 
 
-## Modelbox Tool
+## ModelBox Tool
 
 ### develop mode already enabled
 

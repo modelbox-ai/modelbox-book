@@ -28,7 +28,7 @@ ModelBox预置了多个通用功能单元，可用于完成AI推理算法的基�
 |后处理类|[yolov3_postprocess](#common_yolobox功能单元)|从yolov3模型中获取检测目标的信息
 |buffer处理类|[buff_meta_mapping](#meta_mapping功能单元)|做元数据映射
 
-开发者可以通过Modelbox Tool命令查询各个功能单元的详细信息，包括功能介绍、CPU/GPU类型、输入要求、输出信息、配置项、约束等。命令如下：
+开发者可以通过ModelBox Tool命令查询各个功能单元的详细信息，包括功能介绍、CPU/GPU类型、输入要求、输出信息、配置项、约束等。命令如下：
 查询当前系统目录下所有可以加载的功能单元列表：
 ```shell
 modelbox-tool driver -info -type flowunit

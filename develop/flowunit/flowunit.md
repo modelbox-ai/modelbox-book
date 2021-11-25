@@ -2,7 +2,7 @@
 
 在完成了流程图编排之后，还需通过功能单元(FlowUnit)来实现应用的实际功能。ModelBox加载功能单元后，根据图的结构，将实例化为图中的各个节点。功能单元需提供特定的接口，根据接口协议，在数据处理的各个阶段对接口进行调用。
 
-有关功能单元的详细介绍，请先阅读[框架概念](../../framework-conception/framework-conception.md)章节，以及后续的[功能单元](../../framework-conception/flowunit.md)、[数据流](../../framework-conception/stream.md)章节内容。
+有关功能单元的详细介绍，请先阅读[基本概念](../../framework-conception/framework-conception.md)章节，以及后续的[功能单元](../../framework-conception/flowunit.md)、[数据流](../../framework-conception/stream.md)章节内容。
 
 本章节内容主要介绍功能单元的开发过程。
 
@@ -51,7 +51,7 @@
 |Driver版本号|SetVersion|base.version|是|String|driver版本号 |
 |Driver描述|SetDescription|base.description|是|String|driver功能描述 |
 
-Driver和功能单元的关系：Driver是Modelbox中各类插件的集合，功能单元属于Driver中的一种类型。在C++语言中，一个Driver对应一个so，一个Driver可以支持多个功能单元，即将多个功能单元编译进一个so文件。而再python中，Driver和功能单元一一对应。
+Driver和功能单元的关系：Driver是ModelBox中各类插件的集合，功能单元属于Driver中的一种类型。在C++语言中，一个Driver对应一个so，一个Driver可以支持多个功能单元，即将多个功能单元编译进一个so文件。而再python中，Driver和功能单元一一对应。
 
 根据业务类型，常用功能单元的可以分为以下几类：
 

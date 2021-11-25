@@ -134,7 +134,7 @@ std::shared_ptr<Plugin> CreatePlugin() {
 };
 }
 ```
-Modelbox加载服务插件流程如下：
+ModelBox加载服务插件流程如下：
 1. ModelBox Server先调用插件中的`CreatePlugin`函数创建插件对象。
 
     插件需要在此函数中，创建插件对象，返回智能指针。

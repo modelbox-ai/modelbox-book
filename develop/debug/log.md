@@ -12,7 +12,7 @@ ModelBox的日志级别分为DEBUG, INFO, NOTICE, WARN, ERROR, FATAL。
 
 ## ModelBox Server日志
 
-ModelBox Server和Modelbox Tool中内置了File日志组件，在运行时，会将对应的日志记录到相关的文件中。对应的日志路径，配置方法如下：
+ModelBox Server和ModelBox Tool中内置了File日志组件，在运行时，会将对应的日志记录到相关的文件中。对应的日志路径，配置方法如下：
 
 |进程|日志路径|级别设置|
 |--|--|--|

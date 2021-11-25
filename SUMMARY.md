@@ -1,11 +1,12 @@
 # Summary
 
-* [ModelBox介绍](README.md)<!--* [如何使用ModelBox](use-modelbox/use-modelbox.md)-->
+* [ModelBox介绍](README.md)
+* [如何使用ModelBox](use-modelbox/use-modelbox.md)
 * [编译安装](compile/compile.md)
 * [ModelBox服务运行](server/summary.md)
   * [服务使用流程](server/server.md)
   * [可视化编排服务](server/editor.md)
-  * [流程图运行](server/run-flow.md)
+  * [服务配置安装](server/run-flow.md)
 * [应用开发与调试](develop/summary.md)
   * [AI应用开发流程](develop/develop.md)
   * [流程图开发](develop/flow/flow.md)
@@ -36,5 +37,6 @@
 * [API](api/api.md)
   * [C++](api/c++.md)
   * [Python](api/python.md)
+  * [REST](api/rest.md)
 * [预置功能单元](flowunits/flowunits.md)
 * [FAQ](faq/faq.md)

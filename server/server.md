@@ -1,15 +1,16 @@
 # Server服务
-通常情况下，Modelbox可以看作是一个应用服务。当需要运行Modelbox时，需要启动Modelbox Server服务。ModelBox Server是最基本也是最重要的服务,Modelbox Server服务提供流程图的加载、可视化编排UI服务、流程图Restful API等能力。用户只需将flow流程图配置文件放到指定的目录下，即可实现flow作为服务的功能。
+通常情况下，ModelBox可以看作是一个应用服务。当需要运行ModelBox时，需要启动ModelBox Server服务。ModelBox Server是最基本也是最重要的服务,ModelBox Server服务提供流程图的加载、可视化编排UI服务、流程图Restful API等能力。用户只需将[flow流程图](../framework-conception/framework-conception.md)配置文件放到指定的目录下，即可实现flow作为服务的功能。
 
 ## Server服务使用流程
 
-![server-usage alt rect_w_600](../assets/images/figure/server/server-usage.png)
+![server-usage alt rect_w_600](../assets/images/figure/server/server-usage.png) 
 
 Server服务是预编译好的可执行文件，在使用时，按照正常的服务流程使用，其流程为：
 
 1. 安装服务。
 1. 启动服务。
 1. 修改服务配置文件。
+1. 重启服务使配置生效。
 1. 添加流程图。
 1. 管理扩展插件。
 
@@ -29,7 +30,7 @@ ModelBox Server服务使用标准的systemd unit管理，启动管理服务，�
 export MALLOC_ARENA_MAX=2
 modelbox -c /usr/local/etc/modelbox/modelbox.conf -fV -p /var/run/modelbox/modelbox.pid
 ```
-此方式相比systemd启动确实了对进程的监控，所以建议优先使用systemd启动Modelbox服务。 
+此方式相比systemd启动确实了对进程的监控，所以建议优先使用systemd启动ModelBox服务。 
 
 ## ModelBox Server服务配置
 
@@ -72,13 +73,13 @@ files = [
 ]
 ```
 
-Modelbox服务相关配置文件和配置功能说明如下：
+ModelBox服务相关配置文件和配置功能说明如下：
 
 | 配置类别         | 配置文件                          | 说明                                                                                                    |
 | ---------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------- |
 | 主服务配置       | /usr/local/etc/modelbox/modelbox.conf | 包含基本的配置信息，如插件路径，日志级别。                                                              |
 | 插件配置         | /usr/local/etc/modelbox/modelbox.conf | 和具体插件相关。                                                                                        |
-| 编排服务配置     | /usr/local/etc/modelbox/modelbox.conf | 包括编排服务的配置信息，详情可见[运行服务](./editor.md)中的[运行编排服务](./editor.md#配置启用Editor)   |
+| 编排服务配置     | /usr/local/etc/modelbox/modelbox.conf | 包括编排服务的配置信息，详情可见[运行服务](./editor.md)中的[可视化编排服务](./editor.md#配置启用Editor)   |
 | 访问控制列表     | /usr/local/etc/modelbox/modelbox.conf | 可访问ModelBox后端服务的白名单列表，详情可见[运行服务](./editor.md)中的[访问控制列表](./editor.md#访问控制列表) |
 | 服务启动参数配置 | /usr/local/etc/modelbox/modelbox-opts | 支持配置ModelBox Server服务的启动参数。                                                                   |
 
@@ -99,7 +100,7 @@ Modelbox服务相关配置文件和配置功能说明如下：
 
 除上述配置外，其他配置均为插件配置。ModelBox服务支持灵活的[ModelBox服务插件](../develop/service-plugin/service-plugin.md)加载，ModelBox启动后，会按照plugin.files配置的插件，顺序加载插件，各插件的配置参考各自插件配置参数。当前ModelBox的可视化编排及流程图的restful api及通过服务插件实现, 每个插件有各自配置字段：
 
-`modelbox-plugin`插件的配置，可参考[流程图运行](run-flow.md)。
+`modelbox-plugin`插件的配置，可参考[服务安装配置](run-flow.md)。
 
 `modelbox-plugin-editor`插件的配置，可参考[可视化编排服务](editor.md)。
 

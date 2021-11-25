@@ -11,7 +11,7 @@ ModelBox的扩展能力如下：
 1. C++，Python等多语言的开发支持。
 
 
-针对这些扩展能力，Modelbox提供了开发套件，开发者可以根据自身业务场景利用Modelbox提供的开发接口进行灵活扩展。
+针对这些扩展能力，ModelBox提供了开发套件，开发者可以根据自身业务场景利用ModelBox提供的开发接口进行灵活扩展。
 
 ## ModelBox开发套件
 
@@ -57,7 +57,7 @@ ModelBox开发套件包含如下部分：
 
 1. 基本AI应用开发场景
 
-   对于基本AI应用开发场景，开发者需要进行[流程图开发](flow/flow.md)和[功能单元开发](flowunit/flowunit.md)：流程图开发需要将业务流程通过功能单元编排的方式组织Modelbox可以识别的配置文件，功能单元开发则是需要实现业务的基础功能。
+   对于基本AI应用开发场景，开发者需要进行[流程图开发](flow/flow.md)和[功能单元开发](flowunit/flowunit.md)：流程图开发需要将业务流程通过功能单元编排的方式组织ModelBox可以识别的配置文件，功能单元开发则是需要实现业务的基础功能。
 
 1. 与外部系统存在交互
 
@@ -69,7 +69,7 @@ ModelBox开发套件包含如下部分：
 
 1. 系统集成
 
-   通常基于Modelbox的AI应用作为独立进程运行，当AI应用需要作为组件被集成到其他系统进程中时，可以直接使用libmodelbox组件提供的[ModelBox SDK API](sdk/sdk.md)进行集成开发，完成应用的集成, Modelbox同时提供了[C++ SDK接口](sdk/c++.md)和[Python SDK接口](sdk/python.md)。
+   通常基于ModelBox的AI应用作为独立进程运行，当AI应用需要作为组件被集成到其他系统进程中时，可以直接使用libmodelbox组件提供的[ModelBox SDK API](sdk/sdk.md)进行集成开发，完成应用的集成, ModelBox同时提供了[C++ SDK接口](sdk/c++.md)和[Python SDK接口](sdk/python.md)。
 
 
 ## AI应用开发流程

@@ -336,7 +336,7 @@ modelbox::Status VideoDecoderFlowUnit::DataGroupPost(
 
 ### 编译安装
 
-Modelbox C++工程统一使用CMake进行编译，通过Modelbox-tool生成的c++功能单元模板中默认包含CMakeLists.txt文件，主要功能如下：
+ModelBox C++工程统一使用CMake进行编译，通过modelbox-tool生成的c++功能单元模板中默认包含CMakeLists.txt文件，主要功能如下：
 
 1. 设置功能单元名称
 1. 链接功能单元所需头文件
