@@ -4,7 +4,7 @@
 一个典型场景AI算法的商用落地除了模型训练外，还需要进行视频图片解码、HTTP服务、预处理、后处理、多模型复杂业务串联、运维、打包等工程开发，往往需要耗费比模型训练多得多的时间，同时算法的性能和可靠性通常随开发人员的工程能力水平高低而参差不齐，严重影响AI算法的上线效率。ModelBox是一套专门为AI开发者提供的易于使用，高效，高扩展的AI推理开发框架，它可以帮助AI开发者快速完成从模型文件到AI推理应用的开发和上线工作，降低AI算法落地门槛，同时带来AI应用的高稳定性和极致性能。
 
 ## ModelBox特点
-
+ff
 ||||
 |:--:|:--:|:--:|
 | ![indifference](assets/images/figure/flow/indifference.png) |![extend](assets/images/figure/flow/extend.png) | ![reliable](assets/images/figure/flow/reliable.png)|
