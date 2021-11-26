@@ -1,6 +1,6 @@
 name: 'Action Pull-Request'
 on:
-  push:
+  pull_request:
     branches:
       - main  # trigger branch
 jobs:
@@ -12,7 +12,7 @@ jobs:
     - name: Gitbook Action                   
       uses: modelbox-ai/gitbook-action@master
       with:                                   
-        token: ${{secrets.MANAGER_TOKEN}}
+        token: ${{secrets.GITHUB_TOKEN}}
         source_branch: main
         publish_branch: pull_request_pages
         publish_push_force: true
