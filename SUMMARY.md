@@ -21,6 +21,7 @@
   * [调试定位](develop/debug/debug.md)
     * [代码调试](develop/debug/code-debug.md)
     * [日志](develop/debug/log.md)
+  * [异常捕获](develop/debug/exception.md)
   * [性能优化](develop/debug/profiling.md)
   * [设备接口](develop/device/device.md)
     * [Ascend](develop/device/ascend.md)
