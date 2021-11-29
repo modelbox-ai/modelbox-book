@@ -7,6 +7,7 @@
 ### 输入输出的约束
 
 ModelBox中的图至少需要包含两种flowunit：source flowunit，sink flowunit。
+
 * source flowunit：
     有输出无输入，如input，videoinput，httpserver_sync_receive和httpserver_async_receive。
 * sink flowunit：

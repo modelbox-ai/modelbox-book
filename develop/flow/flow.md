@@ -6,24 +6,6 @@
 
 ## 流程图开发模型
 
-### 流程图的开发的四个相关概念
-
-- driver:  
-  
-  功能单元的实现单元。实现的具体的功能单元是作为driver加载在ModelBox中的。ModelBox服务在启动的时候，会加载指定目录下的所有的功能单元，作为driver库并管理。
-
-- flowunit:
-  
-  driver是功能的抽象，那么flowunit就是功能的具体实现。当扫描完所有的driver之后，ModelBox会读取toml文件中的配置，通过flowunit_name以及配置创建driver抽象的实例，这个实例就称之为flowunit。根据不同的配置及配置参数，实现了不同的功能。当然除了创建实例的基本功能之外，还增加了一些例如内存管理、端口管理、设备管理等功能，详情请前往[flowunit](../flowunits/flowunits.md)和[device](../device/device.md)的页面查看。
-
-- node:  
-  
-  node是数据流中的节点。node作为实际的数据处理单元，集成了flowunit、device管理、内存管理、端口管理等功能。 
-
-- flow:
-  
-  一个图构建完成后就是一个flow， 一个flow由多个node相连接构成。
-
 ### 流程图的开发的四个步骤
 
 ```mermaid
@@ -88,7 +70,7 @@ ModelBox默认情况，采用Graphviz DOT语法表达图，关于DOT语法，可
 
 ![graphviz alt rect_w_280](../../assets/images/figure/framework-conception/graphviz.png)
 
-1. Graphviz的表达：
+Graphviz的表达：
 
 ```toml
 digraph G {
@@ -105,9 +87,9 @@ digraph G {
 }
 ```
 
-2. 完成上述图构成后，即可将上述图，组成ModelBox可识别的配置文件。  
-   ModelBox可识别的配置文件采用[TOML配置格式](https://toml.io/cn/v1.0.0-rc.1)。  
-   生成TOML文件后，即可将配置文件加载到ModelBox中执行。
+完成上述图构成后，即可将上述图，组成ModelBox可识别的配置文件。  
+ModelBox可识别的配置文件采用[TOML配置格式](https://toml.io/cn/v1.0.0-rc.1)。  
+生成TOML文件后，即可将配置文件加载到ModelBox中执行。
 
 ```toml
 [graph]
@@ -160,7 +142,7 @@ digraph G {
 
     digraph开头，[name]可以是字符串。
 
-2. 第二部分是点Node的定义
+1. 第二部分是点Node的定义
 
     - 格式
 
@@ -199,7 +181,7 @@ digraph G {
 
         上述配置表示，图输出点的名称为`graphoutput`，在使用SDK形式调用ModelBox时可以使用此名称接收图处理后的数据。
 
-3. 第三部分是点的关系定义
+1. 第三部分是点的关系定义
 
     - 格式
 
@@ -215,18 +197,18 @@ digraph G {
 
 流程图开发时，可采用如下形式进行开发
 
-|方式|说明|推荐度|连接|
-|--|--|--|--|
-|ModelBox编排服务|使用ModelBox编排服务进行流程图的开发。|⭐️⭐️⭐️|[指导](../../server/editor.md)|
-|手工编写|手工编写toml格式的流程图文件，并添加到ModelBox Server插件中运行|⭐️|[指导](../../framework-conception/graph.md)|
+| 方式             | 说明                                                            | 推荐度 | 连接                                        |
+| ---------------- | --------------------------------------------------------------- | ------ | ------------------------------------------- |
+| ModelBox编排服务 | 使用ModelBox编排服务进行流程图的开发。                          | ⭐️⭐️⭐️    | [指导](../../server/editor.md)              |
+| 手工编写         | 手工编写toml格式的流程图文件，并添加到ModelBox Server插件中运行 | ⭐️      | [指导](../../framework-conception/graph.md) |
 
 ## 流程图的运行
 
 流程图完成后，可以采用下列形式运行流程图
 
-|方式|说明|特点|推荐度|连接|
-|--|--|--|--|--|
-|modelbox-server|使用ModelBox加载运行流程图|基本无需编程，只需要通过配置即可完成图的运行|⭐️⭐️⭐️|[指导](../../server/run-flow.md)|
-|modelbox-tool|ModelBox Tool调试|调试图时使用的工具，方便，快速检查结果是否正确|⭐️⭐️⭐️|[指导](../modelbox-tool/modelbox-tool.md)|
-|Python SDK|Python SDK形式|Python接口形式，方便开发者与当前python服务集成|⭐️⭐️|[指导](../sdk/python.md)|
-|C++ SDK|C++ SDK形式|c++SDK形式，方便开发者与当前c/c++程序集成|⭐️⭐️|[指导](../sdk/c++.md)|
+| 方式            | 说明                       | 特点                                           | 推荐度 | 连接                                      |
+| --------------- | -------------------------- | ---------------------------------------------- | ------ | ----------------------------------------- |
+| modelbox-server | 使用ModelBox加载运行流程图 | 基本无需编程，只需要通过配置即可完成图的运行   | ⭐️⭐️⭐️    | [指导](../../server/run-flow.md)          |
+| modelbox-tool   | ModelBox Tool调试          | 调试图时使用的工具，方便，快速检查结果是否正确 | ⭐️⭐️⭐️    | [指导](../modelbox-tool/modelbox-tool.md) |
+| Python SDK      | Python SDK形式             | Python接口形式，方便开发者与当前python服务集成 | ⭐️⭐️     | [指导](../sdk/python.md)                  |
+| C++ SDK         | C++ SDK形式                | c++SDK形式，方便开发者与当前c/c++程序集成      | ⭐️⭐️     | [指导](../sdk/c++.md)                     |

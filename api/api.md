@@ -3,12 +3,12 @@
 ModelBox API包括了多种编程语言，有C++，python，具体API的支持范围如下：
 请选择合适的开发语言进行扩展。
 
-|类型|说明|C++|Python
-|--|--|--|--|
-|ModelBox Server Plugin| ModelBox微服务插件。|✔️|❌
-|ModelBox Library| ModelBox开发API。|✔️|✔️(不包含基础组件)
-|ModelBox FlowUnit | ModelBox功能单元开发API。|✔️|✔️
-|ModelBox Device | 设备支持开发API。|✔️|❌
+| 类型                   | 说明                      | C++ | Python            |
+| ---------------------- | ------------------------- | --- | ----------------- |
+| ModelBox Server Plugin | ModelBox微服务插件。      | ✔️   | ❌                 |
+| ModelBox Library       | ModelBox开发API。         | ✔️   | ✔️(不包含基础组件) |
+| ModelBox FlowUnit      | ModelBox功能单元开发API。 | ✔️   | ✔️                 |
+| ModelBox Device        | 设备支持开发API。         | ✔️   | ❌                 |
 
 下面具体说明各个组件的API组件信息。
 

@@ -1,4 +1,4 @@
-# 运行编排服务
+# 可视化编排服务
 
 ModelBox提供了在线可视化编排的工具——Editor，在开发时，可使用此工具，提升开发效率。
 
@@ -11,13 +11,13 @@ ModelBox提供了在线可视化编排的工具——Editor，在开发时，可
 ![editor-feature alt rect_w_500](../assets/images/figure/server/editor-feature.png)
 
 1. 安装ModelBox server服务。
-2. 配置ModelBox Server。
-3. 配置启用编排服务。
-4. 浏览器访问Editor界面。
-5. 业务进行编排操作。
-6. 下发编排任务。
+1. 配置ModelBox Server。
+1. 配置启用编排服务。
+1. 浏览器访问Editor界面。
+1. 业务进行编排操作。
+1. 下发编排任务。
 
-编排服务集成在ModelBox Server中，默认情况下，编排服务未启用。可以参考下方《编排服务配置》章节来启用编排服务并加载Editor界面。
+编排服务集成在ModelBox Server中，默认情况下，编排服务未启用。可以参考下方[编排服务配置](../server/editor.md#编排服务配置)章节来启用编排服务并加载Editor界面。
 
 ## 编排服务配置
 
@@ -27,11 +27,11 @@ ModelBox Server安装完成后，编排服务会通过插件的形式由ModelBox
 
 编排服务插件的配置文件路径为`/usr/local/etc/modelbox/modelbox.conf`，其配置项目如下：
 
-| 配置项目               | 配置说明                                                                  |
-| ---------------------- | ------------------------------------------------------------------------- |
-| editor.enable          | 是否启用Editor工具                                                        |
-| editor.ip              | Editor工具监听IP，默认为127.0.0.1。不指定的情况下，和server.ip一致       |
-| editor.port            | Editor工具监听端口，默认为1104，不指定情况下，和server.port一致           |
+| 配置项目               | 配置说明                                                                    |
+| ---------------------- | --------------------------------------------------------------------------- |
+| editor.enable          | 是否启用Editor工具                                                          |
+| editor.ip              | Editor工具监听IP，默认为127.0.0.1。不指定的情况下，和server.ip一致          |
+| editor.port            | Editor工具监听端口，默认为1104，不指定情况下，和server.port一致             |
 | editor.root            | Editor前端UI路径，默认为/usr/local/share/modelbox/www                       |
 | editor.solution_graphs | Editor solution_graphs路径，默认为/usr/local/share/modelbox/solution/graphs |
 
@@ -45,7 +45,7 @@ ModelBox Server安装完成后，编排服务会通过插件的形式由ModelBox
 modelbox-tool develop -e 
 ```
 
-命令执行后，将开启http服务，可使用对应主机的IP地址，和开启的端口号（默认端口号为1104），访问Editor界面。
+命令执行后，将开启http服务，可使用对应主机的IP地址，和开启的端口号（默认端口号为1104），在[配置ACL](./editor.md#访问控制列表)生效之后，即可访问Editor界面。
 
 ### 配置启用Editor
 
@@ -53,37 +53,37 @@ modelbox-tool develop -e
 
 1. 打开`/usr/local/etc/modelbox/modelbox.conf`，修改其中的配置项：
 
-    ```toml
-    [server]
-    # 允许访问服务
-    ip = "0.0.0.0"
-    port = "1104"
-    flow_path = "/usr/local/etc/modelbox/graph"
-    
-    [plugin]
-    # 确保Editor组件加载。
-    files = [
-        "/usr/local/lib/modelbox-plugin-editor.so" #
-    ]
-    
-    [editor]
-    # 启用Editor
-    enable = true
-    
-    # 设置绑定IP和端口。
-    ip = "0.0.0.0"
-    port = "1104"
-    
-    # 指定前端UI路径，默认情况无需修改。
-    root = "/usr/local/share/modelbox/www"
-    solution_graphs = "/usr/local/share/modelbox/solution/graphs"
-    ```
+   ```toml
+   [server]
+   # 允许访问服务
+   ip = "0.0.0.0"
+   port = "1104"
+   flow_path = "/usr/local/etc/modelbox/graph"
+   
+   [plugin]
+   # 确保Editor组件加载。
+   files = [
+       "/usr/local/lib/modelbox-plugin-editor.so" #
+   ]
+   
+   [editor]
+   # 启用Editor
+   enable = true
+   
+   # 设置绑定IP和端口。
+   ip = "0.0.0.0"
+   port = "1104"
+   
+   # 指定前端UI路径，默认情况无需修改。
+   root = "/usr/local/share/modelbox/www"
+   solution_graphs = "/usr/local/share/modelbox/solution/graphs"
+   ```
 
 1. 重启ModelBox Server服务使配置生效。
 
-    ```shell
-    systemctl restart modelbox
-    ```
+   ```shell
+   systemctl restart modelbox
+   ```
 
 ## 访问编排服务
 
@@ -148,19 +148,20 @@ UI界面分为7个功能区域，其对应的功能如下：
         "/usr/local/lib/modelbox-plugin-editor.so"
     ]
    ```
-   
+
     如果没有配置任何访问白名单，则允许所有人皆可访问。
-    ```shell
-        # [acl]
-        # allow = [
-        #     "10.11.12.13",
-        # ]
-    ```
-   
-1. 重启ModelBox Server服务使配置生效。
 
     ```shell
-    systemctl restart modelbox
+       # [acl]
+       # allow = [
+       #     "10.11.12.13",
+       # ]
     ```
+
+1. 重启ModelBox Server服务使配置生效。
+
+   ```shell
+   systemctl restart modelbox
+   ```
 
 注意：1. 确保`[editor]`下`enable = true`。

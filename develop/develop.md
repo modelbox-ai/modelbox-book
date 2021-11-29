@@ -10,8 +10,7 @@ ModelBox的扩展能力如下：
 1. 功能单元的扩展及复用。
 1. C++，Python等多语言的开发支持。
 
-
-针对这些扩展能力，Modelbox提供了开发套件，开发者可以根据自身业务场景利用Modelbox提供的开发接口进行灵活扩展。
+针对这些扩展能力，ModelBox提供了开发套件，开发者可以根据自身业务场景利用ModelBox提供的开发接口进行灵活扩展。
 
 ## ModelBox开发套件
 
@@ -57,7 +56,7 @@ ModelBox开发套件包含如下部分：
 
 1. 基本AI应用开发场景
 
-   对于基本AI应用开发场景，开发者需要进行[流程图开发](flow/flow.md)和[功能单元开发](flowunit/flowunit.md)：流程图开发需要将业务流程通过功能单元编排的方式组织Modelbox可以识别的配置文件，功能单元开发则是需要实现业务的基础功能。
+   对于基本AI应用开发场景，开发者需要进行[流程图开发](flow/flow.md)和[功能单元开发](flowunit/flowunit.md)：流程图开发需要将业务流程通过功能单元编排的方式组织ModelBox可以识别的配置文件，功能单元开发则是需要实现业务的基础功能。
 
 1. 与外部系统存在交互
 
@@ -70,7 +69,6 @@ ModelBox开发套件包含如下部分：
 1. 系统集成
 
    通常基于Modelbox的AI应用作为独立进程运行，当AI应用需要作为组件被集成到其他系统进程中时，可以直接使用libmodelbox组件提供的[ModelBox SDK API](sdk/sdk.md)进行集成开发，完成应用的集成, Modelbox同时提供了[C++ SDK接口](sdk/c++.md)和[Python SDK接口](sdk/python.md)。
-
 
 ## AI应用开发流程
 
@@ -87,8 +85,10 @@ ModelBox开发套件包含如下部分：
     ```shell
     modelbox-tool create -t project -n [ProjectName] -d ./
     ```
+
     默认工程目录结构如下：
-   ```shell
+
+    ```shell
     [ProjectName]
         |---Cmake               //cmake脚本
         |---package             //打包脚本
@@ -105,7 +105,7 @@ ModelBox开发套件包含如下部分：
         |---test                //测试框架及用例
         |---thirdparty          //存放第三方库
         |---CMakeLists.txt
-   ```
+    ```
 
 1. 流程图开发
 
@@ -115,43 +115,49 @@ ModelBox开发套件包含如下部分：
 1. 功能单元开发
 
     通过modelbox-tool创建对应语言的功能单元模板，具体命令如下：
+
     ```shell
     modelbox-tool create -t c++ -n [name] -d ./ProjectName/src/flowunit
     modelbox-tool create -t python -n [name] -d ./ProjectName/src/flowunit
     modelbox-tool create -t infer -n [name] -d ./ProjectName/src/flowunit
     ```
+
     命令执行后会生成对应文件和函数，注意name不可携带数字、中划线等特殊字符，建议是全英文。
     模板创建完成后进行接口函数实现，具体开发流程可见[功能单元开发](flowunit/flowunit.md)
 
 1. 服务插件开发
-    
     不涉及新增服务插件可跳过此步骤。
 
     通过modelbox-tool创建对应语言的服务插件模板，具体命令如下：
+
     ```shell
     modelbox-tool create -t service-plugin -n [name] -d ./ProjectName/src/service-plugin
     ```
+
     命令执行后会生成对应文件和函数，注意name不可携带数字、中划线等特殊字符，建议是全英文。
     模板创建完成后进行接口函数实现，服务插件开发流程可见[功能单元开发](service-plugin/service-plugin.md)
 
 1. 功能调试
-    
+
     可以使用样例工程自带的测试框架进行功能单元和图的用例测试。也可以安装在到当前系统进行调试。编译安装过程如下：
-    
     在工程最上级目录执行如下命令进行编译安装：
+
     ```shell
     mkdir build
     cd build
     cmake ../ -DCMAKE_BUILD_TYPE=Debug
     make install
     ```
-    功能单元so、服务插件so、python、模型文件、图配置等都会安装到Cmakelist中指定的路径（默认安装在 `/opt/modelbox/`目录下）。也可以通过 `make package` 进行打RPM包。 
+
+    功能单元so、服务插件so、python、模型文件、图配置等都会安装到Cmakelist中指定的路径（默认安装在 `/opt/modelbox/`目录下）。也可以通过 `make package` 进行打RPM包。
 
     安装完成后可以通过modelbox-tool 在环境上运行图文件进行调试。命令如下：
+
     ```shell
     modelbox-tool -verbose [-log-level INFO] [-log-path filepath] flow -run [/path/to/graph.toml]
     ```
-    具体可见[调试](debug/code-debug.md)。 
+
+    具体可见[调试](debug/code-debug.md)。
 
 1. 性能调优
 
@@ -160,4 +166,3 @@ ModelBox开发套件包含如下部分：
 1. 系统集成
 
    通常情况使用ModelBox服务运行图即可。如果有诉求需要将ModelBox图的运行集成到其他进程时，可采用ModelBox提供的sdk接口进行调用。具体可见[SDK API集成](sdk/sdk.md)。  
-
