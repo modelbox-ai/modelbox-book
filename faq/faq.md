@@ -153,11 +153,32 @@ datacontext表示当前flowunit在当前流的数据buffer，可以设置输入�
 
 video_input的repeat可以创建多个并发视频，并不是串行视频流
 
-
-
 ## Modelbox Tool
 
 ### develop mode already enabled
 
 在执行`modelbox-tool develop -e`开启开发者模式后，如果更改了默认位于`/usr/local/etc/modelbox/`的`modelbox.conf`配置文件的内容，需要先执行`modelbox-tool develop -d`来关闭开发者模式，再启动才行。
 
+## 性能调试技巧
+
+### modelbox提供性能调试工具
+
+性能调试工具具体使用可参考[性能统计](../develop/debug/profiling.md)章节。需要说明的是，工具统计的process时间包括buffer跨设备内存拷贝时间与流单元process处理时间。首先观察的是整个图的“稀疏”程度，如果每个流单元时间线上空隙很多，且没有一个流单元是满负荷（空隙很少或几乎没有）的，则说明还未达到性能上限，需继续加大输入数据（增大QPS/增加视频路数等），直到性能无法提升后，分析图中的瓶颈点，做进一步优化。
+
+### graph调试参数
+
+在流程图中，如下两个参数与性能有关：
+
+1. queue_size: 图中节点每次最大调度buffer个数；
+
+2. batch_size：每次流单元进入process最大buffer个数；
+
+可设置全局queue_size、batch_size，也可以在流程图的每个节点设置queue_size、batch_size。如果在两个地方同时设置，节点设置参数优先级最高。
+
+对于Normal类型流单元，建议设置queue_size为batch_size整数倍，可简单算出并发线程数为`queue_size / batch_size`。资源允许的情况可加大并发提升性能；
+
+### 其他注意事项
+
+1. 减少跨设备内存拷贝；流程图中相邻流单元的输入、输出buffer的内存尽量保证在同一种设备上，这样可以减少跨设备拷贝；输入buffer内存位置可在desc中配置，输出buffer内存位置以buffer build时绑定的设备为准；
+
+2. 避免分支不均匀连接；比如A流单元输出有左右两个分支，分支终点都为B流单元；左边分支经过流单元为1个，右边为10个，通常会导致左边分支需要等待右边分支处理完。这样A流单元会由于当前批次buffer没有及时传递出去，下一批数据无法进来导致性能浪费；
