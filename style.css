@@ -13,6 +13,10 @@ img[alt$="rect_w_1000"] {
     width: 1000px;
 }
 
+img[alt$="rect_w_900"] {
+    width: 900px;
+}
+
 img[alt$="rect_w_800"] {
     width: 800px;
 }
