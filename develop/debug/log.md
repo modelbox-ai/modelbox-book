@@ -12,12 +12,12 @@ ModelBox的日志级别分为DEBUG, INFO, NOTICE, WARN, ERROR, FATAL。
 
 ## ModelBox Server日志
 
-ModelBox Server和Modelbox Tool中内置了File日志组件，在运行时，会将对应的日志记录到相关的文件中。对应的日志路径，配置方法如下：
+ModelBox Server和ModelBox Tool中内置了File日志组件，在运行时，会将对应的日志记录到相关的文件中。对应的日志路径，配置方法如下：
 
-|进程|日志路径|级别设置|
-|--|--|--|
-|modelbox server|/var/log/modelbox/modelbox.log|/usr/local/etc/modelbox/modelbox.conf配置文件中，log字段的level。
-|modelbox tool|/var/log/modelbox-tool.log|modelbox-tool命令参数。
+| 进程            | 日志路径                       | 级别设置                                                          |
+| --------------- | ------------------------------ | ----------------------------------------------------------------- |
+| modelbox server | /var/log/modelbox/modelbox.log | /usr/local/etc/modelbox/modelbox.conf配置文件中，log字段的level。 |
+| modelbox tool   | /var/log/modelbox-tool.log     | modelbox-tool命令参数。                                           |
 
 ## 默认console日志
 
@@ -141,4 +141,3 @@ RegLog()
   1. 初始化日志对象`modelbox.Log()`。
   1. 将`logfunc`调用`modelbox.Log::reg`注册为日志处理函数
   1. 调用`modelbox.Log::set_log_level(modelbox.Log.Level)`设置日志级别。
-  

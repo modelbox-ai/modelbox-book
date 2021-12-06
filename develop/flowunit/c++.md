@@ -10,21 +10,21 @@ FlowUnit接口调用过程如下图所示。
 
 FlowUnit开发分为三部分，`Driver`和`Factory`，分别设置插件属性和功能单元属性，封装为易于接口，`FlowUnit`为功能单元处理对象，三部分的需要实现的功能如下：
 
-| 组件     | 函数                                               | 功能                                 | 是否必须 | 实现功能                                                                                                                                         |
-| -------- | -------------------------------------------------- | ------------------------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Driver   | MODELBOX_DRIVER_FLOWUNIT                           | 设置插件属性                         | 是       | Driver属性设置接口，填写插件相关的描述信息，包括，插件名称，插件版本号，插件运行的设备类型，初始化函数，查询的细节描述信息，插件的配置参数列表。 |
-| Factory  | MODELBOX_FLOWUNIT                                  | 功能单元属性设置接口，并注册到ModelBox | 是       | 填写ModelBox相关的输入，输出端口，参数设置等信息                                                                                                 |
-| FlowUnit | FlowUnit::Open<br/>FlowUnit::Close                 | FlowUnit初始化                       | 否       | FlowUnit初始化、关闭，创建、释放相关的资源                                                                                                       |
-| FlowUnit | FlowUnit::Process<br/>AscendFlowUnit::AscendProcess  <br/> CudaFlowUnit::CudaProcess                                 | FlowUnit数据处理                     | 是       | FlowUnit数据处理函数，读取数据数据，并处理后，输出数据                                                                                           |
-| FlowUnit | FlowUnit::DataPre<br/>FlowUnit::DataPost           | Stream流数据开始，结束通知           | 部分     | stream流数据开始时调用DataPre函数初始化状态数据，Stream流数据结束时释放状态数据，比如解码器上下文。                                              |
-| FlowUnit | FlowUnit::DataGroupPre<br/>FlowUnit::DataGroupPost | 数据组归并开始，结束通知             | 部分     | 数据组归并，结束通知函数，当数据需要合并时，对一组数据进行上下文相关的操作。                                                                     |
+| 组件     | 函数                                                                                 | 功能                                   | 是否必须 | 实现功能                                                                                                                                         |
+| -------- | ------------------------------------------------------------------------------------ | -------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Driver   | MODELBOX_DRIVER_FLOWUNIT                                                             | 设置插件属性                           | 是       | Driver属性设置接口，填写插件相关的描述信息，包括，插件名称，插件版本号，插件运行的设备类型，初始化函数，查询的细节描述信息，插件的配置参数列表。 |
+| Factory  | MODELBOX_FLOWUNIT                                                                    | 功能单元属性设置接口，并注册到ModelBox | 是       | 填写ModelBox相关的输入，输出端口，参数设置等信息                                                                                                 |
+| FlowUnit | FlowUnit::Open<br/>FlowUnit::Close                                                   | FlowUnit初始化                         | 否       | FlowUnit初始化、关闭，创建、释放相关的资源                                                                                                       |
+| FlowUnit | FlowUnit::Process<br/>AscendFlowUnit::AscendProcess  <br/> CudaFlowUnit::CudaProcess | FlowUnit数据处理                       | 是       | FlowUnit数据处理函数，读取数据数据，并处理后，输出数据                                                                                           |
+| FlowUnit | FlowUnit::DataPre<br/>FlowUnit::DataPost                                             | Stream流数据开始，结束通知             | 部分     | stream流数据开始时调用DataPre函数初始化状态数据，Stream流数据结束时释放状态数据，比如解码器上下文。                                              |
+| FlowUnit | FlowUnit::DataGroupPre<br/>FlowUnit::DataGroupPost                                   | 数据组归并开始，结束通知               | 部分     | 数据组归并，结束通知函数，当数据需要合并时，对一组数据进行上下文相关的操作。                                                                     |
 
 ### 头文件
 
 编写时，需要先确认设备的类型，确认完成设备类型后，导入对应设备的头文件，例如
 
-| 设备类型 | 头文件                                          | 说明                      |
-| -------- | ----------------------------------------------- | ------------------------- |
+| 设备类型 | 头文件                                          | 说明                        |
+| -------- | ----------------------------------------------- | --------------------------- |
 | cpu      | #include &lt;modelbox/device/cpu.h&gt;          | CPU类型的功能单元           |
 | cuda     | #include &lt;modelbox/device/cuda.h&gt;         | Nvidia GPU类型的功能单元    |
 | ascend   | #include &lt;modelbox/device/ascend.h&gt;       | Huawei Ascend类型的功能单元 |
@@ -140,7 +140,9 @@ class SomeFlowUnit : public modelbox::FlowUnit {
   };
 };
 ```
+
 #### 加速卡类型FlowUnit接口
+
 目前ModelBox支持开发cuda 和 ascend类型的功能单元，与cpu类型不同，cuda和ascend上进行编程存在stream的概念，所以接口上有些差异，具体参考下列编程接口
 
 | 设备   | 说明          | 连接                        |
@@ -336,7 +338,7 @@ modelbox::Status VideoDecoderFlowUnit::DataGroupPost(
 
 ### 编译安装
 
-Modelbox C++工程统一使用CMake进行编译，通过Modelbox-tool生成的c++功能单元模板中默认包含CMakeLists.txt文件，主要功能如下：
+ModelBox C++工程统一使用CMake进行编译，通过modelbox-tool生成的c++功能单元模板中默认包含CMakeLists.txt文件，主要功能如下：
 
 1. 设置功能单元名称
 1. 链接功能单元所需头文件

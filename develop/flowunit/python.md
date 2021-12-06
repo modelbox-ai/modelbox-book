@@ -11,15 +11,15 @@ Python FlowUnit接口调用过程如下图所示。
 
 FlowUnit开发分为两部分，一部分是`TOML配置`, 一部分是`FlowUnit`代码，用户需要实现如下接口和配置：
 
-|组件|函数|功能|是否必须|实现功能|
-|--|--|--|--|--|
-|TOML配置|base.*|设置Python插件基本属性|是|填写Python插件相关的描述信息，包括，插件名称，插件版本号，插件运行的设备类型，查询的细节描述信息，以及插件的Python入口信息。|
-|TOML配置|config.*|配置参数|是|可以自定义增加功能单元配置参数|
-|TOML配置|input.* <br/> output.*|输入，输出端口属性|是|用于描述插件的输入，输出端口个数，名称，类型|
-|FlowUnit|FlowUnit::Open<br/>FlowUnit::Close|FlowUnit初始化|否|FlowUnit初始化、关闭，创建、释放相关的资源|
-|FlowUnit|FlowUnit::Process|FlowUnit数据处理|是|FlowUnit数据处理函数，读取数据数据，并处理后，输出数据|
-|FlowUnit|FlowUnit::DataPre<br/>FlowUnit::DataPost|Stream流数据开始，结束通知|部分|Stream流数据开始时调用DataPre函数初始化状态数据，Stream流数据结束时释放状态数据，比如解码器上下文。|
-|FlowUnit|FlowUnit::DataGroupPre<br/>FlowUnit::DataGroupPost|数据组归并开始，结束通知|部分|数据组归并，结束通知函数，当数据需要合并时，对一组数据进行上下文相关的操作。|
+| 组件     | 函数                                               | 功能                       | 是否必须 | 实现功能                                                                                                                     |
+| -------- | -------------------------------------------------- | -------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| TOML配置 | base.*                                             | 设置Python插件基本属性     | 是       | 填写Python插件相关的描述信息，包括，插件名称，插件版本号，插件运行的设备类型，查询的细节描述信息，以及插件的Python入口信息。 |
+| TOML配置 | config.*                                           | 配置参数                   | 是       | 可以自定义增加功能单元配置参数                                                                                               |
+| TOML配置 | input.* <br/> output.*                             | 输入，输出端口属性         | 是       | 用于描述插件的输入，输出端口个数，名称，类型                                                                                 |
+| FlowUnit | FlowUnit::Open<br/>FlowUnit::Close                 | FlowUnit初始化             | 否       | FlowUnit初始化、关闭，创建、释放相关的资源                                                                                   |
+| FlowUnit | FlowUnit::Process                                  | FlowUnit数据处理           | 是       | FlowUnit数据处理函数，读取数据数据，并处理后，输出数据                                                                       |
+| FlowUnit | FlowUnit::DataPre<br/>FlowUnit::DataPost           | Stream流数据开始，结束通知 | 部分     | Stream流数据开始时调用DataPre函数初始化状态数据，Stream流数据结束时释放状态数据，比如解码器上下文。                          |
+| FlowUnit | FlowUnit::DataGroupPre<br/>FlowUnit::DataGroupPost | 数据组归并开始，结束通知   | 部分     | 数据组归并，结束通知函数，当数据需要合并时，对一组数据进行上下文相关的操作。                                                 |
 
 ### Python功能单元目录结构
 
@@ -184,12 +184,12 @@ class SomeFlowunit(modelbox.FlowUnit):
     1. 返回处理结果。
 * Process的返回值说明
 
-|返回值|说明|
-|--|--|
-|STATUS_OK|返回成功，将Output中的数据，发送到后续FlowUnit流程。|
-|STATUS_CONTINUE|返回成功，暂缓发送Output中的数据。|
-|STATUS_SHUTDOWN|停止数据处理，终止整个流程图。|
-|其他|停止数据处理，当前数据处理报错。|
+| 返回值          | 说明                                                 |
+| --------------- | ---------------------------------------------------- |
+| STATUS_OK       | 返回成功，将Output中的数据，发送到后续FlowUnit流程。 |
+| STATUS_CONTINUE | 返回成功，暂缓发送Output中的数据。                   |
+| STATUS_SHUTDOWN | 停止数据处理，终止整个流程图。                       |
+| 其他            | 停止数据处理，当前数据处理报错。                     |
 
 #### Stream流数据处理
 

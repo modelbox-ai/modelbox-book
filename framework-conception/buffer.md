@@ -28,36 +28,36 @@ Buffer是ModelBox中功能单元之前传递数据的唯一载体。采用Buffer
 
 以下列表展现了较为常用的Buffer的成员函数。
 
-|                             函数名称                                  |           返回值类型     | 函数功能 |
-| -------------------------------------------------------------------- | ----------------------- | ---------- |
-| MutableData()                                                        | void*                   | 获取buffer可变数据的指针 |
-| ConstData() const                                                    | const void*             | 获取buffer常量数据的指针 |
-| GetBytes() const                                                     | size_t                  | 获取buffer的字节大小 |
-| Get(const std::string& key)                                          | std::tuple<Any*, bool>  | 根据meta的键获取相对应的值|
-| GetDevice()                                                          | std::shared_ptr<Device> | 返回buffer所对应的设备|
-| Get(const std::string& key, T&& value)                               | bool                    | 在buffer中是否存在meta的key值|
-| Set(const std::string& key, T&& value)                               | void                    | 给buffer设置meta的键值对|
-| CopyMeta(const std::shared_ptr<Buffer> buf, bool is_override = false)| Status                  | 复制buf的meta值|
-| Copy()                                                               | std::shared_ptr<Buffer> | buffer的浅拷贝|
-| DeepCopy()                                                           | std::shared_ptr<Buffer> | buffer的深拷贝|
+| 函数名称                                                              | 返回值类型              | 函数功能                      |
+| --------------------------------------------------------------------- | ----------------------- | ----------------------------- |
+| MutableData()                                                         | void*                   | 获取buffer可变数据的指针      |
+| ConstData() const                                                     | const void*             | 获取buffer常量数据的指针      |
+| GetBytes() const                                                      | size_t                  | 获取buffer的字节大小          |
+| Get(const std::string& key)                                           | std::tuple<Any*, bool>  | 根据meta的键获取相对应的值    |
+| GetDevice()                                                           | std::shared_ptr<Device> | 返回buffer所对应的设备        |
+| Get(const std::string& key, T&& value)                                | bool                    | 在buffer中是否存在meta的key值 |
+| Set(const std::string& key, T&& value)                                | void                    | 给buffer设置meta的键值对      |
+| CopyMeta(const std::shared_ptr<Buffer> buf, bool is_override = false) | Status                  | 复制buf的meta值               |
+| Copy()                                                                | std::shared_ptr<Buffer> | buffer的浅拷贝                |
+| DeepCopy()                                                            | std::shared_ptr<Buffer> | buffer的深拷贝                |
 
 ## BufferList
 
 BufferList是Buffer的vector集合。ModelBox提供了完备的api，可以简单地批量修改Buffer。
 其中，`BufferList->At(idx)`可直接用`BufferList[idx]`代替。
 
-|                                    函数名称                                  |           返回值类型     | 函数功能 |
-| --------------------------------------------------------------------------- | ----------------------- | ---------- |
-| MutableData()                                                               | void*                   | 获取bufferList首个buffer的可变数据的指针 |
-| ConstData()                                                                 | const void*             | 获取bufferList首个buffer的常量数据的指针 |
-| MutableBufferData(size_t idx)                                               | void*                   | 获取bufferList首个buffer的可变数据的指针 |
-| ConstBufferData(size_t idx) const                                           | const void*             | 获取bufferList首个buffer的常量数据的指针 |
-| GetBytes()                                                                  | size_t                  | 获取bufferList的字节大小 |
-| Size()                                                                      | size_t                  | 获取bufferList的长度 |
-| GetDevice()                                                                 | std::shared_ptr<Device> | 返回bufferList的首个buffer所对应的设备|
-| At(size_t idx)                                                              | std::shared_ptr<Buffer> | 根据索引值 返回此处的buffer |
-| PushBack(const std::shared_ptr<Buffer>& buf)                                | void                    | 将新的buffer加入到bufferList末尾 |
-| Set(const std::string& key, T&& value)                                      | void                    | 给bufferList中所有buffer设置相同的meta键值对|
-| CopyMeta(const std::shared_ptr<Buffer> bufferList, bool is_override = false)| Status                  | 复制传入函数中的另一个bufferList的meta值|
-| MakeContiguous()                                                            | Status                  | 使bufferList在显存或者内存中连续|
-| Reset()                                                                     | Status                  | 清空bufferList |
+| 函数名称                                                                     | 返回值类型              | 函数功能                                     |
+| ---------------------------------------------------------------------------- | ----------------------- | -------------------------------------------- |
+| MutableData()                                                                | void*                   | 获取bufferList首个buffer的可变数据的指针     |
+| ConstData()                                                                  | const void*             | 获取bufferList首个buffer的常量数据的指针     |
+| MutableBufferData(size_t idx)                                                | void*                   | 获取bufferList首个buffer的可变数据的指针     |
+| ConstBufferData(size_t idx) const                                            | const void*             | 获取bufferList首个buffer的常量数据的指针     |
+| GetBytes()                                                                   | size_t                  | 获取bufferList的字节大小                     |
+| Size()                                                                       | size_t                  | 获取bufferList的长度                         |
+| GetDevice()                                                                  | std::shared_ptr<Device> | 返回bufferList的首个buffer所对应的设备       |
+| At(size_t idx)                                                               | std::shared_ptr<Buffer> | 根据索引值 返回此处的buffer                  |
+| PushBack(const std::shared_ptr<Buffer>& buf)                                 | void                    | 将新的buffer加入到bufferList末尾             |
+| Set(const std::string& key, T&& value)                                       | void                    | 给bufferList中所有buffer设置相同的meta键值对 |
+| CopyMeta(const std::shared_ptr<Buffer> bufferList, bool is_override = false) | Status                  | 复制传入函数中的另一个bufferList的meta值     |
+| MakeContiguous()                                                             | Status                  | 使bufferList在显存或者内存中连续             |
+| Reset()                                                                      | Status                  | 清空bufferList                               |

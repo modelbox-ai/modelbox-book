@@ -4,20 +4,20 @@ ModelBox框架采用C++语言编写，工程编译软件是CMake，在编译Mode
 
 ## 编译依赖准备
 
-|类别|依赖|依赖说明|最低版本|推荐版本|是否必须|相关组件|
-|--|--|--|--|--|--|--|
-|编译器|gcc|gcc编译器|4.8|7.x|是|所有|
-|编译器|g++|g++编译器|4.8|7.x|是|所有|
-|编译器|CMake|CMake工具|2.9|3.5|是|所有|
-|OS|Linux|Linux操作系统|ubuntu16.04, centOS 7.2|ubuntu 18.04|是|所有|
-|运行时|nodejs|前端编译|10.x|V12.x|否|前端Editor
-|运行时|python|python编译|3.x|3.8|否|python支持
-|开发库|cuda|cuda支持|10.0|10.1|否|cuda支持
-|开发库|ascend|Ascend支持|||否|ascend支持
-|开发库|ffmpeg|视频解码编码支持|||否|视频相关功能
-|开发库|tensorrt|tensorrt模型推理|||否|tensorrt相关的模型推理功能
-|开发库|tensorflow|tensorflow推理支持|||否|tensorflow相关的模型推理功能
-|开发库|cpprest|http服务支持|||是|modelbox-server以及http相关的功能组件
+| 类别   | 依赖       | 依赖说明           | 最低版本                | 推荐版本     | 是否必须 | 相关组件                              |
+| ------ | ---------- | ------------------ | ----------------------- | ------------ | -------- | ------------------------------------- |
+| 编译器 | gcc        | gcc编译器          | 4.8                     | 7.x          | 是       | 所有                                  |
+| 编译器 | g++        | g++编译器          | 4.8                     | 7.x          | 是       | 所有                                  |
+| 编译器 | CMake      | CMake工具          | 2.9                     | 3.5          | 是       | 所有                                  |
+| OS     | Linux      | Linux操作系统      | ubuntu16.04, centOS 7.2 | ubuntu 18.04 | 是       | 所有                                  |
+| 运行时 | nodejs     | 前端编译           | 10.x                    | V12.x        | 否       | 前端Editor                            |
+| 运行时 | python     | python编译         | 3.x                     | 3.8          | 否       | python支持                            |
+| 开发库 | cuda       | cuda支持           | 10.0                    | 10.1         | 否       | cuda支持                              |
+| 开发库 | ascend     | Ascend支持         |                         |              | 否       | ascend支持                            |
+| 开发库 | ffmpeg     | 视频解码编码支持   |                         |              | 否       | 视频相关功能                          |
+| 开发库 | tensorrt   | tensorrt模型推理   |                         |              | 否       | tensorrt相关的模型推理功能            |
+| 开发库 | tensorflow | tensorflow推理支持 |                         |              | 否       | tensorflow相关的模型推理功能          |
+| 开发库 | cpprest    | http服务支持       |                         |              | 是       | modelbox-server以及http相关的功能组件 |
 
 上述依赖可按需求选择，其中`是否必须`为“是”的依赖，必须要安装到编译环境中才能正常编译代码。如果使用基于镜像的开发环境，可以省去这一步。
 
@@ -78,6 +78,7 @@ ModelBox项目提供了docker镜像，里面包含了ModelBox编译运行所需�
 如有疑问，可参考[FAQ](../faq/faq.md)中的[docker](../faq/faq.md#docker启动脚本详解)相关内容
 
 ### 基于当前操作系统安装
+
 如果不想下载开发镜像，那么也可按上述依赖列表，自行基于当前操作系统进行安装。
 
 1. ubuntu操作系统
@@ -119,13 +120,17 @@ ModelBox项目提供了docker镜像，里面包含了ModelBox编译运行所需�
 
     * 在编译过程中，还需要下载第三方依赖，请保持网络能正常连接第三方服务器。  
     * 如需编译release版本，可以执行如下cmake命令
+  
     ```shell
     cmake -DCMAKE_BUILD_TYPE=Release ..
     ```
+  
     * 如需进行断点调试，则应编译debug版本，可以执行如下cmake命令
+  
     ```shell
     cmake -DCMAKE_BUILD_TYPE=Debug ..
     ```
+  
     * `-DLOCAL_PACKAGE_PATH`：若本地已经有依赖的第三方软件包，则可以使用此参数指定本地依赖包路径，若使用ModelBox编译镜像时，编译镜像的`/opt/thirdparty/source`已经有相关依赖包，可直接指定本地路径使用，若需要从公共源码仓下载，则无需指定此参数，但需要确保网络通畅。
 
 1. 编译安装包
@@ -142,21 +147,21 @@ ModelBox编译完成后，将生成配套OS安装的安装包，如deb、rpm包�
 
 ### 安装包功能对照表
 
-|类型|名称|说明|
-|--|--|--|
-|运行库|modelbox-x.x.x-Linux-libmodelbox.[deb&#124;rpm]|ModelBox核心运行库。
-|运行库|modelbox-x.x.x-Linux-graph-graphviz.[deb&#124;rpm]|图解析组件。
-|服务组件|modelbox-x.x.x-Linux-server.[deb&#124;rpm]|ModelBox Server服务组件。
-|运行库|modelbox-x.x.x-Linux-ascend-device-flowunit.[deb&#124;rpm]|Ascend设备SDK以及配套基础功能单元组件。
-|运行库|modelbox-x.x.x-Linux-cpu-device-flowunit.[deb&#124;rpm]|Cuda设备SDK以及配套基础功能单元组件。
-|运行库|modelbox-x.x.x-Linux-cuda-device-flowunit.[deb&#124;rpm]|CPU设备SDK以及配套基础功能单元组件。
-|开发库|modelbox-x.x.x-Linux-libmodelbox-devel.[deb&#124;rpm]|ModelBox开发库。
-|开发库|modelbox-x.x.x-Linux-server-devel.[deb&#124;rpm]|ModelBox Server服务插件开发库。
-|开发库|modelbox-x.x.x-Linux-ascend-device-flowunit-devel.[deb&#124;rpm]|Ascend设备开发库。
-|开发库|modelbox-x.x.x-Linux-cpu-device-flowunit-devel.[deb&#124;rpm]|CPU开发包。
-|开发库|modelbox-x.x.x-Linux-cuda-device-flowunit-devel.[deb&#124;rpm]|Cuda设备开发库。
-|运行库|modelbox-x.x.x-py3-none-any.whl|python wheel包。
-|全量包|modelbox-x.x.x-Linux.tar.gz|全量安装包，包括上述所有组件。
+| 类型     | 名称                                                             | 说明                                    |
+| -------- | ---------------------------------------------------------------- | --------------------------------------- |
+| 运行库   | modelbox-x.x.x-Linux-libmodelbox.[deb&#124;rpm]                  | ModelBox核心运行库。                    |
+| 运行库   | modelbox-x.x.x-Linux-graph-graphviz.[deb&#124;rpm]               | 图解析组件。                            |
+| 服务组件 | modelbox-x.x.x-Linux-server.[deb&#124;rpm]                       | ModelBox Server服务组件。               |
+| 运行库   | modelbox-x.x.x-Linux-ascend-device-flowunit.[deb&#124;rpm]       | Ascend设备SDK以及配套基础功能单元组件。 |
+| 运行库   | modelbox-x.x.x-Linux-cpu-device-flowunit.[deb&#124;rpm]          | Cuda设备SDK以及配套基础功能单元组件。   |
+| 运行库   | modelbox-x.x.x-Linux-cuda-device-flowunit.[deb&#124;rpm]         | CPU设备SDK以及配套基础功能单元组件。    |
+| 开发库   | modelbox-x.x.x-Linux-libmodelbox-devel.[deb&#124;rpm]            | ModelBox开发库。                        |
+| 开发库   | modelbox-x.x.x-Linux-server-devel.[deb&#124;rpm]                 | ModelBox Server服务插件开发库。         |
+| 开发库   | modelbox-x.x.x-Linux-ascend-device-flowunit-devel.[deb&#124;rpm] | Ascend设备开发库。                      |
+| 开发库   | modelbox-x.x.x-Linux-cpu-device-flowunit-devel.[deb&#124;rpm]    | CPU开发包。                             |
+| 开发库   | modelbox-x.x.x-Linux-cuda-device-flowunit-devel.[deb&#124;rpm]   | Cuda设备开发库。                        |
+| 运行库   | modelbox-x.x.x-py3-none-any.whl                                  | python wheel包。                        |
+| 全量包   | modelbox-x.x.x-Linux.tar.gz                                      | 全量安装包，包括上述所有组件。          |
 
 安装包说明
 

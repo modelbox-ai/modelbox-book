@@ -35,8 +35,7 @@ ModelBox将流程图中的顶点称为功能单元(FlowUnit)。功能单元是�
 在应用构建完成后，结合ModelBox的框架才能形成完整可运行的应用。ModelBox作为应用入口，首先进行功能单元的扫描加载、应用流程图读取构建，然后接收数据处理请求，数据触发ModelBox中的执行引擎对功能单元进行调度，最终完成请求的数据处理任务。
 
 1. 更多概念  
-更详细的概念可以阅读[框架概念](../framework-conception/framework-conception.md)章节的内容。
-
+更详细的概念可以阅读[基本概念](../framework-conception/framework-conception.md)章节的内容。
 
 ## ModelBox的运行模式
 

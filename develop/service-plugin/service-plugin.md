@@ -16,23 +16,22 @@ ModelBox框架提供了预置的服务插件ModelBox Plugin，提供流程图的
 
 服务插件开发整体流程如下：
 
-![server-plugin--dev-flow alt rect_w_600](../../assets/images/figure/develop/server-plugin--dev-flow.png)
+![server-plugin--dev-flow alt rect_w_500](../../assets/images/figure/develop/server-plugin--dev-flow.png)
 
 ## 服务插件API
 
-![api-modelbox-server alt rect_w_1000](../../assets/images/figure/api/api-modelbox-server.png)
-
+![api-modelbox-server alt rect_w_900](../../assets/images/figure/api/api-modelbox-server.png)
 
 ModelBox API按照类型包含：
 
 ### Plugin: 插件创建和启停等重载接口，此接口需要由用户实现
 
-|接口|接口功能|说明|
-|--|--|--|
-|CreatePlugin| 用户创建服务插件对象，并返回给ModelBox框架|ModelBox框架启动时加载参加时调用 |
-|Plugin::Init| 用户实现服务插件初始化逻辑，提供系统配置，插件初始化时调用|ModelBox框架启动时，在CreatePlugin成功后插件初始化调用；不能存在阻塞操作|
-|Plugin::Start | 用户实现服务插件启动逻辑，插件启动时调用|插件启动时调用|
-|Plugin::Stop | 用户实现服务插件停止逻辑，插件停止时调用|ModelBox框架进程退出时插件停止时调用|
+| 接口          | 接口功能                                                   | 说明                                                                     |
+| ------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------ |
+| CreatePlugin  | 用户创建服务插件对象，并返回给ModelBox框架                 | ModelBox框架启动时加载参加时调用                                         |
+| Plugin::Init  | 用户实现服务插件初始化逻辑，提供系统配置，插件初始化时调用 | ModelBox框架启动时，在CreatePlugin成功后插件初始化调用；不能存在阻塞操作 |
+| Plugin::Start | 用户实现服务插件启动逻辑，插件启动时调用                   | 插件启动时调用                                                           |
+| Plugin::Stop  | 用户实现服务插件停止逻辑，插件停止时调用                   | ModelBox框架进程退出时插件停止时调用                                     |
 
 ### Job： 任务管理组件
 
@@ -47,37 +46,37 @@ ModelBox API按照类型包含：
 
 具体接口如下表：
 
-|接口|接口功能|说明|
-|--|--|--|
-|JobManager::CreateJob| 创建Job | |
-|JobManager::DeleteJob| 删除Job | |
-|JobManager::GetJob | 获取某个Job对象| |
-|JobManager::GetJobList |获取全部Job对象列表| |
-|JobManager::QueryJobStatus |查询某个Job状态| |
-|JobManager::GetJobErrorMsg |获取某个异常Job的错误信息| |
-|Job::Init| 初始化Job对象| |
-|Job::Build| Job对象资源申请| |
-|Job::Run| 运行Job对象| |
-|Job::Stop| 停止Job对象| |
-|Job::GetJobStatus| 获取某个Job状态| |
-|Job::CreateTaskManger| 创建TaskManger| |
-|TaskManager::Start|启动TaskManager| |
-|TaskManager::Stop|停止TaskManager| |
-|TaskManager::CreateTask|创建Task| |
-|TaskManager::DeleteTaskById|删除某个Task| |
-|TaskManager::GetTaskById|获取某个Task对象| |
-|TaskManager::GetTaskCount|获取Task个数| |
-|TaskManager::GetAllTasks|获取所有Task对象| |
-|TaskManager::SetTaskNumLimit|设置同时并发的Task最大个数|超过设置最大个数时，ModelBox内部会排队处理|
-|Task::Start|启动Task| |
-|Task::Stop|停止Task| |
-|Task::GetUUID|获取Task id| |
-|Task::CreateBufferList|创建输入的buffer数据对象| |
-|Task::GetLastError|获取Task错误信息| |
-|Task::GetTaskStatus|获取Task状态| |
-|Task::GetSessionConfig|获取Session配置对象|获取配置对象后可以通过设置自定义参数，传递给需要的功能单元读取|
-|OneShotTask::FillData|发送数据指流程图| |
-|OneShotTask::RegisterStatusCallback|注册任务状态回调函数,任务结束或异常时会调用|||
+| 接口                                | 接口功能                                    | 说明                                                           |
+| ----------------------------------- | ------------------------------------------- | -------------------------------------------------------------- |
+| JobManager::CreateJob               | 创建Job                                     |                                                                |
+| JobManager::DeleteJob               | 删除Job                                     |                                                                |
+| JobManager::GetJob                  | 获取某个Job对象                             |                                                                |
+| JobManager::GetJobList              | 获取全部Job对象列表                         |                                                                |
+| JobManager::QueryJobStatus          | 查询某个Job状态                             |                                                                |
+| JobManager::GetJobErrorMsg          | 获取某个异常Job的错误信息                   |                                                                |
+| Job::Init                           | 初始化Job对象                               |                                                                |
+| Job::Build                          | Job对象资源申请                             |                                                                |
+| Job::Run                            | 运行Job对象                                 |                                                                |
+| Job::Stop                           | 停止Job对象                                 |                                                                |
+| Job::GetJobStatus                   | 获取某个Job状态                             |                                                                |
+| Job::CreateTaskManger               | 创建TaskManger                              |                                                                |
+| TaskManager::Start                  | 启动TaskManager                             |                                                                |
+| TaskManager::Stop                   | 停止TaskManager                             |                                                                |
+| TaskManager::CreateTask             | 创建Task                                    |                                                                |
+| TaskManager::DeleteTaskById         | 删除某个Task                                |                                                                |
+| TaskManager::GetTaskById            | 获取某个Task对象                            |                                                                |
+| TaskManager::GetTaskCount           | 获取Task个数                                |                                                                |
+| TaskManager::GetAllTasks            | 获取所有Task对象                            |                                                                |
+| TaskManager::SetTaskNumLimit        | 设置同时并发的Task最大个数                  | 超过设置最大个数时，ModelBox内部会排队处理                     |
+| Task::Start                         | 启动Task                                    |                                                                |
+| Task::Stop                          | 停止Task                                    |                                                                |
+| Task::GetUUID                       | 获取Task id                                 |                                                                |
+| Task::CreateBufferList              | 创建输入的buffer数据对象                    |                                                                |
+| Task::GetLastError                  | 获取Task错误信息                            |                                                                |
+| Task::GetTaskStatus                 | 获取Task状态                                |                                                                |
+| Task::GetSessionConfig              | 获取Session配置对象                         | 获取配置对象后可以通过设置自定义参数，传递给需要的功能单元读取 |
+| OneShotTask::FillData               | 发送数据指流程图                            |                                                                |
+| OneShotTask::RegisterStatusCallback | 注册任务状态回调函数,任务结束或异常时会调用 |                                                                |  |
 
 ### Config： 配置对象
 
@@ -92,13 +91,18 @@ Listener监听组件可以注册http服务，监听相关的URI
 定时器组件可以用于启动定时任务
 
 ## 开发例子
+
 ### 准备工作
+
 插件开发前，请确保：
+
 1. ModelBox Server正确安装并运行。
 1. ModelBox Server Develop安装包正确安装。
 
 ### 创建服务插件模板
+
 开发者可以通过modelbox-tool命名进行服务插件模板工程的创建，创建命令如下：
+
 ```shell
 modelbox-tool create -t service-plugin -n PluginName -d ./
 ```
@@ -135,7 +139,9 @@ std::shared_ptr<Plugin> CreatePlugin() {
 };
 }
 ```
-Modelbox加载服务插件流程如下：
+
+ModelBox加载服务插件流程如下：
+
 1. ModelBox Server先调用插件中的`CreatePlugin`函数创建插件对象。
 
     插件需要在此函数中，创建插件对象，返回智能指针。

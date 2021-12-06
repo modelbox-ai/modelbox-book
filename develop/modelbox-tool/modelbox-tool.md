@@ -4,22 +4,24 @@ ModelBox Tool是ModelBox套件集成的一个开发、维护工具，提供了�
 
 在功能上，ModelBox Tool包含了如下功能
 
-| 功能   | 功能说明                             |
-| ------ | ------------------------------------ |
-| help | 显示帮助信息               |
-| driver | 查看Driver列表及其功能               |
-| flow   | 快速运行一个流程，快速验证           |
-| create | 创建模板               |
-| key    | 密码加解密，模型加解密               |
-| server | 查看Log，Stack，Slab和Statistics信息 |
-| develop | 切换开发模式 |
+| 功能    | 功能说明                             |
+| ------- | ------------------------------------ |
+| help    | 显示帮助信息                         |
+| driver  | 查看Driver列表及其功能               |
+| flow    | 快速运行一个流程，快速验证           |
+| create  | 创建模板                             |
+| key     | 密码加解密，模型加解密               |
+| server  | 查看Log，Stack，Slab和Statistics信息 |
+| develop | 切换开发模式                         |
 
 ModelBox为标准的命令行工具，可以使用`modelbox-tool -h`查看详细的帮助说明。
 
 ## help功能
+
 用于显示Modelbox各命令组帮助信息
 
 * 查询各命令组帮助信息
+  
     ```shell
     modelbox-tool help driver
     modelbox-tool help flow
@@ -34,9 +36,11 @@ ModelBox为标准的命令行工具，可以使用`modelbox-tool -h`查看详细
 用于查询ModelBox Driver相关的信息。
 
 此命令组为`modelbox-tool driver`，格式如下：
+
 ```shell
 modelbox-tool driver [-type flowunit] [-path dir1,dir2] [-details [-name name]] [-conf path/to/graph.conf]
 ```
+
 -path为添加扫描路径，不携带时默认扫描系统目录，携带时，扫描系统目录和新增目录。
 
 -name 为过滤参数，不携带时默认列出所有扫描到的结果，可以输入功能单元名称进行过滤，也可以输入cpu/cuda/ascend进行设备类型过滤。
@@ -71,6 +75,7 @@ modelbox-tool driver [-type flowunit] [-path dir1,dir2] [-details [-name name]] 
     ```
 
 * 查询单个flowunit的详细信息
+
      ```shell
      modelbox-tool driver -info -type flowunit -details -name [FlowunitName] -path [path/to/]
     ```
@@ -80,11 +85,13 @@ modelbox-tool driver [-type flowunit] [-path dir1,dir2] [-details [-name name]] 
 如需要查询具体功能单元的功能说明，输入，输出名称和选项设置，可以用ModelBox Tool查询详细参数。
 
 常用命令如下：
+
 * 查询当前系统中driver的详细信息：
 
     ```shell
     modelbox-tool driver -info -details -name [name] 
     ```
+
 * 查询当前系统中所有功能单元的详细信息：
 
     ```shell
@@ -116,34 +123,43 @@ modelbox-tool driver [-type flowunit] [-path dir1,dir2] [-details [-name name]] 
 工具执行后的运行日志，存储在`/var/log/modelbox/modelbox-tool.log`中。如果需要修改日志级别，或将日志输出到屏幕上，可参考后续章节的内容。
 
 ## Create功能
+
 创建代码模板，用于开发准备。可以使用`modelbox-tool create`命令组,格式如下：
+
 ```shell
 modelbox-tool create [-t typename] [-n name]] [-d dir]
 ```
 
 * 创建算法工程模板
+
     ```shell
     modelbox-tool create -t project -n [name] -d [path/to/]
     ```
 
 * 创建c++功能单元模板
+
     ```shell
     modelbox-tool create -t c++ -n [name] -d [path/to/src/flowunit]
     ```
 
 * 创建python功能单元模板
+
     ```shell
     modelbox-tool create -t python -n [name] -d [path/to/src/flowunit]
     ```
 
 * 创建推理功能单元模板
+  
     ```shell
     modelbox-tool create -t infer -n [name] -d [path/to/src/flowunit
     ```
+
 * 创建服务插件模板
+
     ```shell
     modelbox-tool create -t service-plugin -n [name] -d [path/to/src/service-plugin]
     ```
+
 通常情况下，先创建工程模板，再在工程对应目录创建功能单元或者服务插件。
 
 ## Key功能
@@ -217,6 +233,7 @@ server功能需要进行配置
 
 动态设置日志级别
 此命令组为`modelbox-tool server log`, 命令格式如下：
+
 ```shell
 modelbox-tool server log --setlevel [level]
 modelbox-tool server log --getlevel
@@ -231,14 +248,17 @@ modelbox-tool server log --getlevel
 
 查看内存碎片
 此命令组为`modelbox-tool server slab`, 命令格式如下：
+
 ```shell
 modelbox-tool server slab 
 modelbox-tool server slab --device --type [cuda/cpu] --id [id]
 ```
+
 ### Statistics
 
 查看统计信息
 此命令组为`modelbox-tool server stat`, 命令格式如下：
+
 ```shell
 modelbox-tool server stat --all 
 modelbox-tool server stat --node [name]
@@ -260,10 +280,11 @@ modelbox tool main options:
 ```shell
 modelbox-tool -verbose [-log-level DEBUG] [-log-path filepath] flow -run [/path/to/graph.toml]
 ```
+
 具体参数说明如下：
 
 | 参数       | 功能说明                                                    |
 | ---------- | ----------------------------------------------------------- |
 | -verbose   | 是否将日志输出到屏幕                                        |
 | -log-level | 输出日志级别，可以为debug, info, notice, warn, error, fatal |
-| -log-path  | 输出日志文件，默认为`/var/log/modelbox/modelbox-tool.log`       |
+| -log-path  | 输出日志文件，默认为`/var/log/modelbox/modelbox-tool.log`   |

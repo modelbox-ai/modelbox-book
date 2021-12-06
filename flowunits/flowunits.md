@@ -4,52 +4,57 @@ ModelBox预置了多个通用功能单元，可用于完成AI推理算法的基�
 
 按业务类型分类，ModelBox主要预置FlowUnit如下表所示。
 
-|业务分类|功能单元名称|功能简介
-|--|--|--|
-|输入类|[data_source_parse](#data_source_parse功能单元)|解析外部到算法流水线的输入
-|输入类|[video_input](#video_input功能单元)|获取视频输入地址
-|输出类|[output_broker](#output_broker功能单元)|将算法处理结果输出到外部
-|网络收发类|[httpserver_async](#httpserver_async功能单元)|收发http异步请求
-|网络收发类|[httpserver_sync_receive](#httpserver_sync功能单元)|接受http同步请求
-|网络收发类|[httpserver_sync_reply](#httpserver_sync功能单元)|回复http同步请求
-|视频类|[video_decoder](#videodecoder功能单元)|视频解码
-|视频类|[video_demuxer](#videodemuxer功能单元)|视频解封装
-|视频类|[video_encoder](#videoencoder功能单元)|视频编码
-|图像类|[color_convert](#color_transpose功能单元)|对图片进行颜色通道转换
-|图像类|[crop](#crop功能单元)|对图片进行裁剪
-|图像类|[draw_bbox](#draw_bbox功能单元)|在图像上画框
-|图像类|[image_decoder](#image_decoder功能单元)|图像解码
-|图像类|[mean](#mean功能单元)|图像减均值
-|图像类|[normalize](#normalize功能单元)|图像标准化
-|图像类|[padding](#padding功能单元)|图像填充
-|图像类|[resize](#resize功能单元)|图像尺寸调整
-|图像类|[image_preprocess](#resize功能单元)|图像尺寸调整
-|推理类|[inference](#inference功能单元)|模型推理功能单元
-|后处理类|[yolov3_postprocess](#common_yolobox功能单元)|从yolov3模型中获取检测目标的信息
-|buffer处理类|[buff_meta_mapping](#meta_mapping功能单元)|做元数据映射
+| 业务分类     | 功能单元名称                                        | 功能简介                         |
+| ------------ | --------------------------------------------------- | -------------------------------- |
+| 输入类       | [data_source_parse](#data_source_parse功能单元)     | 解析外部到算法流水线的输入       |
+| 输入类       | [video_input](#video_input功能单元)                 | 获取视频输入地址                 |
+| 输出类       | [output_broker](#output_broker功能单元)             | 将算法处理结果输出到外部         |
+| 网络收发类   | [httpserver_async](#httpserver_async功能单元)       | 收发http异步请求                 |
+| 网络收发类   | [httpserver_sync_receive](#httpserver_sync功能单元) | 接受http同步请求                 |
+| 网络收发类   | [httpserver_sync_reply](#httpserver_sync功能单元)   | 回复http同步请求                 |
+| 视频类       | [video_decoder](#videodecoder功能单元)              | 视频解码                         |
+| 视频类       | [video_demuxer](#videodemuxer功能单元)              | 视频解封装                       |
+| 视频类       | [video_encoder](#videoencoder功能单元)              | 视频编码                         |
+| 图像类       | [color_convert](#color_transpose功能单元)           | 对图片进行颜色通道转换           |
+| 图像类       | [crop](#crop功能单元)                               | 对图片进行裁剪                   |
+| 图像类       | [draw_bbox](#draw_bbox功能单元)                     | 在图像上画框                     |
+| 图像类       | [image_decoder](#image_decoder功能单元)             | 图像解码                         |
+| 图像类       | [mean](#mean功能单元)                               | 图像减均值                       |
+| 图像类       | [normalize](#normalize功能单元)                     | 图像标准化                       |
+| 图像类       | [padding](#padding功能单元)                         | 图像填充                         |
+| 图像类       | [resize](#resize功能单元)                           | 图像尺寸调整                     |
+| 图像类       | [image_preprocess](#resize功能单元)                 | 图像尺寸调整                     |
+| 推理类       | [inference](#inference功能单元)                     | 模型推理功能单元                 |
+| 后处理类     | [yolov3_postprocess](#common_yolobox功能单元)       | 从yolov3模型中获取检测目标的信息 |
+| buffer处理类 | [buff_meta_mapping](#meta_mapping功能单元)          | 做元数据映射                     |
 
-开发者可以通过Modelbox Tool命令查询各个功能单元的详细信息，包括功能介绍、CPU/GPU类型、输入要求、输出信息、配置项、约束等。命令如下：
+开发者可以通过ModelBox Tool命令查询各个功能单元的详细信息，包括功能介绍、CPU/GPU类型、输入要求、输出信息、配置项、约束等。命令如下：
 查询当前系统目录下所有可以加载的功能单元列表：
+
 ```shell
 modelbox-tool driver -info -type flowunit
 ```
 
 查询单个功能单元详细信息：
+
 ```shell
 modelbox-tool driver -info -type flowunit -detail -name xxx
 ```
 
 查询当前系统目录和用户自定义路径下所有可以加载的功能单元列表：
+
 ```shell
 modelbox-tool driver -info -type flowunit -path xxx
 ```
 
 命令帮助信息：
+
 ```shell
 modelbox-tool driver
 ```
 
 以resize功能单元为例，查询详细结果字段含义如下：
+
 ```shell
 [root@996a6346d170 modelbox]$ modelbox-tool driver -info -type flowunit -detail -name resize
 --------------------------------------

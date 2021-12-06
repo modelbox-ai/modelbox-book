@@ -64,7 +64,7 @@
     modelbox-tool develop -e 
     ```
 
-如果需要通过可视化UI进行图的编排，可参考[运行编排服务](../server/editor.md)章节访问`http://[host]:[EDITOR_MAP_PORT]/editor/`地址，如果访问被拒绝，可参考[运行编排服务](../server/editor.md)中的[访问控制列表](../server/editor.md#访问控制列表)相关内容
+如果需要通过可视化UI进行图的编排，可参考[可视化编排服务](../server/editor.md)章节访问`http://[host]:[EDITOR_MAP_PORT]/editor/`地址，如果访问被拒绝，可参考[可视化编排服务](../server/editor.md)中的[访问控制列表](../server/editor.md#访问控制列表)相关内容
 
 ## 第一个应用开发
 
@@ -104,8 +104,8 @@ with open(img_path, 'rb') as fp:
 ```
 
 ### 模型准备
-AI应用开发前需要准备好匹配当前modelbox版本支持的推理框架和版本的模型文件，这里默认已经准备好了tensorflow1.13版本的minist pb模型文件，路径如下：`/opt/modelbox/solution/model/mnist_model.pb`
 
+AI应用开发前需要准备好匹配当前modelbox版本支持的推理框架和版本的模型文件，这里默认已经准备好了tensorflow1.13版本的minist pb模型文件，路径如下：`/opt/modelbox/solution/model/mnist_model.pb`
 
 ### 流程图开发
 

@@ -17,6 +17,7 @@ ModelBox内置了主流的推理引擎，如TensorFlow，TensorRT，Pytorch，As
 ModelBox框架在初始化时，会扫描[some-flowunit]目录中的toml后缀的文件，并读取相关的推理功能单元信息。\[infer-plugin\].so是推理所需插件，推理功能单元支持加载自定义插件，开发者可以实现tensorRT 自定义算子。
 
 开发着可以通过modelbox-tool命令进行推理功能单元模板创建：
+
 ```shell
    modelbox-tool create -t infer -n FlowUnitName -d ./ProjectName/src/flowunit 
 ```
@@ -58,8 +59,6 @@ type = "datatype" # 输出端口数据类型, 取值float or uint8
 
 编写完成toml文件后，将对应的路径加入ModelBox的图配置中的搜索路径即可使用开发后的推理功能单元。
 
-
-
 ## 模型加解密
 
 模型加密分为2个部分：模型加密工具和模型解密插件。
@@ -75,5 +74,5 @@ ModelBox目前默认自带了模型加密功能，但为了确保模型安全，
 
 **注意事项1：**
 
-1. `encryption.rootkey`和 `encryption.passwd`为加密后的模型解密密钥，但模型加密使用的是对称算法，模型仍然存在被破解的可能性，比如反汇编跟踪调试解密代码。。
+1. `encryption.rootkey`和 `encryption.passwd`为加密后的模型解密密钥，但模型加密使用的是对称算法，模型仍然存在被破解的可能性，比如反汇编跟踪调试解密代码。
 1. 为保证模型不被非法获取，开发者需要对运行的系统环境进行加固，比如设置bootloader锁，设置OS分区签名校验，移除调试跟踪工具，若是容器的，关闭容器的ptrace功能。
