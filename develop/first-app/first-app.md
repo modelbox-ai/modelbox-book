@@ -7,7 +7,7 @@
 1. 安装启动docker后，执行下列命令下载docker镜像
 
     ```shell
-    docker pull modelbox/modelbox_cuda101_develop:latest
+    docker pull modelbox/modelbox-develop-tensorflow_2.6.0-cuda_11.2-openeuler-x86_64
     ```
 
     如需要下载其他cuda版本的镜像，可参考[FAQ](../faq/faq.md)中的[其他版本的cuda](../faq/faq.md#其他版本的cuda)相关内容

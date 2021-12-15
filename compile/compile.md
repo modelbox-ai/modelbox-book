@@ -25,16 +25,12 @@ ModelBox框架采用C++语言编写，工程编译软件是CMake，在编译Mode
 
 ModelBox项目提供了docker镜像，里面包含了ModelBox编译运行所需的组件及预先安装的ModelBox，可以优先选择docker镜像进行应用的开发编译。
 
-1. 安装启动docker后，执行下列命令下载内置了cuda10.1版本的docker镜像：
+可于`https://registry.hub.docker.com/u/modelbox`自行下载所需镜像。
+
+1. 安装启动docker后，以内置了tensorflow2.6.0和cuda11.2的镜像版本为例，执行下列命令下载对应的docker镜像：
 
     ```shell
-    docker pull modelbox/modelbox_cuda101_develop:latest
-    ```
-
-    如果想要下载cuda10.2版本的镜像，可以选择使用以下命令
-
-    ```shell
-    docker pull modelbox/modelbox_cuda102_develop:latest
+    docker pull modelbox/modelbox-develop-tensorflow_2.6.0-cuda_11.2-openeuler-x86_64
     ```
 
 1. 下载镜像之后，执行下列命令启动镜像
@@ -60,7 +56,7 @@ ModelBox项目提供了docker镜像，里面包含了ModelBox编译运行所需�
     如果需要在容器中进行gdb调试，需要在启动容器时添加如下选项：
 
     ```shell
-    --​privileged
+    --privileged
     ```
 
     如果需要通过ssh连接至容器，需要在启动容器时添加如下选项：
@@ -120,13 +116,13 @@ ModelBox项目提供了docker镜像，里面包含了ModelBox编译运行所需�
 
     * 在编译过程中，还需要下载第三方依赖，请保持网络能正常连接第三方服务器。  
     * 如需编译release版本，可以执行如下cmake命令
-  
+    
     ```shell
     cmake -DCMAKE_BUILD_TYPE=Release ..
     ```
   
     * 如需进行断点调试，则应编译debug版本，可以执行如下cmake命令
-  
+    
     ```shell
     cmake -DCMAKE_BUILD_TYPE=Debug ..
     ```
