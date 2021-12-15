@@ -57,7 +57,7 @@ ModelBox本身为C++代码编写，开发者可以通过如下方式调试ModelB
   如果想要下载其他cuda版本的镜像，可以选择使用以下命令。比如cuda10.1版本镜像，就是`modelbox_cuda101_develop`。其他版本均可以此类推。
 
   ```shell
-  docker pull modelbox/modelbox_cuda101_develop:latest
+  docker pull modelbox/modelbox-develop-tensorflow_2.6.0-cuda_11.2-openeuler-x86_64
   ```
 
   docker启动脚本中，请注意启动的镜像版本是否与自己所需的镜像版本一致。
