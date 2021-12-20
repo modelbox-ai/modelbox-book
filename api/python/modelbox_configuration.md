@@ -22,6 +22,7 @@ meta的value值
 ## modelbox.Configuration.get
 
 **api:**  
+
 | 函数名 | 功能 |
 |-|-|
 | get_string | 获取字符串值 |
