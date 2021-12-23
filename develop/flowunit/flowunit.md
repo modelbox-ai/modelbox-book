@@ -167,6 +167,12 @@ DataContext是提供给当前功能单元处理数据时的临时获取BufferLis
 
 通过DataContext->Input接口获取输入端口BufferList，通过DataContext->Output接口获取输出端口BufferList对象,通过DataContext->SetPrivate接口设置临时对象，DataContext->GetPrivate接口获取临时对象。
 
+## 功能单元处理异常
+
+开发者在运行流程图和开发流程图的过程当中，需要针对功能单元的情况返回异常，并且能够可以在其他业务功能单元中捕获当前异常进行自定义处理，modelbox即可提供该场景下异常捕获处理的能力。
+
+具体可以参考[指导](exception.md)
+
 ## 多种语言开发功能单元
 
 功能单元的开发可以使用多种语言，开发者可以选择使用合适的语言进行开发，也可以多种方式混合。
