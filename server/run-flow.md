@@ -14,7 +14,7 @@ ModelBox Plugin插件用于对外提供服务，管理并运行流程图。此�
 
 * ModelBox Plugin功能说明：
 
-![plugin-feature alt rect_w_1280](C:\Users\Administrator\Desktop\modelbox-book\assets\images\figure\server\plugin-feature.png)
+![plugin-feature alt rect_w_1280](../assets/images/figure/server/plugin-feature.png)
 
 ModelBox Plugin主要提供两个功能。
 
