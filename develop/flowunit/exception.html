@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>异常捕获 · ModelBox User Refference</title>
+        <title>异常处理 · ModelBox User Refference</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -81,10 +81,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="profiling.html" />
+    <link rel="next" href="../service-plugin/service-plugin.html" />
     
     
-    <link rel="prev" href="log.html" />
+    <link rel="prev" href="c++.html" />
     
 
     </head>
@@ -250,9 +250,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.3" data-path="../flowunit/flowunit.html">
+        <li class="chapter " data-level="1.5.3" data-path="flowunit.html">
             
-                <a href="../flowunit/flowunit.html">
+                <a href="flowunit.html">
             
                     
                     功能单元开发
@@ -264,9 +264,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.5.3.1" data-path="../flowunit/inference.html">
+        <li class="chapter " data-level="1.5.3.1" data-path="inference.html">
             
-                <a href="../flowunit/inference.html">
+                <a href="inference.html">
             
                     
                     推理
@@ -277,9 +277,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.3.2" data-path="../flowunit/python.html">
+        <li class="chapter " data-level="1.5.3.2" data-path="python.html">
             
-                <a href="../flowunit/python.html">
+                <a href="python.html">
             
                     
                     Python
@@ -290,12 +290,25 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.3.3" data-path="../flowunit/c++.html">
+        <li class="chapter " data-level="1.5.3.3" data-path="c++.html">
             
-                <a href="../flowunit/c++.html">
+                <a href="c++.html">
             
                     
                     C++
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5.3.4" data-path="exception.html">
+            
+                <a href="exception.html">
+            
+                    
+                    异常处理
             
                 </a>
             
@@ -379,9 +392,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.7" data-path="debug.html">
+        <li class="chapter " data-level="1.5.7" data-path="../debug/debug.html">
             
-                <a href="debug.html">
+                <a href="../debug/debug.html">
             
                     
                     调试定位
@@ -393,9 +406,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.5.7.1" data-path="code-debug.html">
+        <li class="chapter " data-level="1.5.7.1" data-path="../debug/code-debug.html">
             
-                <a href="code-debug.html">
+                <a href="../debug/code-debug.html">
             
                     
                     代码调试
@@ -406,25 +419,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.7.2" data-path="log.html">
+        <li class="chapter " data-level="1.5.7.2" data-path="../debug/log.html">
             
-                <a href="log.html">
+                <a href="../debug/log.html">
             
                     
                     日志
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter active" data-level="1.5.7.3" data-path="exception.html">
-            
-                <a href="exception.html">
-            
-                    
-                    异常捕获
             
                 </a>
             
@@ -437,9 +437,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.8" data-path="profiling.html">
+        <li class="chapter " data-level="1.5.8" data-path="../debug/profiling.html">
             
-                <a href="profiling.html">
+                <a href="../debug/profiling.html">
             
                     
                     性能优化
@@ -944,7 +944,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >异常捕获</a>
+        <a href="../.." >异常处理</a>
     </h1>
 </div>
 
@@ -1007,7 +1007,7 @@
 <li>&#x4E0D;&#x8981;&#x5728;if-else&#x3001;loop&#x5F53;&#x4E2D;&#x4EE5;&#x53CA;&#x62C6;&#x5206;&#x5408;&#x5E76;&#x7684;flowunit&#x4E2D;&#x6355;&#x83B7;&#x5F02;&#x5E38;</li>
 </ul>
 <footer class="page-footer"><span class="copyright">&#xA9; &#x534E;&#x4E3A;&#x6280;&#x672F;&#x6709;&#x9650;&#x516C;&#x53F8; all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2021-12-22 09:33:55
+2021-12-25 03:30:39
 </span></footer>
                                 
                                 </section>
@@ -1041,7 +1041,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"异常捕获","level":"1.5.7.3","depth":3,"next":{"title":"性能优化","level":"1.5.8","depth":2,"path":"develop/debug/profiling.md","ref":"develop/debug/profiling.md","articles":[]},"previous":{"title":"日志","level":"1.5.7.2","depth":3,"path":"develop/debug/log.md","ref":"develop/debug/log.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy; 华为技术有限公司","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导书"},"file":{"path":"develop/debug/exception.md","mtime":"2021-12-22T09:33:55.353Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-12-22T09:34:53.591Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"异常处理","level":"1.5.3.4","depth":3,"next":{"title":"服务插件开发","level":"1.5.4","depth":2,"path":"develop/service-plugin/service-plugin.md","ref":"develop/service-plugin/service-plugin.md","articles":[]},"previous":{"title":"C++","level":"1.5.3.3","depth":3,"path":"develop/flowunit/c++.md","ref":"develop/flowunit/c++.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy; 华为技术有限公司","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导书"},"file":{"path":"develop/flowunit/exception.md","mtime":"2021-12-25T03:30:39.932Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-12-25T03:31:31.741Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
