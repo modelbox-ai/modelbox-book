@@ -30,7 +30,7 @@ ModelBox为更好的支撑应用流程，抽象了许多概念，理解这些概
 
 ## Flowunit
 
-driver是功能的抽象，那么flowunit就是功能的具体实现。当扫描完所有的driver之后，ModelBox会读取toml文件中的配置，通过flowunit_name以及配置创建driver抽象的实例，这个实例就称之为flowunit。根据不同的配置及配置参数，实现了不同的功能。当然除了创建实例的基本功能之外，还增加了一些例如内存管理、端口管理、设备管理等功能，详情请前往[flowunit](../flowunits/flowunits.md)和[device](../device/device.md)的页面查看。
+driver是功能的抽象，那么flowunit就是功能的具体实现。当扫描完所有的driver之后，ModelBox会读取toml文件中的配置，通过flowunit_name以及配置创建driver抽象的实例，这个实例就称之为flowunit。根据不同的配置及配置参数，实现了不同的功能。当然除了创建实例的基本功能之外，还增加了一些例如内存管理、端口管理、设备管理等功能，详情请前往[flowunit](../flowunits/flowunits.md)和[device](../develop/device/device.md)的页面查看。
 
 ### Stream
 

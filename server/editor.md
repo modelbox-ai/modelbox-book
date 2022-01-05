@@ -4,7 +4,7 @@ ModelBox提供了在线可视化编排的工具——Editor，在开发时，可
 
 ## 编排服务是什么
 
-编排服务是用来在Editor可视化界面上，编排[流程图](./develop/flow/flow.md)并自动生成相对应的[图](./framework-conception/graph.md)代码的快速开发工具。
+编排服务是用来在Editor可视化界面上，编排[流程图](../develop/flow/flow.md)并自动生成相对应的[图](../framework-conception/graph.md)代码的快速开发工具。
 
 ## 编排服务开发使用流程
 

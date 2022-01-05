@@ -6,7 +6,7 @@
 
 ## C++的API接口
 
-flow的运行流程可参考[flow章节](server/run-flow.md)。
+flow的运行流程可参考[flow章节](../../server/run-flow.md)。
 
 从flow章节中我们知晓了流程图运行的流程，在C++中有对应的函数接口用于处理对应不同的阶段。下面是C++中使用的API列表：
 
@@ -105,7 +105,7 @@ int RunFlow(const std::string &file) {
 ```
 
 * 流程执行流程
-    1. 使用flow-example.toml文件中配置的流程图初始化flow， `auto flow = std::make_shared<modelbox::Flow>()`， 如何配置流程图详见[流程图开发流程](./flow.md)
+    1. 使用flow-example.toml文件中配置的流程图初始化flow， `auto flow = std::make_shared<modelbox::Flow>()`， 如何配置流程图详见[流程图开发流程](../flow/flow.md)
     1. `flow->Init(file)` 根据配置文件初始化flow对象。
     1. `flow->Build()` 开始构建flow对象
     1. `flow->RunAsync()` 开始异步运行flow

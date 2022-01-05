@@ -163,7 +163,7 @@ digraph G {
         ```
 
         上述配置表示，点的名称为`node`，类型为`flowunit`，其执行实体为`httpserver`。
-        支持的Flowunit可以使用[modelbox-tool](../develop/modelbox-tool/modelbox-tool.md)工具查询。
+        支持的Flowunit可以使用[modelbox-tool](../../develop/modelbox-tool/modelbox-tool.md)工具查询。
 
     - `input`：表示此点的类型为输入端口，为整个图的配置，表示图的数据输入端口。
 

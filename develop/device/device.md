@@ -4,5 +4,5 @@ ModelBox支持多种设备的编程，其中包括对Huawei Ascend，Nvidia Cuda
 
 | 设备   | 说明          | 链接                        |
 | ------ | ------------- | --------------------------- |
-| Ascend | Huawei Ascend | [链接](../device/ascend.md) |
-| Cuda   | Nvidia Cuda   | [链接](../device/cuda.md)   |
+| Ascend | Huawei Ascend | [链接](ascend.md) |
+| Cuda   | Nvidia Cuda   | [链接](cuda.md)   |

@@ -10,7 +10,7 @@
     docker pull modelbox/modelbox_cuda101_develop:latest
     ```
 
-    如需要下载其他cuda版本的镜像，可参考[FAQ](../faq/faq.md)中的[其他版本的cuda](../faq/faq.md#其他版本的cuda)相关内容
+    如需要下载其他cuda版本的镜像，可参考[FAQ](../../faq/faq.md)中的[其他版本的cuda](../../faq/faq.md#其他版本的cuda)相关内容
 
 1. 在系统中创建如下docker启动脚本，或将如下脚本按需修改后，粘贴到ssh终端中执行：
 
@@ -55,7 +55,7 @@
     * `HTTP_SERVER_PORT`: 为http flowunit默认服务端口号。
     * docker启动脚本中，请注意启动的镜像版本是否与自己所需的镜像版本一致。
     * 如果启动镜像之后，端口未被占用却仍旧无法访问，需要检查防火墙。
-    * 如有疑问，可参考[FAQ](../faq/faq.md)中的[docker](../faq/faq.md#docker启动脚本详解)相关内容
+    * 如有疑问，可参考[FAQ](../../faq/faq.md)中的[docker](../../faq/faq.md#docker启动脚本详解)相关内容
 
 1. 进入容器并且切换至ModelBox开发者模式
 
@@ -64,7 +64,7 @@
     modelbox-tool develop -e 
     ```
 
-如果需要通过可视化UI进行图的编排，可参考[可视化编排服务](../server/editor.md)章节访问`http://[host]:[EDITOR_MAP_PORT]/editor/`地址，如果访问被拒绝，可参考[运行编排服务](../server/editor.md)中的[访问控制列表](../server/editor.md#访问控制列表)相关内容
+如果需要通过可视化UI进行图的编排，可参考[可视化编排服务](../../server/editor.md)章节访问`http://[host]:[EDITOR_MAP_PORT]/editor/`地址，如果访问被拒绝，可参考[运行编排服务](../../server/editor.md)中的[访问控制列表](../../server/editor.md#访问控制列表)相关内容
 
 ## 第一个应用开发
 
@@ -109,9 +109,9 @@ AI应用开发前需要准备好匹配当前modelbox版本支持的推理框架�
 
 ### 流程图开发
 
-流程图编排是根据实际情况将现有业务逻辑拆分为N个功能单元，再将功能单元串联成一个完整的业务的过程。功能单元分为ModelBox预置功能单元和用户自定义功能单元，当预置功能单元满足不了业务场景时，需要用户进行功能单元开发。有两种方式可编排流程图，第一种是使用UI进行可视化UI编排，第二种是直接编写图文件。具体可参考[流程图开发章节](../develop/flow/flow.md#流程图开发及运行)。这里采用第二种方式。
+流程图编排是根据实际情况将现有业务逻辑拆分为N个功能单元，再将功能单元串联成一个完整的业务的过程。功能单元分为ModelBox预置功能单元和用户自定义功能单元，当预置功能单元满足不了业务场景时，需要用户进行功能单元开发。有两种方式可编排流程图，第一种是使用UI进行可视化UI编排，第二种是直接编写图文件。具体可参考[流程图开发章节](../flow/flow.md#流程图开发及运行)。这里采用第二种方式。
 
-![mnist-flowchart alt rect_w_300](../assets/images/figure/solution/mnist-flowchart.png)
+![mnist-flowchart alt rect_w_300](../../assets/images/figure/solution/mnist-flowchart.png)
 
 如上图所示，根据业务流程可以将业务划分为5个功能单元，分别为接收http请求，MNIST预处理，MNIST模型推理，MNIST响应构造，发送http响应。对应图编排文件描述如下
 
@@ -139,7 +139,7 @@ graphconf = '''digraph mnist_sample {
 
 ### 功能单元开发
 
-ModelBox提供基础预置功能单元，除此之外还需补充流程图中缺失的功能单元，具体开发可参考[功能单元开发章节](../develop/flowunit/flowunit.md#功能单元开发)。
+ModelBox提供基础预置功能单元，除此之外还需补充流程图中缺失的功能单元，具体开发可参考[功能单元开发章节](../../develop/flowunit/flowunit.md#功能单元开发)。
 
 这里接收http请求、发送http响应两个功能单元ModelBox已提供，我们只需实现MNIST的预处理，推理，响应构造三个功能单元即可。
 
