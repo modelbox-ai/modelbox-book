@@ -62,7 +62,7 @@ ModelBox项目提供了docker镜像，里面包含了ModelBox编译运行所需�
     如果需要通过ssh连接至容器，需要在启动容器时添加如下选项：
 
     ```shell
-    --p 22:[host port]
+    -p [host port]:22
     ```
 
 1. 启动镜像之后，执行下列命令进入镜像即完成ModelBox开发镜像环境准备
