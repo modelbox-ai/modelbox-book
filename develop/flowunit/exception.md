@@ -14,9 +14,9 @@
    }
 ```
 
-+ 在自定义的需要捕获的flowunit当中，需要做如下两件事：
++ 在自定义的需要捕获的flowunit当中，需要做如下三件事：
 
-1. 定义该flowunit的描述属性为ExceptionVisible(true)
+> 定义该flowunit的描述属性为ExceptionVisible(true)
 
 ```c++
    MODELBOX_FLOWUNIT(ExampleFlowUnit, desc) {
@@ -29,7 +29,7 @@
    exception_visible = true # 若为python， 则在定义python的toml配置文件当中
 ```
 
-1. 在获取flowunit的process当中获取exception error.
+> 在获取flowunit的process当中获取exception error.
 
 ```c++
    Status GetException::Process(std::shared_ptr<DataContext> data_ctx) {
@@ -48,6 +48,14 @@
            exception_desc = exception.get_description()
            print("error is: " + exception_desc)
     # exception_desc 即为 "the desc you want to catch"
+```
+
+> 在定义的流程图当中增加属性exception可见
+
+```toml
+   ...
+   get_exception[..., is_exception_visible=true]
+   ...
 ```
 
 ## 异常使用注意事项
