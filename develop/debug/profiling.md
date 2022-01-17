@@ -1,10 +1,10 @@
 # 性能统计
 
-ModelBox提供了统计流单元，以及运行任务的时间统计功能，开发者或维护人员可以开启性能统计功能，对流单元或运行状态进行调试和维护。
+ModelBox提供了统计功能单元，以及运行任务的时间统计功能，开发者或维护人员可以开启性能统计功能，对功能单元或运行状态进行调试和维护。
 
 ## 性能统计操作流程
 
-![perf](../../assets/images/figure/develop/debug/perf.png)
+![perf alt rect_w_600](../../assets/images/figure/develop/debug/perf.png)
 
 * 配置流程图。
 * 配置文件中指定启动profiling。
@@ -34,6 +34,6 @@ dir="/tmp/modelbox/perf" # 设置跟踪文件路径
 1. 打开chrome浏览器。
 1. 浏览器中输入`chrome://tracing/`。
 1. 点击界面中的`Load`按钮，加载trace的json文件。
-1. 加载成功后，将看到类似下面的timeline视图。
+1. 加载成功后，将看到类似下面的timeline视图。视图提供了选择统计、平移、缩放、时间间隔等基本功能可用于分析性能瓶颈
 
 ![timeline](../../assets/images/figure/develop/debug/perf-timeline.png)

@@ -2,27 +2,9 @@
 
 流程图(Graph)是应用的逻辑表述，ModelBox将根据流程图构建应用的处理逻辑。
 
-因此在应用开发中，流程图的开发是首要进行的。流程图开发完毕后，才能明确需要开发的流单元。
+因此在应用开发中，流程图的开发是首要进行的。流程图开发完毕后，才能明确需要开发的功能单元。
 
 ## 流程图开发模型
-
-### 流程图的开发的四个相关概念
-
-- driver:  
-  
-  流单元的实现单元。实现的具体的流单元是作为driver加载在ModelBox中的。ModelBox服务在启动的时候，会加载指定目录下的所有的流单元，作为driver库并管理。
-
-- flowunit:
-  
-  driver是功能的抽象，那么flowunit就是功能的具体实现。当扫描完所有的driver之后，ModelBox会读取toml文件中的配置，通过flowunit_name以及配置创建driver抽象的实例，这个实例就称之为flowunit。根据不同的配置及配置参数，实现了不同的功能。当然除了创建实例的基本功能之外，还增加了一些例如内存管理、端口管理、设备管理等功能，详情请前往[flowunit](../flowunits/flowunits.md)和[device](../device/device.md)的页面查看。
-
-- node:  
-  
-  node是数据流中的节点。node作为实际的数据处理单元，集成了flowunit、device管理、内存管理、端口管理等功能。 
-
-- flow:
-  
-  一个图构建完成后就是一个flow， 一个flow由多个node相连接构成。
 
 ### 流程图的开发的四个步骤
 
@@ -31,7 +13,7 @@ graph LR
 A(图的创建) --> B(图的加载) --> C(图的构建)  --> D(图的运行)
 ```
 
-- 图的创建： 也叫图的定义，是开发者根据实际的业务需求，按照流程图的开发规范创建的流程图。流程图中标识了流单元的名称、配置以及数据流向。
+- 图的创建： 也叫图的定义，是开发者根据实际的业务需求，按照流程图的开发规范创建的流程图。流程图中标识了功能单元的名称、配置以及数据流向。
 
 - 图的加载： 用户通过调用ModelBox的函数将图文件或者存储图的内存块加载到ModelBox中， ModelBox会根据配置解析出代码可识别的模型，如果图的配置有问题也会在此时发现并通过返回值获取。此时ModelBox会根据配置中的flowunit以及device去查询当前已加载的驱动库是否有匹配的driver，只有当所有的driver都能正确查询到时，才能正确加载图。
 
@@ -49,7 +31,7 @@ A(图的创建) --> B(图的加载) --> C(图的构建)  --> D(图的运行)
 [log]
 level="DEBUG"
 [driver]
-dir="/usr/local/lib"
+dir=["dir1","dir2"]
 skip-default=false
 [graph]
 graphconf = '''digraph demo {
@@ -66,8 +48,8 @@ format = "graphviz"
 配置文件项目说明：
 
 1. \[driver\]：用于说明驱动加载路径。
-   - `dir`: 指定流单元等驱动加载路径，可以指定多个，逗号分隔。
-   - `skip-default`：是否跳过默认的`/usr/local/lib`路径。
+   - `dir`: 指定功能单元等驱动加载路径，可以指定多个路径，通过[] 和 ，分隔。
+   - `skip-default`：true表示只扫描dir路径，false表示扫描系统目录和dir路径。
 1. \[graph\]：用于指定图的内容。
    - `format`指定流程图的格式，目前仅支持graphviz。
    - `graphconf`为内联graphviz流程图。
@@ -86,16 +68,16 @@ ModelBox默认情况，采用Graphviz DOT语法表达图，关于DOT语法，可
 - 当有请求时，调用PROCESS功能处理数据
 - 数据处理完成后，再将结果回应到客户端
 
-![graphviz](../../assets/images/figure/framework-conception/graphviz.png)
+![graphviz alt rect_w_280](../../assets/images/figure/framework-conception/graphviz.png)
 
-1. Graphviz的表达：
+Graphviz的表达：
 
 ```toml
 digraph G {
     node[shape=Mrecord]
 
     // 定义点属性
-    HTTP_REQUEST[flowunit=http, listen="0.0.0.0:80", label="{% raw %}{HTTP REQUEST|{OUT}}{% endraw %}"]
+    HTTP_REQUEST[flowunit=http, listen="127.0.0.1:8080", label="{% raw %}{HTTP REQUEST|{OUT}}{% endraw %}"]
     PROCESS[flowunit=json, label="{% raw %}{{IN}|PROCESS|{OUT}}{% endraw %}"]
     HTTP_RESPONSE[flowunit=http, label="{% raw %}{{IN}|HTTP RESPONSE}{% endraw %}"]
 
@@ -105,9 +87,9 @@ digraph G {
 }
 ```
 
-2. 完成上述图构成后，即可将上述图，组成ModelBox可识别的配置文件。  
-   ModelBox可识别的配置文件采用[TOML配置格式](https://toml.io/cn/v1.0.0-rc.1)。  
-   生成TOML文件后，即可将配置文件加载到ModelBox中执行。
+完成上述图构成后，即可将上述图，组成ModelBox可识别的配置文件。  
+ModelBox可识别的配置文件采用[TOML配置格式](https://toml.io/cn/v1.0.0-rc.1)。  
+生成TOML文件后，即可将配置文件加载到ModelBox中执行。
 
 ```toml
 [graph]
@@ -116,7 +98,7 @@ graphconf = '''
         node[shape=Mrecord]
 
         // 定义点属性
-        HTTP_REQUEST[flowunit=http, listen="0.0.0.0:80", label="{% raw %}{HTTP REQUEST|{OUT}}{% endraw %}"]
+        HTTP_REQUEST[flowunit=http, listen="127.0.0.1:8080", label="{% raw %}{HTTP REQUEST|{OUT}}{% endraw %}"]
         PROCESS[flowunit=json, label="{% raw %}{{IN}|PROCESS|{OUT}}{% endraw %}"]
         HTTP_RESPONSE[flowunit=http, label="{% raw %}{{IN}|HTTP RESPONSE}{% endraw %}"]
 
@@ -138,7 +120,7 @@ digraph G {
     node[shape=Mrecord]
 
     // 2. 定义点属性
-    HTTP_REQUEST[flowunit=http, listen="0.0.0.0:80", label="{% raw %}{HTTP REQUEST|{OUT}}{% endraw %}"]
+    HTTP_REQUEST[flowunit=http, listen="127.0.0.1:8080", label="{% raw %}{HTTP REQUEST|{OUT}}{% endraw %}"]
     PROCESS[flowunit=json, label="{% raw %}{{IN}|PROCESS|{OUT}}{% endraw %}"]
     HTTP_RESPONSE[flowunit=http, label="{% raw %}{{IN}|HTTP RESPONSE}{% endraw %}"]
 
@@ -160,7 +142,7 @@ digraph G {
 
     digraph开头，[name]可以是字符串。
 
-2. 第二部分是点Node的定义
+1. 第二部分是点Node的定义
 
     - 格式
 
@@ -174,14 +156,14 @@ digraph G {
 
         - `type`参数指定点node的类型，可以是`input`, `output`, `flowunit`
         - 当未指定`type`参数时，node缺省为`flowunit`。
-        - `flowunit`表示此点为流单元功能模块，配合`flowunit=xx`指定，流单元的执行实体。
+        - `flowunit`表示此点为功能单元功能模块，配合`flowunit=xx`指定，功能单元的执行实体。
 
         ```markdown
         node[type="flowunit", flowunit=httpserver]
         ```
 
         上述配置表示，点的名称为`node`，类型为`flowunit`，其执行实体为`httpserver`。
-        支持的Flowunit可以使用[modelbox-tool](../develop/modelbox-tool/modelbox-tool.md)工具查询。
+        支持的Flowunit可以使用[modelbox-tool](../../develop/modelbox-tool/modelbox-tool.md)工具查询。
 
     - `input`：表示此点的类型为输入端口，为整个图的配置，表示图的数据输入端口。
 
@@ -199,7 +181,7 @@ digraph G {
 
         上述配置表示，图输出点的名称为`graphoutput`，在使用SDK形式调用ModelBox时可以使用此名称接收图处理后的数据。
 
-3. 第三部分是点的关系定义
+1. 第三部分是点的关系定义
 
     - 格式
 
@@ -215,18 +197,18 @@ digraph G {
 
 流程图开发时，可采用如下形式进行开发
 
-|方式|说明|推荐度|连接|
-|--|--|--|--|
-|ModelBox编排服务|使用ModelBox编排服务进行流程图的开发。|⭐️⭐️⭐️|[指导](../../server/editor.md)|
-|手工编写|手工编写toml格式的流程图文件，并添加到ModelBox Server插件中运行|⭐️|[指导](../../framework-conception/graph.md)|
+| 方式             | 说明                                                            | 推荐度 | 连接                                        |
+| ---------------- | --------------------------------------------------------------- | ------ | ------------------------------------------- |
+| ModelBox编排服务 | 使用ModelBox编排服务进行流程图的开发。                          | ⭐️⭐️⭐️    | [指导](../../server/editor.md)              |
+| 手工编写         | 手工编写toml格式的流程图文件，并添加到ModelBox Server插件中运行 | ⭐️      | [指导](../../framework-conception/graph.md) |
 
 ## 流程图的运行
 
 流程图完成后，可以采用下列形式运行流程图
 
-|方式|说明|特点|推荐度|连接|
-|--|--|--|--|--|
-|modelbox-server|使用ModelBox加载运行流程图|基本无需编程，只需要通过配置即可完成图的运行|⭐️⭐️⭐️|[指导](../../server/run-flow.md)|
-|modelbox-tool|ModelBox Tool调试|调试图时使用的工具，方便，快速检查结果是否正确|⭐️⭐️⭐️|[指导](../modelbox-tool/modelbox-tool.md)|
-|Python SDK|Python SDK形式|Python接口形式，方便开发者与当前python服务集成|⭐️⭐️|[指导](python.md)|
-|C++ SDK|C++ SDK形式|c++SDK形式，方便开发者与当前c/c++程序集成|⭐️⭐️|[指导](c++.md)|
+| 方式            | 说明                       | 特点                                           | 推荐度 | 连接                                      |
+| --------------- | -------------------------- | ---------------------------------------------- | ------ | ----------------------------------------- |
+| modelbox-server | 使用ModelBox加载运行流程图 | 基本无需编程，只需要通过配置即可完成图的运行   | ⭐️⭐️⭐️    | [指导](../../server/run-flow.md)          |
+| modelbox-tool   | ModelBox Tool调试          | 调试图时使用的工具，方便，快速检查结果是否正确 | ⭐️⭐️⭐️    | [指导](../modelbox-tool/modelbox-tool.md) |
+| Python SDK      | Python SDK形式             | Python接口形式，方便开发者与当前python服务集成 | ⭐️⭐️     | [指导](../sdk/python.md)                  |
+| C++ SDK         | C++ SDK形式                | c++SDK形式，方便开发者与当前c/c++程序集成      | ⭐️⭐️     | [指导](../sdk/c++.md)                     |

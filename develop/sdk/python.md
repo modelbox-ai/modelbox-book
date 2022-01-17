@@ -8,7 +8,7 @@ Python开发调用流程图时，需要安装python的运行包，然后再编�
 
 ## Python的API接口
 
-从flow章节中我们知晓了流程图运行的流程，在Python中有对应的函数接口用于处理对应不同的阶段。下面是Python中使用的API列表：
+从[flow章节](../../server/run-flow.md)中我们知晓了流程图运行的流程，在Python中有对应的函数接口用于处理对应不同的阶段。下面是Python中使用的API列表：
 
 | API接口                                               | 参数说明                                                     | 函数说明                                                     |
 | ----------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -26,20 +26,21 @@ Python开发调用流程图时，需要安装python的运行包，然后再编�
 
 Flow流程图接口调用过程如下图所示。
 
-![python-sdk](../../assets/images/figure/develop/flow/python-sdk.png)
+![python-sdk alt rect_w_1000](../../assets/images/figure/develop/flow/python-sdk.png)
 
 1. 安装python SDK包
-1. 开发流程图，配置基础部分和图部分。
-1. 调用Flow::init接口，输入流程图文件。
-1. 调用Flow::build初始化流程图。
-1. 调用Flow::run_async，异步执行流程图。
-1. 调用Flow::wait等待结果。
+2. 开发流程图，配置基础部分和图部分。
+3. 调用Flow::init接口，输入流程图文件。
+4. 调用Flow::build初始化流程图。
+5. 调用Flow::run_async，异步执行流程图。
+6. 调用Flow::wait等待结果。
 
 ## TOML流程图配置
 
 ```toml
 [driver]
-dir="/usr/local/lib"
+dir=""
+skip-default = false
 [graph]
 graphconf = '''digraph demo {
   input[type=input]
@@ -89,7 +90,7 @@ def RunFlow():
 ```
 
 * 流程执行流程
-    1. 使用flow-example.toml文件中配置的流程图初始化flow， `flow = modelbox.Flow()` 返回一个flow对象， 如何配置流程图详见[流程图开发流程](./flow.md)
+    1. 使用flow-example.toml文件中配置的流程图初始化flow， `flow = modelbox.Flow()` 返回一个flow对象， 如何配置流程图详见[流程图开发流程](../flow/flow.md)
     1. `flow.init(flow_file)` 根据配置文件初始化flow对象。
     1. `flow.build()` 开始构建flow对象
     1. `flow.run_async()` 开始异步运行flow

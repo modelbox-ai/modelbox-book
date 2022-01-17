@@ -7,10 +7,10 @@
 1. 安装启动docker后，执行下列命令下载docker镜像
 
     ```shell
-    docker pull modelbox/modelbox_cuda101_develop:latest
+    docker pull modelbox/modelbox-develop-tensorflow_2.6.0-cuda_11.2-openeuler-x86_64
     ```
 
-    如需要下载其他cuda版本的镜像，可参考[FAQ](../faq/faq.md)中的[其他版本的cuda](../faq/faq.md#其他版本的cuda)相关内容
+    如需要下载其他cuda版本的镜像，可参考[FAQ](../../faq/faq.md)中的[其他版本的cuda](../../faq/faq.md#其他版本的cuda)相关内容
 
 1. 在系统中创建如下docker启动脚本，或将如下脚本按需修改后，粘贴到ssh终端中执行：
 
@@ -24,7 +24,7 @@
     EDITOR_MAP_PORT=1104
 
     # http server port [modify]
-    HTTP_SERVER_PORT=7778
+    HTTP_SERVER_PORT=8080
 
     # container name [modify]
     CONTAINER_NAME="modelbox_instance_`date +%s` "
@@ -55,7 +55,7 @@
     * `HTTP_SERVER_PORT`: 为http flowunit默认服务端口号。
     * docker启动脚本中，请注意启动的镜像版本是否与自己所需的镜像版本一致。
     * 如果启动镜像之后，端口未被占用却仍旧无法访问，需要检查防火墙。
-    * 如有疑问，可参考[FAQ](../faq/faq.md)中的[docker](../faq/faq.md#docker启动脚本详解)相关内容
+    * 如有疑问，可参考[FAQ](../../faq/faq.md)中的[docker](../../faq/faq.md#docker启动脚本详解)相关内容
 
 1. 进入容器并且切换至ModelBox开发者模式
 
@@ -64,12 +64,11 @@
     modelbox-tool develop -e 
     ```
 
-然后按照提示，访问editor界面。
-如果访问被拒绝，可参考[运行编排服务](../server/editor.md)中的[访问控制列表](../server/editor.md#访问控制列表)相关内容
+如果需要通过可视化UI进行图的编排，可参考[可视化编排服务](../../server/editor.md)章节访问`http://[host]:[EDITOR_MAP_PORT]/editor/`地址，如果访问被拒绝，可参考[运行编排服务](../../server/editor.md)中的[访问控制列表](../../server/editor.md#访问控制列表)相关内容
 
 ## 第一个应用开发
 
-开发环境准备好了之后进入应用开发环节，这里以MNIST为例介绍整个应用开发过程。首先介绍MNIST应用实现的功能，然后介绍流程图编排、流单元编写、运行与调试3个开发步骤。
+开发环境准备好了之后进入应用开发环节，这里以MNIST为例介绍整个应用开发过程。首先介绍MNIST应用实现的功能，然后介绍流程图编排、功能单元编写、运行与调试3个开发步骤。
 
 MNIST案例是使用MNIST数据集，训练的一个手写数字识别tensorflow模型，搭建的一个简易的http请求服务。模型训练可参考[tensorflow教程](https://doc.codingdict.com/tensorflow/tfdoc/tutorials/mnist_beginners.html) 。
 
@@ -104,45 +103,49 @@ with open(img_path, 'rb') as fp:
 }
 ```
 
-### 流程图编排
+### 模型准备
 
-流程图是编排整个应用的过程，可根据应用的逻辑进行编排，具体可参考[流程图开发章节](../develop/flow/flow.md#流程图开发及运行)。有两种方式可编排流程图，第一种是使用UI进行可视化编排，第二种是直接编写图文件。这里采用第二种方式。
+AI应用开发前需要准备好匹配当前modelbox版本支持的推理框架和版本的模型文件，这里默认已经准备好了tensorflow1.13版本的minist pb模型文件，路径如下：`/opt/modelbox/solution/model/mnist_model.pb`
 
-![mnist-flowchart](../assets/images/figure/solution/mnist-flowchart.png)
+### 流程图开发
 
-从上到下共有5个流单元，分别为接收http请求，MNIST预处理，MNIST模型推理，MNIST响应构造，发送http响应。图定义如下
+流程图编排是根据实际情况将现有业务逻辑拆分为N个功能单元，再将功能单元串联成一个完整的业务的过程。功能单元分为ModelBox预置功能单元和用户自定义功能单元，当预置功能单元满足不了业务场景时，需要用户进行功能单元开发。有两种方式可编排流程图，第一种是使用UI进行可视化UI编排，第二种是直接编写图文件。具体可参考[流程图开发章节](../flow/flow.md#流程图开发及运行)。这里采用第二种方式。
+
+![mnist-flowchart alt rect_w_300](../../assets/images/figure/solution/mnist-flowchart.png)
+
+如上图所示，根据业务流程可以将业务划分为5个功能单元，分别为接收http请求，MNIST预处理，MNIST模型推理，MNIST响应构造，发送http响应。对应图编排文件描述如下
 
 ``` toml
 [graph]
 format = "graphviz"
 graphconf = '''digraph mnist_sample {
-          queue_size = 32
-          batch_size = 1
-          httpserver_sync_receive[type=flowunit, flowunit=httpserver_sync_receive, device=cpu, deviceid=0, label="<Out_1>", request_url="http://localhost:7778", max_requests=100, time_out=10]
-          mnist_preprocess[type=flowunit, flowunit=mnist_preprocess, device=cpu, deviceid = 0, label="<In_1> | <Out_1>"]
-          mnist_infer[type=flowunit, flowunit=mnist_infer, device=cuda, deviceid=0, label="<Input> | <Output>"]
-          mnist_response[type=flowunit, flowunit=mnist_response, device=cpu, deviceid=0, label="<In_1> | <Out_1>"]
-          httpserver_sync_reply[type=flowunit, flowunit=httpserver_sync_reply, device=cpu, deviceid=0, label="<In_1>"]  
+    queue_size=32
+    batch_size=1
+    node [shape=Mrecord]
+    httpserver_sync_receive[type=flowunit, flowunit=httpserver_sync_receive, device=cpu, deviceid=0, time_out_ms=5000, endpoint="https://127.0.0.1:8080", max_requests=100]
+    mnist_preprocess[type=flowunit, flowunit=mnist_preprocess, device=cpu, deviceid=0]
+    mnist_infer[type=flowunit, flowunit=mnist_infer, device=cuda, deviceid=0]
+    mnist_response[type=flowunit, flowunit=mnist_response, device=cpu, deviceid=0]
+    httpserver_sync_reply[type=flowunit, flowunit=httpserver_sync_reply, device=cpu, deviceid=0]
 
-          httpserver_sync_receive:Out_1 -> mnist_preprocess:In_1
-          mnist_preprocess:Out_1 -> mnist_infer: Input
-          mnist_infer: Output -> mnist_response: In_1
-          mnist_response: Out_1 -> httpserver_sync_reply: In_1
-        }'''
+    httpserver_sync_receive:out_request_info -> mnist_preprocess:In_1
+    mnist_preprocess:Out_1 -> mnist_infer:Input
+    mnist_infer:Output -> mnist_response:In_1
+    mnist_response:Out_1 -> httpserver_sync_reply:in_reply_info
+}
 ```
 
-再加上下面实现流单元的路径即可完成流程图的编写。
-开发镜像中已集成该图配置，可参考`/usr/local/share/modelbox/solution/graphs/mnist_detection/mnist.toml`。
+除了构建图之外，还需要增加必要配置，如功能单元扫描路径，日志级别等，具体可参考样例文件`/usr/local/share/modelbox/solution/graphs/mnist_detection/mnist.toml`。
 
-### 流单元编写
+### 功能单元开发
 
-ModelBox提供基础流单元，除此之外还需补充流程图中缺失的流单元，具体开发可参考[流单元开发章节](../develop/flowunit/flowunit.md#流单元开发)。
+ModelBox提供基础预置功能单元，除此之外还需补充流程图中缺失的功能单元，具体开发可参考[功能单元开发章节](../../develop/flowunit/flowunit.md#功能单元开发)。
 
-这里接收http请求、发送http响应两个流单元ModelBox已提供，我们只需实现MNIST的预处理，推理，响应构造三个流单元即可。
+这里接收http请求、发送http响应两个功能单元ModelBox已提供，我们只需实现MNIST的预处理，推理，响应构造三个功能单元即可。
 
-* MNIST预处理流单元
+* MNIST预处理功能单元
   
-  预处理需要做：解析出图片，对图片进行reshape，构建流单元输出buffer。
+  预处理需要做：解析出图片，对图片进行reshape，构建功能单元输出buffer。
   
   ``` python
   in_data = data_context.input("In_1")
@@ -164,11 +167,11 @@ ModelBox提供基础流单元，除此之外还需补充流程图中缺失的流
       out_data.push_back(add_buffer)
   ```
 
-  开发镜像中已集成该流单元，可参考`/usr/local/share/modelbox/solution/flowunit/mnist/mnist_preprocess`。
+  详细代码可参考`/usr/local/share/modelbox/solution/flowunit/mnist/mnist_preprocess`。
 
-* MNIST推理流单元
+* MNIST推理功能单元
   
-  推理流单元只需准备好模型和对应的配置文件即可。
+  推理功能单元只需准备好模型和对应的配置文件即可。
   
   配置文件如下：
 
@@ -176,14 +179,15 @@ ModelBox提供基础流单元，除此之外还需补充流程图中缺失的流
   [base]
   name = "mnist_infer" 
   device = "cuda" 
-  version = "0.0.1" 
-  description = "Recognition handwritten digits recognition. The sample mnist_model.pb requires tensorflow1.13 + cuda10.0." 
+  version = "1.0.0"  
+  description = "Recognition handwritten digits recognition. The sample mnist_model.pb requires tensorflow1.13 " 
   entry = "path_to_mnist_model.pb" 
   type = "inference" 
   virtual_type = "tensorflow" 
   
   [input]
   [input.input1] 
+  device = "cpu"
   name = "Input" 
   type = "float" 
   
@@ -193,9 +197,9 @@ ModelBox提供基础流单元，除此之外还需补充流程图中缺失的流
   type = "float"
   ```
 
-  开发镜像中已集成该流单元，可参考`/usr/local/share/modelbox/solution/flowunit/mnist/mnist_infer`。
+  详细代码可参考`/usr/local/share/modelbox/solution/flowunit/mnist/mnist_infer`。
 
-* MNIST响应流单元
+* MNIST响应功能单元
   
   得到推理的结果之后，需要构造响应：
   
@@ -216,9 +220,9 @@ ModelBox提供基础流单元，除此之外还需补充流程图中缺失的流
       out_data.push_back(add_buffer)
   ```
 
-  开发镜像中已集成该流单元，可参考`/usr/local/share/modelbox/solution/flowunit/mnist/mnist_response`。
+  详细代码可参考`/usr/local/share/modelbox/solution/flowunit/mnist/mnist_response`。
 
-### 运行与测试
+### 调试运行
 
 首先需要把http服务运行起来，然后再模拟请求测试。
 
@@ -230,7 +234,7 @@ ModelBox提供基础流单元，除此之外还需补充流程图中缺失的流
   modelbox-tool -log-level info flow -run path_to_mnist.toml
   ```
 
-  由于开发镜像已集成样例，可开发镜像中直接运行`modelbox-tool -log-level info flow -run /usr/local/share/modelbox/solution/graphs/mnist_detection/mnist.toml`。
+  由于ModelBox库已集成样例，可直接运行`modelbox-tool -log-level info flow -run /usr/local/share/modelbox/solution/graphs/mnist_detection/mnist.toml`。
 
 * 测试
 

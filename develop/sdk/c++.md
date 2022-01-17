@@ -6,7 +6,7 @@
 
 ## C++的API接口
 
-flow的运行流程可参考flow章节。
+flow的运行流程可参考[flow章节](../../server/run-flow.md)。
 
 从flow章节中我们知晓了流程图运行的流程，在C++中有对应的函数接口用于处理对应不同的阶段。下面是C++中使用的API列表：
 
@@ -25,11 +25,11 @@ flow的运行流程可参考flow章节。
 
 ## C++ SDK API调用说明
 
-C++开发调用流程图时，需要先安装[C++的运行包](../../get-start/compile.md)，然后再编写C++函数，调用Flow的API来执行流程图。
+C++开发调用流程图时，需要先安装C++的运行包，然后再编写C++函数，调用Flow执行API执行流程图。
 
 Flow流程图接口调用过程如下图所示。
 
-![c++-sdk](../../assets/images/figure/develop/flow/c++-sdk.png)
+![api-modelbox-server alt rect_w_800](../../assets/images/figure/api/api-modelbox-server.png)
 
 1. 安装C++ SDK包
 2. 开发流程图，配置基础部分和图部分。
@@ -42,7 +42,8 @@ Flow流程图接口调用过程如下图所示。
 
 ```toml
 [driver]
-dir="/usr/local/lib"
+dir=""
+skip-default = false
 [graph]
 graphconf = '''digraph demo {
   input[type=input]
@@ -104,7 +105,7 @@ int RunFlow(const std::string &file) {
 ```
 
 * 流程执行流程
-    1. 使用flow-example.toml文件中配置的流程图初始化flow， `auto flow = std::make_shared<modelbox::Flow>()`， 如何配置流程图详见[流程图开发流程](./flow.md)
+    1. 使用flow-example.toml文件中配置的流程图初始化flow， `auto flow = std::make_shared<modelbox::Flow>()`， 如何配置流程图详见[流程图开发流程](../flow/flow.md)
     1. `flow->Init(file)` 根据配置文件初始化flow对象。
     1. `flow->Build()` 开始构建flow对象
     1. `flow->RunAsync()` 开始异步运行flow

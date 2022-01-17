@@ -16,22 +16,22 @@ ModelBox框架提供了预置的服务插件ModelBox Plugin，提供流程图的
 
 服务插件开发整体流程如下：
 
-![plugin-dev-flow](../../assets/images/figure/develop/server-plugin--dev-flow.png)
+![server-plugin--dev-flow alt rect_w_500](../../assets/images/figure/develop/server-plugin--dev-flow.png)
 
 ## 服务插件API
 
-![server-plugin](../../assets/images/figure/api/api-modelbox-server.png)
+![api-modelbox-server alt rect_w_900](../../assets/images/figure/api/api-modelbox-server.png)
 
 ModelBox API按照类型包含：
 
 ### Plugin: 插件创建和启停等重载接口，此接口需要由用户实现
 
-|接口|接口功能|说明|
-|--|--|--|
-|CreatePlugin| 用户创建服务插件对象，并返回给ModelBox框架|ModelBox框架启动时加载参加时调用 |
-|Plugin::Init| 用户实现服务插件初始化逻辑，提供系统配置，插件初始化时调用|ModelBox框架启动时，在CreatePlugin成功后插件初始化调用；不能存在阻塞操作|
-|Plugin::Start | 用户实现服务插件启动逻辑，插件启动时调用|插件启动时调用|
-|Plugin::Stop | 用户实现服务插件停止逻辑，插件停止时调用|ModelBox框架进程退出时插件停止时调用|
+| 接口          | 接口功能                                                   | 说明                                                                     |
+| ------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------ |
+| CreatePlugin  | 用户创建服务插件对象，并返回给ModelBox框架                 | ModelBox框架启动时加载参加时调用                                         |
+| Plugin::Init  | 用户实现服务插件初始化逻辑，提供系统配置，插件初始化时调用 | ModelBox框架启动时，在CreatePlugin成功后插件初始化调用；不能存在阻塞操作 |
+| Plugin::Start | 用户实现服务插件启动逻辑，插件启动时调用                   | 插件启动时调用                                                           |
+| Plugin::Stop  | 用户实现服务插件停止逻辑，插件停止时调用                   | ModelBox框架进程退出时插件停止时调用                                     |
 
 ### Job： 任务管理组件
 
@@ -46,37 +46,37 @@ ModelBox API按照类型包含：
 
 具体接口如下表：
 
-|接口|接口功能|说明|
-|--|--|--|
-|JobManager::CreateJob| 创建Job | |
-|JobManager::DeleteJob| 删除Job | |
-|JobManager::GetJob | 获取某个Job对象| |
-|JobManager::GetJobList |获取全部Job对象列表| |
-|JobManager::QueryJobStatus |查询某个Job状态| |
-|JobManager::GetJobErrorMsg |获取某个异常Job的错误信息| |
-|Job::Init| 初始化Job对象| |
-|Job::Build| Job对象资源申请| |
-|Job::Run| 运行Job对象| |
-|Job::Stop| 停止Job对象| |
-|Job::GetJobStatus| 获取某个Job状态| |
-|Job::CreateTaskManger| 创建TaskManger| |
-|TaskManager::Start|启动TaskManager| |
-|TaskManager::Stop|停止TaskManager| |
-|TaskManager::CreateTask|创建Task| |
-|TaskManager::DeleteTaskById|删除某个Task| |
-|TaskManager::GetTaskById|获取某个Task对象| |
-|TaskManager::GetTaskCount|获取Task个数| |
-|TaskManager::GetAllTasks|获取所有Task对象| |
-|TaskManager::SetTaskNumLimit|设置同时并发的Task最大个数|超过设置最大个数时，ModelBox内部会排队处理|
-|Task::Start|启动Task| |
-|Task::Stop|停止Task| |
-|Task::GetUUID|获取Task id| |
-|Task::CreateBufferList|创建输入的buffer数据对象| |
-|Task::GetLastError|获取Task错误信息| |
-|Task::GetTaskStatus|获取Task状态| |
-|Task::GetSessionConfig|获取Session配置对象|获取配置对象后可以通过设置自定义参数，传递给需要的功能单元读取|
-|OneShotTask::FillData|发送数据指流程图| |
-|OneShotTask::RegisterStatusCallback|注册任务状态回调函数,任务结束或异常时会调用|||
+| 接口                                | 接口功能                                    | 说明                                                           |
+| ----------------------------------- | ------------------------------------------- | -------------------------------------------------------------- |
+| JobManager::CreateJob               | 创建Job                                     |                                                                |
+| JobManager::DeleteJob               | 删除Job                                     |                                                                |
+| JobManager::GetJob                  | 获取某个Job对象                             |                                                                |
+| JobManager::GetJobList              | 获取全部Job对象列表                         |                                                                |
+| JobManager::QueryJobStatus          | 查询某个Job状态                             |                                                                |
+| JobManager::GetJobErrorMsg          | 获取某个异常Job的错误信息                   |                                                                |
+| Job::Init                           | 初始化Job对象                               |                                                                |
+| Job::Build                          | Job对象资源申请                             |                                                                |
+| Job::Run                            | 运行Job对象                                 |                                                                |
+| Job::Stop                           | 停止Job对象                                 |                                                                |
+| Job::GetJobStatus                   | 获取某个Job状态                             |                                                                |
+| Job::CreateTaskManger               | 创建TaskManger                              |                                                                |
+| TaskManager::Start                  | 启动TaskManager                             |                                                                |
+| TaskManager::Stop                   | 停止TaskManager                             |                                                                |
+| TaskManager::CreateTask             | 创建Task                                    |                                                                |
+| TaskManager::DeleteTaskById         | 删除某个Task                                |                                                                |
+| TaskManager::GetTaskById            | 获取某个Task对象                            |                                                                |
+| TaskManager::GetTaskCount           | 获取Task个数                                |                                                                |
+| TaskManager::GetAllTasks            | 获取所有Task对象                            |                                                                |
+| TaskManager::SetTaskNumLimit        | 设置同时并发的Task最大个数                  | 超过设置最大个数时，ModelBox内部会排队处理                     |
+| Task::Start                         | 启动Task                                    |                                                                |
+| Task::Stop                          | 停止Task                                    |                                                                |
+| Task::GetUUID                       | 获取Task id                                 |                                                                |
+| Task::CreateBufferList              | 创建输入的buffer数据对象                    |                                                                |
+| Task::GetLastError                  | 获取Task错误信息                            |                                                                |
+| Task::GetTaskStatus                 | 获取Task状态                                |                                                                |
+| Task::GetSessionConfig              | 获取Session配置对象                         | 获取配置对象后可以通过设置自定义参数，传递给需要的功能单元读取 |
+| OneShotTask::FillData               | 发送数据指流程图                            |                                                                |
+| OneShotTask::RegisterStatusCallback | 注册任务状态回调函数,任务结束或异常时会调用 |                                                                |  |
 
 ### Config： 配置对象
 
@@ -92,41 +92,19 @@ Listener监听组件可以注册http服务，监听相关的URI
 
 ## 开发例子
 
-插件开发前，请确保：
-
 ### 准备工作
+
+插件开发前，请确保：
 
 1. ModelBox Server正确安装并运行。
 1. ModelBox Server Develop安装包正确安装。
 
-### 编写CMake文件
+### 创建服务插件模板
 
-编写cmake文件，将所有源代码编译为so动态库文件：
+开发者可以通过modelbox-tool命名进行服务插件模板工程的创建，创建命令如下：
 
-```cmake
-cmake_minimum_required(VERSION 2.8.2)
-
-# 设置插件名称
-set(UNIT_NAME "example-plugin")
-project(modelbox-${UNIT_NAME})
-
-# 将当前目录下所有源代码文件加入工程
-file(GLOB_RECURSE MODELBOX_UNIT_SOURCE *.cpp *.cc *.c)
-include_directories(${CMAKE_CURRENT_LIST_DIR})
-
-# 编译插件文件，设置连接的库，生成example-plugin.so
-set(MODELBOX_SERVER_PLUGIN example-plugin)
-add_library(${MODELBOX_SERVER_PLUGIN} SHARED ${MODELBOX_UNIT_SOURCE})
-target_link_libraries(${MODELBOX_SERVER_PLUGIN} pthread)
-target_link_libraries(${MODELBOX_SERVER_PLUGIN} rt)
-
-# 设置系统安装路径和安装包名称为server-plugin-example
-install(TARGETS ${MODELBOX_SERVER_PLUGIN}
-    COMPONENT server-plugin-example
-    RUNTIME DESTINATION ${CMAKE_INSTALL_FULL_BINDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR}
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR}
-    )
+```shell
+modelbox-tool create -t service-plugin -n PluginName -d ./
 ```
 
 ### 编写插件入口函数
@@ -162,6 +140,8 @@ std::shared_ptr<Plugin> CreatePlugin() {
 }
 ```
 
+ModelBox加载服务插件流程如下：
+
 1. ModelBox Server先调用插件中的`CreatePlugin`函数创建插件对象。
 
     插件需要在此函数中，创建插件对象，返回智能指针。
@@ -184,7 +164,7 @@ std::shared_ptr<Plugin> CreatePlugin() {
 
 #### Job创建流程
 
-使用场景为流程图不依赖于外部给其输入，直接加载即可运行场景。如图片推理服务，数据流可由流程图中的HTTP流单元产生数据，再比如流程图中读本地文件作为数据源的场景。
+使用场景为流程图不依赖于外部给其输入，直接加载图配置即可运行场景。如图片推理服务，数据流可由流程图中的HTTP功能单元产生数据，再比如流程图中读本地文件作为数据源的场景。
 
   ```c++
    Job job_;
@@ -222,7 +202,7 @@ std::shared_ptr<Plugin> CreatePlugin() {
 
 #### Task创建流程
 
-使用场景为流程图运行依赖与外部输入的场景，如分析的视频流信息需要由外部传入服务插件，再有服务插件创建Task，并把相应配置参数数据传递到流程图。
+使用场景为流程图运行依赖与外部输入的场景，如分析的视频流信息需要由外部传入服务插件，再用服务插件创建Task，并把相应配置参数数据传递到流程图。
 
 ```c++
   void ModelBoxExamplePlugin::ModelBoxTaskStatusCallback(modelbox::OneShotTask *task,
@@ -260,7 +240,7 @@ std::shared_ptr<Plugin> CreatePlugin() {
       }
       //填充用户自定义配置
       auto config = oneshot_task->GetSessionConfig();
-      config->SetProperty("nodes.{key}", "{vaule}");//config 使用方法见XXX
+      config->SetProperty("nodes.{key}", "{vaule}");//设置属性
       //注册Task状态变更回调函数
       oneshot_task->RegisterStatusCallback(
       [&](OneShotTask *task, TaskStatus status) {
@@ -278,8 +258,9 @@ std::shared_ptr<Plugin> CreatePlugin() {
           task_status != TaskStatus::ABNORMAL && 
           task_status != TaskStatus::FINISHED) {
           sleep(1);
+          task_status = iva_task->GetTaskStatus();
       }
-      task_manager->stop();
+      task_manager->DeleteTaskById(oneshot_task->GetTaskId());
       return true;
 }
 ```
@@ -291,7 +272,7 @@ std::shared_ptr<Plugin> CreatePlugin() {
 ```toml
 [plugin]
 files = [
-    "/usr/local/lib/modelbox-plugin.so",
+    "/usr/local/lib/modelbox-plugin.so",   #由于不同操作系统目录结构存在差异，此路径也可能为 /usr/local/lib64/modelbox-plugin.so
     "/xxx/xxx/example-plugin.so" 
 ]
 ```
