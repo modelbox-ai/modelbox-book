@@ -29,7 +29,7 @@ C++开发调用流程图时，需要先安装C++的运行包，然后再编写C+
 
 Flow流程图接口调用过程如下图所示。
 
-![api-modelbox-server alt rect_w_800](../../assets/images/figure/api/api-modelbox-server.png)
+![api-modelbox-server alt rect_w_800](../../assets/images/figure/develop/flow/c++-sdk.png)
 
 1. 安装C++ SDK包
 2. 开发流程图，配置基础部分和图部分。
