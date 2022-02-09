@@ -30,7 +30,7 @@ add_custom_command(TARGET modelbox-book
     COMMAND mkdir -p ${NODE_MODULES_PATH}/node_modules
     COMMAND rm -f ${CMAKE_CURRENT_LIST_DIR}/node_modules
     COMMAND ln -s ${NODE_MODULES_PATH}/node_modules ${CMAKE_CURRENT_LIST_DIR}/node_modules
-    COMMAND [ -e ${BOOK_INSTALL_FLAG} ] || ${NPM} install gitbook-cli 
+    COMMAND [ -e ${BOOK_INSTALL_FLAG} ] || cd ${NODE_MODULES_PATH} && ${NPM} install gitbook-cli 
     # patch graceful-fs
     COMMAND [ -e ${BOOK_INSTALL_FLAG} ] || sed -i "'/stat = statFix/d'"  ${NODE_MODULES_PATH}/node_modules/npm/node_modules/graceful-fs/polyfills.js
     COMMAND [ -e ${BOOK_INSTALL_FLAG} ] || ${GITBOOK} install ${CMAKE_CURRENT_LIST_DIR} 
