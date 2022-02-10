@@ -102,7 +102,7 @@ ModelBox项目提供了docker镜像，里面包含了ModelBox编译运行所需�
 1. 下载ModelBox代码
 
     ```shell
-    git clone http://code-cbu.huawei.com/ModelArts/Infer/BaseImages/modelbox.git
+    git clone https://github.com/modelbox-ai/modelbox.git
     cd modelbox
     ```
 
