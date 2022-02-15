@@ -22,7 +22,7 @@ ModelBox框架在初始化时，会扫描[some-flowunit]目录中的toml后缀�
    modelbox-tool create -t infer -n FlowUnitName -d ./ProjectName/src/flowunit 
 ```
 
-## 推理TOML配置
+## 推理功能流单元配置(toml格式)
 
 ```toml
 # 基础配置
@@ -34,7 +34,7 @@ description = "description" # 功能单元功能描述信息
 entry = "model.pb" # 模型文件路径
 type = "inference" #推理功能单元时，此处为固定值
 virtual_type = "tensorrt" # 指定推理引擎, 可以是tensorflow, tensorrt, torch, acl, mindspore
-plugin = "yolo" # 推理引擎插件
+plugin = "infer-plugin.so" # 推理自定义引擎插件 仅支持virtual_type为tensorflow, tensorrt
 
 # 模型解密配置 （可选，非必须）
 [encryption]
@@ -58,6 +58,98 @@ type = "datatype" # 输出端口数据类型, 取值float or uint8
 ```
 
 编写完成toml文件后，将对应的路径加入ModelBox的图配置中的搜索路径即可使用开发后的推理功能单元。
+
+### 说明
+
++ 模型文件类型和模型推理引擎一一对应，如下表： 
+
+|推理引擎|模型格式|
+|---|---|
+|tensorflow| xxx.pb|
+|tensorrt | xxx.engine(序列化模型)|
+|torch| xxx.pt|
+|acl| xxx.om|
+|mindspore| xxx.mindir|
+
++ 模型引擎为tensorrt时，可以对应三种模型格式，toml文件的修改如下：
+
+模型类型为uff, 配置文件当中增加
+
+```toml
+   ...
+   [config]
+   uff_input = "input.1.28.28" # 输入名称以及输入的shape大小，以.隔开
+   ...
+```
+
+模型类型为caffe, 配置文件当中修改增加
+
+```toml
+   ...
+   entry = "xxx.prototxt"
+   model_file = "xxx.caffemodel"
+   ...
+```
+
+模型类型为onnx, 配置文件当中修改 ``` entry = "xxx.onnx" ```
+
+模型类型为tensorrt自己生成的序列化模型, 不论任何后缀直接配置到entry即可
+
++ base域下面的plugin选项
+
+plugin即为文件路径下面的so，该so为为自定义modelbox的tensorflow推理的预处理以及后处理函数，需要自定义实现以下接口(为可选项)
+
+```c++
+   // tensorflow
+   class InferencePlugin {
+      ...
+      /**
+        * @brief init plugin
+        * @param config modelbox config, can get key value from the graph toml
+        * @return init result, modelbox status
+        */
+      virtual modelbox::Status PluginInit(std::shared_ptr<modelbox::Configuration> config) = 0;
+      
+      /**
+        * @brief before inferencere, preprocess data
+        * @param ctx modelbox datacontext, can get input data from this
+        * @param input_tf_tensor_list tensorflow TF_Tensor*, after preprocess data from ctx, 
+        *        build input TF_Tensor to inference
+        * @return preprocess result, modelbox status
+        */
+      virtual modelbox::Status PreProcess(std::shared_ptr<modelbox::DataContext> ctx, std::vector<TF_Tensor *> &input_tf_tensor_list) = 0;
+
+      /**
+        * @brief after inferencere, postprocess data
+        * @param ctx modelbox datacontext, can get modelbox output object from this
+        * @param output_tf_tensor_list tensorflow TF_Tensor*, after inference output data store in it, 
+        *        build output bufferlist from it
+        * @return postprocess result, modelbox status
+        */
+      virtual modelbox::Status PostProcess(std::shared_ptr<modelbox::DataContext> ctx, std::vector<TF_Tensor *> &output_tf_tensor_list) = 0;
+      ...
+  };
+```
+
++ tensorrt的自定义算子构建的PluginFactory
+
+目前自带yolo版本的PluginFactory，只需要在toml配置文件当中增加
+
+```toml
+   [config]
+   plugin = "yolo"
+```
+
+后续支持自定义算子的tensorrt插件，编译成动态库，把路径配置在这里
+
++ torch模型需要保存成成jit模型，参考sample如下：
+
+```python
+   jit_model = torch.jit.script(Module)
+   jit_model.save("save_model.pt")
+```
+
++ torch模型的输入输出配置可以自定义名称，在此仅仅为位置占位符，但是需要保证输入输出的顺序一致
 
 ## 模型加解密
 
