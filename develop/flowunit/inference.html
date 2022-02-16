@@ -973,7 +973,7 @@
 <p>&#x5F00;&#x53D1;&#x7740;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;modelbox-tool&#x547D;&#x4EE4;&#x8FDB;&#x884C;&#x63A8;&#x7406;&#x529F;&#x80FD;&#x5355;&#x5143;&#x6A21;&#x677F;&#x521B;&#x5EFA;&#xFF1A;</p>
 <pre><code class="lang-shell">   modelbox-tool create -t infer -n FlowUnitName -d ./ProjectName/src/flowunit
 </code></pre>
-<h2 id="&#x63A8;&#x7406;toml&#x914D;&#x7F6E;">&#x63A8;&#x7406;TOML&#x914D;&#x7F6E;</h2>
+<h2 id="&#x63A8;&#x7406;&#x529F;&#x80FD;&#x6D41;&#x5355;&#x5143;&#x914D;&#x7F6E;toml&#x683C;&#x5F0F;">&#x63A8;&#x7406;&#x529F;&#x80FD;&#x6D41;&#x5355;&#x5143;&#x914D;&#x7F6E;(toml&#x683C;&#x5F0F;)</h2>
 <pre><code class="lang-toml"><span class="hljs-comment"># &#x57FA;&#x7840;&#x914D;&#x7F6E;</span>
 <span class="hljs-section">[base]</span>
 <span class="hljs-attr">name</span> = <span class="hljs-string">&quot;FlowUnit-Name&quot;</span> # &#x529F;&#x80FD;&#x5355;&#x5143;&#x540D;&#x79F0;
@@ -983,7 +983,7 @@
 <span class="hljs-attr">entry</span> = <span class="hljs-string">&quot;model.pb&quot;</span> # &#x6A21;&#x578B;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;
 <span class="hljs-attr">type</span> = <span class="hljs-string">&quot;inference&quot;</span> #&#x63A8;&#x7406;&#x529F;&#x80FD;&#x5355;&#x5143;&#x65F6;&#xFF0C;&#x6B64;&#x5904;&#x4E3A;&#x56FA;&#x5B9A;&#x503C;
 <span class="hljs-attr">virtual_type</span> = <span class="hljs-string">&quot;tensorrt&quot;</span> # &#x6307;&#x5B9A;&#x63A8;&#x7406;&#x5F15;&#x64CE;, &#x53EF;&#x4EE5;&#x662F;tensorflow, tensorrt, torch, acl, mindspore
-<span class="hljs-attr">plugin</span> = <span class="hljs-string">&quot;yolo&quot;</span> # &#x63A8;&#x7406;&#x5F15;&#x64CE;&#x63D2;&#x4EF6;
+<span class="hljs-attr">plugin</span> = <span class="hljs-string">&quot;infer-plugin.so&quot;</span> # &#x63A8;&#x7406;&#x81EA;&#x5B9A;&#x4E49;&#x5F15;&#x64CE;&#x63D2;&#x4EF6; &#x4EC5;&#x652F;&#x6301;virtual_type&#x4E3A;tensorflow, tensorrt
 
 <span class="hljs-comment"># &#x6A21;&#x578B;&#x89E3;&#x5BC6;&#x914D;&#x7F6E; &#xFF08;&#x53EF;&#x9009;&#xFF0C;&#x975E;&#x5FC5;&#x987B;&#xFF09;</span>
 <span class="hljs-section">[encryption]</span>
@@ -1006,6 +1006,108 @@
 <span class="hljs-attr">type</span> = <span class="hljs-string">&quot;datatype&quot;</span> # &#x8F93;&#x51FA;&#x7AEF;&#x53E3;&#x6570;&#x636E;&#x7C7B;&#x578B;, &#x53D6;&#x503C;float or uint8
 </code></pre>
 <p>&#x7F16;&#x5199;&#x5B8C;&#x6210;toml&#x6587;&#x4EF6;&#x540E;&#xFF0C;&#x5C06;&#x5BF9;&#x5E94;&#x7684;&#x8DEF;&#x5F84;&#x52A0;&#x5165;ModelBox&#x7684;&#x56FE;&#x914D;&#x7F6E;&#x4E2D;&#x7684;&#x641C;&#x7D22;&#x8DEF;&#x5F84;&#x5373;&#x53EF;&#x4F7F;&#x7528;&#x5F00;&#x53D1;&#x540E;&#x7684;&#x63A8;&#x7406;&#x529F;&#x80FD;&#x5355;&#x5143;&#x3002;</p>
+<h3 id="&#x8BF4;&#x660E;">&#x8BF4;&#x660E;</h3>
+<ul>
+<li>&#x6A21;&#x578B;&#x6587;&#x4EF6;&#x7C7B;&#x578B;&#x548C;&#x6A21;&#x578B;&#x63A8;&#x7406;&#x5F15;&#x64CE;&#x4E00;&#x4E00;&#x5BF9;&#x5E94;&#xFF0C;&#x5982;&#x4E0B;&#x8868;&#xFF1A; </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>&#x63A8;&#x7406;&#x5F15;&#x64CE;</th>
+<th>&#x6A21;&#x578B;&#x683C;&#x5F0F;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tensorflow</td>
+<td>xxx.pb</td>
+</tr>
+<tr>
+<td>tensorrt</td>
+<td>xxx.engine(&#x5E8F;&#x5217;&#x5316;&#x6A21;&#x578B;)</td>
+</tr>
+<tr>
+<td>torch</td>
+<td>xxx.pt</td>
+</tr>
+<tr>
+<td>acl</td>
+<td>xxx.om</td>
+</tr>
+<tr>
+<td>mindspore</td>
+<td>xxx.mindir</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>&#x6A21;&#x578B;&#x5F15;&#x64CE;&#x4E3A;tensorrt&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x5BF9;&#x5E94;&#x4E09;&#x79CD;&#x6A21;&#x578B;&#x683C;&#x5F0F;&#xFF0C;toml&#x6587;&#x4EF6;&#x7684;&#x4FEE;&#x6539;&#x5982;&#x4E0B;&#xFF1A;</li>
+</ul>
+<p>&#x6A21;&#x578B;&#x7C7B;&#x578B;&#x4E3A;uff, &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5F53;&#x4E2D;&#x589E;&#x52A0;</p>
+<pre><code class="lang-toml">   ...
+   [config]
+   uff_input = &quot;input.1.28.28&quot; # &#x8F93;&#x5165;&#x540D;&#x79F0;&#x4EE5;&#x53CA;&#x8F93;&#x5165;&#x7684;shape&#x5927;&#x5C0F;&#xFF0C;&#x4EE5;.&#x9694;&#x5F00;
+   ...
+</code></pre>
+<p>&#x6A21;&#x578B;&#x7C7B;&#x578B;&#x4E3A;caffe, &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5F53;&#x4E2D;&#x4FEE;&#x6539;&#x589E;&#x52A0;</p>
+<pre><code class="lang-toml">   ...
+   entry = &quot;xxx.prototxt&quot;
+   model_file = &quot;xxx.caffemodel&quot;
+   ...
+</code></pre>
+<p>&#x6A21;&#x578B;&#x7C7B;&#x578B;&#x4E3A;onnx, &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5F53;&#x4E2D;&#x4FEE;&#x6539; <code>entry = &quot;xxx.onnx&quot;</code></p>
+<p>&#x6A21;&#x578B;&#x7C7B;&#x578B;&#x4E3A;tensorrt&#x81EA;&#x5DF1;&#x751F;&#x6210;&#x7684;&#x5E8F;&#x5217;&#x5316;&#x6A21;&#x578B;, &#x4E0D;&#x8BBA;&#x4EFB;&#x4F55;&#x540E;&#x7F00;&#x76F4;&#x63A5;&#x914D;&#x7F6E;&#x5230;entry&#x5373;&#x53EF;</p>
+<ul>
+<li>base&#x57DF;&#x4E0B;&#x9762;&#x7684;plugin&#x9009;&#x9879;</li>
+</ul>
+<p>plugin&#x5373;&#x4E3A;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#x4E0B;&#x9762;&#x7684;so&#xFF0C;&#x8BE5;so&#x4E3A;&#x4E3A;&#x81EA;&#x5B9A;&#x4E49;modelbox&#x7684;tensorflow&#x63A8;&#x7406;&#x7684;&#x9884;&#x5904;&#x7406;&#x4EE5;&#x53CA;&#x540E;&#x5904;&#x7406;&#x51FD;&#x6570;&#xFF0C;&#x9700;&#x8981;&#x81EA;&#x5B9A;&#x4E49;&#x5B9E;&#x73B0;&#x4EE5;&#x4E0B;&#x63A5;&#x53E3;(&#x4E3A;&#x53EF;&#x9009;&#x9879;)</p>
+<pre><code class="lang-c++">   <span class="hljs-comment">// tensorflow</span>
+   <span class="hljs-keyword">class</span> InferencePlugin {
+      ...
+      <span class="hljs-comment">/**
+        * @brief init plugin
+        * @param config modelbox config, can get key value from the graph toml
+        * @return init result, modelbox status
+        */</span>
+      <span class="hljs-keyword">virtual</span> modelbox::<span class="hljs-function">Status <span class="hljs-title">PluginInit</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::Configuration&gt; config)</span> </span>= <span class="hljs-number">0</span>;
+
+      <span class="hljs-comment">/**
+        * @brief before inferencere, preprocess data
+        * @param ctx modelbox datacontext, can get input data from this
+        * @param input_tf_tensor_list tensorflow TF_Tensor*, after preprocess data from ctx, 
+        *        build input TF_Tensor to inference
+        * @return preprocess result, modelbox status
+        */</span>
+      <span class="hljs-keyword">virtual</span> modelbox::<span class="hljs-function">Status <span class="hljs-title">PreProcess</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::DataContext&gt; ctx, <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;TF_Tensor *&gt; &amp;input_tf_tensor_list)</span> </span>= <span class="hljs-number">0</span>;
+
+      <span class="hljs-comment">/**
+        * @brief after inferencere, postprocess data
+        * @param ctx modelbox datacontext, can get modelbox output object from this
+        * @param output_tf_tensor_list tensorflow TF_Tensor*, after inference output data store in it, 
+        *        build output bufferlist from it
+        * @return postprocess result, modelbox status
+        */</span>
+      <span class="hljs-keyword">virtual</span> modelbox::<span class="hljs-function">Status <span class="hljs-title">PostProcess</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::DataContext&gt; ctx, <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;TF_Tensor *&gt; &amp;output_tf_tensor_list)</span> </span>= <span class="hljs-number">0</span>;
+      ...
+  };
+</code></pre>
+<ul>
+<li>tensorrt&#x7684;&#x81EA;&#x5B9A;&#x4E49;&#x7B97;&#x5B50;&#x6784;&#x5EFA;&#x7684;PluginFactory</li>
+</ul>
+<p>&#x76EE;&#x524D;&#x81EA;&#x5E26;yolo&#x7248;&#x672C;&#x7684;PluginFactory&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5728;toml&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5F53;&#x4E2D;&#x589E;&#x52A0;</p>
+<pre><code class="lang-toml">   [config]
+   plugin = &quot;yolo&quot;
+</code></pre>
+<p>&#x540E;&#x7EED;&#x652F;&#x6301;&#x81EA;&#x5B9A;&#x4E49;&#x7B97;&#x5B50;&#x7684;tensorrt&#x63D2;&#x4EF6;&#xFF0C;&#x7F16;&#x8BD1;&#x6210;&#x52A8;&#x6001;&#x5E93;&#xFF0C;&#x628A;&#x8DEF;&#x5F84;&#x914D;&#x7F6E;&#x5728;&#x8FD9;&#x91CC;</p>
+<ul>
+<li>torch&#x6A21;&#x578B;&#x9700;&#x8981;&#x4FDD;&#x5B58;&#x6210;&#x6210;jit&#x6A21;&#x578B;&#xFF0C;&#x53C2;&#x8003;sample&#x5982;&#x4E0B;&#xFF1A;</li>
+</ul>
+<pre><code class="lang-python">   jit_model = torch.jit.script(Module)
+   jit_model.save(<span class="hljs-string">&quot;save_model.pt&quot;</span>)
+</code></pre>
+<ul>
+<li>torch&#x6A21;&#x578B;&#x7684;&#x8F93;&#x5165;&#x8F93;&#x51FA;&#x914D;&#x7F6E;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x540D;&#x79F0;&#xFF0C;&#x5728;&#x6B64;&#x4EC5;&#x4EC5;&#x4E3A;&#x4F4D;&#x7F6E;&#x5360;&#x4F4D;&#x7B26;&#xFF0C;&#x4F46;&#x662F;&#x9700;&#x8981;&#x4FDD;&#x8BC1;&#x8F93;&#x5165;&#x8F93;&#x51FA;&#x7684;&#x987A;&#x5E8F;&#x4E00;&#x81F4;</li>
+</ul>
 <h2 id="&#x6A21;&#x578B;&#x52A0;&#x89E3;&#x5BC6;">&#x6A21;&#x578B;&#x52A0;&#x89E3;&#x5BC6;</h2>
 <p>&#x6A21;&#x578B;&#x52A0;&#x5BC6;&#x5206;&#x4E3A;2&#x4E2A;&#x90E8;&#x5206;&#xFF1A;&#x6A21;&#x578B;&#x52A0;&#x5BC6;&#x5DE5;&#x5177;&#x548C;&#x6A21;&#x578B;&#x89E3;&#x5BC6;&#x63D2;&#x4EF6;&#x3002;</p>
 <p>&#x6A21;&#x578B;&#x52A0;&#x5BC6;&#x5DE5;&#x5177;&#x4E3A;<code>modelbox-tool key</code>&#x5185;&#xFF0C;&#x4F7F;&#x7528;<code>ModelBox Tool</code>&#x52A0;&#x5BC6;&#x6A21;&#x578B;&#x540E;&#xFF0C;&#x53EF;&#x83B7;&#x53D6;root key&#x548C;&#x6A21;&#x578B;&#x5BC6;&#x94A5;&#xFF0C;&#x4EE5;&#x53CA;&#x52A0;&#x5BC6;&#x540E;&#x7684;&#x6A21;&#x578B;&#x3002;</p>
@@ -1019,7 +1121,7 @@
 <li>&#x4E3A;&#x4FDD;&#x8BC1;&#x6A21;&#x578B;&#x4E0D;&#x88AB;&#x975E;&#x6CD5;&#x83B7;&#x53D6;&#xFF0C;&#x5F00;&#x53D1;&#x8005;&#x9700;&#x8981;&#x5BF9;&#x8FD0;&#x884C;&#x7684;&#x7CFB;&#x7EDF;&#x73AF;&#x5883;&#x8FDB;&#x884C;&#x52A0;&#x56FA;&#xFF0C;&#x6BD4;&#x5982;&#x8BBE;&#x7F6E;bootloader&#x9501;&#xFF0C;&#x8BBE;&#x7F6E;OS&#x5206;&#x533A;&#x7B7E;&#x540D;&#x6821;&#x9A8C;&#xFF0C;&#x79FB;&#x9664;&#x8C03;&#x8BD5;&#x8DDF;&#x8E2A;&#x5DE5;&#x5177;&#xFF0C;&#x82E5;&#x662F;&#x5BB9;&#x5668;&#x7684;&#xFF0C;&#x5173;&#x95ED;&#x5BB9;&#x5668;&#x7684;ptrace&#x529F;&#x80FD;&#x3002;</li>
 </ol>
 <footer class="page-footer"><span class="copyright">&#xA9; &#x534E;&#x4E3A;&#x6280;&#x672F;&#x6709;&#x9650;&#x516C;&#x53F8; all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-02-14 01:20:52
+2022-02-16 03:34:07
 </span></footer>
                                 
                                 </section>
@@ -1053,7 +1155,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"推理","level":"1.5.3.1","depth":3,"next":{"title":"Python","level":"1.5.3.2","depth":3,"path":"develop/flowunit/python.md","ref":"develop/flowunit/python.md","articles":[]},"previous":{"title":"功能单元开发","level":"1.5.3","depth":2,"path":"develop/flowunit/flowunit.md","ref":"develop/flowunit/flowunit.md","articles":[{"title":"推理","level":"1.5.3.1","depth":3,"path":"develop/flowunit/inference.md","ref":"develop/flowunit/inference.md","articles":[]},{"title":"Python","level":"1.5.3.2","depth":3,"path":"develop/flowunit/python.md","ref":"develop/flowunit/python.md","articles":[]},{"title":"C++","level":"1.5.3.3","depth":3,"path":"develop/flowunit/c++.md","ref":"develop/flowunit/c++.md","articles":[]},{"title":"异常处理","level":"1.5.3.4","depth":3,"path":"develop/flowunit/exception.md","ref":"develop/flowunit/exception.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy; 华为技术有限公司","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导书"},"file":{"path":"develop/flowunit/inference.md","mtime":"2022-02-14T01:20:52.577Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-14T01:21:53.753Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"推理","level":"1.5.3.1","depth":3,"next":{"title":"Python","level":"1.5.3.2","depth":3,"path":"develop/flowunit/python.md","ref":"develop/flowunit/python.md","articles":[]},"previous":{"title":"功能单元开发","level":"1.5.3","depth":2,"path":"develop/flowunit/flowunit.md","ref":"develop/flowunit/flowunit.md","articles":[{"title":"推理","level":"1.5.3.1","depth":3,"path":"develop/flowunit/inference.md","ref":"develop/flowunit/inference.md","articles":[]},{"title":"Python","level":"1.5.3.2","depth":3,"path":"develop/flowunit/python.md","ref":"develop/flowunit/python.md","articles":[]},{"title":"C++","level":"1.5.3.3","depth":3,"path":"develop/flowunit/c++.md","ref":"develop/flowunit/c++.md","articles":[]},{"title":"异常处理","level":"1.5.3.4","depth":3,"path":"develop/flowunit/exception.md","ref":"develop/flowunit/exception.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy; 华为技术有限公司","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导书"},"file":{"path":"develop/flowunit/inference.md","mtime":"2022-02-16T03:34:07.725Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-16T03:34:59.352Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
