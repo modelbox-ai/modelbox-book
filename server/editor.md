@@ -81,8 +81,16 @@ modelbox-tool develop -e
 
 1. 重启ModelBox Server服务使配置生效。
 
+   * systemd环境：
+
    ```shell
    systemctl restart modelbox
+   ```
+
+   * 非Systemd环境：
+
+   ```shell
+   /etc/init.d/modelbox restart
    ```
 
 ## 访问编排服务

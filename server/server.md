@@ -6,7 +6,7 @@
 
 ![server-usage alt rect_w_600](../assets/images/figure/server/server-usage.png)
 
-Server服务是预编译好的可执行文件，在使用时，按照正常的服务流程使用，其流程为：
+在ModelBox镜像中，Server服务是预编译好的可执行文件，在使用时，按照正常的服务流程使用，其流程为：
 
 1. 安装服务。
 1. 启动服务。
@@ -19,21 +19,20 @@ Server服务是预编译好的可执行文件，在使用时，按照正常的�
 
 ModelBox Server服务使用标准的systemd unit管理，启动管理服务，使用systemd命令管理。
 
-通过如下命令对ModelBox服务进行操作：
+当运行环境支持Systemd时，可通过如下命令对ModelBox服务进行操作：
 
 * `sudo systemctl status modelbox.service`：查看ModelBox服务的状态。
 * `sudo systemctl stop modelbox.service`：停止ModelBox服务。
 * `sudo systemctl start modelbox.service`：启动ModelBox服务。
 * `sudo systemctl restart modelbox.service`：重启ModelBox服务。
 
-当在由于客观原因（如无权限等）无法通过systemctl启动的场景时，也可以通过二进制命令启动ModelBox服务，命令如下：
+如无systemd管理机制时，可以使用SysvInit命令管理ModelBox服务，命令如下：
 
 ```shell
-export MALLOC_ARENA_MAX=2
-modelbox -c /usr/local/etc/modelbox/modelbox.conf -fV -p /var/run/modelbox/modelbox.pid
+sudo /etc/init.d/modelbox [start|status|stop]
 ```
 
-此方式相比systemd启动确实了对进程的监控，所以建议优先使用systemd启动ModelBox服务。
+此方式相比systemd，缺失了进程的监控，所以建议优先使用systemd启动ModelBox服务。
 
 ## ModelBox Server服务配置
 

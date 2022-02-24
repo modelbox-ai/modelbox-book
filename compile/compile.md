@@ -1,8 +1,12 @@
 # 编译安装
 
-ModelBox框架采用C++语言编写，工程编译软件是CMake，在编译ModelBox之前，需要满足如下要求。
+ModelBox框架采用C++语言编写，工程编译软件是CMake，本文主要讲解ModelBox源代码的编译过程。
+
+如基于ModelBox开发AI应用，推荐使用现有ModelBox镜像开发，避免从源代码构建ModelBox。
 
 ## 编译依赖准备
+
+在编译ModelBox之前，需要满足如下要求。
 
 | 类别   | 依赖       | 依赖说明           | 最低版本                | 推荐版本     | 是否必须 | 相关组件                              |
 | ------ | ---------- | ------------------ | ----------------------- | ------------ | -------- | ------------------------------------- |
@@ -25,53 +29,7 @@ ModelBox框架采用C++语言编写，工程编译软件是CMake，在编译Mode
 
 ModelBox项目提供了docker镜像，里面包含了ModelBox编译运行所需的组件及预先安装的ModelBox，可以优先选择docker镜像进行应用的开发编译。
 
-可于`https://registry.hub.docker.com/u/modelbox`自行下载所需镜像。
-
-1. 安装启动docker后，以内置了tensorflow2.6.0和cuda11.2的镜像版本为例，执行下列命令下载对应的docker镜像：
-
-    ```shell
-    docker pull modelbox/modelbox-develop-tensorflow_2.6.0-cuda_11.2-openeuler-x86_64
-    ```
-
-1. 下载镜像之后，执行下列命令启动镜像
-
-    如果docker版本大于等于19.03，那么可以使用以下命令：
-
-    ```shell
-    docker run -itd --gpus all -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,video \
-        --tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
-        modelbox/modelbox_cuda101_develop:latest 
-    ```
-
-    如果docker版本小于19.03, 则可以使用：
-
-    ```shell
-    docker run -itd --runtime=nvidia -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,video \
-        --tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
-        modelbox/modelbox_cuda101_develop:latest 
-    ```
-
-    docker版本可通过执行`docker version`来查询。
-
-    如果需要在容器中进行gdb调试，需要在启动容器时添加如下选项：
-
-    ```shell
-    --privileged
-    ```
-
-    如果需要通过ssh连接至容器，需要在启动容器时添加如下选项：
-
-    ```shell
-    -p [host port]:22
-    ```
-
-1. 启动镜像之后，执行下列命令进入镜像即完成ModelBox开发镜像环境准备
-
-    ```shell
-    docker exec -it [container id] bash
-    ```
-
-如有疑问，可参考[FAQ](../faq/faq.md)中的[docker](../faq/faq.md#docker启动脚本详解)相关内容
+关于容器镜像的使用，可参考[容器镜像使用](../faq//container-usage.md)的内容。
 
 ### 基于当前操作系统安装
 
@@ -106,28 +64,34 @@ ModelBox项目提供了docker镜像，里面包含了ModelBox编译运行所需�
     cd modelbox
     ```
 
-1. 执行Cmake创建编译工作区
+    或者：
+
+    ```shell
+    git clone https://gitee.com/modelbox/modelbox.git
+    cd modelbox
+    ```
+
+1. 执行cmake创建编译工作区
 
     ```shell
     mkdir build
     cd build
-    cmake  -DLOCAL_PACKAGE_PATH=/opt/thirdparty/source  ..
+    cmake ..
     ```
 
-    * 在编译过程中，还需要下载第三方依赖，请保持网络能正常连接第三方服务器。  
+    * `-DUSE_CN_MIRROR=yes`：在编译过程中，还需要下载第三方依赖，请保持网络能正常连接第三方服务器，如在国内无法下载以来，可以增加此cmake参数，从国内镜像下载依赖。  
+    * `-DLOCAL_PACKAGE_PATH`：若本地已经有依赖的第三方软件包，则可以使用此参数指定本地依赖包路径，若使用ModelBox编译镜像时，编译镜像的`/opt/thirdparty/source`已经有相关依赖包，可直接指定本地路径使用，若需要从公共源码仓下载，则无需指定此参数，但需要确保网络通畅。
     * 如需编译release版本，可以执行如下cmake命令
-    
+
     ```shell
     cmake -DCMAKE_BUILD_TYPE=Release ..
     ```
   
     * 如需进行断点调试，则应编译debug版本，可以执行如下cmake命令
-    
+
     ```shell
     cmake -DCMAKE_BUILD_TYPE=Debug ..
     ```
-  
-    * `-DLOCAL_PACKAGE_PATH`：若本地已经有依赖的第三方软件包，则可以使用此参数指定本地依赖包路径，若使用ModelBox编译镜像时，编译镜像的`/opt/thirdparty/source`已经有相关依赖包，可直接指定本地路径使用，若需要从公共源码仓下载，则无需指定此参数，但需要确保网络通畅。
 
 1. 编译安装包
 
@@ -156,6 +120,8 @@ ModelBox编译完成后，将生成配套OS安装的安装包，如deb、rpm包�
 | 开发库   | modelbox-x.x.x-Linux-ascend-device-flowunit-devel.[deb&#124;rpm] | Ascend设备开发库。                      |
 | 开发库   | modelbox-x.x.x-Linux-cpu-device-flowunit-devel.[deb&#124;rpm]    | CPU开发包。                             |
 | 开发库   | modelbox-x.x.x-Linux-cuda-device-flowunit-devel.[deb&#124;rpm]   | Cuda设备开发库。                        |
+| 手册   | modelbox-x.x.x-Linux-document.deb.[deb&#124;rpm]   | 开发手册，包含API说明。                        |
+| WebUI   | modelbox-x.x.x-Linux-modelbox-webui.[deb&#124;rpm]   | 编排界面。                        |
 | 运行库   | modelbox-x.x.x-py3-none-any.whl                                  | python wheel包。                        |
 | 全量包   | modelbox-x.x.x-Linux.tar.gz                                      | 全量安装包，包括上述所有组件。          |
 

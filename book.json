@@ -29,7 +29,7 @@
             "theme": "light"
         },
         "tbfed-pagefooter": {
-            "copyright": "&copy; 华为技术有限公司",
+            "copyright": "&copy;2022 ModelBox Team",
             "modify_label": "文件修订时间：",
             "modify_format": "YYYY-MM-DD HH:mm:ss"
         },

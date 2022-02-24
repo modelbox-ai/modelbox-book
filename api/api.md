@@ -69,4 +69,4 @@ ModelBox Library包含`基础Base`部分和`功能`部分。基础部分用于�
 
 ## 开发扩展
 
-[ModelBox Server Plugin](../../develop/service-plugin/service-plugin.md)，[ModelBox Device](../../develop/device/device.md)，[ModelBox Flowunit](../../develop/flowunit/flowunit.md)的扩展，请参考相关的开发指导。
+[ModelBox Server Plugin](../develop/service-plugin/service-plugin.md)，[ModelBox Device](../develop/device/device.md)，[ModelBox Flowunit](../develop/flowunit/flowunit.md)的扩展，请参考相关的开发指导。

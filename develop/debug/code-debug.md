@@ -42,6 +42,8 @@ r
 * b [some-func]对指定的函数进行断点。
 * r 运行命令
 
+注意：如果使用镜像开发，gdb提示无权限，则需要使用特权容器，具体参考[这里](../../faq/container-usage.md)的gdb调试设置
+
 #### vscode
 
 vscode调试，可以先下载GDB插件，再配置调试文件`.vscode/launch.json`，设置`program`和`args`两个配置项如下。

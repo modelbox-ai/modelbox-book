@@ -2,6 +2,8 @@
 
 ## 环境准备
 
+环境准备可以使用现成ModleBox镜像，也可以从源代码构建ModelBox。本章节使用现成ModelBox镜像开发，如果没有相关的镜像，可以参考[编译安装](../../compile/compile.md)
+
 ### Docker开发镜像
 
 1. 安装启动docker后，执行下列命令下载docker镜像
@@ -10,63 +12,17 @@
     docker pull modelbox/modelbox-develop-tensorflow_2.6.0-cuda_11.2-openeuler-x86_64
     ```
 
-    如需要下载其他cuda版本的镜像，可参考[FAQ](../../faq/faq.md)中的[其他版本的cuda](../../faq/faq.md#其他版本的cuda)相关内容
+1. 配置并启动容器
 
-1. 在系统中创建如下docker启动脚本，或将如下脚本按需修改后，粘贴到ssh终端中执行：
-
-    ```shell
-    #!/bin/bash
-
-    # ssh map port, [modify]
-    SSH_MAP_PORT=50022
-
-    # editor map port [modify]
-    EDITOR_MAP_PORT=1104
-
-    # http server port [modify]
-    HTTP_SERVER_PORT=8080
-
-    # container name [modify]
-    CONTAINER_NAME="modelbox_instance_`date +%s` "
-    
-    HTTP_DOCKER_PORT_COMMAND="-p $HTTP_SERVER_PORT:$HTTP_SERVER_PORT"
-    docker run -itd --gpus all -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,video \
-        --tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
-        --name $CONTAINER_NAME -v /opt/modelbox:/opt/modelbox -v /home:/home \
-        -p $SSH_MAP_PORT:22 -p $EDITOR_MAP_PORT:1104 $HTTP_DOCKER_PORT_COMMAND \
-        modelbox/modelbox_cuda101_develop:latest 
-    
-    ```
-
-    如果docker版本低于19.03，则需要修改脚本
-
-    ```shell
-    docker run -itd --runtime=nvidia -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,video \
-        --tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
-        --name $CONTAINER_NAME -v /opt/modelbox:/opt/modelbox -v /home:/home \
-        -p $SSH_MAP_PORT:22 -p $EDITOR_MAP_PORT:1104 $HTTP_DOCKER_PORT_COMMAND \
-        modelbox/modelbox_cuda101_develop:latest 
-    ```
-
-   注意事项：
-    *. 可使用`vim start_docker.sh`创建文件后，`i`进入编辑模式后，粘贴上述代码，编辑修改后，`wx`保存。
-    * `SSH_MAP_PORT`: 为容器ssh映射端口号。
-    * `EDITOR_MAP_PORT`: 为可视化开发界面链接端口号。
-    * `HTTP_SERVER_PORT`: 为http flowunit默认服务端口号。
-    * docker启动脚本中，请注意启动的镜像版本是否与自己所需的镜像版本一致。
-    * 如果启动镜像之后，端口未被占用却仍旧无法访问，需要检查防火墙。
-    * 如有疑问，可参考[FAQ](../../faq/faq.md)中的[docker](../../faq/faq.md#docker启动脚本详解)相关内容
+    可采用一键式脚本快速进入容器。参考[一键式脚本](../../faq/container-usage.md)相关内容。
 
 1. 进入容器并且切换至ModelBox开发者模式
 
-    ```shell
-    docker exec -it [container id] bash
-    modelbox-tool develop -e 
-    ```
+   注意事项：
+    * 如果需要通过可视化UI进行图的编排，可参考[可视化编排服务](../../server/editor.md)章节访问`http://[host]:[EDITOR_MAP_PORT]/editor/`地址；
+    * 如果访问被拒绝，可参考[运行编排服务](../../server/editor.md)中的[访问控制列表](../../server/editor.md#访问控制列表)相关内容
 
-如果需要通过可视化UI进行图的编排，可参考[可视化编排服务](../../server/editor.md)章节访问`http://[host]:[EDITOR_MAP_PORT]/editor/`地址，如果访问被拒绝，可参考[运行编排服务](../../server/editor.md)中的[访问控制列表](../../server/editor.md#访问控制列表)相关内容
-
-## 第一个应用开发
+## 第一个应用开发-mnist识别
 
 开发环境准备好了之后进入应用开发环节，这里以MNIST为例介绍整个应用开发过程。首先介绍MNIST应用实现的功能，然后介绍流程图编排、功能单元编写、运行与调试3个开发步骤。
 
@@ -74,20 +30,11 @@ MNIST案例是使用MNIST数据集，训练的一个手写数字识别tensorflow
 
 ### 功能
 
-监听端口接收http请求，然后从请求体中的base64解析出图片，接着用训练出的MNIST模型进行推理，最后将识别出的数字返回给用户。
+将MNIST数据，通过base格式发送到ModelBox推理，并获取结果。
 
-图片base64编码：
+流程上：ModelBox Server监听端口接收http请求，然后从请求体中的base64解析出图片，接着用训练出的MNIST模型进行推理，最后将识别出的数字返回给用户。
 
-``` python
-import base64
-
-img_path = "path_to_test_image"
-with open(img_path, 'rb') as fp:
-    base64_data = base64.b64encode(fp.read())
-    img_base64_str = str(base64_data, encoding='utf8')
-```
-
-请求样例：
+Request 请求样例：
 
 ``` json
 {
@@ -95,7 +42,7 @@ with open(img_path, 'rb') as fp:
 }
 ```
 
-响应样例：
+Response 响应样例：
 
 ``` json
 {
@@ -238,7 +185,7 @@ ModelBox提供基础预置功能单元，除此之外还需补充流程图中缺
 
 * 测试
 
-  这里已经准备好测试脚本`/usr/local/share/modelbox/solution/graphs/mnist_detection/test_mnist.py`，测试图片是mnist测试集中的0数字。
+  可以使用已经准备好测试脚本`/usr/local/share/modelbox/solution/graphs/mnist_detection/test_mnist.py`，测试图片是mnist测试集中的0数字。
 
   直接运行`python3 test_mnist.py`得到结果为：
 
