@@ -29,6 +29,8 @@ ModelBox将流程图中的顶点称为功能单元(FlowUnit)。功能单元是�
 
 ModelBox的开发使用流程指导，开发者可以在这里全局了解开发的过程。
 
+推荐初次使用ModelBox的用户，先参照[第一个应用](../develop/first-app/first-app.md)的步骤操作，熟悉ModelBox的开发和使用过程。
+
 **1. 环境准备：**
 
 准备ModelBox运行或编译环境。下述两个步骤二选一即可，优先推荐使用已有镜像。
