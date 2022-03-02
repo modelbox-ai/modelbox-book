@@ -6,10 +6,12 @@
 
 ### Docker开发镜像
 
+使用镜像开发，省去了准备复杂编译环境的巨大工作量，推荐ModelBox开发者直接使用镜像开发，ModelBox镜像相关的指导，可以先参考[容器使用](../../faq/container-usage.md)章节。
+
 1. 安装启动docker后，执行下列命令下载docker镜像
 
     ```shell
-    docker pull modelbox/modelbox-develop-tensorflow_2.6.0-cuda_11.2-openeuler-x86_64
+    docker pull modelbox/modelbox-develop-tensorflow_2.6.0-cuda_11.2-ubuntu-x86_64
     ```
 
 1. 配置并启动容器

@@ -12,7 +12,7 @@ ModelBox Tool是ModelBox套件集成的一个开发、维护工具，提供了�
 | create  | 创建模板                             |
 | key     | 密码加解密，模型加解密               |
 | server  | 查看Log，Stack，Slab和Statistics信息 |
-| develop | 切换开发模式                         |
+| develop | 创建开发编排环境                         |
 
 ModelBox为标准的命令行工具，可以使用`modelbox-tool -h`查看详细的帮助说明。
 
@@ -263,6 +263,23 @@ modelbox-tool server slab --device --type [cuda/cpu] --id [id]
 modelbox-tool server stat --all 
 modelbox-tool server stat --node [name]
 ```
+
+## Develop
+
+创建开发运行环境，用于启动ModelBox编排UI，链接UI进行工程创建。此命令组为`modelbox-tool develop`, 命令格式如下：
+
+```shell
+modelbox-tool develop -s 
+modelbox-tool develop -q
+```
+
+具体参数说明如下：
+
+| 参数       | 功能说明                                                    |
+| ---------- | ----------------------------------------------------------- |
+| -s   | 在$HOME/modelbox目录下创建开发环境，并启动支持编排的服务。                                        |
+| -q   | 查询对应开发环境的状态和信息。 |
+| --home  | 指定开发环境服务的路径，默认情况为$HOME/modelbox   |
 
 ## ModelBox Tool主配置
 

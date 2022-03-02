@@ -11,7 +11,7 @@ ModelBox提供的CUDA，ASCEND硬件和tensoflow，pytorch，mindspore，tensorr
 可以选择使用以下命令拉取相关的镜像。比如cuda11.2，tensorflow的open欧拉开发镜像，则镜像如下：
 
 ```shell
-docker pull modelbox/modelbox-develop-tensorflow_2.6.0-cuda_11.2-openeuler-x86_64
+docker pull modelbox/modelbox-develop-tensorflow_2.6.0-cuda_11.2-ubuntu-x86_64
 ```
 
 其他版本可以查看DockerHub中ModelBox仓库的镜像列表。
@@ -36,7 +36,7 @@ HTTP_SERVER_PORT=8080
 CONTAINER_NAME="modelbox_instance_`date +%s` "
 
 # image name
-IMAGE_NAME="modelbox/modelbox-develop-tensorflow_2.6.0-cuda_11.2-openeuler-x86_64"
+IMAGE_NAME="modelbox/modelbox-develop-tensorflow_2.6.0-cuda_11.2-ubuntu-x86_64"
 
 HTTP_DOCKER_PORT_COMMAND="-p $HTTP_SERVER_PORT:$HTTP_SERVER_PORT"
 docker run -itd --gpus all -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,video \
@@ -76,7 +76,7 @@ docker run -itd --runtime=nvidia -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,v
 
     ```shell
     docker exec -it [container id] bash
-    password
+    passwd
     ```
 
 1. 使用ssh，或相关的工具链接到容器内部，并启用modelbox的开发者模式。

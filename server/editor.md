@@ -42,16 +42,16 @@ ModelBox Server安装完成后，编排服务会通过插件的形式由ModelBox
 通过如下命令，可开启基于Web的可视化编辑工具——Editor。
 
 ```shell
-modelbox-tool develop -e 
+modelbox-tool develop -s 
 ```
 
-命令执行后，将开启http服务，可使用对应主机的IP地址，和开启的端口号（默认端口号为1104），在[配置ACL](./editor.md#访问控制列表)生效之后，即可访问Editor界面。
+命令执行后，将在用户$HOME/modelbox创建运行目录，并开启http编排服务，可使用对应主机的IP地址，和开启的端口号（默认端口号为1104），在[配置ACL](./editor.md#访问控制列表)生效之后，即可访问Editor界面。
 
 ### 配置启用Editor
 
 若需要定制化编排服务启动参数，可以修改配置文件，具体修改流程如下：
 
-1. 打开`/usr/local/etc/modelbox/modelbox.conf`，修改其中的配置项：
+1. 打开`$HOME/modelbox/modelbox.conf`，修改其中的配置项：
 
    ```toml
    [server]
@@ -141,7 +141,7 @@ UI界面分为7个功能区域，其对应的功能如下：
 访问控制列表ACL（Access Control List）是由一条或多条规则组成的集合，里面配置了允许访问Editor的IP地址。
 可以通过修改配置文件，来修改ACL列表，具体流程如下：
 
-1. 打开`/usr/local/etc/modelbox/modelbox.conf`，修改其中的配置项：
+1. 打开`$HOME/modelbox/modelbox.conf`，修改其中的配置项：
    假设打开编排UI的机器的IP地址为10.11.12.13
 
    ```shell
@@ -168,8 +168,16 @@ UI界面分为7个功能区域，其对应的功能如下：
 
 1. 重启ModelBox Server服务使配置生效。
 
+   systemd环境
+
    ```shell
    systemctl restart modelbox
+   ```
+
+   非systemd环境。
+
+   ```shell
+   /etc/init.d/modelbox restart
    ```
 
 注意：1. 确保`[editor]`下`enable = true`。
