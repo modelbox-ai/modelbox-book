@@ -982,7 +982,7 @@
 <p>ModelBox&#x63D0;&#x4F9B;&#x7684;CUDA&#xFF0C;ASCEND&#x786C;&#x4EF6;&#x548C;tensoflow&#xFF0C;pytorch&#xFF0C;mindspore&#xFF0C;tensorrt&#x7684;&#x591A;&#x79CD;&#x955C;&#x50CF;&#xFF0C;&#x5F00;&#x53D1;&#x8005;&#x6309;&#x7167;&#x9700;&#x8981;&#x62C9;&#x53D6;&#x4F7F;&#x7528;&#x3002;</p>
 <p>&#x955C;&#x50CF;&#x4ED3;&#x5E93;&#xFF1A;<a href="https://hub.docker.com/u/modelbox" target="_blank">https://hub.docker.com/u/modelbox</a></p>
 <p>&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x62C9;&#x53D6;&#x76F8;&#x5173;&#x7684;&#x955C;&#x50CF;&#x3002;&#x6BD4;&#x5982;cuda11.2&#xFF0C;tensorflow&#x7684;open&#x6B27;&#x62C9;&#x5F00;&#x53D1;&#x955C;&#x50CF;&#xFF0C;&#x5219;&#x955C;&#x50CF;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-shell">docker pull modelbox/modelbox-develop-tensorflow_2.6.0-cuda_11.2-openeuler-x86_64
+<pre><code class="lang-shell">docker pull modelbox/modelbox-develop-tensorflow_2.6.0-cuda_11.2-ubuntu-x86_64
 </code></pre>
 <p>&#x5176;&#x4ED6;&#x7248;&#x672C;&#x53EF;&#x4EE5;&#x67E5;&#x770B;DockerHub&#x4E2D;ModelBox&#x4ED3;&#x5E93;&#x7684;&#x955C;&#x50CF;&#x5217;&#x8868;&#x3002;</p>
 <h2 id="&#x4E00;&#x952E;&#x5F0F;&#x811A;&#x672C;">&#x4E00;&#x952E;&#x5F0F;&#x811A;&#x672C;</h2>
@@ -1002,7 +1002,7 @@ HTTP_SERVER_PORT=8080
 CONTAINER_NAME=&quot;modelbox_instance_`date +%s` &quot;
 
 # image name
-IMAGE_NAME=&quot;modelbox/modelbox-develop-tensorflow_2.6.0-cuda_11.2-openeuler-x86_64&quot;
+IMAGE_NAME=&quot;modelbox/modelbox-develop-tensorflow_2.6.0-cuda_11.2-ubuntu-x86_64&quot;
 
 HTTP_DOCKER_PORT_COMMAND=&quot;-p $HTTP_SERVER_PORT:$HTTP_SERVER_PORT&quot;
 docker run -itd --gpus all -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,video \
@@ -1035,7 +1035,7 @@ docker run -itd --gpus all -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,video \
 <ol>
 <li><p>&#x4ECE;Host&#x4E2D;&#x8FDB;&#x5165;&#x5BB9;&#x5668;&#xFF0C;&#x8BBE;&#x7F6E;root&#x5BC6;&#x7801;</p>
 <pre><code class="lang-shell"> docker exec -it [container id] bash
- password
+ passwd
 </code></pre>
 </li>
 <li><p>&#x4F7F;&#x7528;ssh&#xFF0C;&#x6216;&#x76F8;&#x5173;&#x7684;&#x5DE5;&#x5177;&#x94FE;&#x63A5;&#x5230;&#x5BB9;&#x5668;&#x5185;&#x90E8;&#xFF0C;&#x5E76;&#x542F;&#x7528;modelbox&#x7684;&#x5F00;&#x53D1;&#x8005;&#x6A21;&#x5F0F;&#x3002;</p>
@@ -1111,7 +1111,7 @@ ptrace()&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#x51FD;&#x6570;&#x63D0;&#x4F9B;&#x4E86;
 &#x8BBE;&#x4E3A;unconfined&#x53EF;&#x4EE5;&#x5141;&#x8BB8;&#x5BB9;&#x5668;&#x6267;&#x884C;&#x5168;&#x90E8;&#x7684;&#x7CFB;&#x7EDF;&#x7684;&#x8C03;&#x7528;&#x3002;</p>
 <p>&#x6709;&#x9047;&#x5230;&#x65E0;&#x6CD5;&#x542F;&#x52A8;&#x7684;&#x95EE;&#x9898;&#xFF0C; &#x8BF7;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x5B89;&#x88C5;nvidia-container-toolkit &#x548C;&#x5BF9;&#x5E94;&#x7684;cuda(10)&#x7248;&#x672C;</p>
 <footer class="page-footer"><span class="copyright">&#xA9;2022 ModelBox Team all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-02-24 12:59:08
+2022-03-02 07:20:01
 </span></footer>
                                 
                                 </section>
@@ -1145,7 +1145,7 @@ ptrace()&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#x51FD;&#x6570;&#x63D0;&#x4F9B;&#x4E86;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Container-usage","level":"1.11.1","depth":2,"previous":{"title":"FAQ","level":"1.11","depth":1,"path":"faq/faq.md","ref":"faq/faq.md","articles":[{"title":"Container-usage","level":"1.11.1","depth":2,"path":"faq/container-usage.md","ref":"faq/container-usage.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导书"},"file":{"path":"faq/container-usage.md","mtime":"2022-02-24T12:59:08.281Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-24T12:59:58.114Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Container-usage","level":"1.11.1","depth":2,"previous":{"title":"FAQ","level":"1.11","depth":1,"path":"faq/faq.md","ref":"faq/faq.md","articles":[{"title":"Container-usage","level":"1.11.1","depth":2,"path":"faq/container-usage.md","ref":"faq/container-usage.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导书"},"file":{"path":"faq/container-usage.md","mtime":"2022-03-02T07:20:01.284Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-03-02T07:20:55.054Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
