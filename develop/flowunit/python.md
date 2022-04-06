@@ -37,7 +37,7 @@ python功能单元需要提供独立的toml配置文件，指定python功能单�
 ModelBox提供了模板创建工具，可以通过**ModelBox Tool**工具产生python功能单元的模板，具体的命令为
 
 ```shell
-modelbox-tool create -t python -n FlowUnitName -d ./ProjectName/src/flowunit
+modelbox-tool template -flowunit -lang python -name [name]  
 ```
 
 ModelBox框架在初始化时，会扫描/path/to/flowunit/[FlowUnitName]目录中的toml后缀的文件，并读取相关的信息，具体可通过**ModelBox Tool**工具查询。

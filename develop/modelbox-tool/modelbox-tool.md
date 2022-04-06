@@ -29,6 +29,7 @@ ModelBox为标准的命令行工具，可以使用`modelbox-tool -h`查看详细
     modelbox-tool help key
     modelbox-tool help server
     modelbox-tool help develop
+    modelbox-tool help template
     ```
 
 ## driver功能
@@ -122,42 +123,48 @@ modelbox-tool driver [-type flowunit] [-path dir1,dir2] [-details [-name name]] 
 
 工具执行后的运行日志，存储在`/var/log/modelbox/modelbox-tool.log`中。如果需要修改日志级别，或将日志输出到屏幕上，可参考后续章节的内容。
 
-## Create功能
+## template功能
 
-创建代码模板，用于开发准备。可以使用`modelbox-tool create`命令组,格式如下：
+创建代码模板，用于开发准备。可以使用`modelbox-tool template`命令组,格式如下：
 
 ```shell
-modelbox-tool create [-t typename] [-n name]] [-d dir]
+modelbox-tool template [options]
 ```
 
-* 创建算法工程模板
+* 创建工程模板
 
     ```shell
-    modelbox-tool create -t project -n [name] -d [path/to/]
+    modelbox-tool template -project -name [name]
     ```
 
 * 创建c++功能单元模板
 
     ```shell
-    modelbox-tool create -t c++ -n [name] -d [path/to/src/flowunit]
+    modelbox-tool template -flowunit -lang c++ -name [name]  
     ```
 
 * 创建python功能单元模板
 
     ```shell
-    modelbox-tool create -t python -n [name] -d [path/to/src/flowunit]
+    modelbox-tool template -flowunit -lang python -name [name]  
     ```
 
 * 创建推理功能单元模板
   
     ```shell
-    modelbox-tool create -t infer -n [name] -d [path/to/src/flowunit
+    modelbox-tool template -flowunit -lang yolo -name [name]  
+    ```
+
+* 创建YOLO功能单元模板
+  
+    ```shell
+    modelbox-tool template -flowunit -lang infer -name [name]  
     ```
 
 * 创建服务插件模板
 
     ```shell
-    modelbox-tool create -t service-plugin -n [name] -d [path/to/src/service-plugin]
+    modelbox-tool template -service-plugin -name [name]
     ```
 
 通常情况下，先创建工程模板，再在工程对应目录创建功能单元或者服务插件。

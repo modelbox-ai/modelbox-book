@@ -104,7 +104,7 @@ Listener监听组件可以注册http服务，监听相关的URI
 开发者可以通过modelbox-tool命名进行服务插件模板工程的创建，创建命令如下：
 
 ```shell
-modelbox-tool create -t service-plugin -n PluginName -d ./
+modelbox-tool template -service-plugin -name PluginName
 ```
 
 ### 编写插件入口函数

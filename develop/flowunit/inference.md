@@ -19,7 +19,7 @@ ModelBox框架在初始化时，会扫描[some-flowunit]目录中的toml后缀�
 开发着可以通过modelbox-tool命令进行推理功能单元模板创建：
 
 ```shell
-   modelbox-tool create -t infer -n FlowUnitName -d ./ProjectName/src/flowunit 
+modelbox-tool template -flowunit -lang infer -name [name]  
 ```
 
 ## 推理功能流单元配置(toml格式)

@@ -83,7 +83,7 @@ ModelBox开发套件包含如下部分：
     通过modelbox-tool创建AI应用工程，具体命令如下：
 
     ```shell
-    modelbox-tool create -t project -n [ProjectName] -d ./
+    modelbox-tool template -project -n [ProjectName]
     ```
 
     默认工程目录结构如下：
@@ -117,9 +117,9 @@ ModelBox开发套件包含如下部分：
     通过modelbox-tool创建对应语言的功能单元模板，具体命令如下：
 
     ```shell
-    modelbox-tool create -t c++ -n [name] -d ./ProjectName/src/flowunit
-    modelbox-tool create -t python -n [name] -d ./ProjectName/src/flowunit
-    modelbox-tool create -t infer -n [name] -d ./ProjectName/src/flowunit
+    modelbox-tool template -flowunit -lang c++ -name [name] 
+    modelbox-tool template -flowunit -lang python -name [name] 
+    modelbox-tool template -flowunit -lang infer -name [name] 
     ```
 
     命令执行后会生成对应文件和函数，注意name不可携带数字、中划线等特殊字符，建议是全英文。
@@ -131,7 +131,7 @@ ModelBox开发套件包含如下部分：
     通过modelbox-tool创建对应语言的服务插件模板，具体命令如下：
 
     ```shell
-    modelbox-tool create -t service-plugin -n [name] -d ./ProjectName/src/service-plugin
+    modelbox-tool template -service-plugin -n [name]
     ```
 
     命令执行后会生成对应文件和函数，注意name不可携带数字、中划线等特殊字符，建议是全英文。
@@ -151,7 +151,7 @@ ModelBox开发套件包含如下部分：
 
     功能单元so、服务插件so、python、模型文件、图配置等都会安装到Cmakelist中指定的路径（默认安装在 `/opt/modelbox/`目录下）。也可以通过 `make package` 进行打RPM包。
 
-    安装完成后可以通过modelbox-tool 在环境上运行图文件进行调试。命令如下：
+    安装完成后可以通过 modelbox-tool 在环境上运行图文件进行调试。命令如下：
 
     ```shell
     modelbox-tool -verbose [-log-level INFO] [-log-path filepath] flow -run [/path/to/graph.toml]

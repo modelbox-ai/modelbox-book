@@ -10,10 +10,10 @@
 
 ![flowunit-develop alt rect_w_600](../../assets/images/figure/develop/flowunit/flowunit-develop.png)
 
-1. 可以通过modelbox-tool 创建功能单元模板工程
+1. 可以通过 modelbox-tool 创建功能单元模板工程
 
 ```shell
-   modelbox-tool create -t c++ -n xxx -d ./  
+modelbox-tool template -flowunit -lang c++ -name [name]  
 ```
 
 1. 确定功能单元类型。

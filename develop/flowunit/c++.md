@@ -35,7 +35,7 @@ FlowUnit开发分为三部分，`Driver`和`Factory`，分别设置插件属性�
 ModelBox提供了模板创建工具，可以通过**ModelBox Tool**工具产生c++功能单元的模板，具体的命令为
 
 ```shell
-modelbox-tool create -t c++ -n FlowUnitName -d ./ProjectName/src/flowunit
+modelbox-tool template -flowunit -lang c++ -name [name] 
 ```
 
 ### Driver接口说明
