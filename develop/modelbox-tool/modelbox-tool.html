@@ -1030,6 +1030,7 @@
   modelbox-tool help key
   modelbox-tool help server
   modelbox-tool help develop
+  modelbox-tool help template
 </code></pre>
 </li>
 </ul>
@@ -1094,29 +1095,33 @@
 </li>
 </ul>
 <p>&#x5DE5;&#x5177;&#x6267;&#x884C;&#x540E;&#x7684;&#x8FD0;&#x884C;&#x65E5;&#x5FD7;&#xFF0C;&#x5B58;&#x50A8;&#x5728;<code>/var/log/modelbox/modelbox-tool.log</code>&#x4E2D;&#x3002;&#x5982;&#x679C;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x65E5;&#x5FD7;&#x7EA7;&#x522B;&#xFF0C;&#x6216;&#x5C06;&#x65E5;&#x5FD7;&#x8F93;&#x51FA;&#x5230;&#x5C4F;&#x5E55;&#x4E0A;&#xFF0C;&#x53EF;&#x53C2;&#x8003;&#x540E;&#x7EED;&#x7AE0;&#x8282;&#x7684;&#x5185;&#x5BB9;&#x3002;</p>
-<h2 id="create&#x529F;&#x80FD;">Create&#x529F;&#x80FD;</h2>
-<p>&#x521B;&#x5EFA;&#x4EE3;&#x7801;&#x6A21;&#x677F;&#xFF0C;&#x7528;&#x4E8E;&#x5F00;&#x53D1;&#x51C6;&#x5907;&#x3002;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>modelbox-tool create</code>&#x547D;&#x4EE4;&#x7EC4;,&#x683C;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-shell">modelbox-tool create [-t typename] [-n name]] [-d dir]
+<h2 id="template&#x529F;&#x80FD;">template&#x529F;&#x80FD;</h2>
+<p>&#x521B;&#x5EFA;&#x4EE3;&#x7801;&#x6A21;&#x677F;&#xFF0C;&#x7528;&#x4E8E;&#x5F00;&#x53D1;&#x51C6;&#x5907;&#x3002;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>modelbox-tool template</code>&#x547D;&#x4EE4;&#x7EC4;,&#x683C;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-shell">modelbox-tool template [options]
 </code></pre>
 <ul>
-<li><p>&#x521B;&#x5EFA;&#x7B97;&#x6CD5;&#x5DE5;&#x7A0B;&#x6A21;&#x677F;</p>
-<pre><code class="lang-shell">  modelbox-tool create -t project -n [name] -d [path/to/]
+<li><p>&#x521B;&#x5EFA;&#x5DE5;&#x7A0B;&#x6A21;&#x677F;</p>
+<pre><code class="lang-shell">  modelbox-tool template -project -name [name]
 </code></pre>
 </li>
 <li><p>&#x521B;&#x5EFA;c++&#x529F;&#x80FD;&#x5355;&#x5143;&#x6A21;&#x677F;</p>
-<pre><code class="lang-shell">  modelbox-tool create -t c++ -n [name] -d [path/to/src/flowunit]
+<pre><code class="lang-shell">  modelbox-tool template -flowunit -lang c++ -name [name]
 </code></pre>
 </li>
 <li><p>&#x521B;&#x5EFA;python&#x529F;&#x80FD;&#x5355;&#x5143;&#x6A21;&#x677F;</p>
-<pre><code class="lang-shell">  modelbox-tool create -t python -n [name] -d [path/to/src/flowunit]
+<pre><code class="lang-shell">  modelbox-tool template -flowunit -lang python -name [name]
 </code></pre>
 </li>
 <li><p>&#x521B;&#x5EFA;&#x63A8;&#x7406;&#x529F;&#x80FD;&#x5355;&#x5143;&#x6A21;&#x677F;</p>
-<pre><code class="lang-shell">  modelbox-tool create -t infer -n [name] -d [path/to/src/flowunit
+<pre><code class="lang-shell">  modelbox-tool template -flowunit -lang yolo -name [name]
+</code></pre>
+</li>
+<li><p>&#x521B;&#x5EFA;YOLO&#x529F;&#x80FD;&#x5355;&#x5143;&#x6A21;&#x677F;</p>
+<pre><code class="lang-shell">  modelbox-tool template -flowunit -lang infer -name [name]
 </code></pre>
 </li>
 <li><p>&#x521B;&#x5EFA;&#x670D;&#x52A1;&#x63D2;&#x4EF6;&#x6A21;&#x677F;</p>
-<pre><code class="lang-shell">  modelbox-tool create -t service-plugin -n [name] -d [path/to/src/service-plugin]
+<pre><code class="lang-shell">  modelbox-tool template -service-plugin -name [name]
 </code></pre>
 </li>
 </ul>
@@ -1251,7 +1256,7 @@ modelbox-tool develop -q
 </tbody>
 </table>
 <footer class="page-footer"><span class="copyright">&#xA9;2022 ModelBox Team all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-03-21 07:22:56
+2022-04-06 13:47:13
 </span></footer>
                                 
                                 </section>
@@ -1285,7 +1290,7 @@ modelbox-tool develop -q
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"ModelBox Tool","level":"1.5.6","depth":2,"next":{"title":"调试定位","level":"1.5.7","depth":2,"path":"develop/debug/debug.md","ref":"develop/debug/debug.md","articles":[{"title":"代码调试","level":"1.5.7.1","depth":3,"path":"develop/debug/code-debug.md","ref":"develop/debug/code-debug.md","articles":[]},{"title":"日志","level":"1.5.7.2","depth":3,"path":"develop/debug/log.md","ref":"develop/debug/log.md","articles":[]}]},"previous":{"title":"Python","level":"1.5.5.2","depth":3,"path":"develop/sdk/python.md","ref":"develop/sdk/python.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导书"},"file":{"path":"develop/modelbox-tool/modelbox-tool.md","mtime":"2022-03-21T07:22:56.386Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-03-21T07:23:50.999Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"ModelBox Tool","level":"1.5.6","depth":2,"next":{"title":"调试定位","level":"1.5.7","depth":2,"path":"develop/debug/debug.md","ref":"develop/debug/debug.md","articles":[{"title":"代码调试","level":"1.5.7.1","depth":3,"path":"develop/debug/code-debug.md","ref":"develop/debug/code-debug.md","articles":[]},{"title":"日志","level":"1.5.7.2","depth":3,"path":"develop/debug/log.md","ref":"develop/debug/log.md","articles":[]}]},"previous":{"title":"Python","level":"1.5.5.2","depth":3,"path":"develop/sdk/python.md","ref":"develop/sdk/python.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导书"},"file":{"path":"develop/modelbox-tool/modelbox-tool.md","mtime":"2022-04-06T13:47:13.197Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-04-06T13:48:16.515Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
