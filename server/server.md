@@ -34,6 +34,12 @@ sudo /etc/init.d/modelbox [start|status|stop]
 
 此方式相比systemd，缺失了进程的监控，所以建议优先使用systemd启动ModelBox服务。
 
+如需要监控机制，可以使用ModelBox Manager来管理，可以从ModelBox Manager来启动Modelbox服务，命令如下
+
+```shell
+sudo /etc/init.d/modelbox-manager [start|status|stop]
+```
+
 ## ModelBox Server服务配置
 
 ModelBox Serverf服务配置文件中包含主服务配置、插件、服务启动参数、编排服务配置和访问控制列表。
