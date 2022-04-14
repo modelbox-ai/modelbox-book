@@ -1,4 +1,4 @@
-# 预置功能单元
+# 预置功能单元（详细描述流单元功能，配置参数列表，输入要求，输出格式内容，使用限制等）
 
 ModelBox预置了多个通用功能单元，可用于完成AI推理算法的基本流程，开发者可以直接使用。
 
@@ -113,4 +113,33 @@ options         :        # flowunit支持的图配置参数
         inter_nearest   : inter_nearest
         warp_fill_outliers      : warp_fill_outliers
         warp_inverse_map        : warp_inverse_map
+```
+
+# （章节目录参考）：
+
+# Resize流单元
+
+功能说明，描述流单元功能，输入什么得到什么，使用限制
+
+## 流单元配置
+
+描述option有哪些参数可配置，含义，默认值，是否必选，可用表格列举
+
+## 输入
+
+输入要求，buffer格式，meta必须带的参数等
+
+## 输出
+
+输出buffer内容，meta内容等
+
+## 使用示例
+
+```txt
+  img_resize[type=flowunit, flowunit=resize, device=cpu/cuda, image_height=xxx, image_width=xxx]
+
+  xxx -> xxx
+  img -> img_resize:in_image
+  img_resize:out_image -> out
+  xxx
 ```

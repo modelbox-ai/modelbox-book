@@ -18,7 +18,7 @@
 
 ### modelbox.Buffer(device, data)
 
-**args:**
+**args:**(建议args改为中文参数说明，建议用表格列举，参数名，类型，描述说明)
 
 * **device** (modelbox.Device) —— 构造当前buffer所在的modelbox.Device对象
 * **data**  (numpy.array) —— 当前buffer包含的numpy数据
@@ -37,11 +37,11 @@
 * **device** (modelbox.Device) —— 构造当前buffer所在的modelbox.Device对象
 * **list_item**  (str) —— 当前buffer包含的list数据，其中每一个元素必须同一类型
 
-**return:**  
+**return:**  返回值
 
-modelbox.Buffer
+modelbox.Buffer(补充文字说明)
 
-**example:**  
+**example:**  (使用示例：)
 
 ```python
    import numpy as np

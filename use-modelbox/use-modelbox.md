@@ -25,7 +25,7 @@ ModelBox将流程图中的顶点称为功能单元(FlowUnit)。功能单元是�
 1. 更多概念  
 更详细的概念可以阅读[基本概念](../framework-conception/framework-conception.md)章节的内容。
 
-## ModelBox使用流程
+## ModelBox使用流程（先介绍有哪几种使用方法：1、solution直接调用；2、sdk api集成；3、sevice模式。介绍这几种方式差异，开发模式）
 
 ModelBox的开发使用流程指导，开发者可以在这里全局了解开发的过程。
 

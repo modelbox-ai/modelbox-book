@@ -8,7 +8,7 @@ ModelBox提供了在线可视化编排的工具——Editor，在开发时，可
 
 ## 编排服务开发使用流程
 
-![editor-feature alt rect_w_500](../assets/images/figure/server/editor-feature.png)
+![editor-feature alt rect_w_500](../../assets/images/figure/server/editor-feature.png)
 
 1. 安装ModelBox server服务。
 1. 配置ModelBox Server。
@@ -93,11 +93,11 @@ modelbox-tool develop -s
    /etc/init.d/modelbox restart
    ```
 
-## 访问编排服务
+## 访问编排服务(更新UI图)
 
 服务启动成功后，可使用浏览器访问服务，输入对应的网址即可，如：`http://[host]:1104/editor/`，成功后，将显示如下界面：
 
-![editor-ui](../assets/images/figure/server/Editor-UI.png)
+![editor-ui](../../assets/images/figure/server/Editor-UI.png)
 
 UI界面分为7个功能区域，其对应的功能如下：
 
@@ -127,7 +127,7 @@ UI界面分为7个功能区域，其对应的功能如下：
 
 编排完成，并保存完编排图后，可在编排管理界面下发编排任务，对应的编排任务管理界面如下：
 
-![task-ui](../assets/images/figure/server/Task-UI.png)
+![task-ui](../../assets/images/figure/server/Task-UI.png)
 
 任务界面分为4个功能区域，其对应的功能如下：
 

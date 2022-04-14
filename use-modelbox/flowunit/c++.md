@@ -2,7 +2,7 @@
 
 在开发之前，可以从[功能单元概念](../../framework-conception/flowunit.md)章节了解功能单元的执行过程。
 
-## C++ API调用说明
+## C++ API调用说明（放入api文档中）
 
 FlowUnit接口调用过程如下图所示。
 
@@ -242,7 +242,7 @@ modelbox::Status CVResizeFlowUnit::Process(
 | STATUS_SHUTDOWN | 停止数据处理，终止整个流程图。                       |
 | 其他            | 停止数据处理，当前数据处理报错。                     |
 
-#### Stream流数据处理
+#### Stream流数据处理（名字不易理解）
 
 对应需实现的接口为`FlowUnit::DataPre`、`FlowUnit::DataPost`，此接口Stream模式可按需实现。实现样例如下：
 
@@ -282,6 +282,8 @@ modelbox::Status VideoDecoderFlowUnit::DataPost(
 }
 
 ```
+
+#### （补充条件流单元样例）
 
 #### 拆分合并处理
 
