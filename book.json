@@ -1,6 +1,6 @@
 {
     "title": "ModelBox User Refference",
-    "description": "ModelBox指导书",
+    "description": "ModelBox指导文档",
     "author": "CE",
     "language": "zh-hans",
     "styles": {
@@ -21,7 +21,8 @@
         "katex",
         "theme-api",
         "link-checker",
-        "theme-comscore"
+        "theme-comscore",
+        "anchor-navigation-ex"
     ],
     "pluginsConfig": {
         "expandable-chapters": {},
@@ -37,6 +38,11 @@
             "theme": "white",
             "family": "msyh",
             "size": 2
+        },
+        "anchor-navigation-ex": {
+            "showLevel": false,
+            "showGoTop": false,
+            "mode": "float"
         }
     },
     "pdf": {

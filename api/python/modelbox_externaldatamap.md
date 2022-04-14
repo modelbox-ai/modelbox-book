@@ -2,16 +2,16 @@
 
 |函数|作用|
 |-|-|
-|[create_buffer_list](#modelboxexternaldatamapcreatebufferlist)|设置datameta中的私有字符串值|
-|[send](#modelboxexternaldatamapsend)|设置datameta中的私有字符串值|
-|[recv](#modelboxexternaldatamaprecv)|设置datameta中的私有字符串值|
-|[shutdown](#modelboxexternaldatamapshutdown)|设置datameta中的私有字符串值|
-|[set_output_meta](#modelboxexternaldatamapsetoutputmeta)|设置datameta中的私有字符串值|
+|[create_buffer_list](#modelboxexternaldatamapcreatebufferlist)|创建BufferList|
+|[send](#modelboxexternaldatamapsend)|发送给当前flow对象的BufferList|
+|[recv](#modelboxexternaldatamaprecv)|接收给当前flow对象的BufferList|
+|[shutdown](#modelboxexternaldatamapshutdown)|关闭当前external_data_map的连接|
+|[set_output_meta](#modelboxexternaldatamapsetoutputmeta)|设置external_data_map中的输出端口的meta值|
 ---
 
 ## modelbox.ExternalDataMap.create_buffer_list
 
-创建bufferList
+创建BufferList
 
 **args:**  
 
@@ -23,13 +23,13 @@ modelbox.BufferList
 
 ## modelbox.ExternalDataMap.send
 
-发送bufferlist给下一个流单元
+发送BufferList给下一个流单元
 
 **args:**  
 
 * **port_name** (str) ——  需要发送的数据的端口名
 
-* **bufferlist** (modelbox.BufferList) ——  需要发送的bufferlist
+* **bufferlist** (modelbox.BufferList) ——  需要发送的BufferList
 
 **return:**  
 
@@ -41,7 +41,7 @@ modelbox.Status  发送的返回状态
 
 **args:**  
 
-* **bufferlist** (modelbox.ExtOutputBufferList) ——  用来接收数据的bufferlist
+* **bufferlist** (modelbox.ExtOutputBufferList) ——  用来接收数据的BufferList
 
 **return:**  
 

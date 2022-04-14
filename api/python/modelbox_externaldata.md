@@ -2,8 +2,8 @@
 
 |函数|作用|
 |-|-|
-|[create_buffer_list](#modelboxexternaldatacreatebufferlist)|创建bufferlist|
-|[send](#modelboxexternaldatasend)|发送要给本流单元的process单元的bufferlist|
+|[create_buffer_list](#modelboxexternaldatacreatebufferlist)|创建BufferList|
+|[send](#modelboxexternaldatasend)|发送要给本流单元的process单元的BufferList|
 |[get_session_context](#modelboxexternaldatagetsessioncontext)|获取session_context对象|
 |[get_session_config](#modelboxexternaldatagetsessionconfig)|获取session_config对象|
 |[close](#modelboxexternaldataclose)|关闭当前external_data的链接|
@@ -11,7 +11,7 @@
 
 ## modelbox.ExternalData.create_buffer_list
 
-创建bufferList
+创建BufferList
 
 **args:**  
 
@@ -23,11 +23,11 @@ modelbox.BufferList
 
 ## modelbox.ExternalData.send
 
-发送bufferlist给下一个流单元
+发送BufferList给下一个流单元
 
 **args:**  
 
-* **bufferlist** (modelbox.BufferList) ——  需要发送的bufferlist
+* **bufferlist** (modelbox.BufferList) ——  需要发送的BufferList
 
 **return:**  
 
@@ -66,7 +66,7 @@ modelbox.Status  关闭的返回状态
 
 **result:**  
 
-本流单元的process既可以接受到当前bufferlist  
+本流单元的process既可以接受到当前BufferList 
 
 ## modelbox.ExternalData.get_session_context
 
