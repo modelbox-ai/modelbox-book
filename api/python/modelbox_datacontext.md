@@ -202,7 +202,7 @@ modelbox.BufferList  名称为key的output端口的数据的BufferList
 
 **result:**  
 
-获取指定端口的数据bufferList, 注意input和output端口必须为当前流单元定义
+获取指定端口的数据BufferList, 注意input和output端口必须为当前流单元定义
 
 ## modelbox.DataContext.get_input_meta
 

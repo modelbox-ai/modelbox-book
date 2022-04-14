@@ -7,11 +7,9 @@
 |[close](#modelboxflowunitclose)|flowunit关闭逻辑|
 |[data_pre](#modelboxflowunitdatapre)|stream flowunit 初始化stream时的逻辑|
 |[data_post](#modelboxflowunitdatapost)|stream flowunit 结束stream时的逻辑|
-|[data_group_pre](#modelboxflowunitdatagrouppre)|stream flowunit 初始化所有stream data前的逻辑(不用处理)|
-|[data_group_post](#modelboxflowunitdatagrouppost)|stream flowunit 结束所有stream data后的逻辑(不用处理)|
 |[create_external_data](#modelboxflowunitcreateexternaldata)|创建external_data_map|
 |[get_bind_device](#modelboxflowunitgetbinddevice)|获取绑定的device|
-|[create_buffer](#modelboxflowunitcreatebuffer)|创建buffer|
+|[create_buffer](#modelboxflowunitcreatebuffer)|创建Buffer|
 ---
 
 ## modelbox.FlowUnit.open
@@ -74,30 +72,6 @@ stream flowunit 结束stream时的逻辑
 
 modelbox.Status 结束stream逻辑的返回状态
 
-## modelbox.FlowUnit.data_group_pre
-
-stream flowunit 初始化所有stream data前的逻辑
-
-**args:**  
-
-* **data_context**  (modelbox.DataContext) ——  初始化所有stream data前当中存放数据的上下文
-
-**return:**  
-
-modelbox.Status 初始化所有stream data前的返回状态
-
-## modelbox.FlowUnit.data_group_post
-
-stream flowunit 结束所有stream data后的逻辑
-
-**args:**  
-
-* **data_context**  (modelbox.DataContext) ——  结束所有stream data后当中存放数据的上下文
-
-**return:**  
-
-modelbox.Status 结束所有stream data后的逻辑的返回状态
-
 **example:**  
 
 ```python
@@ -137,14 +111,6 @@ modelbox.Status 结束所有stream data后的逻辑的返回状态
 
     def data_post(self, data_context):
         # After streaming data ends
-        return modelbox.Status()
-
-    def data_group_pre(self, data_context):
-        # Before all streaming data starts
-        return modelbox.Status()
-
-    def data_group_post(self, data_context):
-        # After all streaming data ends
         return modelbox.Status()
         
 ```
@@ -237,7 +203,7 @@ modelbox.Device
 
 ## modelbox.FlowUnit.create_buffer
 
-创建buffer
+创建Buffer
 
 **args:**  
 
@@ -245,7 +211,7 @@ modelbox.Device
 
 **return:**  
 
-modelbox.Buffer  创建出来的buffer
+modelbox.Buffer  创建出来的Buffer
 
 **example:**  
 
@@ -260,4 +226,4 @@ modelbox.Buffer  创建出来的buffer
 
 **result:**  
 
-创建了一个空buffer
+创建了一个空Buffer
