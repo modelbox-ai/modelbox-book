@@ -29,6 +29,7 @@
     * [Nvidia Cuda](develop/device/cuda.md)
 * [案例](solution/solution.md)
   * [车辆检测](solution/car-detect.md)
+  * [树莓派开发板Mnist识别](solution/mnist-on-sbc.md)
 * [基本概念](framework-conception/framework-conception.md)
   * [图](framework-conception/graph.md)
   * [功能单元](framework-conception/flowunit.md)
