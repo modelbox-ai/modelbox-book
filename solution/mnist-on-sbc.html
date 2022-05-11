@@ -997,10 +997,10 @@
 <h2 id="&#x7F16;&#x8BD1;&#x73AF;&#x5883;&#x51C6;&#x5907;">&#x7F16;&#x8BD1;&#x73AF;&#x5883;&#x51C6;&#x5907;</h2>
 <h3 id="&#x5B89;&#x88C5;&#x4F9D;&#x8D56;&#x7684;&#x5F00;&#x53D1;&#x5E93;">&#x5B89;&#x88C5;&#x4F9D;&#x8D56;&#x7684;&#x5F00;&#x53D1;&#x5E93;</h3>
 <pre><code class="lang-shell">apt-get update
-apt-get -y install cmake git wget build-essential npm curl
-apt-get -y install python3 python3-pip python-is-python3
-apt-get -y install libssl-dev libcpprest-dev libopencv-dev libgraphviz-dev python3-dev
-apt-get -y install libavfilter-dev libavdevice-dev libavcodec-dev
+apt-get -y install cmake git wget build-essential npm curl \
+   python3 python3-pip python-is-python3 \
+   libssl-dev libcpprest-dev libopencv-dev libgraphviz-dev python3-dev \
+   libavfilter-dev libavdevice-dev libavcodec-dev
 pip install requests opencv-python
 </code></pre>
 <p>&#x5982;&#x4E0A;&#x8FF0;&#x4F9D;&#x8D56;&#x5B89;&#x88C5;&#x6BD4;&#x8F83;&#x6162;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x56FD;&#x5185;&#x7684;&#x955C;&#x50CF;&#x8FDB;&#x884C;&#x5B89;&#x88C5;&#xFF0C;&#x5177;&#x4F53;&#x955C;&#x50CF;&#x5982;&#x4E0B;&#xFF1A;</p>
@@ -1009,7 +1009,7 @@ pip install requests opencv-python
 <p>  &#x914D;&#x7F6E;&#x53C2;&#x8003;&#xFF1A;  </p>
 <p>  <a href="https://mirrors.tuna.tsinghua.edu.cn/help/pypi/" target="_blank">https://mirrors.tuna.tsinghua.edu.cn/help/pypi/</a>  </p>
 <p>  &#x4E34;&#x65F6;&#x4F7F;&#x7528;&#x53C2;&#x8003;&#xFF1A;</p>
-<pre><code class="lang-shell">  pip -y install -i https://pypi.tuna.tsinghua.edu.cn/simple requests opencv-python
+<pre><code class="lang-shell">  pip install -i https://pypi.tuna.tsinghua.edu.cn/simple requests opencv-python
 </code></pre>
 </li>
 <li><p>apt&#x955C;&#x50CF;&#x4E0B;&#x8F7D;&#xFF1A;</p>
@@ -1113,7 +1113,7 @@ python test_mnist.py
 </li>
 </ol>
 <footer class="page-footer"><span class="copyright">&#xA9;2022 ModelBox Team all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-05-09 09:13:25
+2022-05-11 06:55:05
 </span></footer>
                                 
                                 </section>
@@ -1147,7 +1147,7 @@ python test_mnist.py
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"树莓派开发板Mnist识别","level":"1.6.2","depth":2,"next":{"title":"基本概念","level":"1.7","depth":1,"path":"framework-conception/framework-conception.md","ref":"framework-conception/framework-conception.md","articles":[{"title":"图","level":"1.7.1","depth":2,"path":"framework-conception/graph.md","ref":"framework-conception/graph.md","articles":[]},{"title":"功能单元","level":"1.7.2","depth":2,"path":"framework-conception/flowunit.md","ref":"framework-conception/flowunit.md","articles":[]},{"title":"数据流","level":"1.7.3","depth":2,"path":"framework-conception/stream.md","ref":"framework-conception/stream.md","articles":[]},{"title":"Buffer","level":"1.7.4","depth":2,"path":"framework-conception/buffer.md","ref":"framework-conception/buffer.md","articles":[]}]},"previous":{"title":"车辆检测","level":"1.6.1","depth":2,"path":"solution/car-detect.md","ref":"solution/car-detect.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导书"},"file":{"path":"solution/mnist-on-sbc.md","mtime":"2022-05-09T09:13:25.990Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-05-09T09:14:18.715Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"树莓派开发板Mnist识别","level":"1.6.2","depth":2,"next":{"title":"基本概念","level":"1.7","depth":1,"path":"framework-conception/framework-conception.md","ref":"framework-conception/framework-conception.md","articles":[{"title":"图","level":"1.7.1","depth":2,"path":"framework-conception/graph.md","ref":"framework-conception/graph.md","articles":[]},{"title":"功能单元","level":"1.7.2","depth":2,"path":"framework-conception/flowunit.md","ref":"framework-conception/flowunit.md","articles":[]},{"title":"数据流","level":"1.7.3","depth":2,"path":"framework-conception/stream.md","ref":"framework-conception/stream.md","articles":[]},{"title":"Buffer","level":"1.7.4","depth":2,"path":"framework-conception/buffer.md","ref":"framework-conception/buffer.md","articles":[]}]},"previous":{"title":"车辆检测","level":"1.6.1","depth":2,"path":"solution/car-detect.md","ref":"solution/car-detect.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导书"},"file":{"path":"solution/mnist-on-sbc.md","mtime":"2022-05-11T06:55:05.835Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-05-11T06:55:53.254Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
