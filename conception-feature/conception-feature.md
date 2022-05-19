@@ -1,7 +1,7 @@
 # 概念特性
 
-## 基础概念 （补充列表）
+本章节将详细介绍ModelBox中的基本概念和高级特性，加深开发者对ModelBox的认识理解。
 
-概念面向用户来讲，讲解用户需要知道的；内部概念，内部处理逻辑去掉
+[基础概念](basic-conception/framework-conception.md)
 
-## 高级特性
+[高级特性](advanced-features/advanced-features.md)
