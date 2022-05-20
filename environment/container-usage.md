@@ -8,7 +8,7 @@ ModelBox提供的CUDA，ASCEND硬件和tensoflow，pytorch，mindspore，tensorr
 
 镜像仓库：[https://hub.docker.com/u/modelbox](https://hub.docker.com/u/modelbox)
 
-可以选择使用以下命令拉取相关的镜像。比如cuda11.2，tensorflow的open欧拉开发镜像，则镜像如下：
+可以选择使用以下命令拉取相关的镜像。比如cuda11.2，tensorflow的unbuntu开发镜像，则镜像如下：
 
 ```shell
 docker pull modelbox/modelbox-develop-tensorflow_2.6.0-cuda_11.2-ubuntu-x86_64
@@ -63,6 +63,7 @@ docker run -itd --runtime=nvidia -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,v
 * `EDITOR_MAP_PORT`: 为可视化开发界面链接端口号。
 * `HTTP_SERVER_PORT`: 为http flowunit默认服务端口号。
 * `IMAGE_NAME`: 要启动的镜像名称。
+* 如果需要在容器中进行**gdb调试**，需要在启动容器添加`--privileged`参数。
 * docker启动脚本中，请注意启动的镜像版本是否与自己所需的镜像版本一致。
 * 如果在没有GPU的机器上执行上述命令，可以删除--gpus相关的参数。但此时只能使用CPU相关的功能单元。
 * 如果启动镜像之后，端口未被占用却仍旧无法访问，需要检查防火墙。
@@ -87,14 +88,6 @@ docker run -itd --runtime=nvidia -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,v
 
     * `[docker ip]`: 容器所在得Host IP地址。
     * `[ssh map port]`：步骤1中`SSH_MAP_PORT`映射的端口号。
-
-## gdb调试设置
-
-如果需要在容器中进行gdb调试，需要在启动容器时添加如下选项：
-
-```shell
---privileged
-```
 
 ## docker启动脚本详解
 

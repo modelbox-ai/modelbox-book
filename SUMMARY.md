@@ -1,11 +1,14 @@
 # Summary
 
 * [ModelBox介绍](README.md)
-* [环境准备](use-modelbox/environment.md)
+* [环境准备](environment/environment.md)
+  * [容器使用](environment/container-usage.md)
+  * [编译安装](environment/compile.md)
 * [Solutions](solution/solution.md)
   * [手势识别](solution/hand-pose-detection.md)
 * [第一个应用](first-app/first-app.md)
   * [hello world](first-app/hello-world.md)
+  * [mnist](first-app/mnist.md)
   * [车辆检测](first-app/car-detection.md)
   * [表情识别](first-app/emotion-detection.md)
 * [AI应用开发](use-modelbox/use-modelbox.md)
@@ -103,5 +106,3 @@
       * [input](flowunits/flowunits-virtual.md#input)
       * [output](flowunits/flowunits-virtual.md#output)
 * [FAQ](faq/faq.md)
-  * [AI应用开发](faq/develop.md)
-  * [Solution](faq/solution.md)

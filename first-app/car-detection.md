@@ -1,93 +1,111 @@
 # 车辆检测
 
-## 流程图
+车辆检测案例是对输入视频进行解码，对每一帧图片进行车辆检测，将结果渲染成视频。
 
-车牌检测流程如下图所示，video_input 功能单元接收视频流，往下分别经过 videodemuxer和videodecoder功能单元，videodecoder功能单元输出image，image经过前处理，包含resize、normalize之后，送给模型（car_inference是一个yolov3模型），模型将推理得到的bbox结果传入后续的后处理功能单元进行处理（car_yolobox），可得到 最终的bbox框，将bbox框和videodecoder出来的image一同送入draw_bbox中，将绘制完bbox的image传入videoencoder，即得到带有检测框的视频。
+## 功能
 
-![car-detect alt rect_w_400](../assets/images/figure/solution/car-detect-uml.png)
+输入本地视频文件，识别画面中的车辆，识别结果保存到本地。
 
-上述提到的各个节点，在ModelBox中称为功能单元，模型图中的一个节点，编排功能单元构建运行图，运行图在ModelBox中的呈现形式为 toml文件。车辆检测运行toml文件内容如下：
+## 模型准备
+
+AI应用开发前需要准备好匹配当前modelbox版本支持的推理框架和版本的模型文件，这里已经准备好车辆检测torch模型文件。
+
+## AI应用开发
+
+首先准备开发环境，然后进入应用开发环节，主要分为流程图编排、功能单元编写、运行与调试、打包部署4个开发步骤。
+
+### 环境准备
+
+环境准备工作可以参考[环境准备](./hello-world.md###环境准备)，区别是需要选择torch镜像：
+
+```shell
+docker pull modelbox/modelbox-develop-libtorch_1.9.1-cuda_10.2-ubuntu-x86_64:latest
+```
+
+### 创建项目
+
+可参考[创建项目](./hello-world.md)，最后可选择创建car_detction项目工程。
+
+### 流程图开发
+
+![car_detection_flow](../assets/images/figure/first-app/car_detection_flow.png)
+
+如上图所示，video_input功能单元用作输入视频配置，后面接视频的解封装、解码功能单元(videodemuxer、videodecoder)得到视频帧，对视频帧进行预处理(reisze、transpose、normalize)，将预处理后的数据交给模型推理(model_inference)，推理后进行后处理，画出检测框渲染到图像上(yolo_post)，最后将渲染结果图编码成视频文件(videoencoder)。整个流程只需要实现蓝色部分功能单元，其他功能单元都在modelbox中内置，只需修改配置即可使用。具体toml配置文件如下所示：
 
 ```toml
-[driver]
-dir = ["drivers"]
-[log]
-level = "INFO"
 [graph]
 format = "graphviz"
+graphconf = """digraph car_detection {
+    node [shape=Mrecord]
+    video_input[type=flowunit, flowunit=video_input, device=cpu, deviceid=0, source_url="/opt/modelbox/demo/video/car_test_video.mp4"]
+    videodemuxer[type=flowunit, flowunit=video_demuxer, device=cpu, deviceid=0]
+    videodecoder[type=flowunit, flowunit=video_decoder, device=cuda, deviceid=0, pix_fmt=bgr]
+    image_resize[type=flowunit, flowunit=resize, device=cpu, deviceid=0, image_width=512, image_height=288]
+    image_transpose[type=flowunit, flowunit=packed_planar_transpose, device=cpu, deviceid=0]
+    normalize[type=flowunit, flowunit=normalize, device=cpu, deviceid=0, standard_deviation_inverse="1,1,1"]
+    model_inference[type=flowunit, flowunit=car_detect, device=cuda, deviceid=0, batch_size=1]
+    yolox_post[type=flowunit, flowunit=yolox_post, device=cpu, deviceid=0]
+    videoencoder[type=flowunit, flowunit=video_encoder, device=cpu, deviceid=0, encoder=mpeg4, format=mp4, default_dest_url="/tmp/car_detection_result.mp4"]
 
-graphconf = """digraph vehicle_detection {
-            node [shape=Mrecord]
-            video_input[type=flowunit, flowunit=video_input, device=cpu, deviceid=0, source_url="@SOLUTION_VIDEO_DIR@/test_video_vehicle.mp4"]
-            videodemuxer[type=flowunit, flowunit=video_demuxer, device=cpu, deviceid=0]
-            videodecoder[type=flowunit, flowunit=video_decoder, device=cpu, deviceid=0, queue_size=16, batch_size=5, pix_fmt=rgb]
-            frame_resize[type=flowunit, flowunit=resize, device=cpu, deviceid=0, queue_size=16, batch_size=5, interpolation=inter_nearest, image_height=480, image_width=800]
-            car_color_transpose[type=flowunit, flowunit=packed_planar_transpose, device=cpu, deviceid=0, queue_size=16, batch=5]
-            car_normalize[type=flowunit, flowunit=normalize, device=cpu, deviceid=0, queue_size=16, batch_size=5, standard_deviation_inverse="0.003921568627451, 0.003921568627451, 0.003921568627451"]
-            car_inference[type=flowunit, flowunit=car_inference, device=cuda, deviceid=0, queue_size=16, batch_size=5]
-            car_yolobox[type=flowunit, flowunit=car_yolobox, device=cpu, deviceid=0, queue_size=16, batch_size=5, image_height=1080, image_width=1920]
-            draw_bbox[type=flowunit, flowunit=draw_bbox, device=cpu, deviceid=0, queue_size=16, batch_size=5]
-            videoencoder[type=flowunit, flowunit=video_encoder, device=cpu, deviceid=0, queue_size=16, encoder=mpeg4, default_dest_url="rtsp://localhost/test"]
-
-            video_input:out_video_url -> videodemuxer:in_video_url
-            videodemuxer:out_video_packet -> videodecoder:in_video_packet
-            videodecoder:out_video_frame -> frame_resize:in_image
-            videodecoder:out_video_frame -> draw_bbox:in_image
-            frame_resize:out_image -> car_color_transpose:in_image
-            car_color_transpose:out_image -> car_normalize:in_data
-            car_normalize:out_data -> car_inference:data
-            car_inference:"layer15-conv" -> car_yolobox:"layer15-conv"
-            car_inference:"layer22-conv" -> car_yolobox:"layer22-conv"
-            car_yolobox:Out_1 -> draw_bbox:in_region
-            draw_bbox:out_image -> videoencoder:in_video_frame
+    video_input:out_video_url -> videodemuxer:in_video_url
+    videodemuxer:out_video_packet -> videodecoder:in_video_packet
+    videodecoder:out_video_frame -> image_resize:in_image
+    image_resize:out_image -> image_transpose:in_image
+    image_transpose:out_image -> normalize:in_data
+    normalize:out_data -> model_inference:input
+    model_inference:output -> yolox_post:in_feat
+    videodecoder:out_video_frame -> yolox_post:in_image
+    yolox_post:out_data -> videoencoder:in_video_frame
 }"""
 ```
 
-toml构建图，定义节点和构建节点之间关系即可完成。输入配置在video_input中source_url中配置实际的视频所在路径，输出通过videoencoder输出rtsp流。
+除了构建图之外，还需要增加必要配置，如功能单元扫描路径，日志级别等，具体可参考样例文件`/usr/local/share/modelbox/demo/car_detection/graph/car_detection.toml`
 
-其中，[dirver]中dir的路径为，图中功能单元的so包或toml配置文件所在路径。
+### 功能单元开发
 
-## 功能单元
+用户只需开发车辆检测推理功能单元(model_inference)、后处理(yolo_post)即可。
 
-推理功能单元配置如下：
+* 车辆检测推理功能单元
+
+ ModelBox已经适配了torch推理引擎，只需推理功能单元只需准备好模型和对应的配置文件即可。
+
+ ```toml
+ [base]
+ name = "car_detect"
+ device = "cuda"
+ version = "1.0.0"
+ description = "car detection infer"
+ entry = "./yolox_nano_jit_trace_288x512.pt"
+ type = "inference"
+ virtual_type = "torch"
+ 
+ [input]
+ [input.input1]
+ name = "input"
+ type = "float"
+ 
+ [output]
+ [output.output1]
+ name = "output"
+ type = "float"
+ ```
+
+ 详细代码可参考`/usr/local/share/modelbox/demo/car_detection/flowunit/car_detect/car_detect.toml`。
+
+* 车辆检测后处理功能单元(yolo_post)
+
+ 详细代码可参考`/usr/local/share/modelbox/demo/car_detection/flowunit/yolox_post`。
+
+### 调试运行
+
+本案例是测试本地视频文件，可以视频路径可以在video_input中设置。所以直接使用modelbox-tool测试工具运行流程图即可
 
 ```shell
-[base]
-name = "car_inference"
-device = "cuda"
-version = "1.1.2"
-description = "a day car detection inference flowunit"
-
-entry = "./vehicle_detection.engine"
-type = "inference"
-virtual_type = "tensorrt"
-
-[config]
-plugin = "yolo"   #预置yolov3自定义插件
-
-[input]
-[input.input1]
-name = "data"
-type = "float"
-
-[output]
-[output.output1]
-name = "layer15-conv"
-type = "float"
-
-[output.output2]
-name = "layer22-conv"
-type = "float"
+modelbox-tool -verbose -log-level info flow -run path_to_car_detection.toml
 ```
 
-## 运行示例
+ModelBox镜像已集成样例，可直接运行`modelbox-tool -log-level info flow -run /usr/local/share/modelbox/demo/car_detection/graph/car_detection.toml`。
 
-用ModelBox的modelbox-tool命令，可以启动运行图。命令如下：
+### 编译打包
 
-```shell
-modelbox-tool -verbose flow -run car_detection.toml
-```
-
-其中vehicle_detection.toml即为车牌检测的运行图，shell命令中为实际路径，运行环境中安装好EasyDarwin软件后，将 rtsp://localhost/video（localhost为你的ip）复制到网页中，即可打开浏览器，查看最后结果，示例结果如下：
-
-![车牌检测结果](../assets/images/figure/solution/car-detect-result.png)
+进入build目录，执行`make package`，根据系统版本可得到rpm/deb安装包。
