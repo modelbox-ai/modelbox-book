@@ -32,7 +32,7 @@ device = "cuda" # 功能单元运行的设备类型，cpu，cuda，ascend等。
 version = "1.0.0" # 功能单元组件版本号
 description = "description" # 功能单元功能描述信息
 entry = "model.pb" # 模型文件路径
-type = "inference" #推理功能单元时，此处为固定值
+type = "inference" # 推理功能单元时，此处为固定值
 virtual_type = "tensorrt" # 指定推理引擎, 可以是tensorflow, tensorrt, torch, acl, mindspore
 plugin = "infer-plugin.so" # 推理自定义引擎插件 仅支持virtual_type为tensorflow, tensorrt
 
@@ -57,11 +57,25 @@ name = "Output" # 输出端口名称
 type = "datatype" # 输出端口数据类型, 取值float or uint8
 ```
 
-编写完成toml文件后，将对应的路径加入ModelBox的图配置中的搜索路径即可使用开发后的推理功能单元。
+编写完成toml文件后，将对应的路径加入ModelBox的图配置中的搜索路径即可使用开发后的推理功能单元。推理功能单元的输入端口和输出端口名称和个数的由toml文件指定，当模型存在多输入或者多输出时，图构建时需要针对每个输入端口和输出端口进行接口连接。格式如下：
+
+```toml
+    ...
+    face_pre[type=flowunit, flowunit=face_post, device=cpu]
+    model_detect[type=flowunit, flowunit=model_detect, device=cuda]
+    face_post[type=flowunit, flowunit=face_post, device=cpu]
+    ...
+    face_pre:out_port1 -> model_detect:input1
+    face_pre:out_port2 -> model_detect:input2
+    model_detect:output1 -> face_post:in_port1
+    model_detect:output2 -> face_post:in_port2
+    model_detect:output3 -> face_post:in_port3
+    ...
+```
 
 ### 说明
 
-+ 模型文件类型和模型推理引擎一一对应，如下表： 
++ 模型文件类型和模型推理引擎一一对应，如下表：
 
 |推理引擎|模型格式|
 |---|---|
