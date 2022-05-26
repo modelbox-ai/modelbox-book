@@ -8,8 +8,8 @@
 
 | 方式             | 说明                                                            | 推荐度 | 连接                                        |
 | ---------------- | --------------------------------------------------------------- | ------ | ------------------------------------------- |
-| ModelBox编排服务 | 使用ModelBox编排服务进行流程图的开发。                          | ⭐️⭐️⭐️    | [指导](editor.md)              |
-| 手工编写         | 手工编写toml格式的流程图文件，并添加到ModelBox Server插件中运行 | ⭐️      | [指导](../../framework-conception/graph.md) |
+| ModelBox编排服务 | 使用ModelBox编排服务进行流程图的开发。                          | ⭐️⭐️⭐️    | [指导](../../../plugins/editor/editor.md)              |
+| 手工编写         | 手工编写toml格式的流程图文件，并添加到ModelBox Server插件中运行 | ⭐️      | [指导](../../../basic-conception/graph.md) |
 
 ## 流程图开发模型
 
@@ -170,7 +170,7 @@ digraph G {
         ```
 
         上述配置表示，点的名称为`node`，类型为`flowunit`，其执行实体为`httpserver`。
-        支持的Flowunit可以使用[modelbox-tool](../../develop/modelbox-tool/modelbox-tool.md)工具查询。
+        支持的Flowunit可以使用[modelbox-tool](../../../modelbox-tool/modelbox-tool.md)工具查询。
 
     - `input`：表示此点的类型为输入端口，为整个图的配置，表示图的数据输入端口。
 
@@ -206,7 +206,7 @@ digraph G {
 
 | 方式            | 说明                       | 特点                                           | 推荐度 | 连接                                      |
 | --------------- | -------------------------- | ---------------------------------------------- | ------ | ----------------------------------------- |
-| modelbox-server | 使用ModelBox加载运行流程图 | 基本无需编程，只需要通过配置即可完成图的运行   | ⭐️⭐️⭐️    | [指导](../../server/run-flow.md)          |
-| modelbox-tool   | ModelBox Tool调试          | 调试图时使用的工具，方便，快速检查结果是否正确 | ⭐️⭐️⭐️    | [指导](../modelbox-tool/modelbox-tool.md) |
-| Python SDK      | Python SDK形式             | Python接口形式，方便开发者与当前python服务集成 | ⭐️⭐️     | [指导](../sdk/python.md)                  |
-| C++ SDK         | C++ SDK形式                | c++SDK形式，方便开发者与当前c/c++程序集成      | ⭐️⭐️     | [指导](../sdk/c++.md)                     |
+| modelbox-server | 使用ModelBox加载运行流程图 | 基本无需编程，只需要通过配置即可完成图的运行   | ⭐️⭐️⭐️    | [指导](../deployment/run-flow.md)       |
+| modelbox-tool   | ModelBox Tool调试          | 调试图时使用的工具，方便，快速检查结果是否正确 | ⭐️⭐️⭐️    | [指导](../../../modelbox-tool/modelbox-tool.md) |
+| Python SDK      | Python SDK形式             | Python接口形式，方便开发者与当前python服务集成 | ⭐️⭐️     | [指导](../../custom-app-mode/python.md)                  |
+| C++ SDK         | C++ SDK形式                | c++SDK形式，方便开发者与当前c/c++程序集成      | ⭐️⭐️     | [指导](../../custom-app-mode/c++.md)                     |

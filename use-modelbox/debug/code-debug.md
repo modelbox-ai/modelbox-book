@@ -42,7 +42,7 @@ r
 * b [some-func]对指定的函数进行断点。
 * r 运行命令
 
-注意：如果使用镜像开发，gdb提示无权限，则需要使用特权容器，具体参考[这里](../../faq/container-usage.md)的gdb调试设置
+注意：如果使用镜像开发，gdb提示无权限，则需要使用特权容器，具体参考[这里](../../environment/container-usage.md)的gdb调试设置
 
 #### vscode
 

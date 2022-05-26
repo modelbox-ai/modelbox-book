@@ -2,7 +2,7 @@
 
 在完成了流程图编排之后，还需通过功能单元(FlowUnit)来实现应用的实际功能。ModelBox加载功能单元后，根据图的结构，将实例化为图中的各个节点。功能单元需提供特定的接口，根据接口协议，在数据处理的各个阶段对接口进行调用。
 
-有关功能单元的详细介绍，请先阅读[基本概念](../../framework-conception/framework-conception.md)章节，以及后续的[功能单元](../../framework-conception/flowunit.md)、[数据流](../../framework-conception/stream.md)章节内容。
+有关功能单元的详细介绍，请先阅读[基本概念](../../../basic-conception/basic-conception.md)章节，以及后续的[功能单元](../../../basic-conception/flowunit.md)、[数据流](../../../basic-conception/stream.md)章节内容。
 
 本章节内容主要介绍功能单元的开发过程。
 
@@ -26,7 +26,7 @@ modelbox-tool template -flowunit -lang c++ -name [name]
 ## 功能单元类型(只需讲基本类型：stream，condition，expand/collapse。详细配置参数放在流单元api中查询用)
 
 在开发功能单元时，应该先明确开发功能单元处理数据的类型，业务的场景。再根据上述信息选择合适的功能单元类型。
-具体功能单元类型，请查看[功能单元的分类](../../framework-conception/flowunit.md#分类)。在确认功能单元类型后，需要对功能单元进行如下参数的配置。
+具体功能单元类型，请查看[功能单元类型](../../../basic-conception/flowunit.md##功能单元类型)。在确认功能单元类型后，需要对功能单元进行如下参数的配置。
 
 功能单元参数说明：
 
@@ -171,7 +171,7 @@ DataContext是提供给当前功能单元处理数据时的临时获取BufferLis
 
 开发者在运行流程图和开发流程图的过程当中，需要针对功能单元的情况返回异常，并且能够可以在其他业务功能单元中捕获当前异常进行自定义处理，modelbox即可提供该场景下异常捕获处理的能力。
 
-具体可以参考[指导](exception.md)
+具体可以参考[指导](../../../other-features/exception.md)。
 
 ## 多种语言开发功能单元
 

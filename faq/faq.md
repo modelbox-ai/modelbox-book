@@ -42,7 +42,7 @@ ModelBox本身为C++代码编写，开发者可以通过如下方式调试ModelB
 1. ModelBox运行日志。
 1. ModelBox Profiling性能统计工具。
 
-具体操作方法，可参考[调试定位](../develop/debug/debug.md)章节内容
+具体操作方法，可参考[调试定位](../use-modelbox/debug/debug.md)章节内容
 
 ## 模型问题
 
@@ -106,4 +106,4 @@ video_input的repeat可以创建多个并发视频，并不是串行视频流
 1. 多个if-else流单元不能共用同一个终点；
 1. 流单元端口连接不能跨越if-else，拆分合并流单元；
 
-具体约束原因详见[stream流](../framework-conception/stream.md)章节。
+具体约束原因详见[stream流](../basic-conception/stream.md)章节。

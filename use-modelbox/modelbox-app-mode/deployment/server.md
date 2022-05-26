@@ -1,6 +1,6 @@
 # Server服务
 
-通常情况下，ModelBox可以看作是一个应用服务。当需要运行ModelBox时，需要启动ModelBox Server服务。ModelBox Server是最基本也是最重要的服务,ModelBox Server服务提供流程图的加载、可视化编排UI服务、流程图Restful API等能力。用户只需将[flow流程图](../framework-conception/framework-conception.md)配置文件放到指定的目录下，即可实现flow作为服务的功能。
+通常情况下，ModelBox可以看作是一个应用服务。当需要运行ModelBox时，需要启动ModelBox Server服务。ModelBox Server是最基本也是最重要的服务,ModelBox Server服务提供流程图的加载、可视化编排UI服务、流程图Restful API等能力。用户只需将[flow流程图](../../../basic-conception/basic-conception.md)配置文件放到指定的目录下，即可实现flow作为服务的功能。
 
 ## Server服务使用流程
 
@@ -88,8 +88,8 @@ ModelBox服务相关配置文件和配置功能说明如下：
 | ---------------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | 主服务配置       | /usr/local/etc/modelbox/modelbox.conf | 包含基本的配置信息，如插件路径，日志级别。                                                                      |
 | 插件配置         | /usr/local/etc/modelbox/modelbox.conf | 和具体插件相关。                                                                                                |
-| 编排服务配置     | /usr/local/etc/modelbox/modelbox.conf | 包括编排服务的配置信息，详情可见[运行服务](./editor.md)中的[可视化编排服务](./editor.md#配置启用Editor)         |
-| 访问控制列表     | /usr/local/etc/modelbox/modelbox.conf | 可访问ModelBox后端服务的白名单列表，详情可见[运行服务](./editor.md)中的[访问控制列表](./editor.md#访问控制列表) |
+| 编排服务配置     | /usr/local/etc/modelbox/modelbox.conf | 包括编排服务的配置信息，详情可见[运行服务](../../../plugins/editor/editor.md)中的[可视化编排服务](../../../plugins/editor/editor.md#配置启用Editor)         |
+| 访问控制列表     | /usr/local/etc/modelbox/modelbox.conf | 可访问ModelBox后端服务的白名单列表，详情可见[运行服务](../../../plugins/editor/editor.md)中的[访问控制列表](../../../plugins/editor/editor.md#访问控制列表) |
 | 服务启动参数配置 | /usr/local/etc/modelbox/modelbox-opts | 支持配置ModelBox Server服务的启动参数。                                                                         |
 
 ### 主服务配置项
@@ -106,11 +106,11 @@ ModelBox服务相关配置文件和配置功能说明如下：
 
 * 插件服务配置
 
-除上述配置外，其他配置均为插件配置。ModelBox服务支持灵活的[ModelBox服务插件](../develop/service-plugin/service-plugin.md)加载，ModelBox启动后，会按照plugin.files配置的插件，顺序加载插件，各插件的配置参考各自插件配置参数。当前ModelBox的可视化编排及流程图的restful api及通过服务插件实现, 每个插件有各自配置字段：
+除上述配置外，其他配置均为插件配置。ModelBox服务支持灵活的[ModelBox服务插件](../service-plugin/service-plugin.md)加载，ModelBox启动后，会按照plugin.files配置的插件，顺序加载插件，各插件的配置参考各自插件配置参数。当前ModelBox的可视化编排及流程图的restful api及通过服务插件实现, 每个插件有各自配置字段：
 
-`modelbox-plugin`插件的配置，可参考[服务安装配置](run-flow.md)。
+`modelbox-plugin`插件的配置，可参考[服务安装配置](./run-flow.md)。
 
-`modelbox-plugin-editor`插件的配置，可参考[可视化编排服务](editor.md)。
+`modelbox-plugin-editor`插件的配置，可参考[可视化编排服务](../../../plugins/editor/editor.md)。
 
 ### ModelBox服务启动参数配置
 
@@ -126,8 +126,8 @@ ModelBox Server可以通过自定义插件的形式扩展其基本功能，默�
 
 | 插件                   | 功能               | 说明                                                         | 使用指导            |
 | ---------------------- | ------------------ | ------------------------------------------------------------ | ------------------- |
-| modelbox-plugin        | 默认流程图执行插件 | 默认的流程图执行插件，支持REST API管理流程图，和其执行结果。 | [指导](run-flow.md) |
-| modelbox-plugin-editor | 可视化编排UI插件   | 提供可视化的流程图编排UI界面。                               | [指导](editor.md)   |
+| modelbox-plugin        | 默认流程图执行插件 | 默认的流程图执行插件，支持REST API管理流程图，和其执行结果。 | [指导](./run-flow.md) |
+| modelbox-plugin-editor | 可视化编排UI插件   | 提供可视化的流程图编排UI界面。                               | [指导](../../../plugins/editor/editor.md)   |
 
 ## ModelBox Server文件目录
 

@@ -1,6 +1,6 @@
 # c++开发功能单元
 
-在开发之前，可以从[功能单元概念](../../framework-conception/flowunit.md)章节了解功能单元的执行过程。
+在开发之前，可以从[功能单元概念](../../../basic-conception/flowunit.md#功能单元)章节了解功能单元的执行过程。
 
 ## C++ API调用说明（放入api文档中）
 
@@ -147,8 +147,8 @@ class SomeFlowUnit : public modelbox::FlowUnit {
 
 | 设备   | 说明          | 连接                        |
 | ------ | ------------- | --------------------------- |
-| Ascend | Huawei Ascend | [链接](../device/ascend.md) |
-| Cuda   | Nvidia Cuda   | [链接](../device/cuda.md)   |
+| Ascend | Huawei Ascend | [链接](../../../other-features/device/ascend.md) |
+| Cuda   | Nvidia Cuda   | [链接](../../../other-features/device/cuda.md)   |
 
 #### 功能单元初始化、关闭接口
 

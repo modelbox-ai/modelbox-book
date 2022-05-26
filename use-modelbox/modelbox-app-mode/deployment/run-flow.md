@@ -57,8 +57,4 @@ ModelBox Plugin支持通过添加流程图配置文件的形式自动执行流�
 
 ## 图形化运行流程图
 
-请参考[可视化编排服务](editor.md)。
-
-## REST API管理执行流程图
-
-请参考[REST API](../api/rest.md)。
+请参考[可视化编排服务](../../../plugins/editor/editor.md)。
