@@ -29,7 +29,7 @@ ModelBox框架采用C++语言编写，工程编译软件是CMake，本文主要�
 
 ModelBox项目提供了docker镜像，里面包含了ModelBox编译运行所需的组件及预先安装的ModelBox，可以优先选择docker镜像进行应用的开发编译。
 
-关于容器镜像的使用，可参考[容器镜像使用](../faq//container-usage.md)的内容。
+关于容器镜像的使用，可参考[容器镜像使用](./container-usage.md)的内容。
 
 ### 基于当前操作系统安装
 
