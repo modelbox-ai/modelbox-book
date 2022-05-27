@@ -152,4 +152,4 @@ FlowUnit插件的加载流程如上图：
 | Image Render  | 合并框图信息 | 通用类       | 图像类   | 输入是两组数据，图像和框图，输出是图像。 |
 | Video Encoder | 视频编码     | 流数据类     | 视频类   | 输入是多张图像，输出是一个视频流。       |
 
-要查阅ModelBox所有预置的功能单元，请参考[FlowUnits](../../flowunits/flowunits.md)章节。
+要查阅ModelBox所有预置的功能单元，请参考[FlowUnits](../flowunits/flowunits.md)章节。

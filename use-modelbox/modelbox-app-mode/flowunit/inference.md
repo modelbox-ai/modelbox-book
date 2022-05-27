@@ -1,7 +1,7 @@
 # 推理功能单元
 
 ModelBox内置了主流的推理引擎，如TensorFlow，TensorRT，Pytorch，Ascend ACL，Mindspore。在开发推理功能单元时，只需要通过配置toml文件，即可完成推理功能单元的开发。
-开发之前，可以从[功能单元概念](../../framework-conception/flowunit.md)章节了解流单的执行过程。
+开发之前，可以从[功能单元概念](../../../basic-conception/flowunit.md)章节了解流单的执行过程。
 
 ## 推理功能单元目录结构
 
