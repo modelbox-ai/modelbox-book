@@ -12,9 +12,9 @@ ModelBox主要聚焦解决AI应用开发的问题，相比直接调用底层API�
 
 ModelBox解决的就是业务开发的周边问题，将周边问题交由ModelBox处理，ModelBox通过对内存，CPU，GPU，周边组件的精细化管理，使AI推理业务开发更高效，性能也更高，质量也更好。
 
-### ModelBox目前支持哪些框架训练的模型（TensorFlow、Caffe、PyTorch等）
+### ModelBox目前支持哪些框架训练的模型（TensorFlow、Caffe、LibTorch等）
 
-ModelBox框架里面包含了支持TensorFlow, Caffe, Pytorch模型运行所需的功能单元Flowunit，我们称为推理功能单元(Inference Flowunit)，这些推理功能单元可以直接加载对应的模型文件，而不需要编写代码，只需提供一个简单的配置文件，即可将模型引入到ModelBox的流程中。目前支持的模型有TensorFlow, TensorRT, Ascend ACL模型。
+ModelBox框架里面包含了支持TensorFlow, Caffe, LibTorch模型运行所需的功能单元Flowunit，我们称为推理功能单元(Inference Flowunit)，这些推理功能单元可以直接加载对应的模型文件，而不需要编写代码，只需提供一个简单的配置文件，即可将模型引入到ModelBox的流程中。目前支持的模型有TensorFlow, TensorRT, Ascend ACL模型。
 
 ## ModelBox组件
 

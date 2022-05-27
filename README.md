@@ -13,7 +13,7 @@ ModelBox是一套专门为AI开发者提供的易于使用，高效，高扩展�
 | ![indifference](assets/images/figure/flow/indifference.png) |![extend](assets/images/figure/flow/extend.png) | ![reliable](assets/images/figure/flow/reliable.png)|
 |**易于开发**，AI推理业务可视化编排开发，功能模块化，丰富组件库；c++、python多语言支持。|**易于集成**，集成云上对接的组件，云上对接更容易。 |**高性能，高可靠**，pipeline并发运行，数据计算智能调度，资源管理调度精细化，业务运行更高效。 |
 |![standard](assets/images/figure/flow/standard.png)|![integrated](assets/images/figure/flow/integrated.png)|![flow](assets/images/figure/flow/flow.png)|
-|**软硬件异构**， CPU、GPU、NPU多异构硬件支持，TensorRT、TensorFlow、Pytorch、Mindspore等多推理引擎兼容, 资源利用高效和开发便捷，。|**全场景**，视频，语音，文本，NLP全场景，专为服务化定制，云上集成更容易，一次开发端边云部署。|**易于维护**，服务运行状态可视化，应用，组件性能实时监控，优化更容易。|
+|**软硬件异构**， CPU、GPU、NPU多异构硬件支持，TensorRT、TensorFlow、LibTorch、Mindspore等多推理引擎兼容, 资源利用高效和开发便捷，。|**全场景**，视频，语音，文本，NLP全场景，专为服务化定制，云上集成更容易，一次开发端边云部署。|**易于维护**，服务运行状态可视化，应用，组件性能实时监控，优化更容易。|
 
 ## ModelBox解决的问题
 
@@ -53,7 +53,7 @@ ModelBox的目标是解决AI开发者在开发AI应用时的编程复杂度，�
 | 支持OS             | Ubuntu, OpenEuler, Andriod(暂未支持),iOS（暂未支持)                       |
 | 支持系统架构       | X86, Arm |
 | 支持加速卡  | CPU, Nvidia GPU, Ascend 310, Ascend 710, RK3568(暂未支持)|
-| 支持推理引擎         | TensorRT、TensorFlow、Pytorch、Mindspore、Ascend ACL |
+| 支持推理引擎         | TensorRT、TensorFlow、LibTorch、Mindspore、Ascend ACL |
 | 可视化编排         | 支持可视化web UI的业务流程编排                 |
 | 支持开发语言        | C++ , Python  |
 | 图编排能力         |支持展开，合并，条件，循环分支等|
