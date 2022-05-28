@@ -8,96 +8,94 @@
 
 ## 功能单元开发流程
 
-![flowunit-develop alt rect_w_600](../../assets/images/figure/develop/flowunit/flowunit-develop.png)
+1. 通过modelbox-tool 创建项目模板
+
+```shell
+    modelbox-tool template -project -name="project"
+```
+
+项目工程创建默认路径为当前用户的modelbox-project下面
 
 1. 可以通过 modelbox-tool 创建功能单元模板工程
 
 ```shell
-modelbox-tool template -flowunit -lang c++ -name [name]  
+    modelbox-tool template -flowunit -lang c++ -name [name] -input name=in1,device=cuda -output -
 ```
 
-1. 确定功能单元类型。
-1. 修改Example代码的编译，TOML，源代码名称，和设置功能单元的输入，输出，参数，以及运行设备信息。
-1. 根据需要实现FlowUnit的Open，DataPre，DataPost，Process，DataGroupPre，DataGroupPost，Close接口。
-1. 编译连接外部组件，调用外部功能组件接口。
-1. 编译安装包。
+有关modelbox-tool template的功能参见modelbox-tool那一章节
+
+1. 根据具体情况可以修改Example代码的编译，TOML，源代码名称，和设置功能单元的输入，输出，参数，以及运行设备信息。
+1. 根据需要实现FlowUnit的Open，DataPre，DataPost，Process，Close接口。
+1. 编译生成动态库以及安装包，安装到系统当中去。
 1. 流程图中配置使用功能单元。
 
-## 功能单元类型(只需讲基本类型：stream，condition，expand/collapse。详细配置参数放在流单元api中查询用)
+## 功能单元类型
 
 在开发功能单元时，应该先明确开发功能单元处理数据的类型，业务的场景。再根据上述信息选择合适的功能单元类型。
 具体功能单元类型，请查看[功能单元类型](../../../basic-conception/flowunit.md##功能单元类型)。在确认功能单元类型后，需要对功能单元进行如下参数的配置。
 
 功能单元参数说明：
 
-| 配置项                     | C++函数接口          | Python配置接口            | 必填 | c++参数类型    | 功能描述                                                                 |
-| -------------------------- | -------------------- | ------------------------- | ---- | -------------- | ------------------------------------------------------------------------ |
-| 功能单元名称               | SetFlowUnitName      | base.name                 | 是   | String         | 功能单元名称                                                             |
-| 功能单元描述               | SetDescription       | base.description          | 否   | String         | 功能单元描述                                                             |
-| 功能单元组类型             | SetFlowUnitGroupType | --                        | 否   | GroupType      | 功能单元分类                                                             |
-| 功能单元工作模式           | SetFlowType          | base.stream               | 是   | FlowType       | 功能单元工作模式，分为NORMAL 和STREAM                                    |
-| 功能单元输入端口           | AddFlowUnitInput     | input.*                   | 是   | FlowUnitInput  | 设置输入端口和数据存放设备                                               |
-| 功能单元输出端口           | AddFlowUnitOutput    | output.*                  | 是   | FlowUnitOutput | 设置输出端口和数据存放设备                                               |
-| 功能单元配置参数           | AddFlowUnitOption    | config.*                  | 是   | FlowUnitOption | 设置功能单元配置参数，包括参数名，类型，描述等信息                       |
-| 条件类型                   | SetConditionType     | baes.condition            | 否   | ConditionType  | 是否为条件功能单元                                                       |
-| 输出类型                   | SetOutputType        | base.collapse/base.expand | 否   | FlowOutputType | 设置是否为扩张或者合并功能单元                                           |
-| 输入输出buffer数量是否相同 | SetStreamSameCount   | --                        | 否   | bool           | 仅STREAM类型功能单元可设置，标识是否允许输入buffer和输出buffer数量不一致 |
-| 输入内存是否连续           | SetInputContiguous   | --                        | 否   | bool           | 是否要求输入内存是否是分配的连续空间                                     |
-| 设置是否需要收齐buffer     | SetCollapseAll       | --                        | 否   | bool           | 是否收集所有扩张的buffer。仅当收缩功能单元需设置，默认false              |
-| 异常是否可见               | SetExceptionVisible  | --                        | 否   | bool           | 本功能单元是否处理前面功能单元的异常消息                                 |
-| 是否为虚拟类型             | SetVirtualType       | --                        | 否   | bool           | 虚拟功能单元不可直接当作正常功能单元使用                                 |
-| 设置资源调度策略           | SetResourceNice      | --                        | 否   | bool           | false是表示本功能单元优先抢占资源，默认true                              |
-| Driver名称                 | SetName              | --                        | 是   | String         | driver描述                                                               |
-| Driver功能类型             | SetClass             | --                        | 是   | String         | driver功能类型，功能单元类型为DRIVER-FLOWUNIT                            |
-| Driver设备类型             | SetType              | base.device               | 是   | String         | driver描述，cuda/cpu/ascend类型                                          |
-| Driver版本号               | SetVersion           | base.version              | 是   | String         | driver版本号                                                             |
-| Driver描述                 | SetDescription       | base.description          | 是   | String         | driver功能描述                                                           |
+| 配置项                     | 属性名          | 必填 | c++参数类型    | 功能描述                                                                 |
+| -------------------------- | -------------------- | ---- | -------------- | ------------------------------------------------------------------------ |
+| 功能单元名称               | flowunit_name      |  是   | String         | 功能单元名称                                                             |
+| 功能单元描述               | flowunit_description       |  否   | String         | 功能单元描述                                                             |
+| 功能单元组类型             | group_type |  否   | GroupType      | 功能单元分类                                                             |
+| 功能单元数据处理类型           | flow_type          |  是   | FlowType       | 功能单元数据处理类型 ，分为NORMAL 和 STREAM                                    |
+| 功能单元输入端口           | flowunit_input_list     |  是   | FlowUnitInput  | 设置输入端口和数据存放设备                                               |
+| 功能单元输出端口           | flowunit_output_list |  是   | FlowUnitOutput | 设置输出端口和数据存放设备                                               |
+| 功能单元配置参数           | flowunit_option_list    |  是   | FlowUnitOption | 设置功能单元配置参数，包括参数名，类型，描述等信息                       |
+| 条件类型                   | condition_type     |  否   | ConditionType  | 是否为条件功能单元                                                       |
+| 输出类型                   | output_type        |  否   | FlowOutputType | 设置是否为扩张或者合并功能单元                                           |
+| 输入内存是否连续           | is_input_contiguous   |  否   | bool           | 是否要求输入内存是否是分配的连续空间                                     |
+| 异常是否可见               | is_exception_visible  |  否   | bool           | 本功能单元是否处理前面功能单元的异常消息                                 |
+| Driver名称                 | driver_name              |  是   | String         | driver描述                                                               |
+| Driver功能类型             | driver_class             |  是   | String         | driver功能类型，功能单元类型为DRIVER-FLOWUNIT                            |
+| Driver设备类型             | driver_type              |  是   | String         | driver描述，cuda/cpu/ascend类型                                          |
+| Driver版本号               | driver_version          |  是   | String         | driver版本号                                                             |
+| Driver描述                 | driver_description       |  是   | String         | driver功能描述                                                           |
 
 Driver和功能单元的关系：Driver是ModelBox中各类插件的集合，功能单元属于Driver中的一种类型。在C++语言中，一个Driver对应一个so，一个Driver可以支持多个功能单元，即将多个功能单元编译进一个so文件。而再python中，Driver和功能单元一一对应。
 
-根据业务类型，常用功能单元的可以分为以下几类：（C++，python接口不统一，类型太多，stream与normal是一类，condition，expand）
+根据业务类型，常用功能单元的可以分为以下几类:
 
 | 功能单元类型       | 配置参数                                        | 适用场景                                                           |
-| ------------------ | ----------------------------------------------- | ------------------------------------------------------------------ |
-| 通用功能单元       | 工作模式设置为NORMAL                            | 图像操作，如resize                                                 |
-| 条件功能单元       | 工作模式设置为NORMAL，并且条件类型设置为IF_ELSE | 业务逻辑的分支判断                                                 |
-| 流数据功能单元     | 工作模式设置为STREAM                            | 视频流的处理，可以感知任务的开始结束                               |
-| 流数据拆分功能单元 | 工作模式设置为STREAM，并且输出类型设置为扩张    | 一张图片推理出多辆车，多每辆车做车牌检测，再讲整张图的所有车牌汇总 |
-| 流数据合并功能单元 | 工作模式设置为STREAM，并且输出类型设置为合并    | 一张图片推理出多辆车，多每辆车做车牌检测，再讲整张图的所有车牌汇总 |
-| 推理功能单元       | 只需准备好模型和配置toml文件即可                |                                                                    |
+| ----------------- | ----------------------------------------------- | ------------------------------------------------------------------ |
+| 通用功能单元       | 类型设置为NORMAL                            | 图像操作，如resize                                                 |
+| 流数据功能单元     | 类型设置为STREAM                            | 视频流的处理，可以感知任务的开始结束                               |
+| 条件功能单元       | 类型设置为NORMAL，并且条件类型设置为IF_ELSE | 业务逻辑的分支判断                                                 |
+| 流数据展开功能单元  | 类型设置为NORMAL，并且输出类型设置为展开    | 一张图片推理出多辆车，多每辆车做车牌检测，再讲整张图的所有车牌汇总 |
+| 流数据合并功能单元  | 类型设置为NORMAL，并且输出类型设置为合并    | 一张图片推理出多辆车，多每辆车做车牌检测，再讲整张图的所有车牌汇总 |                                                                   |
 
-## 功能单元接口说明
+## 功能单元开发说明
 
-功能单元接口，包含功能单元`插件初始化接口`，`功能单元初始化接口`和`数据处理接口`。
+功能单元开发分为三步，包含`插件信息定义`，`功能单元信息定义`和`功能单元数据处理`。
 
-### API接口类型实现对照关系（放入api文档中详细说明）
+### 插件信息定义
 
-功能单元提供了FlowUnit::相关的接口，其接口按不同类型的功能单元而不同，开发者应根据FlowUnit处理数据的类型，选择实现相关的接口，对应的关系表如下：
+这里的插件定义即为driver对象的信息定义以及初始化，c++和python的定义各不相同。
 
-| 接口                    | 接口类型           | 接口功能       | 调用实时机                 | 是否必须 | 通用功能单元 | 条件功能单元 | 数据流功能单元 | 数据流拆分功能单元 | 数据流合并功能单元 |
-| ----------------------- | ------------------ | -------------- | -------------------------- | -------- | ------------ | ------------ | -------------- | ------------------ | ------------------ |
-| DriverInit              | 插件初始化接口     | 模块初始化     | 插件加载时调用一次         | 否       | ✔️            | ✔️            | ✔️              | ✔️                  | ✔️                  |
-| DriverFini              | 插件初关闭接口     | 模块退出       | 插件结束时调用一次         | 否       | ✔️            | ✔️            | ✔️              | ✔️                  | ✔️                  |
-| FlowUnit::Open          | 功能单元初始化接口 | 功能单元初始化 | 图加载功能单元时调用       | 否       | ✔️            | ✔️            | ✔️              | ✔️                  | ✔️                  |
-| FlowUnit::Close         | 功能单元关闭接口   | 功能单元关闭   | 图结束时调用               | 否       | ✔️            | ✔️            | ✔️              | ✔️                  | ✔️                  |
-| FlowUnit::Process       | 数据处理接口       | 数据处理       | 有数据产生时调用           | 是       | ✔️            | ✔️            | ✔️              | ✔️                  | ✔️                  |
-| FlowUnit::DataGroupPre  | 数据处理接口       | 流数据合并开始 | 流数据合并时，流开始点触发 | 否       |              |              |                |                    | ✔️                  |
-| FlowUnit::DataGroupPost | 数据处理接口       | 流数据合并结束 | 流数据合并时，流结束点触发 | 否       |              |              |                |                    | ✔️                  |
-| FlowUnit::DataPre       | 数据处理接口       | 流数据开始     | 流数据开始时触发           | 否       |              |              |                | ✔️                  |                    |
-| FlowUnit::DataPost      | 数据处理接口       | 流数据结束     | 流数据结束时触发           | 否       |              |              |                | ✔️                  |                    |
+可以分别参照[c++流单元开发](c++.md#driver接口说明)和[python流单元开发](python.md#toml配置)
+
+详细插件属性接口可以参考[driver_desc接口](../../api/c++/modelbox_driverdesc.md)
+
+### 功能单元信息定义
+
+同样的分为[c++功能流单元](c++.md#flowunit属性设置)以及通过配置文件配置的[python流单元](python.md#toml配置)以及[推理流单元](inference.md#推理功能流单元配置toml格式)
+
+详细流单元属性接口定义可以参考[flowunit_desc接口](../../api/c++/modelbox_flowunitdesc.md)
 
 ### 接口实现关系说明
 
 1. 大部分情况下，业务都属于通用功能单元，仅需要处理单个数据，开发只需要实现FlowUnit::Process的功能即可。
 1. 若功能单元需要处理流数据，或需要记录状态，对数据进行跟踪处理，则需要实现FlowUnit:DataPre, FlowUnit::Process, FlowUnit::DataPost接口的功能。
-1. 若需要多数据合并，汇总结果，则需要实现FlowUnit::DataGroupPre, FlowUnit::DataPre, FlowUnit::Process, FlowUnit::DataPost, FlowUnit::DataGroupPost接口。
 1. DriverInit, DriverFini, FlowUnit::Open, FlowUnit::Close在不同的时机触发，业务可根据需要实现相关的功能。比如初始化某些会话，句柄等资源。
 
 #### 功能单元初始化、关闭
 
 对应需实现的接口为`FlowUnit::Open`、`FlowUnit::Close`，此接口可按需求实现。例如，使用::Open接口获取用户在图中的配置参数，使用::Close接口释放功能单元的一些公共资源。
 
-#### 数据处理
+### 数据处理
 
 对应需实现的接口为`FlowUnit::Process`, Process为FlowUnit的核心函数。输入数据的处理、输出数据的构造都在此函数中实现。Process接口处理流程大致如下：
 
@@ -105,38 +103,21 @@ Driver和功能单元的关系：Driver是ModelBox中各类插件的集合，功
 1. 循环处理每一个Input Buffer数据。
 1. 对每一个Input Buffer数据可使用Get获取元数据信息。
 1. 业务处理，根据需求对输入数据进行处理。
-1. 构造output_buffer，并使用output_buffer->Build申请输出内存，内存和设备相关，设备DriverDesc的时候设置。如是CPU则是CPU内存，如是GPU则是GPU显存。
+1. 构造output_buffer
 1. 对每一个Output Buffer数据可使用Set设置元数据信息。
 1. 返回成功后，ModelBox框架将数据发送到后续的功能单元。
+
+具体样例可以参考[数据处理](buffer.md)
 
 #### Stream流数据处理
 
 对应需实现的接口为`FlowUnit::DataPre`、`FlowUnit::DataPost`，此接口Stream模式可按需实现。例如，处理一个视频流时，在视频流开始时会调用`DataPre`，视频流结束时会调用`DataPost`。FlowUnit可以在DataPre阶段初始化解码器，在DataPost阶段关闭解码器，解码器的相关句柄可以设置到DataContext上下文中。DataPre、DataPost接口处理流程大致如下：
 
 1. Stream流数据开始时，在DataPre中获取数据流元数据信息，并初始化相关的上下文，存储DataContext->SetPrivate中。
-1. 处理Stream流数据时，在Process中，使用DataContext->GetPrivate获取到上下文对象，并从Inpu中获取输入，处理后，输出到Output中。
+1. 处理Stream流数据时，在Process中，使用DataContext->GetPrivate获取到上下文对象，并从Input中获取输入，处理后，输出到Output中。
 1. Stream流数据结束时，在DataPost中释放相关的上下文信息。
 
-#### 拆分合并处理
-
-对应需实现的接口为`FlowUnit::DataGroupPre`、`FlowUnit::DataGroupPost`，当数据需要拆分合并时需要实现。
-在业务处理过程中对数据进行拆分，然后在后续功能单元中处理，当数据处理完成后需要对数据进行合并得到最终结果。
-
-对应的处理代码和DataPre，DataPost类似，如下图
-
-![flowunit-collpase alt rect_w_1000](../../assets/images/figure/develop/flowunit/flowunit-collpase.png)
-
-如要将输入Stream1，Stream2，...合并为一个Stream。则接口调用过程为
-
-1. DataGroupPre
-2. DataPre, Stream1
-3. DataPost, Stream1
-4. DataPre, Stream2
-5. DataPost, Stream2
-6. ...
-7. DataGroupPost
-
-在编写代码时，其过程和DataPre类似，差别在于合并时对一组数据的归并动作：GroupPre中获取数据，并在Post中打开output的数据流上下文， 每个DataPre，DataPost中处理每个数据，最后在GroupPost中结束数据的合并。
+具体样例可以参考上下文样例的使用[context使用](context.md)
 
 ## 上下文
 

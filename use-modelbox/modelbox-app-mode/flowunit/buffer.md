@@ -11,7 +11,7 @@
 ```c++
     Status Process(std::shared_ptr<DataContext> data_ctx) {
         // 该flowunit为1输入1输出，端口号名字分别为input, output
-        auto input_bufs = data->Input("input");
+        auto input_bufs = data_ctx->Input("input");
         for (auto i = 0; i < input_bufs->Size(); ++i) {
             // 指定位置的buffer
             auto buffer = input_bufs->At(i);

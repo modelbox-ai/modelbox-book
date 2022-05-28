@@ -283,59 +283,28 @@ modelbox::Status VideoDecoderFlowUnit::DataPost(
 
 ```
 
-#### （补充条件流单元样例）
+#### 条件流单元
 
-#### 拆分合并处理
-
-对应需实现的接口为`FlowUnit::DataGroupPre`、`FlowUnit::DataGroupPost`，假设需要统计视频流中每一帧有几个人脸，和整个视频文件所有人脸数量，实现样例如下：
+只需要通过条件判断往不同的输出端口构建buffer即可，其他无需任何特殊处理
 
 ```c++
-modelbox::Status VideoDecoderFlowUnit::DataGroupPre(
-    std::shared_ptr<modelbox::DataContext> data_ctx) {
-  // 创建整个视频流计数
-  uint64_t stream_count = 0;
-  data_ctx->SetPrivate("stream_count", stream_count);
-  return modelbox::STATUS_OK;
-}
+    static int num = 0;
+    modelbox::Status ConditionFlowUnit::Process(
+      std::shared_ptr<modelbox::DataContext> ctx) {
+        auto inputs = ctx->Input("input");
+        auto outputs1 = ctx->Output("output_true");
+        auto outputs2 = ctx->Output("output_false");
 
-modelbox::Status VideoDecoderFlowUnit::DataPre(
-    std::shared_ptr<modelbox::DataContext> data_ctx) {
-  // 创建当前帧的人脸计数
-  uint64_t frame_count = 0;
-  data_ctx->SetPrivate("frame_count", frame_count);
-  return modelbox::STATUS_OK;
-}
+        for (int i = 0; i < inputs->Size(); ++i) {
+          if (i % 2 == 0) {
+            outputs1->PushBack(inputs->At(i));
+          } else {
+            outputs2->PushBack(inputs->At(i));
+          }
+        }
 
-modelbox::Status CVResizeFlowUnit::Process(
-    std::shared_ptr<modelbox::DataContext> ctx) {
-  // 获取流数据处理上下文对象
-  auto inputs = ctx->Input("input");
-  auto outputs = ctx->Output("output");
-
-  auto stream_count = std::static_pointer_cast<uint64_t>(data_ctx->GetPrivate("stream_count"));
-  auto frame_count = std::static_pointer_cast<uint64_t>(data_ctx->GetPrivate("frame_count"));
-  
-  ++frame_count;
-  ++stream_count;
-
-  return modelbox::STATUS_OK;
-}
-
-modelbox::Status VideoDecoderFlowUnit::DataPost(
-    std::shared_ptr<modelbox::DataContext> data_ctx) {
-  // 打印当前帧人脸计数
-  auto stream_count = std::static_pointer_cast<uint64_t>(data_ctx->GetPrivate("frame_count"));
-  MBLOG_INFO << "frame face total is " << frame_count;
-  return modelbox::STATUS_OK;
-}
-
-modelbox::Status VideoDecoderFlowUnit::DataGroupPost(
-    std::shared_ptr<modelbox::DataContext> data_ctx) {
-  // 打印视频流的人脸计数
-  auto stream_count = std::static_pointer_cast<uint64_t>(data_ctx->GetPrivate("stream_count"));
-  MBLOG_INFO << "stream face total is " << stream_count;
-  return modelbox::STATUS_OK;
-}
+        return STATUS_OK;
+    }
 ```
 
 ### 编译安装
