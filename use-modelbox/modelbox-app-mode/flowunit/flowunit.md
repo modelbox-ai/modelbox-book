@@ -77,13 +77,13 @@ Driver和功能单元的关系：Driver是ModelBox中各类插件的集合，功
 
 可以分别参照[c++流单元开发](c++.md#driver接口说明)和[python流单元开发](python.md#toml配置)
 
-详细插件属性接口可以参考[driver_desc接口](../../api/c++/modelbox_driverdesc.md)
+详细插件属性接口可以参考[driver_desc接口](../../../api/c++/modelbox_driverdesc.md)
 
 ### 功能单元信息定义
 
 同样的分为[c++功能流单元](c++.md#flowunit属性设置)以及通过配置文件配置的[python流单元](python.md#toml配置)以及[推理流单元](inference.md#推理功能流单元配置toml格式)
 
-详细流单元属性接口定义可以参考[flowunit_desc接口](../../api/c++/modelbox_flowunitdesc.md)
+详细流单元属性接口定义可以参考[flowunit_desc接口](../../../api/c++/modelbox_flowunitdesc.md)
 
 ### 接口实现关系说明
 

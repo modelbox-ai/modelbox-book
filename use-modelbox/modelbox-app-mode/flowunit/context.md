@@ -4,7 +4,7 @@
 
 ## DataContext
 
-DataContext是流单元当中存储数据上下文的数据结构，具体结构参考[api](../../api/c++/modelbox_datacontext.md)
+DataContext是流单元当中存储数据上下文的数据结构，具体结构参考[api](../../../api/c++/modelbox_datacontext.md)
 
 ### 获取输入以及输出数据
 
@@ -91,11 +91,11 @@ DataContext是流单元当中存储数据上下文的数据结构，具体结构
 
 ### 获取DataContext当中其他组件
 
-可以参考DataContext [api](../../api/c++/modelbox_datacontext.md)
+可以参考DataContext [api](../../../api/c++/modelbox_datacontext.md)
 
 ## SessionContext
 
-存储当前stream中的全局变量， 具体可以参见[api](../../api/c++/modelbox_sessioncontext.md)
+存储当前stream中的全局变量， 具体可以参见[api](../../../api/c++/modelbox_sessioncontext.md)
 
 ### 获取存在SessionContext中的全局数据以及设置全局数据
 

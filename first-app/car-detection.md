@@ -16,7 +16,7 @@ AI应用开发前需要准备好匹配当前modelbox版本支持的推理框架�
 
 ### 环境准备
 
-环境准备工作可以参考[环境准备](./hello-world.md###环境准备)，区别是需要选择torch镜像：
+环境准备工作可以参考[环境准备](./hello-world.md###环境准备)，区别是需要选择libtorch镜像：
 
 ```shell
 docker pull modelbox/modelbox-develop-libtorch_1.9.1-cuda_10.2-ubuntu-x86_64:latest
@@ -30,7 +30,19 @@ docker pull modelbox/modelbox-develop-libtorch_1.9.1-cuda_10.2-ubuntu-x86_64:lat
 
 ![car_detection_flow](../assets/images/figure/first-app/car_detection_flow.png)
 
-如上图所示，video_input功能单元用作输入视频配置，后面接视频的解封装、解码功能单元(videodemuxer、videodecoder)得到视频帧，对视频帧进行预处理(reisze、transpose、normalize)，将预处理后的数据交给模型推理(model_inference)，推理后进行后处理，画出检测框渲染到图像上(yolo_post)，最后将渲染结果图编码成视频文件(videoencoder)。整个流程只需要实现蓝色部分功能单元，其他功能单元都在modelbox中内置，只需修改配置即可使用。具体toml配置文件如下所示：
+如上图所示，整个流程图分为5个阶段：视频输入/解码、车辆检测预处理、车辆检测推理、车辆检测后处理、视频编码。
+
+- 视频输入/解码：video_input功能单元用作输入视频配置，后面接视频的解封装、解码功能单元(videodemuxer、videodecoder)得到视频帧;
+
+- 车辆检测预处理：对视频帧进行预处理(reisze、transpose、normalize);
+
+- 车辆检测推理：将预处理后的数据交给模型推理(model_inference);
+
+- 车辆检测后处理：推理后进行后处理，并画出检测框渲染到图像上(yolo_post);
+
+- 视频编码：最后将渲染结果图编码成视频文件(videoencoder);
+
+整个流程只需要实现蓝色部分功能单元，其他功能单元都在modelbox中内置，只需修改配置即可使用。具体toml配置文件如下所示：
 
 ```toml
 [graph]
@@ -59,7 +71,7 @@ graphconf = """digraph car_detection {
 }"""
 ```
 
-除了构建图之外，还需要增加必要配置，如功能单元扫描路径，日志级别等，具体可参考样例文件`/usr/local/share/modelbox/demo/car_detection/graph/car_detection.toml`
+除了构建图之外，还需要增加必要配置，如功能单元扫描路径，日志级别等，具体可参考样例文件`/usr/local/share/modelbox/demo/car_detection/graph/car_detection.toml`。
 
 ### 功能单元开发
 
