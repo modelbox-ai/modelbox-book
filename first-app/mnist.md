@@ -57,8 +57,8 @@ AI应用开发前需要准备好匹配当前modelbox版本支持的推理框架�
     ```
 
    注意事项：
-    * 如果需要通过可视化UI进行图的编排，可参考[可视化编排服务](../plugins/editor/editor.md)章节访问`http://[host]:[EDITOR_MAP_PORT]/editor/`地址；
-    * 如果访问被拒绝，可参考[运行编排服务](../plugins/editor/editor.md)中的[访问控制列表](../plugins/editor/editor.md#访问控制列表)相关内容。
+    * 如果需要通过可视化UI进行图的编排，可参考[可视化编排服务](../tools/editor/editor.md)章节访问`http://[host]:[EDITOR_MAP_PORT]/editor/`地址；
+    * 如果访问被拒绝，可参考[运行编排服务](../tools/editor/editor.md)中的[访问控制列表](../tools/editor/editor.md#访问控制列表)相关内容。
 
 1. 连接ModelBox编排服务
 

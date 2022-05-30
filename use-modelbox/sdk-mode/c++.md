@@ -1,10 +1,10 @@
-# C++开发方式(需补充动态图开发流程)
+# C++开发方式
 
 ## 当前方式适合哪些场景下使用
 
 此方式主要适用于C++开发者开发流程图。
 
-## C++的API接口（放入api文档中）
+## C++的API接口
 
 flow的运行流程可参考[flow章节](../modelbox-app-mode/deployment/run-flow.md)。
 
@@ -197,4 +197,4 @@ modelbox::Status RecvExternalData(std::shared_ptr<ExternalDataMap> ext_data) {
 
 ## C++日志
 
-默认情况，ModelBox的SDK输出日志到console，业务需要注册相关的日志处理函数，注册方法可参考[日志章节](../debug/log.md)
+默认情况，ModelBox的SDK输出日志到console，业务需要注册相关的日志处理函数，注册方法可参考[日志章节](../modelbox-app-mode/debug/log.md)

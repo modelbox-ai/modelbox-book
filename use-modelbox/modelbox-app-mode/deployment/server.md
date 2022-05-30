@@ -88,8 +88,8 @@ ModelBox服务相关配置文件和配置功能说明如下：
 | ---------------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | 主服务配置       | /usr/local/etc/modelbox/modelbox.conf | 包含基本的配置信息，如插件路径，日志级别。                                                                      |
 | 插件配置         | /usr/local/etc/modelbox/modelbox.conf | 和具体插件相关。                                                                                                |
-| 编排服务配置     | /usr/local/etc/modelbox/modelbox.conf | 包括编排服务的配置信息，详情可见[运行服务](../../../plugins/editor/editor.md)中的[可视化编排服务](../../../plugins/editor/editor.md#配置启用Editor)         |
-| 访问控制列表     | /usr/local/etc/modelbox/modelbox.conf | 可访问ModelBox后端服务的白名单列表，详情可见[运行服务](../../../plugins/editor/editor.md)中的[访问控制列表](../../../plugins/editor/editor.md#访问控制列表) |
+| 编排服务配置     | /usr/local/etc/modelbox/modelbox.conf | 包括编排服务的配置信息，详情可见[运行服务](../../../tools/editor/editor.md)中的[可视化编排服务](../../../tools/editor/editor.md#配置启用Editor)         |
+| 访问控制列表     | /usr/local/etc/modelbox/modelbox.conf | 可访问ModelBox后端服务的白名单列表，详情可见[运行服务](../../../tools/editor/editor.md)中的[访问控制列表](../../../tools/editor/editor.md#访问控制列表) |
 | 服务启动参数配置 | /usr/local/etc/modelbox/modelbox-opts | 支持配置ModelBox Server服务的启动参数。                                                                         |
 
 ### 主服务配置项
@@ -110,7 +110,7 @@ ModelBox服务相关配置文件和配置功能说明如下：
 
 `modelbox-plugin`插件的配置，可参考[服务安装配置](./run-flow.md)。
 
-`modelbox-plugin-editor`插件的配置，可参考[可视化编排服务](../../../plugins/editor/editor.md)。
+`modelbox-plugin-editor`插件的配置，可参考[可视化编排服务](../../../tools/editor/editor.md)。
 
 ### ModelBox服务启动参数配置
 
@@ -127,7 +127,7 @@ ModelBox Server可以通过自定义插件的形式扩展其基本功能，默�
 | 插件                   | 功能               | 说明                                                         | 使用指导            |
 | ---------------------- | ------------------ | ------------------------------------------------------------ | ------------------- |
 | modelbox-plugin        | 默认流程图执行插件 | 默认的流程图执行插件，支持REST API管理流程图，和其执行结果。 | [指导](./run-flow.md) |
-| modelbox-plugin-editor | 可视化编排UI插件   | 提供可视化的流程图编排UI界面。                               | [指导](../../../plugins/editor/editor.md)   |
+| modelbox-plugin-editor | 可视化编排UI插件   | 提供可视化的流程图编排UI界面。                               | [指导](../../../tools/editor/editor.md)   |
 
 ## ModelBox Server文件目录
 

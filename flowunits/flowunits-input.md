@@ -74,8 +74,8 @@ cpu
 |keepalive_timeout_sec|uint64_t|否|请求保活时间，单位为秒，默认值为200|
 |cert|string|否|openssl证书路径，https时使用|
 |key|string|否|openssl私钥路径，https时使用|
-|passwd|string|否|经过加密的openssl密码，https时使用. 密码可使用Modelbox-tool加密，详细见[ModelBox Tool](../modelbox-tool/modelbox-tool.md)密码加密章节|
-|key_pass|string|否|用于解密openssl密码的密钥，https时使用。详细见[ModelBox Tool](../modelbox-tool/modelbox-tool.md)密码加密章节|
+|passwd|string|否|经过加密的openssl密码，https时使用. 密码可使用Modelbox-tool加密，详细见[ModelBox Tool](../tools/modelbox-tool/modelbox-tool.md)密码加密章节|
+|key_pass|string|否|用于解密openssl密码的密钥，https时使用。详细见[ModelBox Tool](../tools/modelbox-tool/modelbox-tool.md)密码加密章节|
 
 ### 约束说明
 
@@ -115,8 +115,8 @@ cpu
 |keepalive_timeout_sec|uint64_t|否|请求保活时间，单位为秒，默认值为200|
 |cert|string|否|openssl证书路径，https时使用|
 |key|string|否|openssl私钥路径，https时使用|
-|passwd|string|否|经过加密的openssl密码，https时使用. 密码可使用Modelbox-tool加密，详细见[ModelBox Tool](../modelbox-tool/modelbox-tool.md)密码加密章节|
-|key_pass|string|否|用于解密openssl密码的密钥，https时使用。详细见[ModelBox Tool](../modelbox-tool/modelbox-tool.md)密码加密章节|
+|passwd|string|否|经过加密的openssl密码，https时使用. 密码可使用Modelbox-tool加密，详细见[ModelBox Tool](../tools/modelbox-tool/modelbox-tool.md)密码加密章节|
+|key_pass|string|否|用于解密openssl密码的密钥，https时使用。详细见[ModelBox Tool](../tools/modelbox-tool/modelbox-tool.md)密码加密章节|
 
 ### 使用约束
 

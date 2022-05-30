@@ -113,30 +113,30 @@
 
 - 获取输出
 
-```cpp
-modelbox::Status RecvExternalData  (std::shared_ptr<modelbox::ExternalDataMap> ext_data) {
+  ```cpp
+  modelbox::Status RecvExternalData  (std::shared_ptr<modelbox::ExternalDataMap> ext_data) {
     modelbox::OutputBufferList map_buffer_list;
-  // 接收数据
-  while (true) {
-    auto status = ext_data->Recv(map_buffer_list);
-    if (status != modelbox::STATUS_SUCCESS) {
-      if (status == modelbox::STATUS_EOF) {
-        // 数据处理结束
-        MBLOG_INFO << "stream data is EOF, stop recv output buffer";
+    // 接收数据
+    while (true) {
+      auto status = ext_data->Recv(map_buffer_list);
+      if (status != modelbox::STATUS_SUCCESS) {
+        if (status == modelbox::STATUS_EOF) {
+          // 数据处理结束
+          MBLOG_INFO << "stream data is EOF, stop recv output buffer";
+          break;
+        }
+        // 处理出错，关闭输出。
+        auto error = ext_data->GetLastError();
+        ext_data->Close();
+        MBLOG_ERROR << "Recv failed, " << status << ", error:" <<   error->GetDesc();
         break;
       }
-      // 处理出错，关闭输出。
-      auto error = ext_data->GetLastError();
-      ext_data->Close();
-      MBLOG_ERROR << "Recv failed, " << status << ", error:" <<   error->GetDesc();
-      break;
+      // 处理结果数据
+      auto buffer_list = map_buffer_list["output"];
+      ProcessOutputData(buffer_list);
     }
-    // 处理结果数据
-    auto buffer_list = map_buffer_list["output"];
-    ProcessOutputData(buffer_list);
-  }
 
-  return modelbox::STATUS_OK;
+    return modelbox::STATUS_OK;
   }
   ```
 

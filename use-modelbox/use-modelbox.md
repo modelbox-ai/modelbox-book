@@ -13,19 +13,22 @@ ModelBox中用流程图(Graph)来表达应用逻辑。采用有向图的方式�
 ModelBox将流程图中的顶点称为功能单元(FlowUnit)。功能单元是应用的基本组成部分，也是ModelBox的执行单元。在ModelBox中，内置了大量的基础功能单元，开发者可以将这些功能单元直接集成到应用流程图中，这也是基于流程图开发的一大好处。除内置功能单元外，ModelBox支持功能单元的自定义开发，支持的功能单元形式多样，如C/C++动态库、Python脚本、模型+模型配置文件等。
 
 ## AI应用模式
+
 在ModelBox下，AI应用模式主要分为两种：
+
+![modelbox-app-mode1 alt rect_w_600](../app_develop_mode1.png)
 
 1. ModelBox应用模式：
 
-    ![modelbox-app-mode1 alt rect_w_1280](../assets/images/figure/get-start/app_develop_mode1.png)
+    ![modelbox-app-mode1 alt rect_w_400](../assets/images/figure/get-start/app_develop_mode1.png)
 
     此模式下，开发者的应用构成分为服务逻辑和应用逻辑两个部分，AI应用的主入口为ModelBox，ModelBox首先加载服务逻辑，然后由服务逻辑加载指定的应用逻辑并运行。
-    * 服务逻辑：此部分主要用于启动由图编排时所描述的应用逻辑，并提供管理能力。ModelBox内置了两个服务插件：ModelBoxPlugin用来启动指定的应用逻辑；EditorPlugin则提供了WEBUI，可以用于执行样例、可视化编排应用逻辑等，详见[Editor](../plugins/editor/editor.md)。
+    * 服务逻辑：此部分主要用于启动由图编排时所描述的应用逻辑，并提供管理能力。ModelBox内置了两个服务插件：ModelBoxPlugin用来启动指定的应用逻辑；EditorPlugin则提供了WEBUI，可以用于执行样例、可视化编排应用逻辑等，详见[Editor](../tools/editor/editor.md)。
     * 应用逻辑：此部分由开发者编写，首先通过配置文件描述应用的整体逻辑，然后对逻辑中使用到的自定义功能单元进行开发。
 
 1. 自定义应用模式：
 
-    ![modelbox-app-mode2 alt rect_w_1280](../assets/images/figure/get-start/app_develop_mode2.png)
+    ![modelbox-app-mode2 alt rect_w_500](../assets/images/figure/get-start/app_develop_mode2.png)
 
     此模式下，开发者的应用构成分为业务逻辑和推理逻辑两个部分，AI应用的主入口为业务逻辑，由开发者提供，开发者通过提供的API使用ModelBox相关能力。
     * 业务逻辑：开发者编写的业务相关逻辑。

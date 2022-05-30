@@ -77,36 +77,36 @@ graphconf = """digraph car_detection {
 
 用户只需开发车辆检测推理功能单元(model_inference)、后处理(yolo_post)即可。
 
-* 车辆检测推理功能单元
+- 车辆检测推理功能单元
 
- ModelBox已经适配了torch推理引擎，只需推理功能单元只需准备好模型和对应的配置文件即可。
+  ModelBox已经适配了torch推理引擎，推理功能单元只需准备好模型和对应的配置文件即可。
 
- ```toml
- [base]
- name = "car_detect"
- device = "cuda"
- version = "1.0.0"
- description = "car detection infer"
- entry = "./yolox_nano_jit_trace_288x512.pt"
- type = "inference"
- virtual_type = "torch"
- 
- [input]
- [input.input1]
- name = "input"
- type = "float"
- 
- [output]
- [output.output1]
- name = "output"
- type = "float"
- ```
+  ```toml
+  [base]
+  name = "car_detect"
+  device = "cuda"
+  version = "1.0.0"
+  description = "car detection infer"
+  entry = "./yolox_nano_jit_trace_288x512.pt"
+  type = "inference"
+  virtual_type = "torch"
+  
+  [input]
+  [input.input1]
+  name = "input"
+  type = "float"
+  
+  [output]
+  [output.output1]
+  name = "output"
+  type = "float"
+  ```
 
- 详细代码可参考`/usr/local/share/modelbox/demo/car_detection/flowunit/car_detect/car_detect.toml`。
+  详细代码可参考`/usr/local/share/modelbox/demo/car_detection/flowunit/car_detect/car_detect.toml`。
 
-* 车辆检测后处理功能单元(yolo_post)
+- 车辆检测后处理功能单元(yolo_post)
 
- 详细代码可参考`/usr/local/share/modelbox/demo/car_detection/flowunit/yolox_post`。
+  详细代码可参考`/usr/local/share/modelbox/demo/car_detection/flowunit/yolox_post`。
 
 ### 调试运行
 

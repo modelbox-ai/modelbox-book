@@ -68,7 +68,7 @@ ModelBox开发套件包含如下部分：
 
 1. 系统集成
 
-   通常基于Modelbox的AI应用作为独立进程运行，当AI应用需要作为组件被集成到其他系统进程中时，可以直接使用libmodelbox组件提供的[ModelBox SDK API](../custom-app-mode/sdk.md)进行集成开发，完成应用的集成, Modelbox同时提供了[C++ SDK接口](../custom-app-mode/c++.md)和[Python SDK接口](../custom-app-mode/python.md)。
+   通常基于Modelbox的AI应用作为独立进程运行，当AI应用需要作为组件被集成到其他系统进程中时，可以直接使用libmodelbox组件提供的[ModelBox SDK API](../sdk-mode/sdk-mode.md)进行集成开发，完成应用的集成, Modelbox同时提供了[C++ SDK接口](../sdk-mode/c++.md)和[Python SDK接口](../sdk-mode/python.md)。
 
 ## AI应用开发流程
 
@@ -157,11 +157,11 @@ ModelBox开发套件包含如下部分：
     modelbox-tool -verbose [-log-level INFO] [-log-path filepath] flow -run [/path/to/graph.toml]
     ```
 
-    具体可见[调试](../debug/code-debug.md)。
+    具体可见[调试](../modelbox-app-mode/debug/code-debug.md)。
 1. 性能调优
 
-   可以使用profiling工具对性能数据进行采集分析和优化，具体使用可见[性能](../debug/profiling.md)。
+   可以使用profiling工具对性能数据进行采集分析和优化，具体使用可见[性能](../modelbox-app-mode/debug/profiling.md)。
 
 1. 系统集成
 
-   通常情况使用ModelBox服务运行图即可。如果有诉求需要将ModelBox图的运行集成到其他进程时，可采用ModelBox提供的sdk接口进行调用。具体可见[SDK API集成](../custom-app-mode/sdk.md)。  
+   通常情况使用ModelBox服务运行图即可。如果有诉求需要将ModelBox图的运行集成到其他进程时，可采用ModelBox提供的sdk接口进行调用。具体可见[SDK API集成](../sdk-mode/sdk-mode.md)。  

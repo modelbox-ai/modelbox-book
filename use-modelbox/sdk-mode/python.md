@@ -164,4 +164,4 @@ digraph demo {
 
 ## Python日志
 
-默认情况，ModelBox的SDK输出日志到console，业务需要注册相关的日志处理函数，注册方法可参考[日志章节](../debug/log.md)
+默认情况，ModelBox的SDK输出日志到console，业务需要注册相关的日志处理函数，注册方法可参考[日志章节](../modelbox-app-mode/debug/log.md)
