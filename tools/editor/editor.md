@@ -4,7 +4,7 @@ ModelBox提供了在线可视化编排的工具——Editor，在开发时，可
 
 ## 编排服务是什么
 
-编排服务是用来在Editor可视化界面上，编排[流程图](../../use-modelbox/modelbox-app-mode/flow/flow.md)并自动生成相对应的[图](../../basic-conception/graph.md)代码的快速开发工具。
+编排服务是用来在Editor可视化界面上，编排[流程图](../use-modelbox/modelbox-app-mode/flow/flow.md)并自动生成相对应的[图](../basic-conception/graph.md)代码的快速开发工具。
 
 ## 编排服务开发使用流程
 
@@ -17,7 +17,7 @@ ModelBox提供了在线可视化编排的工具——Editor，在开发时，可
 1. 业务进行编排操作。
 1. 下发编排任务。
 
-编排服务集成在ModelBox Server中，默认情况下，编排服务未启用。可以参考下方[编排服务配置](../server/editor.md#编排服务配置)章节来启用编排服务并加载Editor界面。
+编排服务集成在ModelBox Server中，默认情况下，编排服务未启用。可以参考下方[编排服务配置](./editor.md#编排服务配置)章节来启用编排服务并加载Editor界面。
 
 ## 编排服务配置
 
@@ -25,7 +25,7 @@ ModelBox Server安装完成后，编排服务会通过插件的形式由ModelBox
 
 对应插件路径为`"/usr/local/lib/modelbox-plugin-editor.so"`(#由于不同操作系统目录结构存在差异，此路径也可能为 `"/usr/local/lib64/modelbox-plugin-editor.so"`，下文涉及系统lib库路径的地方均存在系统路径差异)。
 
-编排服务插件的配置文件路径为`/usr/local/etc/modelbox/modelbox.conf`，其配置项目如下：
+编排服务插件的配置文件路径为`$HOME/modelbox-service/conf/modelbox.conf`，其配置项目如下：
 
 | 配置项目               | 配置说明                                                                    |
 | ---------------------- | --------------------------------------------------------------------------- |
@@ -33,7 +33,7 @@ ModelBox Server安装完成后，编排服务会通过插件的形式由ModelBox
 | editor.ip              | Editor工具监听IP，默认为127.0.0.1。不指定的情况下，和server.ip一致          |
 | editor.port            | Editor工具监听端口，默认为1104，不指定情况下，和server.port一致             |
 | editor.root            | Editor前端UI路径，默认为/usr/local/share/modelbox/www                       |
-| editor.solution_graphs | Editor solution_graphs路径，默认为/usr/local/share/modelbox/solution/graphs |
+| editor.demo_root       | Editor demo路径，默认为/usr/local/share/modelbox/demo |
 
 下面分别介绍两种启用Editor的方法。
 
@@ -45,98 +45,68 @@ ModelBox Server安装完成后，编排服务会通过插件的形式由ModelBox
 modelbox-tool develop -s 
 ```
 
-命令执行后，将在用户$HOME/modelbox创建运行目录，并开启http编排服务，可使用对应主机的IP地址，和开启的端口号（默认端口号为1104），在[配置ACL](./editor.md#访问控制列表)生效之后，即可访问Editor界面。
+命令执行后，将在用户$HOME/modelbox-service创建运行目录，并开启http编排服务，可使用对应主机的IP地址，和开启的端口号（默认端口号为1104），在[配置ACL](./editor.md#访问控制列表)并重启modelbox服务使之生效后，即可访问Editor界面。
 
 ### 配置启用Editor
 
 若需要定制化编排服务启动参数，可以修改配置文件，具体修改流程如下：
 
-1. 打开`$HOME/modelbox/modelbox.conf`，修改其中的配置项：
+1. 打开`$HOME/modelbox-service/conf/modelbox.conf`，修改其中的配置项：
 
-   ```toml
-   [server]
-   # 允许访问服务
-   ip = "0.0.0.0"
-   port = "1104"
-   flow_path = "/usr/local/etc/modelbox/graph"
-   
-   [plugin]
-   # 确保Editor组件加载。
-   files = [
-       "/usr/local/lib/modelbox-plugin-editor.so" #
-   ]
-   
-   [editor]
-   # 启用Editor
-   enable = true
-   
-   # 设置绑定IP和端口。
-   ip = "0.0.0.0"
-   port = "1104"
-   
-   # 指定前端UI路径，默认情况无需修改。
-   root = "/usr/local/share/modelbox/www"
-   solution_graphs = "/usr/local/share/modelbox/solution/graphs"
-   ```
+```shell
+[server]
+ip = "0.0.0.0"
+port = "1104"
+flow_path = "$HOME/modelbox-service/graph"
+
+[plugin]
+files = [
+    "/usr/local/lib/modelbox-plugin.so",
+    "/usr/local/lib/modelbox-plugin-editor.so"
+]
+
+[control]
+enable = true
+listen = "$HOME/modelbox-service/run/modelbox.sock"
+
+[acl]
+allow = [
+    "127.0.0.1/8",
+    # ADD CLIENT HOST HERE
+    "192.168.59.145"
+]
+
+[editor]
+enable = true
+# ip = "127.0.0.1"
+# port = "1104"
+root = "/usr/local/share/modelbox/www"
+demo_root = "/usr/local/share/modelbox/demo"
+
+[log]
+# log level, DEBUG, INFO, NOTICE, WARN, ERROR, FATAL, OFF
+level = "INFO"
+
+# log archive number
+num = 32
+
+# log file path
+path = "$HOME/modelbox-service/log/modelbox.log"
+```
 
 1. 重启ModelBox Server服务使配置生效。
 
-   * systemd环境：
-
    ```shell
-   systemctl restart modelbox
+   $HOME/modelbox-service/modelbox restart
    ```
 
-   * 非Systemd环境：
+   或者
 
    ```shell
-   /etc/init.d/modelbox restart
+   $HOME/modelbox-service/modelbox-manager restart
    ```
 
-## 访问编排服务(更新UI图)
-
-服务启动成功后，可使用浏览器访问服务，输入对应的网址即可，如：`http://[host]:1104/editor/`，成功后，将显示如下界面：
-
-![editor-ui](../../assets/images/figure/server/Editor-UI.png)
-
-UI界面分为7个功能区域，其对应的功能如下：
-
-1. 区域1，功能页面选择。
-1. 区域2，基本编排操作区域，包含对6号区域的放大，缩小，重置大小，居中显示等操作。
-1. 区域3，基础组件列表区域，安装不同的组件分类，可从此面板选择对应编排的组件。组件数量受图的FlowUnit路径和服务器中功能单元插件个数的影响。
-1. 区域4，帮助和API页面的链接。
-1. 区域5，图操作功能区，包含新建，保持，图属性，选择图表，和解决方案功能。
-1. 区域6，图形化编排界面，使用鼠标可以控制组件链接和移动。`Ctrl+鼠标左键`可以拖动画布。
-1. 区域7，对应文本化编排界面，可使用标准的[DOT](https://www.graphviz.org/pdf/dotguide.pdf)语法进行文本编辑。
-
-快捷键说明：
-
-1. 放大缩小：`鼠标滚轮`，或键盘，`-`，`=`按键。
-1. 全选：`ctrl+a`
-1. 撤销：`ctrl+z`
-1. 重做：`ctrl+u`
-1. 取消选择：`escape`
-
-注意事项：
-
-1. 对应网址的端口号以docker启动脚本中的 `EDITOR_MAP_PORT` 为准，默认端口号为1104。
-1. 区域3中若无显示任务组件，请确保`图设置`界面中，选中了使用系统功能单元，和正确指定功能单元路径。
-1. 编排完成后，需要点击`另存为`保存图，然后才能在任务管理界面下发任务。
-
-## 执行编排任务
-
-编排完成，并保存完编排图后，可在编排管理界面下发编排任务，对应的编排任务管理界面如下：
-
-![task-ui](../../assets/images/figure/server/Task-UI.png)
-
-任务界面分为4个功能区域，其对应的功能如下：
-
-1. 区域1，新建任务按钮，用于新建编排页面创建的图。
-1. 区域2，服务器端执行的任务列表。
-1. 区域3，任务执行状态。
-1. 区域4，任务执行出错情况下的错误信息。
-
-## 访问控制列表
+### 访问控制列表
 
 访问控制列表ACL（Access Control List）是由一条或多条规则组成的集合，里面配置了允许访问Editor的IP地址。
 可以通过修改配置文件，来修改ACL列表，具体流程如下：
@@ -148,12 +118,6 @@ UI界面分为7个功能区域，其对应的功能如下：
     [acl]
     allow = [
         "10.11.12.13",
-    ]
-   
-    [plugin]
-    files = [
-        "/usr/local/lib/modelbox-plugin.so",
-        "/usr/local/lib/modelbox-plugin-editor.so"
     ]
    ```
 
@@ -168,16 +132,112 @@ UI界面分为7个功能区域，其对应的功能如下：
 
 1. 重启ModelBox Server服务使配置生效。
 
-   systemd环境
+## 访问编排服务
 
-   ```shell
-   systemctl restart modelbox
-   ```
+服务启动成功后，可使用浏览器访问服务，输入对应的网址即可，如：`http://[host]:1104/editor/`，成功后，将显示如下界面：
 
-   非systemd环境。
+![editor-ui alt rect_w_1000](../../assets/images/figure/server/editor-first.png)
 
-   ```shell
-   /etc/init.d/modelbox restart
-   ```
+在主页中，分别可以链接到《示例展示》，《任务编排》，《任务管理》。右上角可以可查看《帮助文档》以及《API》。
 
-注意：1. 确保`[editor]`下`enable = true`。
+### 示例展示
+
+![editor-demo alt rect_w_1000](../../assets/images/figure/server/editor-demo.png)
+
+该页面分为5个功能区域，其对应的功能如下：
+
+1. 区域1，导航页面。
+2. 区域2，基本编排操作区域，包含对6号区域的放大，缩小，重置大小，居中显示，垂直/水平显示，运行图。
+3. 区域3，示例相关功能，可以选择示例以及打开指引。
+4. 区域4，图形化编排界面，使用鼠标可以控制组件链接和移动。`Ctrl+鼠标左键`可以拖动画布。
+5. 区域5，对应文本化编排界面，可使用标准的[DOT](https://www.graphviz.org/pdf/dotguide.pdf)语法进行文本编辑。
+
+![editor-demo2 alt rect_w_1000](../../assets/images/figure/server/editor-demo2.png)
+
+成功加载所选示例，并点击图中节点时，将显示右侧配置面板。可根据自己的需求对各个节点进行配置。
+
+配置完成后，即可点击区域2中的“运行”按钮，将下发编排任务，并自动跳转至任务管理页面查看任务状态。
+
+快捷键说明：
+
+1. 放大缩小：`鼠标滚轮`，或键盘，`-`，`=`按键。
+2. 全选：`ctrl+a`
+3. 撤销：`ctrl+z`
+4. 重做：`ctrl+u`
+5. 取消选择：`escape`
+
+注意事项：
+
+1. 对应网址的端口号以docker启动脚本中的 `EDITOR_MAP_PORT` 为准，默认端口号为1104。
+
+## 任务编排页面
+
+![editor-main alt rect_w_1000](../../assets/images/figure/server/editor-main.png)
+
+该页面是进行图编排、设置的主要界面。
+
+### 功能说明
+
+进入界面后，即可点击`项目`来新建或者打开一个项目。
+随后，可以通过`拖拽至编排界面`或者`双击`左侧功能单元列表上所需要的功能单元，将功能单元显示在编排界面上。
+如果需要自定义新的功能单元，可以点击`功能单元`来创建。
+当图编排完成之后，可以通过`图属性`设置相关属性。最后，点击`项目`下面的`保存`即可将项目信息保存至后端。
+如果需要运行项目，就点击工具栏上的`运行`按钮即可。
+
+#### 项目
+
+`项目`下拉菜单在工具栏的左侧的第一个位置，其有四个功能，分别为：
+
+1. 新建项目
+
+依次输入项目名称以及项目路径，并选择相对应的项目模板，点击确认即可创建一个新的项目。项目路径如果不存在，将会自动创建。
+
+![editor-create-project](../../assets/images/figure/server/editor-create-project.png)
+
+2. 打开项目
+
+输入项目路径，点击`确认`即可打开项目。
+
+![editor-open-project](../../assets/images/figure/server/editor-open-project.png)
+
+3. 保存
+
+将更改的内容保存至后端。
+
+4. 关闭
+
+将会清空保存在浏览器中的项目数据。
+
+#### 功能单元
+
+1. 新建单元
+
+![editor-open-flowunit](../../assets/images/figure/server/editor-create-flowunit.png)
+
+依次选择功能单元类型，名称，处理类型。
+
+端口可通过选择`输入\输出`，`端口名称`，`处理类型`，点击`添加`来增加功能单元的端口。
+
+再选择功能类型。功能类型相关的介绍可以参考[功能单元开发](../use-modelbox/modelbox-app-mode/flowunit/flowunit.md)。
+
+1. 刷新单元
+
+如果在后端对功能单元进行了更改，可用该功能直接加载更新后的功能
+
+## 任务管理页面
+
+![editor-management alt rect_w_1000](../../assets/images/figure/server/editor-management.png)
+
+该页面除了可以查看运行中的任务状态，还可以对任务进行调试。
+
+调试功能有：`api调试`与`转base64`
+
+### api调试
+
+选择相关模板， 修改Request中的Header和Body部分，发送请求之后得到的Reponse将显示在页面上。
+
+也可以不加载模板，直接进行调试。
+
+### 转base64
+
+选择需要转成base64格式的文件，即可在页面右侧得到base64代码。
