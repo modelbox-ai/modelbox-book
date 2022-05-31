@@ -24,7 +24,7 @@ class SomeAscendFlowUnit : public modelbox::AscendFlowUnit {
 除AscendProcess以外，其他接口和通用功能单元一致，AscendProcess接口如下：
 
 ```c++
-modelbox::Status ColorTransposeFlowUnit::AscendProcess(
+modelbox::Status AscendFlowUnit::AscendProcess(
     std::shared_ptr<modelbox::DataContext> data_ctx, aclrtStream stream) {
   auto inputs = ctx->Input("input");
   auto outputs = ctx->Output("output");
@@ -47,6 +47,35 @@ modelbox::Status ColorTransposeFlowUnit::AscendProcess(
 
       // 设置输出Meta
       outputs[i].Set("Meta", "Meta Data");
+  }
+
+  return modelbox::STATUS_OK;
+}
+```
+
+```c++
+modelbox::Status AscendFlowUnit::AscendProcess(
+    std::shared_ptr<modelbox::DataContext> data_ctx, aclrtStream stream) {
+  auto inputs = ctx->Input("input");
+  auto outputs = ctx->Output("output");
+
+  // 同步Stream
+  aclrtSynchronizeStream(stream);
+
+  // 申请内存
+  std::vector<size_t> data_size_list;
+  for (auto &input : *inputs) {
+    data_size_list.push_back(input->GetBytes());
+  }
+  outputs->Build(data_size_list);
+
+  // 循环处理每个输入数据，并产生相关的输出结果。
+  for (size_t i = 0; i < inputs->Size(); ++i) {
+      // 获取输入，输出的内存指针。输入为const只读数据，输出为可写入数据。
+      auto input_data = inputs[i].ConstData();
+      auto output_data = outputs[i].MutableData();
+      // 同步拷贝输入到输出
+      aclrtMemcpy(output_data, outputs[i]->GetBytes(), input_data, inputs[i]->GetBytes(), aclrtMemcpyKind::ACL_MEMCPY_DEVICE_TO_DEVICE);
   }
 
   return modelbox::STATUS_OK;

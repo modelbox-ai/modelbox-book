@@ -7,7 +7,7 @@ Python开发功能单元时，需要预先安装ModelBox的运行包， 可参�
 
 Python FlowUnit接口调用过程如下图所示。
 
-![flowunit-python-develop-flow alt rect_w_1280](../../assets/images/figure/develop/flowunit/flowunit-python-develop-flow.png)
+![flowunit-python-develop-flow alt rect_w_1280](../../../assets/images/figure/develop/flowunit/flowunit-python-develop-flow.png)
 
 FlowUnit开发分为两部分，一部分是`TOML配置`, 一部分是`FlowUnit`代码，用户需要实现如下接口和配置：
 

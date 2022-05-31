@@ -6,7 +6,7 @@ ModelBox为更好的支撑应用流程，抽象了许多概念，理解这些概
 
 通过ModelBox开发应用时，开发者需要将应用程序的逻辑表达为流程图，应用功能被拆分为多个功能单元。采用这种方式的目的是：对数据流(如视频)处理可以利用多段流水线并行提供吞吐量；通用的功能单元可以复用；通用的流程图可以复用。  
 
-![flow-concept alt rect_w_1000](../../assets/images/figure/framework-conception/flow-concept.png)
+![flow-concept alt rect_w_1000](../assets/images/figure/framework-conception/flow-concept.png)
 
 数据经由`INPUT Node`产生，按箭头指向，流向`Process Node`，`Process Node`处理数据后，在发送给`Sink Node`汇总处理结果，这是一个典型的数据处理过程，这个过程中，涉及到了图(Graph)、节点(Node)、端口(Port)、数据流(Stream)、数据块(Buffer)。
 
