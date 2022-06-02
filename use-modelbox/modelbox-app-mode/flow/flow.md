@@ -1,4 +1,4 @@
-# 流程图开发及运行
+# 流程图开发
 
 流程图(Graph)是应用的逻辑表述，ModelBox将根据流程图构建应用的处理逻辑。
 
@@ -11,9 +11,7 @@
 | ModelBox编排服务 | 使用ModelBox编排服务进行流程图的开发。                          | ⭐️⭐️⭐️    | [指导](../../../tools/editor/editor.md)              |
 | 手工编写         | 手工编写toml格式的流程图文件，并添加到ModelBox Server插件中运行 | ⭐️      | [指导](../../../basic-conception/graph.md) |
 
-## 流程图开发模型
-
-### 流程图的开发的四个步骤 （这部分内容主要讲内部概念，调用逻辑，可放到概念里)
+## 流程图的开发的四个步骤
 
 ```mermaid
 graph LR
@@ -28,44 +26,21 @@ A(图的创建) --> B(图的加载) --> C(图的构建)  --> D(图的运行)
 
 - 图的运行： 当用户调用函数接口时， ModelBox会从用户配置的数据源读取数据并按照图构建的路径处理数据，并输出到用户指定的路径中。此时node从前面的节点中获取数据并调用flowunit的处理函数处理数据，并将处理后的数据输出到下一个node中，此时所有的node节点都已经运行起来了，直到数据结束或者用户手动终结流程。
 
-## 流程图开发
+## 流程图设计
 
-### 流程图配置
+流程图基本概念可参考基础概念中的[图](../../../basic-conception/graph.md)章节。在了解了基本概念后，根据业务需求可进行流程图的设计。流程图的设计一般遵循以下几个原则：
 
-一个流程图使用一份TOML格式的配置表示，配置文件内容如下：
+- 模型推理一般作为一个图上的一个节点；
 
-```toml
-[log]
-level="DEBUG"
-[driver]
-dir=["dir1","dir2"]
-skip-default=false
-[graph]
-graphconf = '''digraph demo {
-  input[type=input]
-  output[type=output]
-  process[flowunit=process]
+- ModelBox内置了大量高性能[预处理功能单元](../../../flowunits/flowunits.md#功能单元列表)，可直接作为流程图节点;
 
-  input->process->output
-}'''
-graph.graphconffilepath = "/path/to/graphviz/flow.conf"
-format = "graphviz"
-```
+- ModelBox也内置了部分后处理功能单元，如[yolo后处理](../../../flowunits/flowunits-virtual.md#yolo_postprocess)，可直接作为流程图节点；
 
-配置文件项目说明：
+- 如有业务逻辑在中有分支判断、拆分合并可作为单独的节点；
 
-1. \[driver\]：用于说明驱动加载路径。
-   - `dir`: 指定功能单元等驱动加载路径，可以指定多个路径，通过[] 和 ，分隔。
-   - `skip-default`：true表示只扫描dir路径，false表示扫描系统目录和dir路径。
-1. \[graph\]：用于指定图的内容。
-   - `format`指定流程图的格式，目前仅支持graphviz。
-   - `graphconf`为内联graphviz流程图。
-   - `graph.graphconffilepath`为外部流程图文件。
-1. \[log\]: 指定图的日志级别。
-   - `level`: 指定级别，可以是DEBUG, INFO, NOTICE, WARN, ERROR, FATAL, OFF
-   - 注意：修改此级别，将全局影响日志级别，建议仅在调试时使用。
+更多例子可参考[第一个应用](../../../first-app/first-app.md)中每个案例的的`流程图开发`章节。
 
-### 流程图定义
+## 流程图定义
 
 ModelBox默认情况，采用Graphviz DOT语法表达图，关于DOT语法，可以查看[Graphviz DOT](https://www.graphviz.org/pdf/dotguide.pdf)的指导。
 
@@ -75,18 +50,16 @@ ModelBox默认情况，采用Graphviz DOT语法表达图，关于DOT语法，可
 - 当有请求时，调用PROCESS功能处理数据
 - 数据处理完成后，再将结果回应到客户端
 
-![graphviz alt rect_w_280](../../assets/images/figure/framework-conception/graphviz.png)
+![graphviz alt rect_w_280](../../../assets/images/figure/framework-conception/graphviz.png)
 
 Graphviz的表达：
 
 ```toml
 digraph G {
-    node[shape=Mrecord]
-
     // 定义点属性
-    HTTP_REQUEST[flowunit=http, listen="127.0.0.1:8080", label="{% raw %}{HTTP REQUEST|{OUT}}{% endraw %}"]
-    PROCESS[flowunit=json, label="{% raw %}{{IN}|PROCESS|{OUT}}{% endraw %}"]
-    HTTP_RESPONSE[flowunit=http, label="{% raw %}{{IN}|HTTP RESPONSE}{% endraw %}"]
+    HTTP_REQUEST[flowunit=http, listen="127.0.0.1:8080"]
+    PROCESS[flowunit=json"]
+    HTTP_RESPONSE[flowunit=http]
 
     // 定义点关系
     HTTP_REQUEST:OUT->PROCESS:IN
@@ -100,21 +73,19 @@ ModelBox可识别的配置文件采用[TOML配置格式](https://toml.io/cn/v1.0
 
 ```toml
 [graph]
+format = "graphviz"
 graphconf = '''
     digraph G {
-        node[shape=Mrecord]
-
         // 定义点属性
-        HTTP_REQUEST[flowunit=http, listen="127.0.0.1:8080", label="{% raw %}{HTTP REQUEST|{OUT}}{% endraw %}"]
-        PROCESS[flowunit=json, label="{% raw %}{{IN}|PROCESS|{OUT}}{% endraw %}"]
-        HTTP_RESPONSE[flowunit=http, label="{% raw %}{{IN}|HTTP RESPONSE}{% endraw %}"]
+        HTTP_REQUEST[flowunit=http, listen="127.0.0.1:8080"]
+        PROCESS[flowunit=json]
+        HTTP_RESPONSE[flowunit=http]
 
         // 定义点关系
         HTTP_REQUEST:OUT->PROCESS:IN
         PROCESS:OUT->HTTP_RESPONSE:IN
     }
 '''
-format = "graphviz"
 ```
 
 ## 关键字说明
@@ -124,12 +95,10 @@ format = "graphviz"
 ```toml
 // 1. 图
 digraph G {
-    node[shape=Mrecord]
-
     // 2. 定义点属性
-    HTTP_REQUEST[flowunit=http, listen="127.0.0.1:8080", label="{% raw %}{HTTP REQUEST|{OUT}}{% endraw %}"]
-    PROCESS[flowunit=json, label="{% raw %}{{IN}|PROCESS|{OUT}}{% endraw %}"]
-    HTTP_RESPONSE[flowunit=http, label="{% raw %}{{IN}|HTTP RESPONSE}{% endraw %}"]
+    HTTP_REQUEST[flowunit=http, listen="127.0.0.1:8080"]
+    PROCESS[flowunit=json]
+    HTTP_RESPONSE[flowunit=http]
 
     // 3. 定义点关系
     HTTP_REQUEST:OUT->PROCESS:IN
@@ -166,7 +135,7 @@ digraph G {
         - `flowunit`表示此点为功能单元功能模块，配合`flowunit=xx`指定，功能单元的执行实体。
 
         ```markdown
-        node[type="flowunit", flowunit=httpserver]
+        node[type=flowunit, flowunit=httpserver]
         ```
 
         上述配置表示，点的名称为`node`，类型为`flowunit`，其执行实体为`httpserver`。
@@ -200,13 +169,32 @@ digraph G {
 
     `name`为点的名称，`outport`为输出端口名称，`inport`为输入端口名称。
 
-## 流程图的运行
+## 流程图配置
 
-流程图完成后，可以采用下列形式运行流程图
+一个流程图使用一份TOML格式的配置表示，配置文件内容如下：
 
-| 方式            | 说明                       | 特点                                           | 推荐度 | 连接                                      |
-| --------------- | -------------------------- | ---------------------------------------------- | ------ | ----------------------------------------- |
-| modelbox-server | 使用ModelBox加载运行流程图 | 基本无需编程，只需要通过配置即可完成图的运行   | ⭐️⭐️⭐️    | [指导](../deployment/run-flow.md)       |
-| modelbox-tool   | ModelBox Tool调试          | 调试图时使用的工具，方便，快速检查结果是否正确 | ⭐️⭐️⭐️    | [指导](../../../tools/modelbox-tool/modelbox-tool.md) |
-| Python SDK      | Python SDK形式             | Python接口形式，方便开发者与当前python服务集成 | ⭐️⭐️     | [指导](../../sdk-mode/python.md)                  |
-| C++ SDK         | C++ SDK形式                | c++SDK形式，方便开发者与当前c/c++程序集成      | ⭐️⭐️     | [指导](../../sdk-mode/c++.md)                     |
+```toml
+[driver]
+dir=["dir1","dir2"]
+skip-default=false
+[graph]
+format = "graphviz"
+graphconf = '''digraph demo {
+  input[type=input]
+  output[type=output]
+  process[type=output, flowunit=process]
+
+  input->process->output
+}'''
+graph.graphconffilepath = "/path/to/graphviz/flow.conf"
+```
+
+配置文件项目说明：
+
+1. \[driver\]：用于说明驱动加载路径。
+   - `dir`: 指定功能单元等驱动加载路径，可以指定多个路径，通过[] 和 ，分隔。
+   - `skip-default`：true表示只扫描dir路径，false表示扫描系统目录和dir路径。
+1. \[graph\]：用于指定图的内容。
+   - `format`指定流程图的格式，目前仅支持graphviz。
+   - `graphconf`为内联graphviz流程图。
+   - `graph.graphconffilepath`为外部流程图文件。

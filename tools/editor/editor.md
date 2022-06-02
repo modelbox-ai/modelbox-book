@@ -4,7 +4,7 @@ ModelBox提供了在线可视化编排的工具——Editor，在开发时，可
 
 ## 编排服务是什么
 
-编排服务是用来在Editor可视化界面上，编排[流程图](../use-modelbox/modelbox-app-mode/flow/flow.md)并自动生成相对应的[图](../basic-conception/graph.md)代码的快速开发工具。
+编排服务是用来在Editor可视化界面上，编排[流程图](../../use-modelbox/modelbox-app-mode/flow/flow.md)并自动生成相对应的[图](../../basic-conception/graph.md)代码的快速开发工具。
 
 ## 编排服务开发使用流程
 
@@ -218,7 +218,7 @@ path = "$HOME/modelbox-service/log/modelbox.log"
 
 端口可通过选择`输入\输出`，`端口名称`，`处理类型`，点击`添加`来增加功能单元的端口。
 
-再选择功能类型。功能类型相关的介绍可以参考[功能单元开发](../use-modelbox/modelbox-app-mode/flowunit/flowunit.md)。
+再选择功能类型。功能类型相关的介绍可以参考[功能单元开发](../../use-modelbox/modelbox-app-mode/flowunit/flowunit.md)。
 
 1. 刷新单元
 
