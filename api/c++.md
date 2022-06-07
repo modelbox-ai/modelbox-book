@@ -46,3 +46,9 @@ device
 |[DataMeta](c++/modelbox_datameta.md)| modelbox挂在端口上面存放数据元信息的数据结构|
 |[FlowUnitEvent](c++/modelbox_flowunitevent.md)| modelbox中描述event的数据结构|
 |[SessionContext](c++/modelbox_sessioncontext.md)| modelbox描述会话上下文的数据结构|
+|[DriverDesc](c++/modelbox_driverdesc.md) | modelbox描述插件的描述信息的数据结构|
+|[FlowUnitDesc](c++/modelbox_flowunitdesc.md) | modelbox描述流单元描述信息的数据结构|
+|[FlowUnitInput/FlowUnitOutput](c++/modelbox_flowunitport.md) | modelbox描述流单元输入输出端口的数据结构|
+|[Flow](c++/modelbox_flow.md)| modelbox描述流程图的数据结构|
+|[Solution](c++/modelbox_solution.md)| modelbox描述解决方案的数据结构|
+|[ExternalDataMap](c++/modelbox_externaldatamap)| modelbox描述flow对象输入数据的数据结构|

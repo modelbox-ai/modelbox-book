@@ -2,11 +2,11 @@
 
 |函数|作用|
 |-|-|
-|[create_buffer_list](#modelboxexternaldatamapcreatebufferlist)|设置datameta中的私有字符串值|
-|[send](#modelboxexternaldatamapsend)|设置datameta中的私有字符串值|
-|[recv](#modelboxexternaldatamaprecv)|设置datameta中的私有字符串值|
-|[shutdown](#modelboxexternaldatamapshutdown)|设置datameta中的私有字符串值|
-|[set_output_meta](#modelboxexternaldatamapsetoutputmeta)|设置datameta中的私有字符串值|
+|[create_buffer_list](#modelboxexternaldatamapcreatebufferlist)|创建bufferlist|
+|[send](#modelboxexternaldatamapsend)|发送给当前flow对象的bufferlist|
+|[recv](#modelboxexternaldatamaprecv)|接收给当前flow对象的bufferlist|
+|[shutdown](#modelboxexternaldatamapshutdown)|关闭当前external_data_map的连接|
+|[set_output_meta](#modelboxexternaldatamapsetoutputmeta)|设置external_data_map中的输出端口的meta值|
 ---
 
 ## modelbox.ExternalDataMap.create_buffer_list

@@ -2,7 +2,7 @@
 
 |函数|作用|
 |-|-|
-|[get_buffer_list](#modelboxextoutputbufferlistgetbufferlist)|设置datameta中的私有字符串值|
+|[get_buffer_list](#modelboxextoutputbufferlistgetbufferlist)|获取数据中的buffer_list|
 ---
 
 ## modelbox.ExtOutputBufferList.get_buffer_list
