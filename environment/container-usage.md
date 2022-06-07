@@ -1,4 +1,4 @@
-# 容器镜像使用
+# 使用容器镜像
 
 AI推理业务依赖的外部组件比较多，手工安装部署工作量比较大，ModelBox提供了多种推理引擎、硬件加速卡的容器镜像方便开发者使用。本章节介绍了容器镜像使用的步骤。
 
@@ -182,6 +182,7 @@ Seccomp是Secure computing mode的缩写。
 Modelbox镜像仓库地址如下：[https://hub.docker.com/u/modelbox](https://hub.docker.com/u/modelbox)
 
 当前支持的开发镜像列表如下：
+
 |镜像名称|操作系统|系统架构|加速平台版本|推理引擎版本|下载地址|
 |--|--|--|--|--|--|  
 |modelbox-develop-tensorflow_2.6.0-cuda_11.2-ubuntu-x86_64|ubuntu|x86_64|cuda11.2|tensorflow 2.6.0|[下载链接](https://hub.docker.com/r/modelbox/modelbox-develop-tensorflow_2.6.0-cuda_11.2-ubuntu-x86_64/tags)|
@@ -196,6 +197,7 @@ Modelbox镜像仓库地址如下：[https://hub.docker.com/u/modelbox](https://h
 |modelbox-develop-mindspore_1.6.1-cann_5.0.4-openeuler-aarch64|openeuler|aarch64|cann 5.0.4|mindspore 1.6.1、ACL|[下载链接](https://hub.docker.com/r/modelbox/modelbox-develop-mindspore_1.6.1-cann_5.0.4-openeuler-aarch64/tags)|
 
 各组合对应运行镜像列表如下：
+
 |镜像名称|操作系统|系统架构|加速平台版本|推理引擎版本|下载地址|
 |--|--|--|--|--|--|  
 |modelbox-runtime-tensorflow_2.6.0-cuda_11.2-ubuntu-x86_64|ubuntu|x86_64|cuda11.2|tensorflow 2.6.0|[下载链接](https://hub.docker.com/r/modelbox/modelbox-runtime-tensorflow_2.6.0-cuda_11.2-ubuntu-x86_64/tags)|

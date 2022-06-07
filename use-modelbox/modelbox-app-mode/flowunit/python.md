@@ -3,36 +3,15 @@
 Python开发功能单元时，需要预先安装ModelBox的运行包， 可参考[编译安装章节](../../compile/compile.md#安装命令说明)，
 在开发之前，可以从[功能单元概念](../../../basic-conception/flowunit.md)章节了解流单的执行过程。
 
-## Python API调用说明
+## 功能单元创建
 
-Python FlowUnit接口调用过程如下图所示。
+Modelbox提供了多种方式进行Python功能单元的创建:
 
-![flowunit-python-develop-flow alt rect_w_1280](../../../assets/images/figure/develop/flowunit/flowunit-python-develop-flow.png)
+* 通过UI创建
+  
+  xxx
 
-FlowUnit开发分为两部分，一部分是`TOML配置`, 一部分是`FlowUnit`代码，用户需要实现如下接口和配置：
-
-| 组件     | 函数                                               | 功能                       | 是否必须 | 实现功能                                                                                                                     |
-| -------- | -------------------------------------------------- | -------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| TOML配置 | base.*                                             | 设置Python插件基本属性     | 是       | 填写Python插件相关的描述信息，包括，插件名称，插件版本号，插件运行的设备类型，查询的细节描述信息，以及插件的Python入口信息。 |
-| TOML配置 | config.*                                           | 配置参数                   | 是       | 可以自定义增加功能单元配置参数                                                                                               |
-| TOML配置 | input.* <br/> output.*                             | 输入，输出端口属性         | 是       | 用于描述插件的输入，输出端口个数，名称，类型                                                                                 |
-| FlowUnit | FlowUnit::Open<br/>FlowUnit::Close                 | FlowUnit初始化             | 否       | FlowUnit初始化、关闭，创建、释放相关的资源                                                                                   |
-| FlowUnit | FlowUnit::Process                                  | FlowUnit数据处理           | 是       | FlowUnit数据处理函数，读取数据数据，并处理后，输出数据                                                                       |
-| FlowUnit | FlowUnit::DataPre<br/>FlowUnit::DataPost           | Stream流数据开始，结束通知 | 部分     | Stream流数据开始时调用DataPre函数初始化状态数据，Stream流数据结束时释放状态数据，比如解码器上下文。                          |
-| FlowUnit | FlowUnit::DataGroupPre<br/>FlowUnit::DataGroupPost | 数据组归并开始，结束通知   | 部分     | 数据组归并，结束通知函数，当数据需要合并时，对一组数据进行上下文相关的操作。                                                 |
-
-### Python功能单元目录结构
-
-python功能单元需要提供独立的toml配置文件，指定python功能单元的基本属性。一般情况，目录结构为：
-
-```shell
-[FlowUnitName]
-     |---[FlowUnitName].toml
-     |---[FlowUnitName].py
-     |---xxx.py
-```
-
-### 创建模板代码
+* 通过命令行创建
 
 ModelBox提供了模板创建工具，可以通过**ModelBox Tool**工具产生python功能单元的模板，具体的命令为
 
@@ -42,7 +21,20 @@ modelbox-tool template -flowunit -lang python -name [name]
 
 ModelBox框架在初始化时，会扫描/path/to/flowunit/[FlowUnitName]目录中的toml后缀的文件，并读取相关的信息，具体可通过**ModelBox Tool**工具查询。
 
-### TOML配置
+创建完成的C++功能单元目录结构如下：
+
+```shell
+[flowunit-name]
+     |---CMakeList.txt           # 用于CPACK 打包 
+     |---[flowunit-name].toml    # 功能单元属性配置文件
+     |---[flowunit-name].py      # 接口实现文件
+```
+
+## 功能单元属性配置
+
+在开发功能单元时，应该先明确开发功能单元处理数据的类型，业务的场景。再根据需求来合理配置功能单元类型和属性。具体功能单元类型，请查看[功能单元类型](../../../basic-conception/flowunit.md##功能单元类型)章节。在确认功能单元类型后，需要对功能单元进行参数的配置。
+
+Python功能单元典型的属性配置代码如下：
 
 ```toml
 # 基础配置
@@ -55,10 +47,9 @@ entry = "python-module@SomeFlowunit" # python 功能单元入口函数
 type = "python" # Python功能单元时，此处为固定值
 
 # 工作模式
-stream = false # 是否数据功能单元
+stream = true # 是否数据功能单元
 condition  = false # 是否条件功能单元
 collapse = false # 是否合并功能单元
-collapse_all = false # 是否合并所有数据
 expand = false # 是否拆分功能单元
 
 # 默认配置值
@@ -78,67 +69,30 @@ name = "Output" # 输出端口名称
 type = "datatype" # 输出端口数据类型
 ```
 
-### 头文件
+## 功能单元逻辑实现
 
-编写时，需要先确认设备的类型，确认完成设备类型后，导入对应设备的头文件，例如
+### 功能单元接口说明
 
-```python
-import _flowunit as modelbox
-```
+功能单元提供的接口如下，开发着需要按照需求实现：
 
-### 基本接口
+| 接口   | 说明          | 是否必须          | 使用说明                        |
+|-|-|-|-|
+| FlowUnit::Open | 功能单元初始化 |  否   | 实现功能单元的初始化，资源申请，配置参数获取等|
+| FlowUnit::Close   | 功能单元关闭   |  否  |实现资源的释放 |
+| FlowUnit::Process | 功能单元数据处理 |  是 | 实现核心的数据处理逻辑|
+| FlowUnit::DataPre   | 功能单元Stream流开始  |否 | 实现Stream流开始时的处理逻辑，功能单元属性 `base.stream = true` 时生效  |
+| FlowUnit::DataPost | 功能单元Stream流结束 |否|实现Stream流结束时的处理逻辑，功能单元数据处理类型是`base.stream = true` 时生效|
 
-```python
-import _flowunit as modelbox
-from PIL import Image  
-
-class SomeFlowunit(modelbox.FlowUnit):
-    # 派生自modelbox.FlowUnit
-    def __init__(self):
-        super().__init__()
-
-    def open(self, config):
-        # 打开功能单元，获取配置信息
-        return modelbox.Status.StatusCode.STATUS_SUCCESS
-
-    def process(self, data_context):
-        # 数据处理
-        return modelbox.Status.StatusCode.STATUS_SUCCESS
-
-    def close(self):
-        # 关闭功能单元
-        return modelbox.Status()
-
-    def data_pre(self, data_context):
-        # stream流数据开始
-        return modelbox.Status()
-
-    def data_post(self, data_context):
-        # stream流数据结束
-        return modelbox.Status()
-
-    def data_group_pre(self, data_context):
-        # 数据组开始
-        return modelbox.Status()
-
-    def data_group_post(self, data_context):
-        # 数据组结束
-        return modelbox.Status()
-```
-
-### FlowUnit接口说明
-
-功能单元的数据处理的基本单元。如果功能单元的工作模式是`stream = false`时，功能单元会调用`open`、`process`、`close`接口；如果功能单元的工作模式是`stream = true`时，功能单元会调用`open`、`data_group_pre`、`data_pre`、`process`、`data_post`、`data_group_post`、`close`接口；用户可根据实际需求实现对应接口。
-
-#### 功能单元初始化、关闭接口
+* 功能单元初始化/关闭接口
 
 对应的需要实现的接口为`open`, `close`接口，实现样例如下：
 
 ```python
-    def open(self, config):
-        # 打开功能单元，获取配置信息。
+import _flowunit as modelbox
 
-        # 获取用户配置。
+class SomeFlowunit(modelbox.FlowUnit):
+    def open(self, config):
+        # 获取流程图中功能单元配置参数值
         config_item = config.get_float("config", "default")
 
         # 初始化公共资源。
@@ -150,18 +104,21 @@ class SomeFlowunit(modelbox.FlowUnit):
         return modelbox.Status.StatusCode.STATUS_SUCCESS
 ```
 
-返回`modelbox.Status.StatusCode.STATUS_SUCCESS`，表示初始化成功，否则初始化失败。
+Open函数将在图初始化的时候调用，`config`为功能单元的配置参数，可调用相关的接口获取配置，返回`modelbox.Status.StatusCode.STATUS_SUCCESS`，表示初始化成功，否则初始化失败。
 
-#### 数据处理
+* 数据处理接口
 
 对应的需要实现的接口为`process`接口，实现样例如下：
 
 ```python
-    def process(self, data_context):
+import _flowunit as modelbox
+
+class SomeFlowunit(modelbox.FlowUnit):
+    def process(self, data_ctx):
         # 获取输入，输出控制对象。
         # 此处的"Input"和"Output"必须与toml的端口名称一致
-        inputs = data_context.input("Input")
-        outputs = data_context.output("Output")
+        inputs = data_ctx.input("Input")
+        outputs = data_ctx.output("Output")
 
         # 循环处理每一个input输入
         for buffer in inputs:
@@ -191,11 +148,26 @@ class SomeFlowunit(modelbox.FlowUnit):
 | STATUS_SHUTDOWN | 停止数据处理，终止整个流程图。                       |
 | 其他            | 停止数据处理，当前数据处理报错。                     |
 
-#### Stream流数据处理
+* Stream流数据开始/结束接口
 
+Stream数据流的概念介绍可参考[数据流](../../../basic-conception/stream.md)章节。对应需实现的接口为`FlowUnit::DataPre`、`FlowUnit::DataPost`，此接口针对Stream类型的功能单元生效。使用场景及约束如下：
+
+1. `FlowUnit::DataPre`、`FlowUnit::DataPost` 阶段无法操作数据，仅用于 `FlowUnit::Process`中需要用到的一些资源的初始化，如解码器等  
+1. `FlowUnit::DataPre`、`FlowUnit::DataPost` 不能有长耗时操作，比如文件下载、上传等，会影响并发性能
+
+典型场景如，处理一个视频流时，在视频流开始时会调用`FlowUnit::DataPre`，视频流结束时会调用`FlowUnit::DataPost`。FlowUnit可以在DataPre阶段初始化解码器，在DataPost阶段关闭解码器，解码器的相关句柄可以设置到DataContext上下文中。DataPre、DataPost接口处理流程大致如下：
+
+1. Stream流数据开始时，在DataPre中获取数据流元数据信息，并初始化相关的上下文，存储DataContext->SetPrivate中。
+1. 处理Stream流数据时，在Process中，使用DataContext->GetPrivate获取到上下文对象，并从Input中获取输入，处理后，输出到Output中。
+1. Stream流数据结束时，在DataPost中释放相关的上下文信息。
+
+实现样例如下：
 对应需实现的接口为`data_pre`、`data_post`，此接口Stream模式可按需实现。实现样例如下：
 
 ```python
+import _flowunit as modelbox
+
+class SomeFlowunit(modelbox.FlowUnit):
     def data_pre(self, data_ctx):
         # 获取Stream流元数据信息
         stream_meta = data_ctx.get_input_meta("Stream-Meta")
@@ -224,43 +196,224 @@ class SomeFlowunit(modelbox.FlowUnit):
         return modelbox.Status.StatusCode.STATUS_SUCCESS
 ```
 
-#### 拆分合并处理
+### Buffer操作
 
-对应需实现的接口为`data_group_pre`、`data_group_post`，假设需要统计视频流中每一帧有几个人脸，和整个视频文件所有人脸数量，实现样例如下：
+在实现核心数据逻辑时，需要对输入Buffer获取数据，也需要将处理结果通过输出端口往后传递。Buffer包含了BufferMeta数据描述信息和DeviceData数据主体两部进行操作，Buffer的详细介绍看参考基础概念的[Buffer](../../../basic-conception/buffer.md)章节。modelbox提供了常用的Buffer接口用于实现复杂的业务逻辑。
+
+* 获取功能单元输入Buffer信息
+
+根据功能单元属性配置中的输入端口名称获取输入数据队列BufferList，再获取每个Buffer对象即可获取Buffer的各种属性信息：数据指针、数据大小、BufferMeta字段等等。 此外BufferList也提供了快速获取数据指针的接口，样例如下：
 
 ```python
-    def data_group_pre(self, data_ctx):
-        # 创建整个视频流计数
-        stream_count = 0
-        data_ctx.SetPrivate("stream_count", stream_count)
+    
+    def Process(self, data_ctx):
+        input_bufs = data_ctx.input("in")
+        output_bufs = data_ctx.output("out")
+        for input_buf in input_bufs:
+            # 获取Buffer的Device Data数据并转化为numpy对象(输入数据为numpy类型)
+            image = np.array(input_buf)
 
-        return modelbox.Status.StatusCode.STATUS_SUCCESS
+            # 获取Buffer的Device Data数据并转化为string对象(输入数据为string类型)
+            ss = input_buf.as_object()
 
-    def data_pre(self, data_ctx):
-        # 创建当前帧的人脸计数
-        frame_count = 0
-        data_ctx.SetPrivate("frame_count", frame_count)
-        return modelbox.Status.StatusCode.STATUS_SUCCESS
+            # 获取Buffer Meta信息
+            height = input_buf.get("height")
+            ...
 
-    def process(self, data_ctx):
-        # 获取流数据处理上下文对象
-        inputs = data_ctx.input("Input")
-        outputs = data_ctx.output("Output")
 
-        stream_count = data_ctx.GetPrivate("stream_count")
-        frame_count = data_ctx.GetPrivate("frame_count")
-
-        return modelbox.Status.StatusCode.STATUS_SUCCESS
-
-    def data_post(self, data_ctx):
-        # 打印当前帧人脸计数
-        frame_count = data_context.GetPrivate("frame_count")
-        print("frame face total is ", frame_count)
-        return modelbox.Status.StatusCode.STATUS_SUCCESS
-
-    def data_group_post(self, data_ctx):
-        # 打印视频流的人脸计数
-        stream_count = data_context.GetPrivate("stream_count")
-        print("stream face total is ", stream_count)
-        return modelbox.Status.StatusCode.STATUS_SUCCESS
+        return modelbox.Status()
 ```
+
+* 输入Buffer透传给输出端口
+
+此场景是将输入Buffer直接作为输出Buffer向后传递，此时Buffer的数据、BufferMeta等全部属性都将保留。此场景一般用于不需要实际访问数据的功能单元，如视频流跳帧。
+
+```python
+
+    def Process(self, data_ctx):
+        input_bufs = data_ctx.input("in")
+        output_bufs = data_ctx.output("out")
+        for input_buf in input_bufs:
+            output_bufs.push_back(input_buf)
+        return modelbox.Status()
+
+```
+
+* 创建新的输出Buffer
+
+数据处理完成后，需要创建输出Buffer并把结果数据填充进Buffer，设置Buffer Meta。Modelbox提供多种方式创建Buffer：
+
+BufferList::Build : 一次创建多个指定大小的Buffer, Buffer类型与当前功能单元硬件类型一致。Buffer数据内容需要单独填充。
+
+BufferList::BuildFromHost : 一次创建多个指定大小的Buffer，Buffer类型为cpu类型，Buffer数据在创建时写入，一次调用完成创建和赋值。
+
+BufferList::EmplaceBack ： 调用时隐式创建Buffer，Buffer类型与当前功能单元硬件类型一致。Buffer数据在调用时写入。一次调用完成创建和赋值，较BufferList::Build相比简单。
+
+BufferList::EmplaceBackFromHost ： 调用时隐式创建Buffer，Buffer类型为cpu类型。Buffer数据在调用时写入。
+
+```python
+
+    # string
+    def Process(self, data_ctx):
+        input_bufs = data_ctx.input("input")
+        output_bufs = data_ctx.output("output")
+        for input_buf in input_bufs:
+            # 若input_buf为string对象，ss即为ss
+            ss = input_buf.as_object()
+            ...
+            ss += " response"
+            # 创建输出buffer，并且push给output_bufs
+            out_buf = self.create_buffer(ss)
+            output_bufs.push_back(out_buf)
+
+        return modelbox.Status()
+```
+约束：
+
+* Buffer的拷贝
+
+Python的Buffer处理与C++存在差异，由于Buffer类型为Modelbox特有类型，在Python中不通用，所以Python功能单元获取输入Buffer后需要将DeviceData数据转换为基础类型、string、numpy等常用数据类型，再进行操作。操作完成后创建输出Buffer
+拷贝BufferMeta：接口为copy_meta， 仅拷贝BufferMeta信息，不拷贝DeviceData数据部分。
+
+实际
+
+```python
+    ...
+    def Process(self, data_ctx):
+        buf_list = data_ctx.input("input")
+        for buf in buf_list:
+            infer_data = np.ones((5,5))
+            new_buffer = self.create_buffer(infer_data)
+            buf1 = buf
+            status = new_buffer.copy_meta(buf)
+            ...
+        
+        return modelbox.Status()
+```
+
+
+更多Buffer操作见[API接口](../../../api/c++.md)， Buffer的异常处理见[异常](../../../other-features/exception.md)章节。
+
+
+### DataContext与SessionContext
+
+功能单元上下文包含：`会话上下文|SessionContext`和`数据上下文|DataContext`
+
+* DataContext 数据上下文
+
+DataContext是提供给当前功能单元处理数据时的临时获取BufferList
+功能单元处理一次Stream流数据，或一组数据的上下文，当数据生命周期不再属于当前功能单元时，DataContext生命周期也随之结束。
+
+生命周期: 绑定BufferList，从数据进入FlowUnit到处理完成。
+
+使用场景: 通过DataContext->Input接口获取输入端口BufferList，通过DataContext->Output接口获取输出端口BufferList对象,通过DataContext->SetPrivate接口设置临时对象，DataContext->GetPrivate接口获取临时对象。
+
+* SessionContext 会话上下文
+
+SessionContext主要供调用图的业务使用，业务处理数据时，设置状态对象。
+
+生命周期: 绑定ExternalData，从数据进入Flow，贯穿整个图，一直到数据处理完成结束。
+
+使用场景: 例如http服务同步响应场景，首先接收到http请求后转化成buffer数据，然后通过ExternalData->GetSessionContext接口获取到SessionContext，接着调用SessionContext->SetPrivate设置响应的回调函数，之后通过ExternalData->Send接口把buffer数据发送到flow中；经过中间的业务处理功能单元；最后http响应功能单元中在业务数据处理完成后，再调用SessionContext->GetPrivate获取响应回调函数，发送http响应。至此SessionContext也结束。
+
+DataContext 和 SessionContext提供了如下功能用于复杂业务的开发：
+
+* 获取输入以及输出buffer
+
+通过Input， Output接口获取输入以及输出数据
+
+```python
+    Status ExampleFlowUnit::Process(std::shared_ptr<DataContext> data_ctx) {
+        // 该flowunit为1输入1输出，端口号名字分别为input, output
+        auto input_bufs = data_ctx->Input("input");
+        auto output_bufs = data_ctx->Output("output");
+    }
+```
+
+* 通过DataContext保存本功能单元Stream流级别数据。
+对于Stream流的一组数据，在本功能单元内DataPre、每次Process、 DataPost接口内可以通过SetPrivate接口设置数据来保存状态和传递信息，通过GetPrivate获取数据。如DataPre和Process间的数据传递，上一次Process和下一次Process间的数据传递。具体使用样例如下：
+
+```python
+    modelbox::Status VideoDecoderFlowUnit::DataPre(
+    std::shared_ptr<modelbox::DataContext> data_ctx) {
+
+        data_ctx.set_private_string("test", "test")
+        ...
+        return modelbox.Status()
+        }
+
+    modelbox::Status VideoDecoderFlowUnit::Process(
+        std::shared_ptr<modelbox::DataContext> ctx) {
+        ss = data_ctx.get_private_string("test")
+        ...
+        return modelbox.Status()
+    }
+
+    modelbox::Status VideoDecoderFlowUnit::DataPost(
+        std::shared_ptr<modelbox::DataContext> data_ctx) {
+        ss = data_ctx.get_private_string("test")
+        ...
+        return modelbox.Status()
+    }
+```
+
+* 获取输入端口的Meta和设置输出端口的Meta
+
+```python
+    def Process(self, data_ctx):
+        input_meta = data_ctx.get_input_meta("input")
+        res = data_ctx.set_output_meta("output", input_meta)
+        ...
+
+        return modelbox.Status()
+```
+
+* 通过DataContext判断是否存在error
+
+```python
+    def Process(self, data_ctx):
+        if data_ctx.has_error():
+           error = data_ctx.get_error()
+           print(error.get_description(), type(error))
+        ...
+
+        return modelbox.Status()
+```
+
+* 通过DataContext发送event
+
+在写自定义流单元当中，存在通过单数据驱动一次，process继续自驱动的场景，此时需要通过在流单元东中发送event继续驱动调度器在没有数据的情况下调度该流单元
+
+```python
+    def Process(self, data_ctx):
+        event = modelbox.FlowUnitEvent()
+        data_ctx.send_event(event)
+        ...
+
+        return modelbox.Status()
+```
+
+* 通过SessionContext存储全局数据
+
+存储任务的全局变量，可用于在多个功能单元之间共享数据。SessionContext的全局数据的设置和获取方式如下：
+
+```python
+def Process(self, data_ctx):
+        session_ctx = data_ctx.get_session_context()
+        session_ctx.set_private_string("test", "test")
+        ...
+
+        return modelbox.Status()
+```
+
+```python
+def Process(self, data_ctx):
+        session_ctx = data_ctx.get_session_context()
+        print(session_ctx.get_private_int("test"))
+        ...
+        return modelbox.Status()
+```
+
+## 功能单元调试运行
+
+Python功能单元无需编译，通常情况下调试阶段可以将此功能单元所在的文件夹路径配置到流程图的扫描路径driver.dir中，再通过Modelbox-Tool 启动流程图运行，流程图启动时会扫描并加载Python功能单元。如果需要Python断点调试，可见[代码调试](../debug/code-debug.md)章节。

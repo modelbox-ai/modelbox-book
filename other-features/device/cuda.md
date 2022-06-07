@@ -11,6 +11,8 @@ ModelBox框架会自动管理Stream，开发功能单元时，开发者可以通
 在实现功能单元之前，cuda相关的功能单元，需要从`CudaFlowUnit`派生，并实现`CudaProcess`接口。
 
 ```c++
+#include "modelbox/device/cuda/device_cuda.h"
+
 class SomeCudaFlowUnit : public modelbox::CudaFlowUnit {
  public:
   SomeCudaFlowUnit() = default;

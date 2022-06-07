@@ -11,6 +11,8 @@ ModelBox框架会自动管理Stream，开发功能单元时，开发者可以通
 在实现功能单元之前，Ascend ACL相关的功能单元，需要从`AscendFlowUnit`派生，并实现`AscendProcess`接口。
 
 ```c++
+#include <modelbox/device/ascend/device_ascend.h>
+
 class SomeAscendFlowUnit : public modelbox::AscendFlowUnit {
  public:
   SomeAscendFlowUnit() = default;

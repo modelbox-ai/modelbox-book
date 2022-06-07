@@ -46,7 +46,7 @@ AI应用开发前需要准备好匹配当前modelbox版本支持的推理框架�
 
 1. 配置并启动容器
 
-    可采用一键式脚本快速进入容器。参考[一键式脚本](../environment/container-usage.md)相关内容。
+    可采用一键式脚本快速进入容器。参考[一键式启动脚本](../environment/container-usage.md)相关内容。
 
 ### 创建项目
 

@@ -2,8 +2,8 @@
 
 * [ModelBox介绍](README.md)
 * [环境准备](environment/environment.md)
-  * [容器使用](environment/container-usage.md)
-  * [编译安装](environment/compile.md)
+  * [源码编译安装](environment/compile.md)
+  * [使用容器镜像](environment/container-usage.md)
 * [Solution](solution/solution.md)
   * [手势识别](solution/hand-pose-detection.md)
 * [第一个应用](first-app/first-app.md)

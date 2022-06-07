@@ -2,5 +2,5 @@
 
   ModelBox的环境准备有两种方式：可以通过下载源码进行手动编译安装，也可以直接下载Modelbox提供的容器镜像启动开发环境。源码编译安装需要先安装依赖软件，耗时较长，所以在支持Docker的系统上建议优先使用下载容器镜像的方式使用Modelbox。
 
-* [源码编译](./compile.md)
-* [容器镜像](./container-usage.md)
+* [源码编译安装](./compile.md)
+* [使用容器镜像](./container-usage.md)
