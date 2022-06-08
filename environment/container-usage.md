@@ -124,58 +124,58 @@ docker run -itd --gpus all -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,video \
 modelbox/modelbox-develop-tensorflow_2.6.0-cuda_11.2-ubuntu-x86_64:latest
 ```
 
-### 参数: -itd
+* 参数: -itd
 
-|     选项     | 选项简写 | 说明                                                         |
-| :----------: | :------: | ------------------------------------------------------------ |
-|   -detach    |    -d    | 在后台运行容器,并且打印容器id。                              |
-| -interactive |    -i    | 即使没有连接，也要保持标准输入保持打开状态，一般与 -t 连用。 |
-|     –tty     |    -t    | 容器重新分配一个伪输入终端，一般与 -i 连用。                 |
+  |     选项     | 选项简写 | 说明                                                         |
+  | :----------: | :------: | ------------------------------------------------------------ |
+  |   -detach    |    -d    | 在后台运行容器,并且打印容器id。                              |
+  | -interactive |    -i    | 即使没有连接，也要保持标准输入保持打开状态，一般与 -t 连用。 |
+  |     –tty     |    -t    | 容器重新分配一个伪输入终端，一般与 -i 连用。                 |
 
-### 参数: -gpus all
+* 参数: -gpus
 
-请通过 docker -v 检查 Docker 版本。对于 19.03 之前的版本，需要使用 nvidia-docker2 和 --runtime=nvidia 标记；对于 19.03 及之后的版本，则使用 nvidia-container-toolkit 软件包和 --gpus all 标记。
+  请通过 docker -v 检查 Docker 版本。对于 19.03 之前的版本，需要使用 nvidia-docker2 和 --runtime=nvidia 标记；对于 19.03 及之后的版本，则使用 nvidia-container-toolkit 软件包和 --gpus all 标记。
 
-### 参数：--device=/dev/davinci0 --device=/dev/davinci_manager --device=/dev/hisi_hdc --device=/dev/devmm_svm
+* 参数：--device
 
-挂载0号Ascend设备和驱动。
+  挂载设备和驱动，例如挂载0号Ascend设备和驱动：`--device=/dev/davinci0 --device=/dev/davinci_manager --device=/dev/hisi_hdc --device=/dev/devmm_svm`。
 
-### 参数: -e
+* 参数: -e
 
-设置环境变量
+  设置环境变量
 
-### -参数: -tmpfs
+* -参数: -tmpfs
 
-挂载目录到容器中，而且容器内的修改不会同步到宿主机，也不希望存储在容器内， 调用这个参数，将该挂载存储在主机的内存中，当容器停止后， tmpfs挂载被移除，即使提交容器，也不会保存tmpfs挂载
+  挂载目录到容器中，而且容器内的修改不会同步到宿主机，也不希望存储在容器内， 调用这个参数，将该挂载存储在主机的内存中，当容器停止后， tmpfs挂载被移除，即使提交容器，也不会保存tmpfs挂载
 
-### 参数: -v
+* 参数: -v
 
-挂载宿主机的指定目录 ( 或文件 ) 到容器内的指定目录 ( 或文件 )  ro表示read-only
+  挂载宿主机的指定目录 ( 或文件 ) 到容器内的指定目录 ( 或文件 )  ro表示read-only
 
-注意事项：
+  注意事项：
 
-* 容器目录必须为绝对路径
-* 容器销毁后，挂载的文件以及
-  在容器修改过的内容仍然保留在宿主机中
+  * 容器目录必须为绝对路径
+  * 容器销毁后，挂载的文件以及
+    在容器修改过的内容仍然保留在宿主机中
 
-### 参数: --privileged=true
+* 参数: --privileged=true
 
-当开发者需要使用gdb调试功能时，需要使用特权模式启动docker
+  当开发者需要使用gdb调试功能时，需要使用特权模式启动docker
 
-### 参数: --cap-add=SYS_PTRACE
+* 参数: --cap-add=SYS_PTRACE
 
-增加容器镜像系统的权限
-ptrace()系统调用函数提供了一个进程（the “tracer”）监察和控制
-另一个进程（the “tracee”）的方法。
-并且可以检查和改变“tracee”进程的内存和寄存器里的数据。
-它可以用来实现断点调试和系统调用跟踪。（用于gdb）
+  增加容器镜像系统的权限
+  ptrace()系统调用函数提供了一个进程（the “tracer”）监察和控制
+  另一个进程（the “tracee”）的方法。
+  并且可以检查和改变“tracee”进程的内存和寄存器里的数据。
+  它可以用来实现断点调试和系统调用跟踪。（用于gdb）
 
-### 参数: --security-opt seccomp=unconfined
+* 参数: --security-opt seccomp=unconfined
 
-Seccomp是Secure computing mode的缩写。
-设为unconfined可以允许容器执行全部的系统的调用。
+  Seccomp是Secure computing mode的缩写。
+  设为unconfined可以允许容器执行全部的系统的调用。
 
-有遇到无法启动的问题， 请检查是否安装nvidia-container-toolkit 和对应的cuda(10)版本
+  有遇到无法启动的问题， 请检查是否安装nvidia-container-toolkit 和对应的cuda(10)版本
 
 ## 支持容器列表
 

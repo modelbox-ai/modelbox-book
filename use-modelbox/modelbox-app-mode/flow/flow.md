@@ -11,7 +11,7 @@
 | ModelBox编排服务 | 使用ModelBox编排服务进行流程图的开发。                          | ⭐️⭐️⭐️    | [指导](../../../plugins/editor.md)              |
 | 手工编写         | 手工编写toml格式的流程图文件，并添加到ModelBox Server插件中运行 | ⭐️      | [指导](../../../basic-conception/graph.md) |
 
-## 流程图的开发的四个步骤
+## 流程图开发步骤
 
 ```mermaid
 graph LR

@@ -1,4 +1,4 @@
-# 预置功能单元（详细描述流单元功能，配置参数列表，输入要求，输出格式内容，使用限制等）
+# 预置功能单元
 
 ModelBox预置了多个常用功能单元，可用于完成AI应用的基本流程，开发者可以直接使用。
 
@@ -38,22 +38,22 @@ ModelBox预置了多个常用功能单元，可用于完成AI应用的基本流�
 
 Modelbox框架定义了一些通用数据类型，用于规定预置功能单元的输入数据和输出数据格式要求，每一种数据类型规定了该类型的buffer数据应该携带的buffer meta字段信息。
 
-### Tensor数据类型
+* **Tensor数据类型**
 
-含义：基础数据类型。
+  含义：基础数据类型。
 
-buffer meta字段信息：
+  buffer meta字段信息：
 
 |参数名称|参数类型|参数含义|
 |--|--|--|  
 |shape|vector&lt;size_t&gt;|多维数据的每一维取值|
 |type|可取值：ModelBoxDataType::MODELBOX_UINT8、ModelBoxDataType::MODELBOX_FLOAT|buffer data数据类型|
 
-### 图片数据类型
+* **图片数据类型**
 
-含义：描述一张图片的属性，图片数据类型包含Tensor数据类型信息。
+  含义：描述一张图片的属性，图片数据类型包含Tensor数据类型信息。
 
-buffer meta字段信息：
+  buffer meta字段信息：
 
 |参数名称|参数类型|参数含义|
 |--|--|--|
@@ -67,11 +67,11 @@ buffer meta字段信息：
 |shape|vector&lt;size_t&gt;|多维数据的每一维取值|
 |type|ModelBoxDataType::MODELBOX_UINT8|buffer data数据类型|
 
-### 视频帧数据类型
+* **视频帧数据类型**
 
-含义：描述视频解码后的每帧图片的属性，包含视频信息和图片数据类型信息。
+  含义：描述视频解码后的每帧图片的属性，包含视频信息和图片数据类型信息。
 
-buffer meta字段信息：
+  buffer meta字段信息：
 
 |参数名称|参数类型|参数含义|
 |--|--|--|
@@ -93,11 +93,12 @@ buffer meta字段信息：
 |shape|vector&lt;size_t&gt;|多维数据的每一维取值|
 |type|ModelBoxDataType::MODELBOX_UINT8|buffer data数据类型|
 
-### 视频包数据类型
+* **视频包数据类型**
 
-含义：描述视频解封装后的数据包，用于视频解码。
+  含义：描述视频解封装后的数据包，用于视频解码。
 
-buffer meta字段信息：
+  buffer meta字段信息：
+
 |参数名称|参数类型|参数含义|
 |--|--|--|
 |pts|int64_t|显示时间|
@@ -109,45 +110,45 @@ buffer meta字段信息：
 |width|int32_t|视频宽|
 |height|int32_t|视频高|
 
-### 矩形框数据类型
+* **矩形框数据类型**
 
-含义：描述矩形区域。
+  含义：描述矩形区域。
 
-buffer meta字段信息：无
+  buffer meta字段信息：无
 
-buffer data信息存放结构如下：
+  buffer data信息存放结构如下：
 
-``` c++
-typedef struct RoiBox {
-  int32_t x, y, w, h;
-} ;
-```
+  ``` c++
+  typedef struct RoiBox {
+    int32_t x, y, w, h;
+  } ;
+  ```
 
-### 检测矩形框类型
+* **检测矩形框类型**
 
-含义：描述yolo检测的结果，包含矩形区域、置信度、分类结果。
+  含义：描述yolo检测的结果，包含矩形区域、置信度、分类结果。
 
-buffer meta字段信息：无
+  buffer meta字段信息：无
 
-buffer data信息信息存放结构如下。
+  buffer data信息信息存放结构如下。
 
-``` c++
-typedef struct BoundingBox {
- public:
-  float x;
-  float y;
-  float w;
-  float h;
-  int32_t category;
-  float score;
-};
-```
+  ``` c++
+  typedef struct BoundingBox {
+   public:
+    float x;
+    float y;
+    float w;
+    float h;
+    int32_t category;
+    float score;
+  };
+  ```
 
-### HTTP请求数据类型
+* **HTTP请求数据类型**
 
-含义：描述HTTP请求数据类型。
+  含义：描述HTTP请求数据类型。
 
-buffer meta字段信息：
+  buffer meta字段信息：
 
 |参数名称|参数类型|参数含义|
 |--|--|--|
@@ -157,11 +158,11 @@ buffer meta字段信息：
 |headers|map<string,string>|请求头信息|
 |endpoint|string|请求endpoint|
 
-### HTTP请求响应数据类型
+* **HTTP请求响应数据类型**
 
-含义：描述HTTP请求响应数据类型。
+  含义：描述HTTP请求响应数据类型。
 
-buffer meta字段信息：
+  buffer meta字段信息：
 
 |参数名称|参数类型|参数含义|
 |--|--|--|

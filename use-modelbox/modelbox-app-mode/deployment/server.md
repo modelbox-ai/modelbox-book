@@ -114,7 +114,7 @@ ModelBox服务相关配置文件和配置功能说明如下：
 | 插件配置         | /usr/local/etc/modelbox/modelbox.conf | 和具体插件相关。                                  |
 | 服务启动参数配置 | /usr/local/etc/modelbox/modelbox-opts | 支持配置ModelBox Server服务的启动参数。            |
 
-其中主服务具体可参考下面[主服务配置项](#主服务配置项)，章节ModelBox内置两个插件：`modelbox-plugin`、`modelbox-plugin-editor`，具体可参考[内置插件服务配置](#内置插件服务配置)章节。
+其中主服务具体可参考下面[主服务配置项](#主服务配置项)章节，ModelBox内置两个插件：`modelbox-plugin`、`modelbox-plugin-editor`，具体可参考[内置插件服务配置](#内置插件服务配置)章节。
 
 ### 主服务配置项
 
@@ -127,8 +127,8 @@ ModelBox服务相关配置文件和配置功能说明如下：
 | `log.num`       | ModelBox服务日志归档文件个数最大值，默认为32，当归档日志超过该阈值时，最旧归档日志文件将删除。                               |
 | `log.path`      | ModelBox服务日志文件路径，默认为`/var/log/modelbox/modelbox.log`。如果修改该配置项，需要保证日志目录存在且具有可读写权限。   |
 | `include.files` | ModelBox服务配置的子配置路径，当子配置存在字段和主配置相同时，取子配置的值。                                                 |
-| `control.enable` | ModelBox服务调试开关，当开启时可调试                                                                                       |
-| `control.listen` | ModelBox服务配置的子配置路径，当子配置存在字段和主配置相同时，取子配置的值。                                                |
+| `control.enable` | ModelBox服务调试开关，当开启时可调试。                                                                                     |
+| `control.listen` | ModelBox服务调试sock路径。                                                                                                 |
 
 ### 内置插件服务配置
 

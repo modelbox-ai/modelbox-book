@@ -21,7 +21,8 @@
         "katex",
         "theme-api",
         "link-checker",
-        "theme-comscore"
+        "theme-comscore",
+        "anchor-navigation-ex"
     ],
     "pluginsConfig": {
         "expandable-chapters": {},
@@ -37,6 +38,11 @@
             "theme": "white",
             "family": "msyh",
             "size": 2
+        },
+        "anchor-navigation-ex": {
+            "showLevel": false,
+            "showGoTop": false,
+            "mode": "pageTop"
         }
     },
     "pdf": {

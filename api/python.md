@@ -1,41 +1,5 @@
 # Python API
 
-## modelbox(接口需要分类，如flowunit)
-
-# **分类列表可参考：**
-
-## (flowunit)
-
-flowunit 
-
-datacontext
-
-sessioncontext
-
-configuration
-
-flowunitevent
-
-flowuniterror
-
-datameta
-
-## (graph)
-
-flow
-
-## （buffer)
-
-buffer
-
-bufferlist
-
-device
-
-## (server-plugin)
-
-...
-
 |组件名|功能|
 |-|-|
 |[modelbox.Buffer](python/modelbox_buffer.md)| modelbox存储基本数据的数据结构|

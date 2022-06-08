@@ -2,11 +2,11 @@
 
 ## ModelBox服务插件介绍
 
-### 什么是ModelBox服务插件
+* 什么是ModelBox服务插件
 
 服务插件是指基于ModelBox框架对外交互的组件，它可以用来作为AI应用和周边系统对接的桥梁。ModelBox框架提供了服务插件管理和扩展开发能力，用户可以定制化开发属于自己业务的插件来对接第三方平台，ModelBox框架可以将其加载并运行。在服务插件内可以完成流程图的加载和运行、任务的创建和启停，统计数据的收集等。同时，ModelBox框架可以支持多个服务插件的加载。
 
-### 服务插件使用场景
+* 服务插件使用场景
 
 服务插件在视频场景使用较为普遍，典型使用场景为：视频分析任务需要从外部平台或者组件下发到ModelBox框架进行任务分析时，需要通过服务插件来接受外部的请求并转化为ModelBox框架里的分析任务进行业务分析。同时服务插件也可以实现统计信息的收集并发送给外部运维平台，实现与外部系统的对接。
 
@@ -24,7 +24,7 @@ ModelBox框架提供了预置的服务插件ModelBox Plugin，提供流程图的
 
 ModelBox API按照类型包含：
 
-### Plugin: 插件创建和启停等重载接口，此接口需要由用户实现
+* **Plugin**: 插件创建和启停等重载接口，此接口需要由用户实现
 
 | 接口          | 接口功能                                                   | 说明                                                                     |
 | ------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------ |
@@ -33,62 +33,62 @@ ModelBox API按照类型包含：
 | Plugin::Start | 用户实现服务插件启动逻辑，插件启动时调用                   | 插件启动时调用                                                           |
 | Plugin::Stop  | 用户实现服务插件停止逻辑，插件停止时调用                   | ModelBox框架进程退出时插件停止时调用                                     |
 
-### Job： 任务管理组件
+* **Job**： 任务管理组件
 
-任务管理组件提供任务的添加，删除，查询。ModelBox框架任务管理存在以下几种对象概念：
+  任务管理组件提供任务的添加，删除，查询。ModelBox框架任务管理存在以下几种对象概念：
 
-- Job：算法服务层面的任务，一个Job加载一个流程图。
-- JobManager：Job的管理，可以创建Job对象。
-- Task：处理数据源层面的作业，一个Task即对应一次数据分析，可以是一路视频流的分析，也可以是一个视频文件的分析。Task可以实现数据输入到流程图(需要配合Input节点使用)，也可以实现配置参数传递到功能单元。
-- TaskManager：Task的管理，可以创建Task对象。
-- OneShotTask: 继承自Task，一次task，专指只有一次数据输入到流程图的场景，比如输入为一路视频流的地址，只会有一次数据传递给流程图，而后需要等待分析结果。所以OneShotTask还提供了task状态变化的回调注册接口。
-- Session：会话信息，一个Task对应存在一个Session，Session中的数据可以在不同功能单元共享访问。
+  * Job：算法服务层面的任务，一个Job加载一个流程图。
+  * JobManager：Job的管理，可以创建Job对象。
+  * Task：处理数据源层面的作业，一个Task即对应一次数据分析，可以是一路视频流的分析，也可以是一个视频文件的分析。Task可以实现数据输入到流程图(需要配合Input节点使用)，也可以实  现配置参数传递到功能单元。
+  * TaskManager：Task的管理，可以创建Task对象。
+  * OneShotTask: 继承自Task，一次task，专指只有一次数据输入到流程图的场景，比如输入为一路视频流的地址，只会有一次数据传递给流程图，而后需要等待分析结果。所以OneShotTask还提  供了task状态变化的回调注册接口。
+  * Session：会话信息，一个Task对应存在一个Session，Session中的数据可以在不同功能单元共享访问。
 
-具体接口如下表：
+  具体接口如下表：
 
-| 接口                                | 接口功能                                    | 说明                                                           |
-| ----------------------------------- | ------------------------------------------- | -------------------------------------------------------------- |
-| JobManager::CreateJob               | 创建Job                                     |                                                                |
-| JobManager::DeleteJob               | 删除Job                                     |                                                                |
-| JobManager::GetJob                  | 获取某个Job对象                             |                                                                |
-| JobManager::GetJobList              | 获取全部Job对象列表                         |                                                                |
-| JobManager::QueryJobStatus          | 查询某个Job状态                             |                                                                |
-| JobManager::GetJobErrorMsg          | 获取某个异常Job的错误信息                   |                                                                |
-| Job::Init                           | 初始化Job对象                               |                                                                |
-| Job::Build                          | Job对象资源申请                             |                                                                |
-| Job::Run                            | 运行Job对象                                 |                                                                |
-| Job::Stop                           | 停止Job对象                                 |                                                                |
-| Job::GetJobStatus                   | 获取某个Job状态                             |                                                                |
-| Job::CreateTaskManger               | 创建TaskManger                              |                                                                |
-| TaskManager::Start                  | 启动TaskManager                             |                                                                |
-| TaskManager::Stop                   | 停止TaskManager                             |                                                                |
-| TaskManager::CreateTask             | 创建Task                                    |                                                                |
-| TaskManager::DeleteTaskById         | 删除某个Task                                |                                                                |
-| TaskManager::GetTaskById            | 获取某个Task对象                            |                                                                |
-| TaskManager::GetTaskCount           | 获取Task个数                                |                                                                |
-| TaskManager::GetAllTasks            | 获取所有Task对象                            |                                                                |
-| TaskManager::SetTaskNumLimit        | 设置同时并发的Task最大个数                  | 超过设置最大个数时，ModelBox内部会排队处理                     |
-| Task::Start                         | 启动Task                                    |                                                                |
-| Task::Stop                          | 停止Task                                    |                                                                |
-| Task::GetUUID                       | 获取Task id                                 |                                                                |
-| Task::CreateBufferList              | 创建输入的buffer数据对象                    |                                                                |
-| Task::GetLastError                  | 获取Task错误信息                            |                                                                |
-| Task::GetTaskStatus                 | 获取Task状态                                |                                                                |
-| Task::GetSessionConfig              | 获取Session配置对象                         | 获取配置对象后可以通过设置自定义参数，传递给需要的功能单元读取 |
-| OneShotTask::FillData               | 发送数据指流程图                            |                                                                |
-| OneShotTask::RegisterStatusCallback | 注册任务状态回调函数,任务结束或异常时会调用 |                                                                |  |
+| 接口                                | 接口功能                                                               |
+| ----------------------------------- | ---------------------------------------------------------------------- |
+| JobManager::CreateJob               | 创建Job                                                                |
+| JobManager::DeleteJob               | 删除Job                                                                |
+| JobManager::GetJob                  | 获取某个Job对象                                                        |
+| JobManager::GetJobList              | 获取全部Job对象列表                                                    |
+| JobManager::QueryJobStatus          | 查询某个Job状态                                                        |
+| JobManager::GetJobErrorMsg          | 获取某个异常Job的错误信息                                               |
+| Job::Init                           | 初始化Job对象                                                           |
+| Job::Build                          | Job对象资源申请                                                         |
+| Job::Run                            | 运行Job对象                                                             |
+| Job::Stop                           | 停止Job对象                                                             |
+| Job::GetJobStatus                   | 获取某个Job状态                                                         |
+| Job::CreateTaskManger               | 创建TaskManger                                                          |
+| TaskManager::Start                  | 启动TaskManager                                                         |
+| TaskManager::Stop                   | 停止TaskManager                                                         |
+| TaskManager::CreateTask             | 创建Task                                                                |
+| TaskManager::DeleteTaskById         | 删除某个Task                                                            |
+| TaskManager::GetTaskById            | 获取某个Task对象                                                        |
+| TaskManager::GetTaskCount           | 获取Task个数                                                            |
+| TaskManager::GetAllTasks            | 获取所有Task对象                                                        |
+| TaskManager::SetTaskNumLimit        | 设置同时并发的Task最大个数，超过设置最大个数时，ModelBox内部会排队处理    |
+| Task::Start                         | 启动Task                                                                |
+| Task::Stop                          | 停止Task                                                                |
+| Task::GetUUID                       | 获取Task id                                                             |
+| Task::CreateBufferList              | 创建输入的buffer数据对象                                                |
+| Task::GetLastError                  | 获取Task错误信息                                                        |
+| Task::GetTaskStatus                 | 获取Task状态                                                            |
+| Task::GetSessionConfig              | 获取Session配置对象，可以通过设置自定义参数，传递给需要的功能单元读取    |
+| OneShotTask::FillData               | 发送数据指流程图                                                        |
+| OneShotTask::RegisterStatusCallback | 注册任务状态回调函数,任务结束或异常时会调用                             ||
 
-### Config： 配置对象
+* **Config**： 配置对象
 
-配置对象提供从服务配置文件中获取配置信息
+  配置对象提供从服务配置文件中获取配置信息
 
-### Listener：http/https监听组件
+* **Listener**：http/https监听组件
 
-Listener监听组件可以注册http服务，监听相关的URI
+  Listener监听组件可以注册http服务，监听相关的URI
 
-### Timer： 定时器组件
+* **Timer**： 定时器组件
 
-定时器组件可以用于启动定时任务
+  定时器组件可以用于启动定时任务
 
 ## 开发例子
 
