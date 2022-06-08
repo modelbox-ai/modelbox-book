@@ -4,7 +4,7 @@ ModelBox提供了运行日志，对应的组件在运行时会输出相关的日
 
 ## 日志的基本流程
 
-![logger-flow alt rect_w_1000](../../assets/images/figure/develop/debug/logger-flow.png)
+![logger-flow alt rect_w_1000](../../../assets/images/figure/develop/debug/logger-flow.png)
 
 C++，Python功能单元、ModelBox库、插件调用ModelBox的日志函数后，由ModelBox的Logger将数据发送到Appender，Appender可注册不同的类型。
 

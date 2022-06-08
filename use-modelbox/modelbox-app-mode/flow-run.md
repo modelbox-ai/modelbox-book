@@ -18,8 +18,14 @@ modelbox-tool -verbose -log-level INFO flow -run [path_to_graph]
 
 ## modelbox-server
 
+ModelBox Server提供了如下方式加载运行流程图：
+
+1. 通过默认ModelBox Plugin插件自动加载
+1. 通过图形化UI运行流程图
+1. 通过Restful API运行流程图
+
 使用ModelBox加载流程图，首先需要将`$HOME/modelbox-service/conf/modelbox.conf`配置文件中的`server.flow_path`改为需要调试的流程图图文件夹目录，然后执行`$HOME/modelbox-service/modelbox restart`命令重启modelbox服务生效。
 
 此方法也可调试开发的ModelBox插件，需要在`$HOME/modelbox-service/conf/modelbox.conf`配置中的`plugin.files`添加开发的插件动态链接库路径。
 
-更多详细modelbox-server参考[modelbox服务](./deployment/run-flow.md#服务安装配置)。
+更多详细modelbox-server参考[modelbox服务](./deployment/server.md#ModelBoxServer服务配置)。

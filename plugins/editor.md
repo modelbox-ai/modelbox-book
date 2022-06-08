@@ -4,11 +4,11 @@ ModelBox提供了在线可视化编排的工具——Editor，在开发时，可
 
 ## 编排服务是什么
 
-编排服务是用来在Editor可视化界面上，编排[流程图](../../use-modelbox/modelbox-app-mode/flow/flow.md)并自动生成相对应的[图](../../basic-conception/graph.md)代码的快速开发工具。
+编排服务是用来在Editor可视化界面上，编排[流程图](../use-modelbox/modelbox-app-mode/flow/flow.md)并自动生成相对应的[图](../basic-conception/graph.md)代码的快速开发工具。
 
 ## 编排服务开发使用流程
 
-![editor-feature alt rect_w_500](../../assets/images/figure/server/editor-feature.png)
+![editor-feature alt rect_w_500](../assets/images/figure/server/editor-feature.png)
 
 1. 安装ModelBox server服务。
 1. 配置ModelBox Server。
@@ -17,7 +17,7 @@ ModelBox提供了在线可视化编排的工具——Editor，在开发时，可
 1. 业务进行编排操作。
 1. 下发编排任务。
 
-编排服务集成在ModelBox Server中，默认情况下，编排服务未启用。可以参考下方[编排服务配置](./editor.md#编排服务配置)章节来启用编排服务并加载Editor界面。
+编排服务集成在ModelBox Server中，默认情况下，编排服务未启用。可以参考下方[编排服务配置](#编排服务配置)章节来启用编排服务并加载Editor界面。
 
 ## 编排服务配置
 
@@ -45,7 +45,7 @@ ModelBox Server安装完成后，编排服务会通过插件的形式由ModelBox
 modelbox-tool develop -s 
 ```
 
-命令执行后，将在用户$HOME/modelbox-service创建运行目录，并开启http编排服务，可使用对应主机的IP地址，和开启的端口号（默认端口号为1104），在[配置ACL](./editor.md#访问控制列表)并重启modelbox服务使之生效后，即可访问Editor界面。
+命令执行后，将在用户$HOME/modelbox-service创建运行目录，并开启http编排服务，可使用对应主机的IP地址，和开启的端口号（默认端口号为1104），在[配置ACL](#访问控制列表)并重启modelbox服务使之生效后，即可访问Editor界面。
 
 ### 配置启用Editor
 
@@ -136,13 +136,13 @@ path = "$HOME/modelbox-service/log/modelbox.log"
 
 服务启动成功后，可使用浏览器访问服务，输入对应的网址即可，如：`http://[host]:1104/editor/`，成功后，将显示如下界面：
 
-![editor-ui alt rect_w_1000](../../assets/images/figure/server/editor-first.png)
+![editor-ui alt rect_w_1000](../assets/images/figure/server/editor-first.png)
 
 在主页中，分别可以链接到《示例展示》，《任务编排》，《任务管理》。右上角可以可查看《帮助文档》以及《API》。
 
 ### 示例展示
 
-![editor-demo alt rect_w_1000](../../assets/images/figure/server/editor-demo.png)
+![editor-demo alt rect_w_1000](../assets/images/figure/server/editor-demo.png)
 
 该页面分为5个功能区域，其对应的功能如下：
 
@@ -152,7 +152,7 @@ path = "$HOME/modelbox-service/log/modelbox.log"
 4. 区域4，图形化编排界面，使用鼠标可以控制组件链接和移动。`Ctrl+鼠标左键`可以拖动画布。
 5. 区域5，对应文本化编排界面，可使用标准的[DOT](https://www.graphviz.org/pdf/dotguide.pdf)语法进行文本编辑。
 
-![editor-demo2 alt rect_w_1000](../../assets/images/figure/server/editor-demo2.png)
+![editor-demo2 alt rect_w_1000](../assets/images/figure/server/editor-demo2.png)
 
 成功加载所选示例，并点击图中节点时，将显示右侧配置面板。可根据自己的需求对各个节点进行配置。
 
@@ -172,7 +172,7 @@ path = "$HOME/modelbox-service/log/modelbox.log"
 
 ## 任务编排页面
 
-![editor-main alt rect_w_1000](../../assets/images/figure/server/editor-main.png)
+![editor-main alt rect_w_1000](../assets/images/figure/server/editor-main.png)
 
 该页面是进行图编排、设置的主要界面。
 
@@ -192,19 +192,19 @@ path = "$HOME/modelbox-service/log/modelbox.log"
 
 依次输入项目名称以及项目路径，并选择相对应的项目模板，点击确认即可创建一个新的项目。项目路径如果不存在，将会自动创建。
 
-![editor-create-project](../../assets/images/figure/server/editor-create-project.png)
+![editor-create-project](../assets/images/figure/server/editor-create-project.png)
 
-2. 打开项目
+1. 打开项目
 
 输入项目路径，点击`确认`即可打开项目。
 
-![editor-open-project](../../assets/images/figure/server/editor-open-project.png)
+![editor-open-project](../assets/images/figure/server/editor-open-project.png)
 
-3. 保存
+1. 保存
 
 将更改的内容保存至后端。
 
-4. 关闭
+1. 关闭
 
 将会清空保存在浏览器中的项目数据。
 
@@ -212,13 +212,13 @@ path = "$HOME/modelbox-service/log/modelbox.log"
 
 1. 新建单元
 
-![editor-open-flowunit](../../assets/images/figure/server/editor-create-flowunit.png)
+![editor-open-flowunit](../assets/images/figure/server/editor-create-flowunit.png)
 
 依次选择功能单元类型，名称，处理类型。
 
 端口可通过选择`输入\输出`，`端口名称`，`处理类型`，点击`添加`来增加功能单元的端口。
 
-再选择功能类型。功能类型相关的介绍可以参考[功能单元开发](../../use-modelbox/modelbox-app-mode/flowunit/flowunit.md)。
+再选择功能类型。功能类型相关的介绍可以参考[功能单元开发](../use-modelbox/modelbox-app-mode/flowunit/flowunit.md)。
 
 1. 刷新单元
 
@@ -226,7 +226,7 @@ path = "$HOME/modelbox-service/log/modelbox.log"
 
 ## 任务管理页面
 
-![editor-management alt rect_w_1000](../../assets/images/figure/server/editor-management.png)
+![editor-management alt rect_w_1000](../assets/images/figure/server/editor-management.png)
 
 该页面除了可以查看运行中的任务状态，还可以对任务进行调试。
 

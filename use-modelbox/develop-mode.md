@@ -7,7 +7,7 @@
     ![modelbox-app-mode1 alt rect_w_400](../assets/images/figure/get-start/app_develop_mode1.png)
 
     如上图所示，此模式下AI应用被设计为两个部分：ModelBox部分和应用部分。
-    * ModelBox部分：这种模式下AI应用的主入口由ModelBox管理，启动时，首先进入ModelBox部分，会读取ModelBox配置，加载配置中选择的插件列表，初始化并启动所有的插件，至此完成ModelBox部分的主要工作。插件在ModelBox部分起着重要的作用，被设计来完成应用部分的管理工作。ModelBox内置了两个插件：ModelBox插件，用于加载流程图来启动应用部分，具体请见[ModelBox插件](../plugins/modelbox-plugin/modelbox-plugin.md); Editor插件，用于开发时可视化管理应用部分的工作，如执行样例应用、可视化编排流程图等，具体请见[Editor插件](../tools/editor/editor.md)。
+    * ModelBox部分：这种模式下AI应用的主入口由ModelBox管理，启动时，首先进入ModelBox部分，会读取ModelBox配置，加载配置中选择的插件列表，初始化并启动所有的插件，至此完成ModelBox部分的主要工作。插件在ModelBox部分起着重要的作用，被设计来完成应用部分的管理工作。ModelBox内置了两个插件：ModelBox插件，用于加载流程图来启动应用部分，具体请见[ModelBox插件](../plugins/modelbox-plugin.md); Editor插件，用于开发时可视化管理应用部分的工作，如执行样例应用、可视化编排流程图等，具体请见[Editor插件](../plugins/editor.md)。
 
     * 应用部分：此部分是应用的全部逻辑承载，开发者首先通过流程图配置文件描述整个应用的数据处理过程，然后实现流程图中缺少的节点，完成整个应用。
 

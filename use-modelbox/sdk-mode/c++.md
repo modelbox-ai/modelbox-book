@@ -6,7 +6,7 @@
 
 ## C++的API接口
 
-flow的运行流程可参考[flow章节](../modelbox-app-mode/deployment/run-flow.md)。
+flow的运行流程可参考[flow章节](../modelbox-app-mode/flow-run.md)。
 
 从flow章节中我们知晓了流程图运行的流程，在C++中有对应的函数接口用于处理对应不同的阶段。下面是C++中使用的API列表：
 
