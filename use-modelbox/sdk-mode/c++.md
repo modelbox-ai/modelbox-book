@@ -1,14 +1,10 @@
 # C++开发方式
 
-## 当前方式适合哪些场景下使用
+开发前请先准备好Modelbox开发环境，详见[环境准备](../../environment/compile.md)章节。
 
-此方式主要适用于C++开发者开发流程图。
+## C++ SDK API接口说明
 
-## C++的API接口
-
-flow的运行流程可参考[flow章节](../modelbox-app-mode/flow-run.md)。
-
-从flow章节中我们知晓了流程图运行的流程，在C++中有对应的函数接口用于处理对应不同的阶段。下面是C++中使用的API列表：
+ModelBox提供了流程图的创建、运行、关闭等基础接口。下面是C++中使用的API列表：
 
 | API接口  |     参数说明       |                                             函数说明                                                         |
 | ------- |------------------- | ------------------------------------------------------------------------------------------------------------ |
@@ -23,22 +19,21 @@ flow的运行流程可参考[flow章节](../modelbox-app-mode/flow-run.md)。
 | Flow::Stop() | / | 强制停止运行中的图 |
 | Flow::CreateExternalDataMap | / | 当图中的第一个节点为input节点时， 使用此函数可以创建一个输入的ExternalDataMap， 用户可以通过向ExternalDataMap数据中赋值并传递数据给Input节点。具体使用方法可参考[<外部数据交互>](./c++.md#外部数据交互)章节 |
 
-## C++ SDK API调用说明
-
-C++开发调用流程图时，需要先安装C++的运行包，然后再编写C++函数，调用Flow执行API执行流程图。
-
-Flow流程图接口调用过程如下图所示。
+C++开发调用流程图时，需要先安装C++的运行包，然后再编写C++函数，调用Flow执行API执行流程图。Flow流程图接口调用过程如下图所示：
 
 ![api-modelbox-server alt rect_w_800](../../assets/images/figure/develop/flow/c++-sdk.png)
 
 1. 安装C++ SDK包
-2. 开发流程图，配置基础部分和图部分。
-3. 调用Flow::init接口，输入流程图文件。
-4. 调用Flow::build初始化流程图。
-5. 调用Flow::run_async，异步执行流程图。
-6. 调用Flow::wait等待结果。
+1. 开发流程图，配置基础部分和图部分。
+1. 调用Flow::init接口，输入流程图文件。
+1. 调用Flow::build初始化流程图。
+1. 调用Flow::run_async，异步执行流程图。
+1. 数据输入，数据处理，结果获取。
+1. 调用Flow::Stop释放图资源
 
-## TOML流程图配置
+## 流程图配置
+
+SDK模式的流程图的开发和标准模式基本一样，具体开发介绍见[流程图开发](../modelbox-app-mode/flow/flow.md)章节。SDK模型区别可以通过设置input和output端口作为外部数据的输入和输出。具体配置如下：
 
 ```toml
 [driver]
@@ -46,27 +41,35 @@ dir=""
 skip-default = false
 [graph]
 graphconf = '''digraph demo {
-  input[type=input]
-  output[type=output]
-  process[flowunit=process]
-
-  input->process->output
+  input1[type=input] # 定义input类型端口，端口名为input1，用于外部输入数据
+  resize[type=flowunit, flowunit=resize, device=cuda]
+  model_detect[type=flowunit, flowunit=model_detect, device=cuda]
+  yolobox_post[type=flowunit, flowunit=yolobox_post, device=cpu]
+  output1[type=output] # 定义output类型端口，端口名为output1，用于外部获取输出结果
+   
+  input1 -> resize:in_image
+  resize:out_image -> model_detect:in
+  model_detect:output -> yolobox_post:in
+  yolobox_post:out -> output1
 }'''
 format = "graphviz"
 ```
 
-## 导入ModelBox包
+如上图，input1和output1端口作为图的输入和输出，如果需要设置多个外部输入输出端口，可按照图配置规则配置多个。
 
-编写时，需要引入头文件。
+## 流程图运行
+
+* 导入ModelBox包
+编写时，需要引入头文件，并在编译时链接modelbox库。
 
 ```c++
 #include <modelbox/flow.h>
 ```
 
-## 基本接口
+* 图初始化和运行
 
 ```c++
-int RunFlow(const std::string &file) {
+modelbox::Flow FlowInit(const std::string &file) {
   // 创建Flow执行对象
   auto flow = std::make_shared<modelbox::Flow>();
 
@@ -86,61 +89,20 @@ int RunFlow(const std::string &file) {
   }
 
   // 异步执行
-  flow->RunAsync();
+  flow->RunAsync(); 
 
-  // 等待执行结果
-  ret = flow->Wait();
-  if (!ret) {
-    MBLOG_ERROR << "run flow failed, " << ret.WrapErrormsgs();
-    return 1;
-  }
-
-  // 结束执行
-  flow->Stop();
-  MBLOG_INFO << "run flow " << file << " success";
-
-  return 0;
-}
-
-```
-
-* 流程执行流程
-    1. 使用flow-example.toml文件中配置的流程图初始化flow， `auto flow = std::make_shared<modelbox::Flow>()`， 如何配置流程图详见[流程图开发流程](../modelbox-app-mode/flow/flow.md)
-    1. `flow->Init(file)` 根据配置文件初始化flow对象。
-    1. `flow->Build()` 开始构建flow对象
-    1. `flow->RunAsync()` 开始异步运行flow
-    1. `flow->Wait()` 等待flow结束，参数为超时时间，超时时间为0表示无限等待。
-    1. `flow->Stop()` 停止流程图。
-
-## 外部数据交互
-
-* 配置图，图中增加`input`, `output`端口名称。
-
-```toml
-digraph demo {
-  input[type=input]
-  output[type=output]
-  process[flowunit=process]
-
-  input->process->output
+  return flow;
 }
 ```
 
-* 初始化图的数据处理对象。
+* 外部数据交互
 
-```C++
-std::shared_ptr<ExternalDataMap> ExternDataInit(std::shared_ptr<modelbox::Flow> flow) {
-  auto ext_data = flow->CreateExternalDataMap();  
-  return ext_data;
-}
-```
+业务数据往往需要输入给流程图进行处理，同时处理完成后需要获取结果。一次数据的发送和结果过程如下：
 
-* 代码发送数据，到`input`端口。
+```c++
 
-```C++
 modelbox::Status SendExternalData(std::shared_ptr<ExternalDataMap> ext_data, void *data, int len) {
   // 申请外部数据对象
-
   auto output_buf = ext_data->CreateBufferList();
 
   // 申请内存，并设置内容
@@ -148,8 +110,8 @@ modelbox::Status SendExternalData(std::shared_ptr<ExternalDataMap> ext_data, voi
   auto buff = (int*)output_buf->MutableData();
   memcpy(buff, data, len);
   
-  // 将数据发送到input端口
-  auto status = ext_data->Send("input", output_buf);
+  // 将数据发送到input1端口
+  auto status = ext_data->Send("input1", output_buf);
   if (!status) {
     return {status, "send data to input failed."};
   }
@@ -162,11 +124,7 @@ modelbox::Status SendExternalData(std::shared_ptr<ExternalDataMap> ext_data, voi
 
   return modelbox::STATUS_OK;
 }
-```
 
-* 代码从图中`output`端口接收数据
-
-```C++
 modelbox::Status RecvExternalData(std::shared_ptr<ExternalDataMap> ext_data) {
   OutputBufferList map_buffer_list;
 
@@ -187,14 +145,43 @@ modelbox::Status RecvExternalData(std::shared_ptr<ExternalDataMap> ext_data) {
     }
 
     // 处理结果数据
-    auto buffer_list = map_buffer_list["output"];
+    auto buffer_list = map_buffer_list["output1"];
+
+    //开发者自定义结果处理逻辑
     ProcessData(buffer_list);
   }
 
   return modelbox::STATUS_OK;
 }
+
+主函数
+int Process(std::shared_ptr<modelbox::Flow> flow, void *data, int len) {
+
+  ... 
+  // 创建外部输入句柄
+  auto ext_data = flow->CreateExternalDataMap(); 
+
+  // 发送数据到流程图
+  SendExternalData(ext_data, data, len);
+  
+  // 获取输出结果并处理
+  RecvExternalData(ext_data);
+  ...
+  }
+
 ```
+
+* 图的资源释放
+
+```c++
+int FlowStop(std::shared_ptr<modelbox::Flow> flow) {
+  // 结束执行
+  flow->Stop();
+}
+```
+
+开发者可以根据自身业务，选择在合适的地方调用图的启动停止和数据发送。如果用户业务是多线程时，可以将flow对象可作为多线程共享对象，每个线程都往同一流程图发生数据，这样可以充分利用Modelbox的bacth并发能力。
 
 ## C++日志
 
-默认情况，ModelBox的SDK输出日志到console，业务需要注册相关的日志处理函数，注册方法可参考[日志章节](../modelbox-app-mode/debug/log.md)
+默认情况，ModelBox的SDK输出日志到console，业务需要注册相关的日志处理函数，注册方法可参考[日志](../modelbox-app-mode/debug/log.md#日志sdk)章节。

@@ -1,14 +1,10 @@
-# Python开发流程图
+# Python开发方式
 
-## 当前方式适合哪些场景下使用
+开发前请先准备好Modelbox开发环境，详见[环境准备](../../environment/compile.md)章节。
 
-此方式适用于python开发者开发流程图。
+## Python SDK API接口说明
 
-Python开发调用流程图时，需要安装python的运行包，然后再编写python函数，调用Flow执行API执行流程图。
-
-## Python的API接口
-
-从[flow章节](../modelbox-app-mode/flow-run.md)中我们知晓了流程图运行的流程，在Python中有对应的函数接口用于处理对应不同的阶段。下面是Python中使用的API列表：
+ModelBox提供了流程图的创建、运行、关闭等基础接口。下面是Python中使用的API列表：
 
 | API接口                                               | 参数说明                                                     | 函数说明                                                     |
 | ----------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -18,24 +14,25 @@ Python开发调用流程图时，需要安装python的运行包，然后再编�
 | Flow::build() | / | 用于构建图，将图模型转为可以运行的Node节点并且建立好数据通道 |
 | Flow::run()    | / | 图的运行： 同步方式，图运行完成后返回  |
 | Flow::run_async  | / | 图的运行： 异步运行， 调用后直接返回， wait()函数判断运行是否结束 |
-| Flow::wait | millisecond: 超时时间， 以毫秒为单位<br />ret_val: 图运行的结果 | 等待图运行结束，当图的运行时间超过millisecond表示的时间时，则强制停止图的运行，并返回TIMEOUT |
+| Flow::wait | millisecond: 超时时间， 以毫秒为单位<br />ret_val: 图运行的结果 | 等待图运行状态为结束，当图的运行时间超过millisecond表示的时间时，则强制停止图的运行，并返回TIMEOUT |
 | Flow::stop | / | 强制停止运行中的图 |
 | Flow::create_external_data_map   | / | 当图中的第一个节点为input节点时， 使用此函数可以创建一个输入的ExternalDataMap， 用户可以通过向ExternalDataMap数据中赋值并传递数据给Input节点。具体使用方法可参考[外部数据交互](./python.md#外部数据交互)章节 |
 
-## Python SDK API调用说明
-
-Flow流程图接口调用过程如下图所示。
+Python开发调用流程图时，需要先安装C++的运行包，然后再编写C++函数，调用Flow执行API执行流程图。Flow流程图接口调用过程如下图所示：
 
 ![python-sdk alt rect_w_1000](../../assets/images/figure/develop/flow/python-sdk.png)
 
 1. 安装python SDK包
-2. 开发流程图，配置基础部分和图部分。
-3. 调用Flow::init接口，输入流程图文件。
-4. 调用Flow::build初始化流程图。
-5. 调用Flow::run_async，异步执行流程图。
-6. 调用Flow::wait等待结果。
+1. 开发流程图，配置基础部分和图部分。
+1. 调用Flow::init接口，输入流程图文件。
+1. 调用Flow::build初始化流程图。
+1. 调用Flow::run_async，异步执行流程图。
+1. 数据输入，数据处理，结果获取。
+1. 调用Flow::Stop释放图资源。
 
-## TOML流程图配置
+## 流程图配置
+
+SDK模式的流程图的开发和标准模式基本一样，具体开发介绍见[流程图开发](../modelbox-app-mode/flow/flow.md)章节。SDK模型区别可以通过设置input和output端口作为外部数据的输入和输出。具体配置如下：
 
 ```toml
 [driver]
@@ -43,16 +40,25 @@ dir=""
 skip-default = false
 [graph]
 graphconf = '''digraph demo {
-  input[type=input]
-  output[type=output]
-  process[flowunit=process]
-
-  input->process->output
+  input1[type=input] # 定义input类型端口，端口名为input1，用于外部输入数据
+  resize[type=flowunit, flowunit=resize, device=cuda]
+  model_detect[type=flowunit, flowunit=model_detect, device=cuda]
+  yolobox_post[type=flowunit, flowunit=yolobox_post, device=cpu]
+  output1[type=output] # 定义output类型端口，端口名为output1，用于外部获取输出结果
+   
+  input1 -> resize:in_image
+  resize:out_image -> model_detect:in
+  model_detect:output -> yolobox_post:in
+  yolobox_post:out -> output1
 }'''
 format = "graphviz"
 ```
 
-## 导入ModelBox包
+如上图，input1和output1端口作为图的输入和输出，如果需要设置多个外部输入输出端口，可按照图配置规则配置多个。
+
+## 流程图运行
+
+* 导入ModelBox包
 
 编写时，需要导入ModelBox的开发包。
 
@@ -60,14 +66,12 @@ format = "graphviz"
 import modelbox
 ```
 
-## 基本接口
+* 图初始化和运行
 
 ```python
-def RunFlow():
-    # 指定图文件路径
-    flow_file = "/path/to/graph/flow-example.toml"
-    flow = modelbox.Flow()
+def FlowInit(flow_file):
 
+    flow = modelbox.Flow()
     # 初始化Flow接口
     ret = flow.init(flow_file)
     if ret == False:
@@ -82,86 +86,66 @@ def RunFlow():
     ret = flow.run_async()
     if ret == False:
         modelbox.error(flow_file + " flow run async failed")
-
-    # 等待结果
-    ret = flow.wait(0)
-    if ret != modelbox.Status.StatusCode.STATUS_STOP:
-        modelbox.error(flow_file + " flow run failed")
+    
+    return flow
 ```
 
-* 流程执行流程
-    1. 使用flow-example.toml文件中配置的流程图初始化flow， `flow = modelbox.Flow()` 返回一个flow对象， 如何配置流程图详见[流程图开发流程](../modelbox-app-mode/flow/flow.md)
-    1. `flow.init(flow_file)` 根据配置文件初始化flow对象。
-    1. `flow.build()` 开始构建flow对象
-    1. `flow.run_async()` 开始异步运行flow
-    1. `flow.wait(0)` 等待flow结束，超时时间为0表示无限等待。
+* 外部数据交互
 
-## 外部数据交互
-
-* 配置图，图中增加`input`, `output`端口名称。
-
-```toml
-digraph demo {
-  input[type=input]
-  output[type=output]
-  process[flowunit=process]
-
-  input->process->output
-}
-```
-
-* 创建external data对象
+业务数据往往需要输入给流程图进行处理，同时处理完成后需要获取结果。一次数据的发送和结果过程如下：
 
 ```python
-    # extern_data 对象
-    def init_external_dat():
-        extern_data = flow.create_external_data_map()
-        return extern_data
-```
 
-* 代码发送数据，到`input`端口。
+def send_external_data(extern_data, img_rgb):
+    # 申请Buffer
+    buffer_list = extern_data.create_buffer_list()
+    im_array = np.asarray(img_rgb[:,:])
+    buffer_list.push_back(im_array)
+    # 将数据发送到"input"。
+    extern_data.send("input1", buffer_list)
+    # 结束输入。
+    extern_data.shutdown()
+# 从图中接收数据
 
-```python
-    # 发送数据到图
-    def send_external_data(extern_data):
-        # 申请内存。
-        buffer_list = extern_data.create_buffer_list()
-        im_array = np.asarray(img_rgb[:,:])
-        buffer_list.push_back(im_array)
-        # 将数据发送到"input"。
-        extern_data.send("input", buffer_list)
-        # 结束输入。
-        extern_data.shutdown()
-```
-
-* 代码从图中`output`端口接收数据
-
-```python
-    # 从图中接收数据
-    def recv_flow_data(extern_data):
-        out_buffer = extern_data.create_buffer_list()
-        # 使用创建的external对象从output接收数据
-        while True:
-            ret = extern_data.recv(out_buffer)
-            if ret != modelbox.Status.StatusCode.STATUS_SUCCESS:
-                if ret == modelbox.Status.StatusCode.STATUS_EOF:
-                    break
-
-                extern_data.close()
-                print("recv data failed", ret)
+def recv_flow_data(extern_data):
+    out_buffer = extern_data.create_buffer_list()
+    # 使用创建的external对象从output接收数据
+    while True:
+        ret = extern_data.recv(out_buffer)
+        if ret != modelbox.Status.StatusCode.STATUS_SUCCESS:
+            if ret == modelbox.Status.StatusCode.STATUS_EOF:
                 break
+            extern_data.close()
+            print("recv data failed", ret)
+            break
+        result_buffer_list = out_buffer.get_buffer_list("output1")
+        # 循环处理数据
+        for i in range(result_buffer_list.size()):
+            aa = result_buffer_list[i]
+            np_image = np.array(aa, copy= False)
+            image = Image.fromarray(np_image)
+            # ....
 
-            result_buffer_list = out_buffer.get_buffer_list("output")
+def Process(flow, img_rgb);
+    # 创建外部输入句柄
+    extern_data = flow.create_external_data_map()
+    
+    # 发送数据到流程图
+    send_external_data(extern_data, img_rgb)
 
-            # 循环处理数据
-            for i in range(result_buffer_list.size()):
-                aa = result_buffer_list[i]
-                np_image = np.array(aa, copy= False)
-                image = Image.fromarray(np_image)
-                # ....
+    # 获取输出结果并处理
+    recv_flow_data(extern_data)
+```
 
+* 图的资源释放
+
+```c++
+def FlowFtop(flow) {
+  // 结束执行
+  flow.stop();
+}
 ```
 
 ## Python日志
 
-默认情况，ModelBox的SDK输出日志到console，业务需要注册相关的日志处理函数，注册方法可参考[日志章节](../modelbox-app-mode/debug/log.md)
+默认情况，ModelBox的SDK输出日志到console，业务需要注册相关的日志处理函数，注册方法可参考[日志](../modelbox-app-mode/debug/log.md#日志sdk)章节。
