@@ -1,23 +1,25 @@
 # Python开发功能单元
 
-Python开发功能单元时，需要预先安装ModelBox的运行包， 可参考[编译安装章节](../../compile/compile.md#安装命令说明)，
+Python开发功能单元时，需要预先安装ModelBox的运行包， 可参考[编译安装章节](../../compile/compile.md#安装命令说明)。
 在开发之前，可以从[功能单元概念](../../../basic-conception/flowunit.md)章节了解流单的执行过程。
 
 ## 功能单元创建
 
-Modelbox提供了多种方式进行Python功能单元的创建:
+Modelbox提供了多种方式进行Python功能单元的创建：
 
 * 通过UI创建
   
-  xxx
+  可参考可视化编排服务的[任务编排页面](../../../plugins/editor.md#任务编排页面)章节的`新建功能单元`操作步骤。
 
 * 通过命令行创建
 
-ModelBox提供了模板创建工具，可以通过**ModelBox Tool**工具产生python功能单元的模板，具体的命令为
+  ModelBox提供了模板创建工具，可以通过**ModelBox Tool**工具产生python功能单元的模板，具体的命令为
 
-```shell
-modelbox-tool template -flowunit -lang python -name [name]  
-```
+  ```shell
+  modelbox-tool template -flowunit -project-path [project_path] -name [flowunit_name] -lang python -input name=in1,device=cpu -output name=out1  
+  ```
+
+  该命令将会在`[project_path]/src/flowunit`目录下创建名为`[flowunit_name]`的Python功能单元。
 
 ModelBox框架在初始化时，会扫描/path/to/flowunit/[FlowUnitName]目录中的toml后缀的文件，并读取相关的信息，具体可通过**ModelBox Tool**工具查询。
 
@@ -268,6 +270,7 @@ BufferList::EmplaceBackFromHost ： 调用时隐式创建Buffer，Buffer类型�
 
         return modelbox.Status()
 ```
+
 约束：
 
 * Buffer的拷贝
@@ -291,9 +294,7 @@ Python的Buffer处理与C++存在差异，由于Buffer类型为Modelbox特有类
         return modelbox.Status()
 ```
 
-
 更多Buffer操作见[API接口](../../../api/c++.md)， Buffer的异常处理见[异常](../../../other-features/exception.md)章节。
-
 
 ### DataContext与SessionContext
 
@@ -304,17 +305,17 @@ Python的Buffer处理与C++存在差异，由于Buffer类型为Modelbox特有类
 DataContext是提供给当前功能单元处理数据时的临时获取BufferList
 功能单元处理一次Stream流数据，或一组数据的上下文，当数据生命周期不再属于当前功能单元时，DataContext生命周期也随之结束。
 
-生命周期: 绑定BufferList，从数据进入FlowUnit到处理完成。
+生命周期：绑定BufferList，从数据进入FlowUnit到处理完成。
 
-使用场景: 通过DataContext->Input接口获取输入端口BufferList，通过DataContext->Output接口获取输出端口BufferList对象,通过DataContext->SetPrivate接口设置临时对象，DataContext->GetPrivate接口获取临时对象。
+使用场景：通过DataContext->Input接口获取输入端口BufferList，通过DataContext->Output接口获取输出端口BufferList对象,通过DataContext->SetPrivate接口设置临时对象，DataContext->GetPrivate接口获取临时对象。
 
 * SessionContext 会话上下文
 
 SessionContext主要供调用图的业务使用，业务处理数据时，设置状态对象。
 
-生命周期: 绑定ExternalData，从数据进入Flow，贯穿整个图，一直到数据处理完成结束。
+生命周期：绑定ExternalData，从数据进入Flow，贯穿整个图，一直到数据处理完成结束。
 
-使用场景: 例如http服务同步响应场景，首先接收到http请求后转化成buffer数据，然后通过ExternalData->GetSessionContext接口获取到SessionContext，接着调用SessionContext->SetPrivate设置响应的回调函数，之后通过ExternalData->Send接口把buffer数据发送到flow中；经过中间的业务处理功能单元；最后http响应功能单元中在业务数据处理完成后，再调用SessionContext->GetPrivate获取响应回调函数，发送http响应。至此SessionContext也结束。
+使用场景：例如http服务同步响应场景，首先接收到http请求后转化成buffer数据，然后通过ExternalData->GetSessionContext接口获取到SessionContext，接着调用SessionContext->SetPrivate设置响应的回调函数，之后通过ExternalData->Send接口把buffer数据发送到flow中；经过中间的业务处理功能单元；最后http响应功能单元中在业务数据处理完成后，再调用SessionContext->GetPrivate获取响应回调函数，发送http响应。至此SessionContext也结束。
 
 DataContext 和 SessionContext提供了如下功能用于复杂业务的开发：
 

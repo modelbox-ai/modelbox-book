@@ -5,19 +5,21 @@
 
 ## 创建推理功能单元
 
-Modelbox提供了多种方式进行推理功能单元的创建:
+Modelbox提供了多种方式进行推理功能单元的创建：
 
 * 通过UI创建
   
-  xxx
+  可参考可视化编排服务的[任务编排页面](../../../plugins/editor.md##任务编排页面)章节的`新建功能单元`操作步骤。
 
 * 通过命令行创建
 
   ModelBox提供了模板创建工具，可以通过**ModelBox Tool**工具产生c++功能单元的模板，具体的命令为
 
   ```shell
-  modelbox-tool template -flowunit -lang c++ -name [name] 
+  modelbox-tool template -flowunit -project-path [project_path] -name [flowunit_name] -lang infer -virtual-type [type]  -model [model_file_path] -copy-model -input name=in1,device=cuda -output name=out1
   ```
+
+  该命令将会在`[project_path]/src/flowunit`目录下创建名为`[flowunit_name]`的推理功能单元。
 
 创建完成的C++功能单元目录结构如下：
 

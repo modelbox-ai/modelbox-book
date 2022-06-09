@@ -71,7 +71,7 @@ Hello World! Thu May 30 12:00:00 2022
       * 路径: `/home/[user]`
       * 项目模板为: `hello world`
 
-    创建出的文件夹说明可参考[工程目录](../use-modelbox/modelbox-app-mode/create-project.md#工程目录)。
+    创建出的文件夹说明可参考[工程目录](../use-modelbox/standard-mode/create-project.md#工程目录)。
 
 ### 流程图开发
 

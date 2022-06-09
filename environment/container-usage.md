@@ -8,7 +8,7 @@ ModelBox目前提供了支持cuda，ascend加速卡硬件和TensoFlow，LibTorch
 
 目前Modelbox的镜像类型分为两种：开发镜像和运行镜像。
 
-开发镜像:用于AI应用的开发和调试，镜像安装了modelbox开发库、头文件、Web UI、GDB等开发阶段所需的组件。
+开发镜像：用于AI应用的开发和调试，镜像安装了modelbox开发库、头文件、Web UI、GDB等开发阶段所需的组件。
 
 运行镜像：用于AI应用的打包部署。镜像只安装了AI应用运行所需的运行环境。
 

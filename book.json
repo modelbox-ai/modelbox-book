@@ -42,7 +42,7 @@
         "anchor-navigation-ex": {
             "showLevel": false,
             "showGoTop": false,
-            "mode": "pageTop"
+            "mode": "float"
         }
     },
     "pdf": {

@@ -32,7 +32,7 @@ Python开发调用流程图时，需要先安装C++的运行包，然后再编�
 
 ## 流程图配置
 
-SDK模式的流程图的开发和标准模式基本一样，具体开发介绍见[流程图开发](../modelbox-app-mode/flow/flow.md)章节。SDK模型区别可以通过设置input和output端口作为外部数据的输入和输出。具体配置如下：
+SDK模式的流程图的开发和标准模式基本一样，具体开发介绍见[流程图开发](../standard-mode/flow/flow.md)章节。SDK模型区别可以通过设置input和output端口作为外部数据的输入和输出。具体配置如下：
 
 ```toml
 [driver]
@@ -148,4 +148,4 @@ def FlowFtop(flow) {
 
 ## Python日志
 
-默认情况，ModelBox的SDK输出日志到console，业务需要注册相关的日志处理函数，注册方法可参考[日志](../modelbox-app-mode/debug/log.md#日志sdk)章节。
+默认情况，ModelBox的SDK输出日志到console，业务需要注册相关的日志处理函数，注册方法可参考[日志](../standard-mode/debug/log.md#日志sdk)章节。

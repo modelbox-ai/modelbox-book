@@ -185,4 +185,4 @@ systemctl enable modelbox
 systemctl start modelbox
 ```
 
-关于ModelBox Server服务的配置，请查阅[运行服务](../use-modelbox/modelbox-app-mode/deployment/server.md)章节
+关于ModelBox Server服务的配置，请查阅[运行服务](../use-modelbox/standard-mode/deployment/server.md)章节

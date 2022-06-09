@@ -157,10 +157,10 @@ ModelBox开发套件包含如下部分：
     modelbox-tool -verbose [-log-level INFO] [-log-path filepath] flow -run [/path/to/graph.toml]
     ```
 
-    具体可见[调试](../modelbox-app-mode/debug/code-debug.md)。
+    具体可见[调试](../standard-mode/debug/code-debug.md)。
 1. 性能调优
 
-   可以使用profiling工具对性能数据进行采集分析和优化，具体使用可见[性能](../modelbox-app-mode/debug/profiling.md)。
+   可以使用profiling工具对性能数据进行采集分析和优化，具体使用可见[性能](../standard-mode/debug/profiling.md)。
 
 1. 系统集成
 

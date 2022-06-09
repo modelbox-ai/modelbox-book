@@ -42,7 +42,7 @@ ModelBox本身为C++代码编写，开发者可以通过如下方式调试ModelB
 1. ModelBox运行日志。
 1. ModelBox Profiling性能统计工具。
 
-具体操作方法，可参考[调试定位](../use-modelbox/modelbox-app-mode/debug/debug.md)章节内容
+具体操作方法，可参考[调试定位](../use-modelbox/standard-mode/debug/debug.md)章节内容
 
 ## 模型问题
 

@@ -8,15 +8,17 @@ Modelbox提供了多种方式进行C++功能单元的创建:
 
 * 通过UI创建
   
-  xxx
+  可参考可视化编排服务的[任务编排页面](../../../plugins/editor.md#任务编排页面)章节的`新建功能单元`操作步骤。
 
 * 通过命令行创建
 
   ModelBox提供了模板创建工具，可以通过**ModelBox Tool**工具产生c++功能单元的模板，具体命令为
 
   ```shell
-  modelbox-tool template -flowunit -lang c++ -name [name]  //待刷新
+  modelbox-tool template -flowunit -project-path [project_path] -name [flowunit_name] -lang c++ -input name=in1,device=cuda -output name=out1
   ```
+
+  该命令将会在`[project_path]/src/flowunit`目录下创建名为`[flowunit_name]`的C++功能单元。
 
 创建完成的C++功能单元目录结构如下：
 
@@ -82,7 +84,7 @@ MODELBOX_DRIVER_FLOWUNIT(desc) {
 | 功能单元输入端口           | AddFlowUnitInput     |  是   | FlowUnitInput  | 设置输入端口和数据存放设备， 数据存放设备不设置时，默认与功能单元设备类型一致。 如果输入数据如果不在FLOWUNIT_TYPE设备上，则框架会自动搬移至该设备。上                                            |
 | 功能单元输出端口           | AddFlowUnitOutput |  是   | FlowUnitOutput | 设置输出端口，输出数据存放类型固定与功能单元设备类型一致。                                               |
 | 功能单元配置参数           | AddFlowUnitOption    |  是   | FlowUnitOption | 设置功能单元配置参数，包括参数名，类型，描述等信息                       |
-| 条件类型                   | SetConditionType     |  否   | ConditionType  | 是否为条件功能单元，取值为: NONE、IF_ELSE                                                       |
+| 条件类型                   | SetConditionType     |  否   | ConditionType  | 是否为条件功能单元，取值为： NONE、IF_ELSE                                                       |
 | 输出类型                   | SetOutputType        |  否   | FlowOutputType | 设置是否为扩张或者合并功能单元，取值为: ORIGIN、EXPAND、COLLAPSE                                           |
 | 输入内存是否连续           | SetInputContiguous   |  否   | bool           | 是否要求输入内存是否是分配的连续空，默认为false间                                     |
 | 异常是否可见               | SetExceptionVisible  |  否   | bool           | 本功能单元是否处理前面功能单元的异常消息，默认为false                                 |
@@ -103,7 +105,7 @@ MODELBOX_DRIVER_FLOWUNIT(desc) {
 | FlowUnit::DataPre   | 功能单元Stream流开始  |否 | 实现Stream流开始时的处理逻辑，功能单元数据处理类型是`modelbox::STREAM`时生效  |
 | FlowUnit::DataPost | 功能单元Stream流结束 |否|实现Stream流结束时的处理逻辑，功能单元数据处理类型是`modelbox::STREAM`时生效|
 
-* 功能单元初始化/关闭接口
+* **功能单元初始化/关闭接口**
 
 对应需实现的接口为`FlowUnit::Open`、`FlowUnit::Close`，实现样例如下：
 
@@ -125,7 +127,7 @@ modelbox::Status Close() {
 }
 ```
 
-* 数据处理接口
+* **数据处理接口**
 
 对应需实现的接口为`FlowUnit::Process`, Process为FlowUnit的核心函数。输入数据的处理、输出数据的构造都在此函数中实现。Process接口处理流程大致如下：
 
@@ -210,7 +212,7 @@ modelbox::Status ExampleFlowUnit::AscendProcess(std::shared_ptr<modelbox::DataCo
 
 更多关于加速设备上的功能单元开发详细说明可参考[多设备开发](../../../other-features/device/device.md)章节和[Ascend](../../../other-features/device/ascend.md)类型、[Nvida Cuda](../../../other-features/device/cuda.md)类型接口说明。
 
-* Stream流数据开始/结束接口
+* **Stream流数据开始/结束接口**
 
 Stream数据流的概念介绍可参考[数据流](../../../basic-conception/stream.md)章节。对应需实现的接口为`FlowUnit::DataPre`、`FlowUnit::DataPost`，此接口针对Stream类型的功能单元生效。使用场景及约束如下：
 
@@ -259,7 +261,7 @@ modelbox::Status VideoDecoderFlowUnit::DataPost(std::shared_ptr<modelbox::DataCo
 
 ```
 
-* 条件功能单元
+* **条件功能单元**
 
 只需要通过条件判断往不同的输出端口构建buffer即可，其他无需任何特殊处理
 
@@ -429,17 +431,17 @@ CopyMeta拷贝BufferMeta：接口为CopyMeta， 仅拷贝BufferMeta信息，不�
 DataContext是提供给当前功能单元处理数据时的临时获取BufferList
 功能单元处理一次Stream流数据，或一组数据的上下文，当数据生命周期不再属于当前功能单元时，DataContext生命周期也随之结束。
 
-生命周期: 绑定BufferList，从数据进入FlowUnit到处理完成。
+生命周期：绑定BufferList，从数据进入FlowUnit到处理完成。
 
-使用场景: 通过DataContext->Input接口获取输入端口BufferList，通过DataContext->Output接口获取输出端口BufferList对象,通过DataContext->SetPrivate接口设置临时对象，DataContext->GetPrivate接口获取临时对象。
+使用场景：通过DataContext->Input接口获取输入端口BufferList，通过DataContext->Output接口获取输出端口BufferList对象,通过DataContext->SetPrivate接口设置临时对象，DataContext->GetPrivate接口获取临时对象。
 
 * SessionContext 会话上下文
 
 SessionContext主要供调用图的业务使用，业务处理数据时，设置状态对象。
 
-生命周期: 绑定ExternalData，从数据进入Flow，贯穿整个图，一直到数据处理完成结束。
+生命周期：绑定ExternalData，从数据进入Flow，贯穿整个图，一直到数据处理完成结束。
 
-使用场景: 例如http服务同步响应场景，首先接收到http请求后转化成buffer数据，然后通过ExternalData->GetSessionContext接口获取到SessionContext，接着调用SessionContext->SetPrivate设置响应的回调函数，之后通过ExternalData->Send接口把buffer数据发送到flow中；经过中间的业务处理功能单元；最后http响应功能单元中在业务数据处理完成后，再调用SessionContext->GetPrivate获取响应回调函数，发送http响应。至此SessionContext也结束。
+使用场景：例如http服务同步响应场景，首先接收到http请求后转化成buffer数据，然后通过ExternalData->GetSessionContext接口获取到SessionContext，接着调用SessionContext->SetPrivate设置响应的回调函数，之后通过ExternalData->Send接口把buffer数据发送到flow中；经过中间的业务处理功能单元；最后http响应功能单元中在业务数据处理完成后，再调用SessionContext->GetPrivate获取响应回调函数，发送http响应。至此SessionContext也结束。
 
 DataContext 和 SessionContext提供了如下功能用于复杂业务的开发：
 

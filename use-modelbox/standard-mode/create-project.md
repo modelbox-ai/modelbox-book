@@ -68,7 +68,7 @@ modelbox-tool template -project -name [name] -template [template_name] -path [pr
 
 ## 工程目录
 
-创建好的工程目录如下:
+创建好的工程目录如下：
 
 ```tree
 ├─CMake：CMake目录，存放一些自定义CMake函数

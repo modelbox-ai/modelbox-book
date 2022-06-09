@@ -23,7 +23,7 @@
 | C++        | C++编写流单元，需要编译成动态库                      |
 | Config     | 配置流单元，通过编写特定配置文件即可完成，如yolo后处理 |
 
-流单元的具体开发操作参考[流单元开发](../use-modelbox/modelbox-app-mode/flowunit/flowunit.md)
+流单元的具体开发操作参考[流单元开发](../use-modelbox/standard-mode/flowunit/flowunit.md)
 
 ## 加载运行流程
 
