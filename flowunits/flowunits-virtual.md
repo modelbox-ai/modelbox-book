@@ -4,42 +4,6 @@
 
 配置类功能单元是基于一些相似功能的通用功能单元抽象出来的一个功能单元模板，它不能直接使用，需要通过配置文件实例化之后就可以当作正常功能使用。当前模板类功能单元主要有：inference、yolo_postprocess。
 
-## inference
-
-- 功能描述
-
-提供模型推理的模板，只需要填写配置文件和提供模型，即可实现模型推理功能单元，详细介绍可详见[推理功能单元]章节(../flowunit/inference.md)。
-
-- 设备类型
-
-cpu、cuda、ascend
-
-- 使用说明
-
-实现自定义推理功能单元：编写配置文件，配置文件说明可详见[推理功能单元]章节(../flowunit/inference.md)。
-
-图连接：编写完成toml文件后，将对应的路径加入ModelBox的图配置中的搜索路径即可使用开发后的推理功能单元。推理功能单元的输入端口和输出端口名称和个数的由toml文件指定，当模型存在多输入或者多输出时，图构建时需要针对每个输入端口和输出端口进行接口连接。
-
-- 约束说明
-
-无
-
-- 使用样例
-
-```toml
-    ...
-    face_pre[type=flowunit, flowunit=face_post, device=cpu]
-    model_detect[type=flowunit, flowunit=model_detect, device=cuda]
-    yolobox_name[type=flowunit, flowunit=yolobox_name, device=cpu]
-    ...
-    face_pre:out_port1 -> model_detect:input1
-    face_pre:out_port2 -> model_detect:input2
-    model_detect:output1 -> yolobox_name:in_port1
-    model_detect:output2 -> yolobox_name:in_port2
-    yolobox_name:out_port1 -> ...
-    ...
-```
-
 ## yolo_postprocess
 
 - 功能描述

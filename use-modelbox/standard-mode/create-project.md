@@ -79,7 +79,8 @@ modelbox-tool template -project -name [name] -template [template_name] -path [pr
 │  └─service-plugin：服务插件目录
 ├─test：单元测试目录，使用的是gtest框架
 └─thirdparty：第三方库目录
-    └─CMake：预制的下载第三方库cmake文件
+│    └─CMake：预制的下载第三方库cmake文件
+|---CMakeLists.txt  CMake编译文件
 ```
 
 工程目录创建好后，用户可在src目录下开发功能单元、流程图、服务插件（可选），基于此工程目录通过`cmake ..`、`make package`命令一键打包出tgz和rpm/deb包。
