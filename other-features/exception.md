@@ -13,6 +13,7 @@
 当功能单元处理数据错误时，认为数据的错误无法恢复，需要后续的流程进行处理时，要将错误输出。错误输出的方式有如下两种：
 
 1. 对于单个Buffer输出错误时，调用Buffer::SetError接口，设置错误的详细信息，错误即可发出。
+
 ```cpp
 Status Flowunit::Process(std::shared_ptr<DataContext> data_ctx) {
    auto outputs = data_ctx->Output("out1");
@@ -24,6 +25,7 @@ Status Flowunit::Process(std::shared_ptr<DataContext> data_ctx) {
 ```
 
 1. 对于多个Buffer同时设置错误时，调用BufferList::SetError接口，设置错误的详细信息，错误即可发出。
+
 ```cpp
 Status Flowunit::Process(std::shared_ptr<DataContext> data_ctx) {
    auto outputs = data_ctx->Output("out1");
@@ -44,6 +46,7 @@ Status Flowunit::Process(std::shared_ptr<DataContext> data_ctx) {
 1. 明确的声明当前功能单元支持异常处理
 
 cpp功能单元在实现中开启
+
 ```cpp
 MODELBOX_FLOWUNIT(ExampleFlowUnit, desc) {
    desc.SetExceptionVisible(true);
@@ -51,11 +54,13 @@ MODELBOX_FLOWUNIT(ExampleFlowUnit, desc) {
 ```
 
 python功能单元在功能单元配置文件中开启
+
 ```toml
 exception_visible = true
 ```
 
 1. 编排节点时，在节点配置上设置需要异常处理
+
 ```graphviz
 get_exception[..., is_exception_visible=true]
 ```
@@ -63,6 +68,7 @@ get_exception[..., is_exception_visible=true]
 1. 获取异常
 
 cpp功能单元中获取
+
 ```cpp
 Status GetException::Process(std::shared_ptr<DataContext> data_ctx) {
    auto inputs = data_ctx->Input("in1");
@@ -75,6 +81,7 @@ Status GetException::Process(std::shared_ptr<DataContext> data_ctx) {
 ```
 
 python功能单元中获取
+
 ```python
 def process(self, data_ctx):
    inputs = data_ctx.input("in1")
@@ -87,9 +94,10 @@ def process(self, data_ctx):
 
 之前数据流中提到，expand和condition会使得数据流的层级标记下降一次，这个层级不仅影响了匹配，也作用于异常的捕获。核心点是，高层级的错误，低层不可见；低层级的错误，高层可见。
 
-![exception_capture alt rect_w_1280](../../assets/images/figure/conception-feature/features/exception_capture.png)
+![exception_capture alt rect_w_400](../../assets/images/figure/conception-feature/features/exception_capture.png)
 
 上图中，异常可见情况如下：
+
 * A抛出异常，可在B、K中捕获
 * 若B向C抛出异常，可在C、D、E、I、K中捕获；若B向J抛出异常，可在J、K中捕获
 * C抛出异常，可在D、E、I、K中捕获

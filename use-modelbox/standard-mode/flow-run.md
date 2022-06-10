@@ -16,16 +16,40 @@ modelbox-tool -verbose -log-level INFO flow -run [path_to_graph]
 
 - flow：快速运行一个流程，快速验证，具体可参考[flow功能](../../tools/modelbox-tool/modelbox-tool.md#flow功能)；
 
-## modelbox-server
+## modelbox
 
-ModelBox Server提供了如下方式加载运行流程图：
+使用ModelBox加载流程图，不仅可以运行流程图，还可以加载自定义插件
 
-1. 通过默认ModelBox Plugin插件自动加载
-1. 通过图形化UI运行流程图
-1. 通过Restful API运行流程图
+需要修改`$HOME/modelbox-service/conf/modelbox.conf`配置文件以下几个部分：
 
-使用ModelBox加载流程图，首先需要将`$HOME/modelbox-service/conf/modelbox.conf`配置文件中的`server.flow_path`改为需要调试的流程图图文件夹目录，然后执行`$HOME/modelbox-service/modelbox restart`命令重启modelbox服务生效。
+- 修改流程图路径`server.flow_path`：
 
-此方法也可调试开发的ModelBox插件，需要在`$HOME/modelbox-service/conf/modelbox.conf`配置中的`plugin.files`添加开发的插件动态链接库路径。
+  ```json
+  [server]
+  ip = "127.0.0.1"
+  port = "1104"
+  flow_path = "/usr/local/etc/modelbox/graph/"  # 修改为自定义流程图目录
+  ```
 
-更多详细modelbox-server参考[modelbox服务](./deployment/server.md#ModelBoxServer服务配置)。
+- 添加开发的插件路径`plugin.files`：
+  
+  ```json
+  [plugin]
+  files = [
+      "/usr/local/lib/modelbox-plugin.so",
+      "/usr/local/lib/modelbox-plugin-editor.so"  # 添加开发插件路径
+  ]
+  ```
+
+- 设置日志配置：
+
+  ```json
+  [log]
+  level = "INFO"                               # 设置日志级别
+  num = 32                                     # 设置日志归档文件最大个数
+  path = "/var/log/modelbox/modelbox.log"      # 设置日志路径
+  ```
+
+执行`$HOME/modelbox-service/modelbox restart`命令重启modelbox服务生效。
+
+更多详细modelbox运行参考[modelbox运行](./deployment/server.md#ModelBoxServer服务配置)。
