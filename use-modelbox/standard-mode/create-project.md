@@ -1,8 +1,9 @@
 # 项目创建
 
-## 启动开发环境
+## 启动开发模式
 
-通过命令行工具[modelbox-tool](../../tools/modelbox-tool/modelbox-tool.md)来启动ModelBox开发环境：
+创建项目前需要先启动ModelBox开发模式，ModelBox开发模式提供了WebUI编排等多种开发能力。
+开发者可以通过命令行工具[modelbox-tool](../../tools/modelbox-tool/modelbox-tool.md)来启动ModelBox开发模式：
 
 ```shell
 modelbox-tool develop -s
@@ -42,7 +43,7 @@ Debug ModelBox Info:
 
 后面也可通过`modelbox-tool develop -q`查询modelbox开发调试信息。
 
-## 创建
+## 创建项目
 
 有两种方式创建项目工程：UI界面创建项目，命令行创建项目。
 
@@ -64,9 +65,17 @@ ModelBox提供了[modelbox-tool工具](../../tools/modelbox-tool/modelbox-tool.m
 modelbox-tool template -project -name [name] -template [template_name] -path [project_path]
 ```
 
-更多详细参数使用可通过`modelbox-tool template --help`查询；
+- 参数说明
 
-## 工程目录
+  -name：项目名称
+
+  -template：选择创建项目的模板类型
+  
+  -path：项目工程路径
+
+更多详细参数使用可通过`modelbox-tool template --help`查询。
+
+## 项目工程目录
 
 创建好的工程目录如下：
 
