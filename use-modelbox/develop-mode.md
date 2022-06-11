@@ -2,8 +2,63 @@
 
 ## ModelBox开发套件
 
+ModelBox的开发视图如下，图中绿色的部分是开发者可以自定义扩展的部分。
 
-## 模式简介
+![sdk alt rect_w_800](../../assets/images/figure/develop/sdk.png)
+
+ModelBox开发套件包含如下部分：
+
+1. 流程图 Flow
+
+    控制ModelBox执行的过程，默认情况，采用[Graphviz DOT](https://www.graphviz.org/pdf/dotguide.pdf)语言进行流程图设计，开发。
+
+2. ModelBox Server
+
+    为简化服务化应用开发者的工作量，ModelBox集成了服务功能，ModelBox Server有完善的服务集成功能，REST-API功能，任务管理功能，并集成了ModelBox library，对应用开发者提供了插件扩展的接口，应用开发者只需编写业务需要的服务插件，即可驱动ModelBox和业务控制服务对接。
+
+3. 自定义应用
+
+    与ModelBox Server对应，如果业务需要更多的定制能力，业务可以直接使用ModelBox SDK提供的接口来驱动ModelBox，支持的语言有C++，Python，Java等。
+
+4. ModelBox SDK
+
+    ModelBox应用提供的开发API，包含了C++, Python，Java等多种语言的支持。开发者可以使用自己熟悉的语言进行集成或扩展。
+
+5. ModelBox Tool
+
+    ModelBox 开发调试工具，可用于检查图的正确性，调试单个图，查询可用的功能单元Flowunit，模型加密等功能。
+
+6. ModelBox Library
+
+    ModelBox核心库，包含了ModelBox运行需要的功能，包含内存管理，调度管理，图管理等功能。此核心组件不可定制，开发者直接通过API使用ModelBox核心库功能。
+
+7. ModelBox Flowunit
+
+    功能单元，ModelBox的关键组成，处理数据的关键组件，也是开发者主要开发的组件。
+
+8. ModelBox Device
+
+    设备支持组件，用于支持特定的硬件，如GPU，Ascend芯片等，ModelBox已经内置了主流的GPU，Ascend芯片开发支持。开发者只需要开发相应的功能即可。
+
+## ModelBox应用场景
+
+1. 新算法快速上线
+
+   开发者新开发算法模型已经训练完成，希望能快速开发出完整的AI应用，并部署上线，同时性能、可靠性等都能满足商用要求。ModelBox框架提供了从开发环境到打包部署全流程的开发能力，提升开发效率，同时保障AI应用质量。
+
+1. 已有业务性能提升
+
+   开发者现有AI应用性能遇到瓶颈，希望通过异步、多线程、模型Batch推理等优化方式提升性能，但自己开发门槛高且工作量大，希望能通过较少的改造快速提升整体性能。Modelbox框架提供了灵活的业务切换方式，可以切换部分业务提升整体性能。
+
+1. 多模型复杂业务追求极致性能
+
+   开发者在开发多模型复杂业务如实时视频流场景时，除了实现业务功能外，往往需要花费大量精力用于性能优化，开发者希望能快速获得极致性能。ModelBox框架多线程全异步的智能调度为用户提供了极致性能保障。
+
+1. 多软硬件适配
+
+   开发者的软硬件存在多样化，希望AI应用能同时运行在GPU、Ascend或者只有CPU的等多种硬件设备上，X86、ARM多系统架构，Ubuntu、OpenEuler等多操作系统，Pytorch、TensorFlow、Mindspore等多种模型引擎， 而只需要维护一套业务代码、工程。Modelbox框架提供了多设备、多系统、多模型引擎的适配能力，开发者一次开发多处运行。
+
+## ModelBox应用模式
 
 1. 标准模式
 
@@ -24,7 +79,7 @@
 
     * 算法部分：算法相关的执行逻辑。此部分中，开发者可以通过API静态的编排逻辑、使用已有的流程图配置文件、或者通过solution使用预置的逻辑，逻辑加载后会生成Flow对象，可以通过对象提供的数据输入输出接口完成对算法的调用，Flow可以存在多个，即可以加载多个算法逻辑。
 
-## 模式选择
+## 应用模式选择
 
 进行开发之前，需要先选择如何使用ModelBox帮助应用开发，以下是两种模式开发所需的工作、特性、场景推荐的介绍：
 
