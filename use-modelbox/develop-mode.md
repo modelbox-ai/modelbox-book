@@ -4,7 +4,7 @@
 
 ModelBox的开发视图如下，图中绿色的部分是开发者可以自定义扩展的部分。
 
-![sdk alt rect_w_800](../../assets/images/figure/develop/sdk.png)
+![sdk alt rect_w_800](../assets/images/figure/develop/sdk.png)
 
 ModelBox开发套件包含如下部分：
 
@@ -62,22 +62,23 @@ ModelBox开发套件包含如下部分：
 
 1. 标准模式
 
+    如下图所示，标准模式应用的组成部分。
+
     ![modelbox-app-mode1 alt rect_w_400](../assets/images/figure/get-start/app_develop_mode1.png)
 
-    如上图所示，此模式下AI应用被设计为两个部分：ModelBox部分和应用部分。
-    * ModelBox部分：这种模式下AI应用的主入口由ModelBox管理，启动时，首先进入ModelBox部分，会读取ModelBox配置，加载配置中选择的插件列表，初始化并启动所有的插件，至此完成ModelBox部分的主要工作。插件在ModelBox部分起着重要的作用，被设计来完成应用部分的管理工作。ModelBox内置了两个插件：ModelBox插件，用于加载流程图来启动应用部分，具体请见[ModelBox插件](../plugins/modelbox-plugin.md); Editor插件，用于开发时可视化管理应用部分的工作，如执行样例应用、可视化编排流程图等，具体请见[Editor插件](../plugins/editor.md)。
+    这种模式下AI应用的主入口由ModelBox管理，启动时，ModelBox会读取ModelBox配置，加载配置中选择的插件列表，初始化并启动所有的插件。插件在ModelBox部分起着重要的作用，被设计来完成应用部分的管理工作。ModelBox内置了两个插件：ModelBox插件，用于加载流程图来启动应用部分，具体请见[ModelBox插件](../plugins/modelbox-plugin.md); Editor插件，用于开发时可视化管理应用部分的工作，如执行样例应用、可视化编排流程图等，具体请见[Editor插件](../plugins/editor.md)。
 
-    * 应用部分：此部分是应用的全部逻辑承载，开发者首先通过流程图配置文件描述整个应用的数据处理过程，然后实现流程图中缺少的功能单元，完成整个应用。
+    应用的全部逻辑承载编排在流程图配置文件中，开发者首先通过流程图配置文件描述整个应用的数据处理过程，然后实现流程图中缺少的功能单元，完成整个应用。
 
 1. SDK模式
 
-    ![modelbox-app-mode2 alt rect_w_500](../assets/images/figure/get-start/app_develop_mode2.png)
+    如下图所示，SDK模式应用的组成部分。
 
-    如上图所示，此模式下AI应用被设计为两个部分：业务部分和算法部分。
+    ![modelbox-app-mode2 alt rect_w_400](../assets/images/figure/get-start/app_develop_mode2.png)
 
-    * 业务部分：在这个模式下，取代了ModelBox部分，作为AI应用的主入口，启动后，由业务部分通过ModelBox提供的API管理算法部分的初始化、启动及调用。
+    这种模式下，开发者控制AI应用的主入口。启动后，由流程图调用部分通过ModelBox SDK提供的API管理流程图的初始化、启动及数据交互。
 
-    * 算法部分：算法相关的执行逻辑。此部分中，开发者可以通过API静态的编排逻辑、使用已有的流程图配置文件、或者通过solution使用预置的逻辑，逻辑加载后会生成Flow对象，可以通过对象提供的数据输入输出接口完成对算法的调用，Flow可以存在多个，即可以加载多个算法逻辑。
+    流程图调用部分中，开发者可以通过API进行流程逻辑编排、加载已有的流程图配置文件、或者通过solution使用预置的逻辑等方式构建流程图，流程图构建由Flow对象完成，可以通过Flow对象提供的数据输入输出接口完成对算法的调用，Flow可以存在多个，即可以加载多个流程图逻辑。
 
 ## 应用模式选择
 

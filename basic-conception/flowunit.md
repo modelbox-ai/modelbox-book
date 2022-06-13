@@ -14,7 +14,7 @@
 
 在ModelBox中，功能单元支持不同的实现方式以适用于不同场景的使用。
 
-![flowunit-component alt rect_w_1280](../../assets/images/figure/conception-feature/conception/flowunit_impl.png)
+![flowunit-component alt rect_w_600](../assets/images/figure/conception-feature/conception/flowunit_impl.png)
 
 | 实现方式    | 说明                                              |
 | ---------- | ----------------------------------------          |
@@ -29,7 +29,7 @@
 
 为方便功能单元的扩展和复用，它被设计为插件的方式进行加载，如下简要介绍其加载的过程。
 
-![flowunit-process alt rect_w_1280](../../assets/images/figure/framework-conception/flowunit-process.png)
+![flowunit-process alt rect_w_1280](../assets/images/figure/framework-conception/flowunit-process.png)
 
 FlowUnit插件的加载流程如上图：
 
@@ -116,13 +116,13 @@ FlowUnit插件的加载流程如上图：
 
 * **例子**
 
-    ![car-detect](../../assets/images/figure/solution/car-detect.png)
+    ![car-detect](../assets/images/figure/solution/car-detect.png)
 
     车辆跟踪推理DEMO，当发现车辆时，对车辆画框图提示。
 
 * **Flow流程图**
 
-    ![car-detect-flow alt rect_w_600](../../assets/images/figure/framework-conception/car-detect-flow.png)
+    ![car-detect-flow alt rect_w_600](../assets/images/figure/framework-conception/car-detect-flow.png)
 
     流程说明：
     1. 将文件数据发送给VideoDemux，VideoDemux将数据解开packet后发送给VideoDecoder。

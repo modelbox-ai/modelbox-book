@@ -4,7 +4,7 @@ Buffer作为数据流的唯一载体，在节点的端口之间进行数据的�
 
 ## Buffer定义
 
-![buffer alt rect_w_1280](../../assets/images/figure/conception-feature/conception/buffer_construct.png)
+![buffer alt rect_w_300](../assets/images/figure/conception-feature/conception/buffer_construct.png)
 
 Buffer由BufferMeta和DeviceData两个部分组成，BufferMeta存放了每个Buffer的元信息，用于描述Buffer的数据，BufferMeta只存放在主机上；DeviceData是Buffer的主体，用于存放数据，DeviceData是具体设备上申请的存储空间，可以是gpu、cpu等硬件上的存储空间。因此功能单元的输入端口可以指定输入Buffer所在的设备，框架会帮忙检查并确保数据存放在指定的设备上。
 
