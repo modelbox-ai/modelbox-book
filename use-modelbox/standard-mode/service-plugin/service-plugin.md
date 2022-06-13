@@ -10,15 +10,11 @@
 
 服务插件在视频场景使用较为普遍，典型使用场景为：视频分析任务需要从外部平台或者组件下发到ModelBox框架进行任务分析时，需要通过服务插件来接受外部的请求并转化为ModelBox框架里的分析任务进行业务分析。同时服务插件也可以实现统计信息的收集并发送给外部运维平台，实现与外部系统的对接。
 
-ModelBox框架提供了预置的服务插件ModelBox Plugin，提供流程图的加载和运行, 见[运行流程图](../../../plugins/modelbox-plugin.md)章节。在大部分情况下，可以直接使用ModelBox Plugin完成相应的业务功能，当某些场景下，ModelBox Plugin功能无法满足要求时，需要自定义开发服务插件，下面介绍服务插件的具体开发流程。
+ModelBox框架提供了预置的服务插件ModelBox Plugin，用于流程图的加载和运行, 见[ModelBox Plugin](../../../plugins/modelbox-plugin.md)章节。在大部分情况下，可以直接使用ModelBox Plugin完成相应的业务功能，当某些场景下，ModelBox Plugin功能无法满足要求时，需要自定义开发服务插件，下面介绍服务插件的具体开发流程。
 
-## 服务插件开发流程
+## 服务插件接口说明
 
-服务插件开发整体流程如下：
-
-![server-plugin--dev-flow alt rect_w_500](../../../assets/images/figure/develop/server-plugin--dev-flow.png)
-
-## 服务插件API
+服务插件整体模块图如下：
 
 ![api-modelbox-server alt rect_w_900](../../../assets/images/figure/api/api-modelbox-server.png)
 
@@ -90,16 +86,13 @@ ModelBox API按照类型包含：
 
   定时器组件可以用于启动定时任务
 
-## 开发例子
+## 服务插件模板创建
 
-### 准备工作
+插件开发前，请准备好ModelBox开发环境。开发者可以通过modelbox-tool命名进行服务插件模板工程的创建，创建命令如下：
 
-插件开发前，请确保：
-
-1. ModelBox Server正确安装并运行。
-1. ModelBox Server Develop安装包正确安装。
-
-### 创建服务插件模板
+```shell
+modelbox-tool template -service-plugin -name PluginName
+```
 
 开发者可以通过modelbox-tool命名进行服务插件模板工程的创建，创建命令如下：
 
@@ -107,16 +100,13 @@ ModelBox API按照类型包含：
 modelbox-tool template -service-plugin -name PluginName
 ```
 
-### 编写插件入口函数
+## 服务插件逻辑实现
 
-#### 插件入口流程
+* 服务插件启动入口实现
 
 ```c++
-#ifndef MODELBOX_MODELBOX_EXAMPLE_PLUGIN_H_
-#define MODELBOX_MODELBOX_EXAMPLE_PLUGIN_H_
 
 #include "modelbox/server/plugin.h"
-#include <memory>
 
 // 插件需要实现的接口
 class ModelBoxExamplePlugin : public Plugin {
@@ -162,13 +152,13 @@ ModelBox加载服务插件流程如下：
 
     插件调用ModelBox Server，以及ModelBox Library的API进行业务控制和运行。具体参考相关的API。
 
-#### Job创建流程
+* Job创建流程
 
 使用场景为流程图不依赖于外部给其输入，直接加载图配置即可运行场景。如图片推理服务，数据流可由流程图中的HTTP功能单元产生数据，再比如流程图中读本地文件作为数据源的场景。
 
   ```c++
-   Job job_;
-   JobManager job_manager_;
+   std::shared_ptr<modelbox::Job> job_;
+   std::shared_ptr<modelbox::JobManager> job_manager_;
 
   bool ModelBoxExamplePlugin::Init(std::shared_ptr<modelbox::Configuration> config)
   {
@@ -200,9 +190,27 @@ ModelBox加载服务插件流程如下：
 
   ```
 
-#### Task创建流程
+* Task创建流程
 
 使用场景为流程图运行依赖与外部输入的场景，如分析的视频流信息需要由外部传入服务插件，再用服务插件创建Task，并把相应配置参数数据传递到流程图。
+
+由于流程图需要接受插件输入，所以需要首先给流程图配置输入节点：
+
+```toml
+[graph]
+graphconf = '''digraph demo {
+    input1[type=input, device=cpu, deviceid=0]   # 设置图的输入端口，端口名为"input1" 
+    data_source_parser[type=flowunit, flowunit=data_source_parser, device=cpu, deviceid=0, retry_interval_ms = 1000] 
+    videodemuxer[type=flowunit, flowunit=video_demuxer, device=cpu, deviceid=0]
+    videodecoder[type=flowunit, flowunit=video_decoder, device=cpu, deviceid=0,pix_fmt=nv12]  
+    ...
+    input1 -> data_source_parser:in_data
+    data_source_parser:out_video_url -> videodemuxer:in_video_url
+    videodemuxer:out_video_packet -> videodecoder:in_video_packet
+    videodecoder:out_video_frame -> ...
+}'''
+format = "graphviz"
+```
 
 ```c++
   void ModelBoxExamplePlugin::ModelBoxTaskStatusCallback(modelbox::OneShotTask *task,
@@ -233,7 +241,7 @@ ModelBox加载服务插件流程如下：
                           input_cfg.size());
       buff->Set("source_type", std::string("url")); //输入需要的配置信息，由流程图中输入节点决定
       std::unordered_map<std::string, std::shared_ptr<BufferList>> datas;
-      datas.emplace("input1", buff_list);//输入节点名称由流程图决定
+      datas.emplace("input1", buff_list);//输入端口节点，对应流程图中的input类型端口名
       status = oneshot_task->FillData(datas);
       if (status != modelbox::STATUS_OK) {
           return status;
@@ -260,20 +268,22 @@ ModelBox加载服务插件流程如下：
           sleep(1);
           task_status = iva_task->GetTaskStatus();
       }
+
+      //删除任务
       task_manager->DeleteTaskById(oneshot_task->GetTaskId());
       return true;
 }
 ```
 
-### 服务插件配置使用
+## 服务插件编译运行
 
-插件开发完成后，编译为SO文件。需要将插件加入ModelBox Server配置文件的`plugin.files`配置项插件配置列表中，即默认路径为`/usr/local/etc/modelbox/modelbox.conf`的`plugin.files`配置项。
+服务插件目前只能通过C++开发，插件开发完成后，需要编译为SO文件，并将路径配置加入ModelBox配置文件的`plugin.files`配置项插件配置列表中，开发态配置文件默认路径为`$HOME/modelbox-service/conf/modelbox.conf`，详细说明可参加[流程图运行](../../standard-mode/flow-run.md)章节。
 
 ```toml
 [plugin]
 files = [
     "/usr/local/lib/modelbox-plugin.so",   #由于不同操作系统目录结构存在差异，此路径也可能为 /usr/local/lib64/modelbox-plugin.so
-    "/xxx/xxx/example-plugin.so" 
+    "/xxx/xxx/example-plugin.so"           
 ]
 ```
 
@@ -284,4 +294,4 @@ files = [
 1. 若采用tar.gz包安装的服务，modelbox.conf配置文件在对应的服务目录中。
 1. 开发者可扩展增加toml的配置项，在ModelBoxExamplePlugin::Init接口的configuration对象中获取即可。
 
-插件加入配置文件后，`systemctl restart modelbox`重启ModelBox Server生效， 同时服务插件日志将统一收集到ModelBox日志。
+插件加入配置文件后，执行 $HOME/modelbox-service/modelbox restart 重启ModelBox Server生效， 同时服务插件日志将统一收集到ModelBox日志。

@@ -3,7 +3,7 @@
 本章节介绍推理功能单元的开发流程。ModelBox内置了主流的推理引擎，如TensorFlow，TensorRT，LibTorch，Ascend ACL，Mindspore。在开发推理功能单元时，只需要通过配置toml文件，即可完成推理功能单元的开发。
 开发之前，可以从[功能单元概念](../../../basic-conception/flowunit.md)章节了解流单的执行过程。
 
-## 创建推理功能单元
+## 推理功能单元创建
 
 Modelbox提供了多种方式进行推理功能单元的创建：
 
@@ -32,7 +32,7 @@ Modelbox提供了多种方式进行推理功能单元的创建：
 
 ModelBox框架在初始化时，会扫描[some-flowunit]目录中的toml后缀的文件，并读取相关的推理功能单元信息。\[infer-plugin\].so是推理所需插件，推理功能单元支持加载自定义插件，开发者可以实现tensorRT 自定义算子。
 
-## 配置推理功能单元
+## 推理功能单元配置
 
 ```toml
 # 基础配置
