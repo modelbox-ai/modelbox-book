@@ -102,6 +102,6 @@ files = [
 
 ## 安装
 
-其中rpm/deb可通过对应命令直接安装，tar包在根目录解压即可。默认安装目录为`/opt/modelbox/application/$project_name/`目录，这个目录下包括流程图（graph）、功能单元（flowunit）。
+可直接使用对应的[运行镜像](../../../environment/container-usage.md#支持容器列表)，在运行镜像中rpm/deb可通过对应命令直接安装，tar包在根目录解压即可。默认安装目录为`/opt/modelbox/application/$project_name/`目录，这个目录下包括流程图（graph）、功能单元（flowunit）、插件。
 
 ModelBox配置文件建议安装在`/usr/local/etc/modelbox/modelbox.conf`路径下。

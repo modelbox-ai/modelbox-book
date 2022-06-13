@@ -94,7 +94,7 @@
 
 之前数据流中提到，expand和condition会使得数据流的层级标记下降一次，这个层级不仅影响了匹配，也作用于异常的捕获。核心点是，高层级的错误，低层不可见；低层级的错误，高层可见。
 
-![exception_capture alt rect_w_400](../assets/images/figure/conception-feature/features/exception_capture.png)
+![exception_capture alt rect_w_600](../assets/images/figure/conception-feature/features/exception_capture.png)
 
 上图中，异常可见情况如下：
 

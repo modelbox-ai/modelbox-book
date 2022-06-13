@@ -9,7 +9,7 @@
 |[Buffer](c++/modelbox_buffer.md)| modelbox存储基本数据的数据结构|
 |[BufferList](c++/modelbox_bufferlist.md)| modelbox存储基本数据的数据结构|
 |[FlowUnit](c++/modelbox_flowunit.md)| modelbox最基本的编排单元|
-|[DataContext](c++/modelbox_datacontext.md)| modelbox流单元当中储存数据的数据结构|
+|[DataContext](c++/modelbox_datacontext.md)| modelbox功能单元当中储存数据的数据结构|
 |[Configuration](c++/modelbox_configuration.md)| modelbox存放配置项的数据结构|
 |[DataMeta](c++/modelbox_datameta.md)| modelbox挂在端口上面存放数据元信息的数据结构|
 |[FlowUnitEvent](c++/modelbox_flowunitevent.md)| modelbox中描述event的数据结构|

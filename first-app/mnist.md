@@ -83,6 +83,30 @@ AI应用开发前需要准备好匹配当前modelbox版本支持的推理框架�
 
     创建出的文件夹说明可参考[工程目录](../use-modelbox/standard-mode/create-project.md#工程目录)。
 
+1. 运行流程图
+
+    * UI界面启动
+
+      在**任务编排**页面中打开流程图，点击**调试**可进行api调试，选择Mnist模板，再点击send按钮可进行测试；
+
+    * 命令行启动
+
+      执行如下命令即可启动mnist识别http服务：
+
+      ``` shell
+      modelbox-tool -log-level INFO flow -run path_to_mnist.toml
+      ```
+
+1. 测试
+
+    * UI界面测试
+
+      在**任务管理**页面中打开流程图，点击绿色**运行按钮**可运行流程图；
+
+    * 脚本测试
+
+      可以使用已经准备好测试脚本`/usr/local/share/modelbox/demo/mnist/graph/test_mnist.py`，直接运行`python3 test_mnist.py`可进行验证。
+
 ### 流程图开发
 
 流程图编排是根据实际情况将现有业务逻辑拆分为N个功能单元，再将功能单元串联成一个完整的业务的过程。功能单元分为ModelBox预置功能单元和用户自定义功能单元，当预置功能单元满足不了业务场景时，需要用户进行功能单元开发。有两种方式可编排流程图，第一种是使用UI进行可视化UI编排，第二种是直接编写图文件。具体可参考[流程图开发章节](../flow/flow.md#流程图开发及运行)。这里采用第二种方式。
@@ -109,7 +133,7 @@ graphconf = '''digraph mnist_sample {
 }
 ```
 
-除了构建图之外，还需要增加必要配置，如功能单元扫描路径，日志级别等，具体可参考样例文件`/usr/local/share/modelbox/demo/mnist/graph/mnist.toml`。
+除了构建图之外，还需要增加必要配置，如功能单元扫描路径，日志级别等，具体可参考样例文件`[project_root]/src/graph/mnist.toml`。
 
 ### 功能单元开发
 
@@ -122,6 +146,7 @@ ModelBox提供基础预置功能单元，除此之外还需补充流程图中缺
   预处理需要做：解析出图片，对图片进行reshape，构建功能单元输出buffer。
   
   ``` python
+  # get input/output port buffer_list
   in_data = data_context.input("In_1")
   out_data = data_context.output("Out_1")
   
@@ -149,7 +174,7 @@ ModelBox提供基础预置功能单元，除此之外还需补充流程图中缺
           out_data.push_back(add_buffer)
   ```
 
-  详细代码可参考`/usr/local/share/modelbox/demo/mnist/flowunit/mnist_preprocess`。
+  详细代码可参考`[project_root]/src/flowunit/mnist_preprocess`。
 
 * MNIST推理功能单元
   
@@ -178,7 +203,7 @@ ModelBox提供基础预置功能单元，除此之外还需补充流程图中缺
   type = "float" 
   ```
 
-  详细代码可参考`/usr/local/share/modelbox/demo/mnist/flowunit/mnist_infer`。
+  详细代码可参考`[project_root]/src/flowunit/mnist_infer`。
 
 * MNIST响应功能单元
   
@@ -189,7 +214,7 @@ ModelBox提供基础预置功能单元，除此之外还需补充流程图中缺
   out_data = data_context.output("out_data")
   
   for buffer in in_data:
-      # get result
+      # get result from buffer
       result_str = ''
       if buffer.has_error():
           error_msg = buffer.get_error_msg()
@@ -201,34 +226,12 @@ ModelBox提供基础预置功能单元，除此之外还需补充流程图中缺
           result = {
               "predict_result": str(max_index)
           }
-
+      
+      # build output buffer
       result_str = (json.dumps(result) + chr(0)).encode('utf-8').strip()
       add_buffer = modelbox.Buffer(self.get_bind_device(), result_str)
+      # push buffer into output port
       out_data.push_back(add_buffer)
   ```
 
-  详细代码可参考`/usr/local/share/modelbox/demo/mnist/flowunit/mnist_response`。
-
-### 调试运行
-
-首先需要把http服务运行起来，然后再模拟请求测试。
-
-* 运行流程图
-
-  执行如下命令即可启动MNIST识别http服务：
-
-  ``` shell
-  modelbox-tool -log-level info flow -run path_to_mnist.toml
-  ```
-
-  由于ModelBox库已集成样例，可直接运行`modelbox-tool -log-level info flow -run /usr/local/share/modelbox/demo/mnist/graph/mnist.toml`。
-
-* 测试
-
-  可以使用已经准备好测试脚本`/usr/local/share/modelbox/demo/mnist/graph/test_mnist.py`，直接运行`python3 test_mnist.py`可进行验证。
-
-  也可以在UI界面中进行API测试。
-
-### 编译打包
-
-进入build目录，执行`make package`，根据系统版本可得到rpm/deb安装包。
+  详细代码可参考`[project_root]/src/flowunit/mnist_response`。

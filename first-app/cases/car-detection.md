@@ -22,9 +22,11 @@ AI应用开发前需要准备好匹配当前modelbox版本支持的推理框架�
 docker pull modelbox/modelbox-develop-libtorch_1.9.1-cuda_10.2-ubuntu-x86_64:latest
 ```
 
-### 创建项目
+### 项目创建与运行
 
 可参考[创建项目](./hello-world.md)，最后可选择创建car_detction项目工程。
+
+本案例是测试本地视频文件，可以测试视频路径可以在video_input节点中设置，结果视频路径在videoencoder节点中设置。
 
 ### 流程图开发
 
@@ -71,8 +73,6 @@ graphconf = """digraph car_detection {
 }"""
 ```
 
-除了构建图之外，还需要增加必要配置，如功能单元扫描路径，日志级别等，具体可参考样例文件`/usr/local/share/modelbox/demo/car_detection/graph/car_detection.toml`。
-
 ### 功能单元开发
 
 用户只需开发车辆检测推理功能单元(model_inference)、后处理(yolo_post)即可。
@@ -102,22 +102,8 @@ graphconf = """digraph car_detection {
   type = "float"
   ```
 
-  详细代码可参考`/usr/local/share/modelbox/demo/car_detection/flowunit/car_detect/car_detect.toml`。
+  详细代码可参考`[project_root]/src/flowunit/car_detect/car_detect.toml`。
 
 - 车辆检测后处理功能单元(yolo_post)
 
-  详细代码可参考`/usr/local/share/modelbox/demo/car_detection/flowunit/yolox_post`。
-
-### 调试运行
-
-本案例是测试本地视频文件，可以视频路径可以在video_input中设置。所以直接使用modelbox-tool测试工具运行流程图即可
-
-```shell
-modelbox-tool -verbose -log-level info flow -run path_to_car_detection.toml
-```
-
-ModelBox镜像已集成样例，可直接运行`modelbox-tool -log-level info flow -run /usr/local/share/modelbox/demo/car_detection/graph/car_detection.toml`。
-
-### 编译打包
-
-进入build目录，执行`make package`，根据系统版本可得到rpm/deb安装包。
+  详细代码可参考`[project_root]/src/flowunit/yolox_post`。

@@ -29,7 +29,7 @@ C++开发调用流程图时，需要先安装C++的运行包，然后再编写C+
 1. 调用Flow::build初始化流程图。
 1. 调用Flow::run_async，异步执行流程图。
 1. 数据输入，数据处理，结果获取。
-1. 调用Flow::Stop释放图资源
+1. 调用Flow::Stop释放图资源。
 
 ## 流程图配置
 
@@ -66,10 +66,10 @@ format = "graphviz"
 #include <modelbox/flow.h>
 ```
 
-* 图初始化和运行
+* 图创建初始化和启动
 
 ```c++
-modelbox::Flow FlowInit(const std::string &file) {
+modelbox::Flow CreateFlow(const std::string &file) {
   // 创建Flow执行对象
   auto flow = std::make_shared<modelbox::Flow>();
 
@@ -154,8 +154,8 @@ modelbox::Status RecvExternalData(std::shared_ptr<ExternalDataMap> ext_data) {
   return modelbox::STATUS_OK;
 }
 
-主函数
-int Process(std::shared_ptr<modelbox::Flow> flow, void *data, int len) {
+// 数据发送获取
+modelbox::Status Process(std::shared_ptr<modelbox::Flow> flow, void *data, int len) {
 
   ... 
   // 创建外部输入句柄
@@ -167,14 +167,14 @@ int Process(std::shared_ptr<modelbox::Flow> flow, void *data, int len) {
   // 获取输出结果并处理
   RecvExternalData(ext_data);
   ...
-  }
+}
 
 ```
 
 * 图的资源释放
 
 ```c++
-int FlowStop(std::shared_ptr<modelbox::Flow> flow) {
+void FlowStop(std::shared_ptr<modelbox::Flow> flow) {
   // 结束执行
   flow->Stop();
 }

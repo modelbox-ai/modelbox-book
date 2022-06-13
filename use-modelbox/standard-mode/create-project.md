@@ -67,11 +67,11 @@ modelbox-tool template -project -name [name] -template [template_name] -path [pr
 
 - 参数说明
 
-  -name：项目名称
+  -name：项目名称；
 
-  -template：选择创建项目的模板类型
+  -template：选择创建项目的模板类型，可选参数：`empty`、`mnist`、`mnist-mindspore`、`hello-world`、`car_detection`、`emotion_detection`、`resize`；
   
-  -path：项目工程路径
+  -path：项目工程路径；
 
 更多详细参数使用可通过`modelbox-tool template --help`查询。
 

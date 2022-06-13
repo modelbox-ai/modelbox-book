@@ -26,6 +26,8 @@ docker pull modelbox/modelbox-develop-libtorch_1.9.1-cuda_10.2-ubuntu-x86_64:lat
 
 可参考[创建项目](./hello-world.md)，最后可选择创建emotion_detction项目工程。
 
+本案例是测试本地视频文件，可以测试视频路径可以在video_input节点中设置，结果视频路径在videoencoder节点中设置。
+
 ### 流程图开发
 
 ![emotion_detection_flow](../assets/images/figure/first-app/emotion_detection_flow.png)
@@ -94,7 +96,7 @@ graphconf = """digraph emotion_detection {
 
 ### 功能单元开发
 
-需要开发的功能单元可参考`/usr/local/share/modelbox/demo/emotion_detection/flowunit/`目录，这里主要讲解之前案例没有用到的条件功能单元、展开/合并功能单元如何使用：
+需要开发的功能单元可参考`[project_root]/src/flowunit/`目录，这里主要讲解之前案例没有用到的条件功能单元、展开/合并功能单元如何使用：
 
 - 人脸后处理功能单元(face_post)
 
@@ -136,7 +138,7 @@ graphconf = """digraph emotion_detection {
   name = "no_face"
   ```
 
-  详细配置和功能单元代码可参考：`/usr/local/share/modelbox/demo/emotion_detection/flowunit/face_post`
+  详细配置和功能单元代码可参考：`[project_root]/src/flowunit/face_post`
 
 - 展开/合并功能单元
 
@@ -189,18 +191,4 @@ graphconf = """digraph emotion_detection {
     name = "out_data"
     ```
 
-    详细配置和功能单元代码可参考：`/usr/local/share/modelbox/demo/emotion_detection/flowunit/collapse_emotion`
-
-### 调试运行
-
-本案例是测试本地视频文件，可以视频路径可以在video_input中设置。所以直接使用modelbox-tool测试工具运行流程图即可
-
-```shell
-modelbox-tool -verbose -log-level info flow -run path_to_emotion_detection.toml
-```
-
-ModelBox镜像已集成样例，可直接运行`modelbox-tool -log-level info flow -run /usr/local/share/modelbox/demo/emotion_detection/graph/emotion_detection.toml`。
-
-### 编译打包
-
-进入build目录，执行`make package`，根据系统版本可得到rpm/deb安装包。
+    详细配置和功能单元代码可参考：`[project_root]/src/flowunit/collapse_emotion`

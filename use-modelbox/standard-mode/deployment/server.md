@@ -8,6 +8,8 @@
 
 ### 通过modelbox命令启动
 
+  此方法可在运行镜像启动时添加如下启动脚本/命令，来执行如下命令启动ModelBox服务：
+
   ```shell
   modelbox -c [path_to_modelbox_conf] -fV
   ```
@@ -24,7 +26,9 @@
 
 ### 通过systemd启动
 
-  ModelBox Server服务使用标准的systemd unit管理，启动管理服务，使用systemd命令管理。默认读取的ModelBox配置路径为`/usr/local/etc/modelbox/modelbox.conf`，用户可替换/修改该目录下的配置文件。
+  此方法在运行镜像启动时会默认通过systemd启动ModelBox服务，默认读取的ModelBox配置路径为`/usr/local/etc/modelbox/modelbox.conf`，用户可替换/修改该的配置文件即可。
+  
+  ModelBox Server服务使用标准的systemd unit管理，启动管理服务，使用systemd命令管理。
 
   当运行环境支持Systemd时，可通过如下命令对ModelBox服务进行操作：
   
@@ -49,9 +53,9 @@
   sudo /etc/init.d/modelbox-manager [start|status|stop]
   ```
 
-#### ModelBox服务启动参数配置
+- ModelBox服务启动参数配置
 
-ModelBox Server服务启动参数配置项目如下：
+  ModelBox Server服务启动参数配置项目如下：
 
 | 配置项          | 配置功能                                                                                                                   |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------- |

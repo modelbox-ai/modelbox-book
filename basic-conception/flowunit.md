@@ -14,7 +14,7 @@
 
 在ModelBox中，功能单元支持不同的实现方式以适用于不同场景的使用。
 
-![flowunit-component alt rect_w_600](../assets/images/figure/conception-feature/conception/flowunit_impl.png)
+![flowunit-component alt rect_w_800](../assets/images/figure/conception-feature/conception/flowunit_impl.png)
 
 | 实现方式    | 说明                                              |
 | ---------- | ----------------------------------------          |

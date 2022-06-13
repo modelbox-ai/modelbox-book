@@ -5,7 +5,7 @@
 |[modelbox.Buffer](python/modelbox_buffer.md)| modelbox存储基本数据的数据结构|
 |[modelbox.BufferList](python/modelbox_bufferlist.md)| modelbox存储基本数据的数据结构 |
 |[modelbox.Configuration](python/modelbox_configuration.md)| modelbox存放配置项的数据结构|
-|[modelbox.DataContext](python/modelbox_datacontext.md)| modelbox在流单元执行时存放数据的上下文|
+|[modelbox.DataContext](python/modelbox_datacontext.md)| modelbox在功能单元执行时存放数据的上下文|
 |[modelbox.DataMeta](python/modelbox_datameta.md)| modelbox挂在端口上面存放数据元信息的数据结构|
 |[modelbox.Device](python/modelbox_device.md)| modelbox映射设备的数据结构|
 |[modelbox.ExtOutputBufferList](python/modelbox_extoutputbufferlist.md)| modelbox获取入口信息的数据结构 |

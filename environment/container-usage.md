@@ -181,7 +181,7 @@ modelbox/modelbox-develop-tensorflow_2.6.0-cuda_11.2-ubuntu-x86_64:latest
 
 Modelbox镜像仓库地址如下：[https://hub.docker.com/u/modelbox](https://hub.docker.com/u/modelbox)
 
-当前支持的开发镜像列表如下：
+* 当前支持的**开发镜像**列表如下：
 
 |镜像名称|操作系统|系统架构|加速平台版本|推理引擎版本|下载地址|
 |--|--|--|--|--|--|  
@@ -196,7 +196,7 @@ Modelbox镜像仓库地址如下：[https://hub.docker.com/u/modelbox](https://h
 |modelbox-develop-mindspore_1.6.1-cann_5.0.4-ubuntu-aarch64|ubuntu|aarch64|cann 5.0.4|mindspore 1.6.1、ACL|[下载链接](https://hub.docker.com/r/modelbox/modelbox-develop-mindspore_1.6.1-cann_5.0.4-ubuntu-aarch64/tags)|
 |modelbox-develop-mindspore_1.6.1-cann_5.0.4-openeuler-aarch64|openeuler|aarch64|cann 5.0.4|mindspore 1.6.1、ACL|[下载链接](https://hub.docker.com/r/modelbox/modelbox-develop-mindspore_1.6.1-cann_5.0.4-openeuler-aarch64/tags)|
 
-各组合对应运行镜像列表如下：
+* 各组合对应**运行镜像**列表如下：
 
 |镜像名称|操作系统|系统架构|加速平台版本|推理引擎版本|下载地址|
 |--|--|--|--|--|--|  

@@ -64,7 +64,7 @@ ModelBox开发套件包含如下部分：
 
     如下图所示，标准模式应用的组成部分。
 
-    ![modelbox-app-mode1 alt rect_w_400](../assets/images/figure/get-start/app_develop_mode1.png)
+    ![modelbox-app-mode1 alt rect_w_800](../assets/images/figure/get-start/app_develop_mode1.png)
 
     这种模式下AI应用的主入口由ModelBox管理，启动时，ModelBox会读取ModelBox配置，加载配置中选择的插件列表，初始化并启动所有的插件。插件在ModelBox部分起着重要的作用，被设计来完成应用部分的管理工作。ModelBox内置了两个插件：ModelBox插件，用于加载流程图来启动应用部分，具体请见[ModelBox插件](../plugins/modelbox-plugin.md); Editor插件，用于开发时可视化管理应用部分的工作，如执行样例应用、可视化编排流程图等，具体请见[Editor插件](../plugins/editor.md)。
 
@@ -74,7 +74,7 @@ ModelBox开发套件包含如下部分：
 
     如下图所示，SDK模式应用的组成部分。
 
-    ![modelbox-app-mode2 alt rect_w_400](../assets/images/figure/get-start/app_develop_mode2.png)
+    ![modelbox-app-mode2 alt rect_w_800](../assets/images/figure/get-start/app_develop_mode2.png)
 
     这种模式下，开发者控制AI应用的主入口。启动后，由流程图调用部分通过ModelBox SDK提供的API管理流程图的初始化、启动及数据交互。
 

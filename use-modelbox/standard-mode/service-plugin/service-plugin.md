@@ -1,20 +1,20 @@
-# ModelBox服务插件
+# ModelBox插件
 
-## ModelBox服务插件介绍
+## ModelBox插件介绍
 
-* 什么是ModelBox服务插件
+* 什么是ModelBox插件
 
-服务插件是指基于ModelBox框架对外交互的组件，它可以用来作为AI应用和周边系统对接的桥梁。ModelBox框架提供了服务插件管理和扩展开发能力，用户可以定制化开发属于自己业务的插件来对接第三方平台，ModelBox框架可以将其加载并运行。在服务插件内可以完成流程图的加载和运行、任务的创建和启停，统计数据的收集等。同时，ModelBox框架可以支持多个服务插件的加载。
+ModelBox插件是指基于ModelBox框架对外交互的组件，它可以用来作为AI应用和周边系统对接的桥梁。ModelBox框架提供了ModelBox插件管理和扩展开发能力，用户可以定制化开发属于自己业务的插件来对接第三方平台，ModelBox框架可以将其加载并运行。在ModelBox插件内可以完成流程图的加载和运行、任务的创建和启停，统计数据的收集等。同时，ModelBox框架可以支持多个ModelBox插件的加载。
 
-* 服务插件使用场景
+* ModelBox插件使用场景
 
-服务插件在视频场景使用较为普遍，典型使用场景为：视频分析任务需要从外部平台或者组件下发到ModelBox框架进行任务分析时，需要通过服务插件来接受外部的请求并转化为ModelBox框架里的分析任务进行业务分析。同时服务插件也可以实现统计信息的收集并发送给外部运维平台，实现与外部系统的对接。
+ModelBox插件在视频场景使用较为普遍，典型使用场景为：视频分析任务需要从外部平台或者组件下发到ModelBox框架进行任务分析时，需要通过ModelBox插件来接受外部的请求并转化为ModelBox框架里的分析任务进行业务分析。同时ModelBox插件也可以实现统计信息的收集并发送给外部运维平台，实现与外部系统的对接。
 
-ModelBox框架提供了预置的服务插件ModelBox Plugin，用于流程图的加载和运行, 见[ModelBox Plugin](../../../plugins/modelbox-plugin.md)章节。在大部分情况下，可以直接使用ModelBox Plugin完成相应的业务功能，当某些场景下，ModelBox Plugin功能无法满足要求时，需要自定义开发服务插件，下面介绍服务插件的具体开发流程。
+ModelBox框架提供了预置的ModelBox插件`ModelBox Plugin`，用于流程图的加载和运行, 见[ModelBox Plugin](../../../plugins/modelbox-plugin.md)章节。在大部分情况下，可以直接使用ModelBox Plugin完成相应的业务功能，当某些场景下，ModelBox Plugin功能无法满足要求时，需要自定义开发ModelBox插件，下面介绍ModelBox插件的具体开发流程。
 
-## 服务插件接口说明
+## ModelBox插件接口说明
 
-服务插件整体模块图如下：
+插件整体模块图如下：
 
 ![api-modelbox-server alt rect_w_900](../../../assets/images/figure/api/api-modelbox-server.png)
 
@@ -24,10 +24,10 @@ ModelBox API按照类型包含：
 
 | 接口          | 接口功能                                                   | 说明                                                                     |
 | ------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------ |
-| CreatePlugin  | 用户创建服务插件对象，并返回给ModelBox框架                 | ModelBox框架启动时加载参加时调用                                         |
-| Plugin::Init  | 用户实现服务插件初始化逻辑，提供系统配置，插件初始化时调用 | ModelBox框架启动时，在CreatePlugin成功后插件初始化调用；不能存在阻塞操作 |
-| Plugin::Start | 用户实现服务插件启动逻辑，插件启动时调用                   | 插件启动时调用                                                           |
-| Plugin::Stop  | 用户实现服务插件停止逻辑，插件停止时调用                   | ModelBox框架进程退出时插件停止时调用                                     |
+| CreatePlugin  | 用户创建ModelBox插件对象，并返回给ModelBox框架                 | ModelBox框架启动时加载参加时调用                                         |
+| Plugin::Init  | 用户实现ModelBox插件初始化逻辑，提供系统配置，插件初始化时调用 | ModelBox框架启动时，在CreatePlugin成功后插件初始化调用；不能存在阻塞操作 |
+| Plugin::Start | 用户实现ModelBox插件启动逻辑，插件启动时调用                   | 插件启动时调用                                                           |
+| Plugin::Stop  | 用户实现ModelBox插件停止逻辑，插件停止时调用                   | ModelBox框架进程退出时插件停止时调用                                     |
 
 * **Job**： 任务管理组件
 
@@ -86,23 +86,23 @@ ModelBox API按照类型包含：
 
   定时器组件可以用于启动定时任务
 
-## 服务插件模板创建
+## ModelBox插件模板创建
 
-插件开发前，请准备好ModelBox开发环境。开发者可以通过modelbox-tool命名进行服务插件模板工程的创建，创建命令如下：
-
-```shell
-modelbox-tool template -service-plugin -name PluginName
-```
-
-开发者可以通过modelbox-tool命名进行服务插件模板工程的创建，创建命令如下：
+插件开发前，请准备好ModelBox开发环境。开发者可以通过modelbox-tool命名进行ModelBox插件模板工程的创建，创建命令如下：
 
 ```shell
 modelbox-tool template -service-plugin -name PluginName
 ```
 
-## 服务插件逻辑实现
+开发者可以通过modelbox-tool命名进行ModelBox插件模板工程的创建，创建命令如下：
 
-* 服务插件启动入口实现
+```shell
+modelbox-tool template -service-plugin -name PluginName
+```
+
+## ModelBox插件逻辑实现
+
+* ModelBox插件启动入口实现
 
 ```c++
 
@@ -130,7 +130,7 @@ std::shared_ptr<Plugin> CreatePlugin() {
 }
 ```
 
-ModelBox加载服务插件流程如下：
+ModelBox加载ModelBox插件流程如下：
 
 1. ModelBox Server先调用插件中的`CreatePlugin`函数创建插件对象。
 
@@ -192,7 +192,7 @@ ModelBox加载服务插件流程如下：
 
 * Task创建流程
 
-使用场景为流程图运行依赖与外部输入的场景，如分析的视频流信息需要由外部传入服务插件，再用服务插件创建Task，并把相应配置参数数据传递到流程图。
+使用场景为流程图运行依赖与外部输入的场景，如分析的视频流信息需要由外部传入ModelBox插件，再用ModelBox插件创建Task，并把相应配置参数数据传递到流程图。
 
 由于流程图需要接受插件输入，所以需要首先给流程图配置输入节点：
 
@@ -275,9 +275,9 @@ format = "graphviz"
 }
 ```
 
-## 服务插件编译运行
+## ModelBox插件编译运行
 
-服务插件目前只能通过C++开发，插件开发完成后，需要编译为SO文件，并将路径配置加入ModelBox配置文件的`plugin.files`配置项插件配置列表中，开发态配置文件默认路径为`$HOME/modelbox-service/conf/modelbox.conf`，详细说明可参加[流程图运行](../../standard-mode/flow-run.md)章节。
+ModelBox插件目前只能通过C++开发，插件开发完成后，需要编译为SO文件，并将路径配置加入ModelBox配置文件的`plugin.files`配置项插件配置列表中，开发态配置文件默认路径为`$HOME/modelbox-service/conf/modelbox.conf`，详细说明可参加[流程图运行](../../standard-mode/flow-run.md)章节。
 
 ```toml
 [plugin]
@@ -294,4 +294,4 @@ files = [
 1. 若采用tar.gz包安装的服务，modelbox.conf配置文件在对应的服务目录中。
 1. 开发者可扩展增加toml的配置项，在ModelBoxExamplePlugin::Init接口的configuration对象中获取即可。
 
-插件加入配置文件后，执行 $HOME/modelbox-service/modelbox restart 重启ModelBox Server生效， 同时服务插件日志将统一收集到ModelBox日志。
+插件加入配置文件后，执行 $HOME/modelbox-service/modelbox restart 重启ModelBox Server生效， 同时ModelBox插件日志将统一收集到ModelBox日志。
