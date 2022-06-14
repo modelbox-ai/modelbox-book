@@ -1,31 +1,31 @@
-# 可视化编排服务
+# 可视化编排插件
 
 ModelBox提供了在线可视化编排的工具——Editor，在开发时，可使用此工具，提升开发效率。
 
-## 编排服务是什么
+## 编排插件是什么
 
-编排服务是用来在Editor可视化界面上，编排[流程图](../use-modelbox/standard-mode/flow/flow.md)并自动生成相对应的[图](../basic-conception/graph.md)代码的快速开发工具。
+编排插件是用来在Editor可视化界面上，编排[流程图](../use-modelbox/standard-mode/flow/flow.md)并自动生成相对应的[图](../basic-conception/graph.md)代码的快速开发工具。
 
-## 使用编排服务开发流程
+## 使用编排插件开发流程
 
 ![editor-feature alt rect_w_500](../assets/images/figure/server/editor-feature.png)
 
 1. 安装ModelBox server服务。
 1. 配置ModelBox Server。
-1. 配置启用编排服务。
+1. 配置启用编排插件。
 1. 浏览器访问Editor界面。
 1. 业务进行编排操作。
 1. 下发编排任务。
 
-编排服务集成在ModelBox Server中，默认情况下，编排服务未启用。可以参考下方[编排服务配置](#编排服务配置)章节来启用编排服务并加载Editor界面。
+编排插件集成在ModelBox Server中，默认情况下，编排插件未启用。可以参考下方[编排插件配置](#编排插件配置)章节来启用编排插件并加载Editor界面。
 
-## 编排服务配置
+## 编排插件配置
 
-ModelBox Server安装完成后，编排服务会通过插件的形式由ModelBox Server加载，并在网页浏览器上提供在线可视化编排服务。
+ModelBox Server安装完成后，编排插件会通过插件的形式由ModelBox Server加载，并在网页浏览器上提供在线可视化编排插件。
 
 对应插件路径为`"/usr/local/lib/modelbox-plugin-editor.so"`(#由于不同操作系统目录结构存在差异，此路径也可能为 `"/usr/local/lib64/modelbox-plugin-editor.so"`，下文涉及系统lib库路径的地方均存在系统路径差异)。
 
-编排服务插件的配置文件路径为`$HOME/modelbox-service/conf/modelbox.conf`，其配置项目如下：
+编排插件的配置文件路径为`$HOME/modelbox-service/conf/modelbox.conf`，其配置项目如下：
 
 | 配置项目               | 配置说明                                                                    |
 | ---------------------- | --------------------------------------------------------------------------- |
@@ -35,19 +35,15 @@ ModelBox Server安装完成后，编排服务会通过插件的形式由ModelBox
 | editor.root            | Editor前端UI路径，默认为/usr/local/share/modelbox/www                       |
 | editor.demo_root       | Editor demo路径，默认为/usr/local/share/modelbox/demo |
 
-下面分别介绍两种启用Editor的方法。
+通过如下命令，可开启基于Web的可视化编辑工具——Editor：
 
-* 命令行启用Editor
+```shell
+modelbox-tool develop -s 
+```
 
-  通过如下命令，可开启基于Web的可视化编辑工具——Editor。
+命令执行后，将在用户$HOME/modelbox-service创建运行目录，并开启http编排服务，可使用对应主机的IP地址，和开启的端口号（默认端口号为1104），在配置**访问控制列表**并重启modelbox服务使之生效后，即可访问Editor界面。
 
-  ```shell
-  modelbox-tool develop -s 
-  ```
-
-  命令执行后，将在用户$HOME/modelbox-service创建运行目录，并开启http编排服务，可使用对应主机的IP地址，和开启的端口号（默认端口号为1104），在[配置ACL](#访问控制列表)并重启modelbox服务使之生效后，即可访问Editor界面。
-
-* 配置启用Editor
+* **Editor配置**
 
   若需要定制化编排服务启动参数，可以修改配置文件，具体修改流程如下：
 
@@ -106,7 +102,7 @@ ModelBox Server安装完成后，编排服务会通过插件的形式由ModelBox
      $HOME/modelbox-service/modelbox-manager restart
      ```
 
-* 访问控制列表
+* **访问控制列表**
 
   访问控制列表ACL（Access Control List）是由一条或多条规则组成的集合，里面配置了允许访问Editor的IP地址。
   可以通过修改配置文件，来修改ACL列表，具体流程如下：
@@ -138,9 +134,9 @@ ModelBox Server安装完成后，编排服务会通过插件的形式由ModelBox
 
 ![editor-ui alt rect_w_1000](../assets/images/figure/server/editor-first.png)
 
-在主页中，分别可以链接到《示例展示》，《任务编排》，《任务管理》。右上角可以可查看《帮助文档》以及《API》。
+在主页中，分别可以链接到**示例展示**，**任务编排**，**任务管理**。右上角可以可查看**帮助文档**以及**API**。
 
-* 示例展示
+* **示例展示**
 
   ![editor-demo alt rect_w_1000](../assets/images/figure/server/editor-demo.png)
 

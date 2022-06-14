@@ -1,6 +1,6 @@
 # 手势识别
 
-手势识别解决方案是ModelBox提供可直接调用的API，用户启动手势识别solution后，push进去需要推理的图片数据，会将推理结果返回给用户。检测效果如下图所示：
+手势识别解决方案是ModelBox提供可直接调用的API，用户启动手势识别solution后，输入需要推理的图片数据，会将推理结果返回给用户。检测效果如下图所示：
 
 ![hand_pose_result](../assets/images/figure/solution/hand_pose_result.jpg)
 
@@ -39,53 +39,70 @@
 
 ### C++样例
 
-- 头文件
+- 需要引入如下头文件，并在编译时链接modelbox库：
 
   ```cpp
   #include <modelbox/solution.h>
   #include <modelbox/flow.h>
   ```
 
-- 主函数
+- Solution创建初始化和启动
 
-  ```cpp
-  // 初始化solution
-  ModelBoxLogger.GetLogger()->SetLogLevel  modelbox::LogLevel::LOG_INFO);
-  modelbox::Solution solution_test("hand_pose_detection");
-  auto flow = std::make_shared<modelbox::Flow>();
-  flow->Init(solution_test);
-  flow->Build();
-  if (!flow->RunAsync()) {
-    MBLOG_ERROR << "flow run failed";
+  ```c++
+  modelbox::Flow CreateHandPoseDetectionSolution() {
+    ModelBoxLogger.GetLogger()->SetLogLevel  modelbox::LogLevel::LOG_INFO);
+    modelbox::Solution solution_test("hand_pose_detection");
+    auto flow = std::make_shared<modelbox::Flow>();
+  
+    if (!flow->Init(solution_test)) {
+      MBLOG_ERROR << "init flow failed, " << ret.WrapErrormsgs();
+      return nullptr;
+    }
+  
+    if (!flow->Build()) {
+      MBLOG_ERROR << "build flow failed, " << ret.WrapErrormsgs();
+      return nullptr;
+    }
+  
+    if (!flow->RunAsync()) {
+      MBLOG_ERROR << "flow run failed";
+    }
+    MBLOG_INFO << "build hand_pose detection solution success";
   }
-  MBLOG_INFO << "build hand_pose detection solution success";
+  ```
 
-  // 创建输入输出句柄
-  auto ext_data = flow->CreateExternalDataMap();
-  if (ext_data == nullptr) {
-    MBLOG_ERROR << "create external data map failed.";
-    return -1;
-  }
-  auto input_bufs = ext_data->CreateBufferList();
+- 外部数据交互
 
-  // push输入数据
-  std::string test_file = "path_to_test_image";
-  if (!BuildInputData(test_file, input_bufs)) {
-    return -1;
-  }
-
-  if (!ext_data->Send("input", input_bufs)) {
-    MBLOG_ERROR << "send data to input failed.";
-    return -1;
-  }
-
-  // 获取推理结果
-  RecvExternalData(ext_data);
-
-  // 关闭输入输出句柄
-  if (!ext_data->Shutdown()) {
-    MBLOG_ERROR << "shutdown external data failed.";
-    return -1;
+  ```c++
+  // 数据发送获取
+  modelbox::Status Process(std::shared_ptr<modelbox::Flow> flow, void *data, int len) {
+    // 创建输入输出句柄
+    auto ext_data = flow->CreateExternalDataMap();
+    if (ext_data == nullptr) {
+      MBLOG_ERROR << "create external data map failed.";
+      return modelbox::STATUS_FAULT;
+    }
+    auto input_bufs = ext_data->CreateBufferList();
+  
+    // push输入数据
+    std::string test_file = "path_to_test_image";
+    if (!BuildInputData(test_file, input_bufs)) {
+      return modelbox::STATUS_FAULT;
+    }
+  
+    if (!ext_data->Send("input", input_bufs)) {
+      MBLOG_ERROR << "send data to input failed.";
+      return modelbox::STATUS_FAULT;
+    }
+  
+    // 获取推理结果
+    RecvExternalData(ext_data);
+  
+    // 关闭输入输出句柄
+    if (!ext_data->Shutdown()) {
+      MBLOG_ERROR << "shutdown external data failed.";
+      return modelbox::STATUS_FAULT;
+    }
   }
   ```
 
@@ -139,7 +156,7 @@
     return modelbox::STATUS_OK;
   }
   ```
-
+  
   ```cpp
   void ProcessOutputData(std::shared_ptr<modelbox::BufferList> &output_buffer_list) {
     for (auto &buffer : *output_buffer_list) {
@@ -155,5 +172,14 @@
               buffer->ConstData(), buffer->GetBytes());
       cv::imwrite("path_to_save_image", image);
     }
+  }
+  ```
+
+- 资源释放
+
+  ```c++
+  void FlowStop(std::shared_ptr<modelbox::Flow> flow) {
+    // 结束执行
+    flow->Stop();
   }
   ```

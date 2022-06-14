@@ -2,6 +2,8 @@
 
 ModelBox工程采用CMake内置的CPack工具打包，将功能单元、流程图、插件（可选）等打包成rpm/deb/tar包，可一键安装，方便生产环境的部署和使用。
 
+ModelBox配置只需按照修改
+
 ## 打包
 
 打包内容包括下面几个部分：
@@ -13,31 +15,36 @@ ModelBox工程采用CMake内置的CPack工具打包，将功能单元、流程�
 | 插件             | 否       |
 | ModelBox服务配置 | 是       |
 
-其中流程图、功能单元、插件可以直接在项目工程中新建build目录，在build目录中通过`cmake ..`、`make package`打包成rpm/deb/tar包。
+打包步骤：
 
-### 流程图
+1. 在项目工程中新建build目录；
+1. 在build目录中通过`cmake ..`、`make package`打包成rpm/deb/tar包。
+
+下面介绍不同组件的打包内容：
+
+* 流程图
   
-将开发好的流程图配置文件打包。
+  将开发好的流程图配置文件打包。
 
-### 功能单元
+* 功能单元
 
-将业务开发好的功能单元打包，不同类型功能单元需要打包的内容不同。
+  将业务开发好的功能单元打包，不同类型功能单元需要打包的内容不同。
 
-C++功能单元打包的是编译好的动态链接库；
+  C++功能单元打包的是编译好的动态链接库；
 
-Python功能单元打包的是配置文件与Python源码；
+  Python功能单元打包的是配置文件与Python源码；
 
-推理功能单元打包的是配置文件与模型文件；
+  推理功能单元打包的是配置文件与模型文件；
 
-### 插件
+* 插件
 
-若业务开发了自定义插件，则可将插件编译成动态链接库进行打包。
+  若业务开发了自定义插件，则可将插件编译成动态链接库进行打包。
 
-### ModelBox配置
+## ModelBox配置
 
 启动ModelBox需要ModelBox配置文件，包含主服务配置、服务启动参数、插件参数等配置；
 
-一个典型modelbox.conf配置文件如下图所示：
+一个典型modelbox.conf配置文件如下图所示，一般只需修改`server.flow_path`路径即可：
 
 ```shell
 [server]
@@ -45,13 +52,13 @@ ip = "127.0.0.1"
 port = "1104"
 flow_path = "/usr/local/etc/modelbox/graph/"   # 流程图目录
 
-[acl]
-allow = [
-    "127.0.0.1/8"
-]
+# [acl]
+# allow = [
+#     "127.0.0.1/8"
+# ]
 
 [control]
-enable = true
+enable = false
 listen = "/var/run/modelbox/modelbox.sock"
 
 [plugin]
@@ -78,7 +85,7 @@ files = [
 
 参数分为两部分：主服务配置项、内置插件配置项，下面详细介绍各配置。
 
-#### 主服务配置项
+* **主服务配置项**
 
 主服务配置主要配置插件列表，日志级别信息，具体配置项如下：
 
@@ -92,7 +99,7 @@ files = [
 | `control.enable` | ModelBox服务调试开关，当开启时可调试。                                                                                     |
 | `control.listen` | ModelBox服务调试sock路径。                                                                                                |
 
-#### 内置插件服务配置
+* **内置插件服务配置**
 
 除上述配置外，其他配置均为插件配置。ModelBox服务支持灵活的[ModelBox服务插件](../service-plugin/service-plugin.md)加载，ModelBox启动后，会按照plugin.files配置的插件，顺序加载插件，各插件的配置参考各自插件配置参数。当前ModelBox的可视化编排及流程图的restful api及通过服务插件实现, 每个插件有各自配置字段：
 
@@ -102,6 +109,8 @@ files = [
 
 ## 安装
 
-可直接使用对应的[运行镜像](../../../environment/container-usage.md#支持容器列表)，在运行镜像中rpm/deb可通过对应命令直接安装，tar包在根目录解压即可。默认安装目录为`/opt/modelbox/application/$project_name/`目录，这个目录下包括流程图（graph）、功能单元（flowunit）、插件。
+安装步骤：
 
-ModelBox配置文件建议安装在`/usr/local/etc/modelbox/modelbox.conf`路径下。
+1. 可直接使用对应的[运行镜像](../../../environment/container-usage.md#支持容器列表)，
+1. 在运行镜像中rpm/deb可通过对应命令直接安装，tar包在根目录解压即可。默认安装目录为`/opt/modelbox/application/$project_name/`目录，这个目录下包括流程图（graph）、功能单元（flowunit）、插件。
+1. ModelBox配置文件建议安装在`/usr/local/etc/modelbox/modelbox.conf`路径下。

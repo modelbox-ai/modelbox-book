@@ -66,10 +66,10 @@ format = "graphviz"
 import modelbox
 ```
 
-* 图初始化和运行
+* 图创建初始化和启动
 
 ```python
-def FlowInit(flow_file):
+def CreateFlow(flow_file):
 
     flow = modelbox.Flow()
     # 初始化Flow接口

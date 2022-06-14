@@ -78,14 +78,14 @@ modelbox::Flow CreateFlow(const std::string &file) {
   auto ret = flow->Init(file);
   if (!ret) {
     MBLOG_ERROR << "init flow failed, " << ret.WrapErrormsgs();
-    return 1;
+    return nullptr;
   }
 
   // 创建流程图
   ret = flow->Build();
   if (!ret) {
     MBLOG_ERROR << "build flow failed, " << ret.WrapErrormsgs();
-    return 1;
+    return nullptr;
   }
 
   // 异步执行
@@ -100,7 +100,6 @@ modelbox::Flow CreateFlow(const std::string &file) {
 业务数据往往需要输入给流程图进行处理，同时处理完成后需要获取结果。一次数据的发送和结果过程如下：
 
 ```c++
-
 modelbox::Status SendExternalData(std::shared_ptr<ExternalDataMap> ext_data, void *data, int len) {
   // 申请外部数据对象
   auto output_buf = ext_data->CreateBufferList();
@@ -168,7 +167,6 @@ modelbox::Status Process(std::shared_ptr<modelbox::Flow> flow, void *data, int l
   RecvExternalData(ext_data);
   ...
 }
-
 ```
 
 * 图的资源释放

@@ -9,7 +9,6 @@ ModelBox Tool是ModelBox套件集成的一个开发、维护工具，提供了�
 | help    | 显示帮助信息                         |
 | driver  | 查看Driver列表及其功能               |
 | flow    | 快速运行一个流程，快速验证           |
-| create  | 创建模板                             |
 | key     | 密码加解密，模型加解密               |
 | server  | 查看Log，Stack，Slab和Statistics信息 |
 | develop | 创建开发编排环境                         |
@@ -25,7 +24,6 @@ ModelBox为标准的命令行工具，可以使用`modelbox-tool -h`查看详细
     ```shell
     modelbox-tool help driver
     modelbox-tool help flow
-    modelbox-tool help create
     modelbox-tool help key
     modelbox-tool help server
     modelbox-tool help develop
@@ -62,23 +60,24 @@ modelbox-tool driver [-type flowunit] [-path dir1,dir2] [-details [-name name]] 
 
     ```shell
     modelbox-tool driver -info -type flowunit
+    ```
 
 * 查询系统路径和指定图文件的flowunit列表
 
     ```shell
-     modelbox-tool driver -info -type flowunit -conf [path/to/graph.conf]
+    modelbox-tool driver -info -type flowunit -conf [path/to/graph.conf]
     ```
 
 * 查询系统路径和指定路径使用的flowunit
 
     ```shell
-     modelbox-tool driver -info -type flowunit -path [path/to/]
+    modelbox-tool driver -info -type flowunit -path [path/to/flowunits]
     ```
 
 * 查询单个flowunit的详细信息
 
      ```shell
-     modelbox-tool driver -info -type flowunit -details -name [FlowunitName] -path [path/to/]
+     modelbox-tool driver -info -type flowunit -details -name [FlowunitName] -path [path/to/flowunit]
     ```
 
 ### 查询详细信息
@@ -102,7 +101,7 @@ modelbox-tool driver [-type flowunit] [-path dir1,dir2] [-details [-name name]] 
 * 查询指定名称的功能单元详细信息
 
      ```shell
-     modelbox-tool driver -info -type flowunit -details -name [name] -path [path/to/]
+     modelbox-tool driver -info -type flowunit -details -name [name] -path [path/to/flowunit]
     ```
 
 ## Flow功能
@@ -140,25 +139,25 @@ modelbox-tool template [options]
 * 创建c++功能单元模板
 
     ```shell
-    modelbox-tool template -flowunit -lang c++ -name [name]  
+    modelbox-tool template -flowunit -lang c++ -name [name] -input name=[port_name],device=[cpu/cuda/ascend/...] -output name=[port_name],device=[cpu/cuda/ascend/...]
     ```
 
 * 创建python功能单元模板
 
     ```shell
-    modelbox-tool template -flowunit -lang python -name [name]  
+    modelbox-tool template -flowunit -lang python -name [name] -input name=[port_name],device=[cpu/cuda/ascend/...] -output name=[port_name],device=[cpu/cuda/ascend/...]
     ```
 
 * 创建推理功能单元模板
   
     ```shell
-    modelbox-tool template -flowunit -lang yolo -name [name]  
+    modelbox-tool template -flowunit -lang infer -name [name] --virtual-type [tensorflow/tensorrt/torch/acl/mindspore] -model [model_path] -copy-model -input name=[port_name],device=[cpu/cuda/ascend/...] -output name=[port_name],device=[cpu/cuda/ascend/...]
     ```
 
 * 创建YOLO功能单元模板
   
     ```shell
-    modelbox-tool template -flowunit -lang infer -name [name]  
+    modelbox-tool template -flowunit -lang yolo -name [name] -virtual-type yolov3_postprocess -input name=[port_name],device=[cpu/cuda/ascend/...] -output name=[port_name],device=[cpu/cuda/ascend/...]
     ```
 
 * 创建服务插件模板

@@ -1,8 +1,8 @@
-# AI应用模式
+# 开发模式概述
 
 ## ModelBox开发套件
 
-ModelBox的开发视图如下，图中绿色的部分是开发者可以自定义扩展的部分。
+ModelBox的开发视图如下，图中蓝色的部分是开发者可以自定义扩展的部分。
 
 ![sdk alt rect_w_800](../assets/images/figure/develop/sdk.png)
 

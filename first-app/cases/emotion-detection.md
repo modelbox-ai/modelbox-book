@@ -24,13 +24,13 @@ docker pull modelbox/modelbox-develop-libtorch_1.9.1-cuda_10.2-ubuntu-x86_64:lat
 
 ### 创建项目
 
-可参考[创建项目](./hello-world.md)，最后可选择创建emotion_detction项目工程。
+可参考[创建项目](./hello-world.md#项目创建与运行)，最后可选择创建emotion_detction项目工程。
 
 本案例是测试本地视频文件，可以测试视频路径可以在video_input节点中设置，结果视频路径在videoencoder节点中设置。
 
 ### 流程图开发
 
-![emotion_detection_flow](../assets/images/figure/first-app/emotion_detection_flow.png)
+![emotion_detection_flow](../../assets/images/figure/first-app/emotion_detection_flow.png)
 
 如上图所示，整个流程图分为4个阶段：视频读取/解码、人脸检测、表情识别、结果渲染；
 

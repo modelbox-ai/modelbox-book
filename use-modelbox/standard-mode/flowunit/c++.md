@@ -107,87 +107,91 @@ MODELBOX_DRIVER_FLOWUNIT(desc) {
 
 * **功能单元初始化/关闭接口**
 
-对应需实现的接口为`FlowUnit::Open`、`FlowUnit::Close`，实现样例如下：
+  对应需实现的接口为`FlowUnit::Open`、`FlowUnit::Close`，实现样例如下：
 
-```c++
-modelbox::Status SomeFlowUnit::Open(
-    const std::shared_ptr<modelbox::Configuration> &opts) {
-  // 获取流程图中功能单元配置参数值
-  auto pixel_format = opts->GetString("pixel_format", "bgr");
-  return modelbox::STATUS_OK;
-}
-```
+  ```c++
+  modelbox::Status SomeFlowUnit::Open(
+      const std::shared_ptr<modelbox::Configuration> &opts) {
+    // 获取流程图中功能单元配置参数值
+    auto pixel_format = opts->GetString("pixel_format", "bgr");
+    return modelbox::STATUS_OK;
+  }
+  ```
 
-Open函数将在图初始化的时候调用，`const std::shared_ptr<modelbox::Configuration> &opts`为功能单元的配置参数，可调用相关的接口获取配置，返回`modelbox::STATUS_OK`，表示初始化成功，否则初始化失败。
+  Open函数将在图初始化的时候调用，`const std::shared_ptr<modelbox::Configuration> &opts`为功能单元的配置参数，可调用相关的接口获取配置，返回`modelbox::STATUS_OK`，表示初始化成功，否则初始化失败。
 
-```c++
-modelbox::Status Close() {
-  // 释放功能单元的公共资源
-  return modelbox::STATUS_OK;
-}
-```
+  ```c++
+  modelbox::Status Close() {
+    // 释放功能单元的公共资源
+    return modelbox::STATUS_OK;
+  }
+  ```
 
 * **数据处理接口**
 
-对应需实现的接口为`FlowUnit::Process`, Process为FlowUnit的核心函数。输入数据的处理、输出数据的构造都在此函数中实现。Process接口处理流程大致如下：
+  对应需实现的接口为`FlowUnit::Process`, Process为FlowUnit的核心函数。输入数据的处理、输出数据的构造都在此函数中实现。Process接口处理流程大致如下：
 
-1. 从DataContext中获取Input输入BufferList，Output输出BufferList对象，参数为Port名称。
-1. 循环处理每一个Input Buffer数据。
-1. 对每一个Input Buffer数据可使用Get获取元数据信息。
-1. 业务处理，根据需求对输入数据进行处理。
-1. 构造Output Buffer
-1. 对每一个Output Buffer数据可使用Set设置元数据信息。
-1. 返回成功后，ModelBox框架将数据发送到后续的功能单元。
+  1. 从DataContext中获取Input输入BufferList，Output输出BufferList对象，参数为Port名称。
+  1. 循环处理每一个Input Buffer数据。
+  1. 对每一个Input Buffer数据可使用Get获取元数据信息。
+  1. 业务处理，根据需求对输入数据进行处理。
+  1. 构造Output Buffer
+  1. 对每一个Output Buffer数据可使用Set设置元数据信息。
+  1. 返回成功后，ModelBox框架将数据发送到后续的功能单元。  
 
-cpu功能单元的实现样例如下：
+  cpu功能单元的实现样例如下：
 
-```c++
-modelbox::Status CVResizeFlowUnit::Process(
-    std::shared_ptr<modelbox::DataContext> ctx) {
-  // 获取输入，输出Buffer对象，"input", "output"为对应功能单元Port名称，可以有多个。
-  // 此处的"Input"和"Output"必须与toml的端口名称一致
-  auto input_bufs = ctx->Input("input");
-  auto output_bufs = ctx->Output("output");
+  ```c++
+  modelbox::Status CVResizeFlowUnit::Process(
+      std::shared_ptr<modelbox::DataContext> ctx) {
+    // 获取输入，输出Buffer对象，"input", "output"为对应功能单元Port名称，可以有多个。
+    // 此处的"Input"和"Output"必须与toml的端口名称一致
+    auto input_bufs = ctx->Input("input");
+    auto output_bufs = ctx->Output("output");
+    
+    // 获取绑定设备，设备在DriverDesc的时候设置的输出buffer设备
+    auto device = GetBindDevice();
   
-  // 获取绑定设备，设备在DriverDesc的时候设置的输出buffer设备
-  auto device = GetBindDevice();
+    // 循环处理每个输入数据，并产生相关的输出结果。默认情况下一次传递一个buffer进行处理，可以通过
+    // input_bufs->Front() 获取。 如果需要batch并发处理则需要修改功能单元数量处理类型为"NORMAL"
+    for (auto &input : *input_bufs) {
+        // 获取数据元数据信息
+        auto meta = input->Get("Meta", "Default");
+  
+        // 获取输入，输出的内存指针。输入为const只读数据，输出为可写入数据。
+        auto input_data = input->ConstData();
+  
+        // 根据device类型构造buffer
+        auto output_buffer = std::make_shared<modelbox::Buffer>(); 
+        
+        // 处理数据，下面给出几个例子，根据需要选择对应转换方式
+        /* 1. string转成buffer */
+        std::string test_str = "test string xxx";
 
-  // 循环处理每个输入数据，并产生相关的输出结果。默认情况下一次传递一个buffer进行处理，可以通过
-  // input_bufs->Front() 获取。 如果需要batch并发处理则需要修改功能单元数量处理类型为"NORMAL"
-  for (auto &input : *input_bufs) {
-      // 获取数据元数据信息
-      auto meta = input->Get("Meta", "Default");
+        // 申请内存，单位是字节数
+        output_buffer->Build(test_str.size());  
 
-      // 获取输入，输出的内存指针。输入为const只读数据，输出为可写入数据。
-      auto input_data = input->ConstData();
+        // 获取对应类型的buffer指针
+        auto output_data = static_cast<char *>(output_buffer->MutableData());  
 
-      // 根据device类型构造buffer
-      auto output_buffer = std::make_shared<modelbox::Buffer>(); 
-      
-      // 处理数据，下面给出几个例子，根据需要选择对应转换方式
-      /* 1. string转成buffer */
-      std::string test_str = "test string xxx";
-      // 申请内存，单位是字节数
-      output_buffer->Build(test_str.size()); 
-      // 获取对应类型的buffer指针
-      auto output_data = static_cast<char *>(output_buffer->MutableData()); 
-      // 拷贝string到buffer中。假设输出为cpu设备，则这里使用cpu内存拷贝
-      if(memcpy_s(output_data, output_buffer->GetBytes(), test_str.data(), test_str.size()) != 0 ) {
-          MBLOG_ERROR << "cpu memcpy failed, ret " << ret;
-          return modelbox::STATUS_FAULT;
-      } 
-
-      // 设置输出Meta
-      output_buffer->Set("Meta", "Meta Data");
-
-      // push到输出bufferlist中
-      output_bufs->PushBack(output_buffer);
+        // 拷贝string到buffer中。假设输出为cpu设备，则这里使用cpu内存拷贝
+        if(memcpy_s(output_data, output_buffer->GetBytes(), test_str.data(), test_str.size()) != 0 ) {
+            MBLOG_ERROR << "cpu memcpy failed, ret " << ret;
+            return modelbox::STATUS_FAULT;
+        } 
+  
+        // 设置输出Meta
+        output_buffer->Set("Meta", "Meta Data");
+  
+        // push到输出bufferlist中
+        output_bufs->PushBack(output_buffer);
+    }
+  
+    return modelbox::STATUS_OK;
   }
+  ```
 
-  return modelbox::STATUS_OK;
-```
-
-Process的返回值说明
+  Process的返回值说明
 
 | 返回值          | 说明                                                 |
 | --------------- | ---------------------------------------------------- |
@@ -196,94 +200,93 @@ Process的返回值说明
 | STATUS_SHUTDOWN | 停止数据处理，终止整个流程图。                       |
 | 其他            | 停止数据处理，当前数据处理报错。                     |
 
-目前ModelBox支持开发cuda 和 ascend类型的功能单元，与cpu类型不同，cuda和ascend上进行编程存在cuda stream、acl stream的概念，所以接口上有些差异，接口上新增了实现采用了`FlowUnit::CudaProcess`、`FlowUnit::AscendProcess`用来替换`FlowUnit::Process` ， 具体参考下列编程接口
+  目前ModelBox支持开发cuda 和 ascend类型的功能单元，与cpu类型不同，cuda和ascend上进行编程存在cuda stream、acl stream的概念，所以接口上有些差异，接口上新增了实现采用了`FlowUnit::CudaProcess`、`FlowUnit::AscendProcess`用来替换`FlowUnit::Process` ， 具体参考下列编程接口
 
-```c++
-modelbox::Status ExampleFlowUnit::CudaProcess(std::shared_ptr<modelbox::DataContext> data_ctx, cudaStream_t stream) {
-   // 实现核心业务逻辑。 接口携带cuda stream ，可直接用于调用cuda异步接口。
-   // 如果调用cuda同步接口，则需要先调用cudaStreamSynchronize(stream)同步数据。
-  }
+  ```c++
+  modelbox::Status ExampleFlowUnit::CudaProcess(std::shared_ptr<modelbox::DataContext> data_ctx, cudaStream_t stream) {
+     // 实现核心业务逻辑。 接口携带cuda stream ，可直接用于调用cuda异步接口。
+     // 如果调用cuda同步接口，则需要先调用cudaStreamSynchronize(stream)同步数据。
+    }
+  
+  modelbox::Status ExampleFlowUnit::AscendProcess(std::shared_ptr<modelbox::DataContext> data_ctx, aclrtStream stream) {
+     // 实现核心业务逻辑。 接口携带acl stream ，可直接用于调用acl异步接口。
+     // 如果调用cuda同步接口，则需要先调用aclrtSynchronizeStream(stream)同步数据。
+    }
+  ```
 
-modelbox::Status ExampleFlowUnit::AscendProcess(std::shared_ptr<modelbox::DataContext> data_ctx, aclrtStream stream) {
-   // 实现核心业务逻辑。 接口携带acl stream ，可直接用于调用acl异步接口。
-   // 如果调用cuda同步接口，则需要先调用aclrtSynchronizeStream(stream)同步数据。
-  }
-```
-
-更多关于加速设备上的功能单元开发详细说明可参考[多设备开发](../../../other-features/device/device.md)章节和[Ascend](../../../other-features/device/ascend.md)类型、[Nvida Cuda](../../../other-features/device/cuda.md)类型接口说明。
+  更多关于加速设备上的功能单元开发详细说明可参考[多设备开发](../../../other-features/device/device.md)章节和[Ascend](../../../other-features/device/ascend.md)类型、[Nvida Cuda](../../../other-features/device/cuda.md)类型接口说明。
 
 * **Stream流数据开始/结束接口**
 
-Stream数据流的概念介绍可参考[数据流](../../../basic-conception/stream.md)章节。对应需实现的接口为`FlowUnit::DataPre`、`FlowUnit::DataPost`，此接口针对Stream类型的功能单元生效。使用场景及约束如下：
+  Stream数据流的概念介绍可参考[数据流](../../../basic-conception/stream.md)章节。对应需实现的接口为`FlowUnit::DataPre`、`FlowUnit::DataPost`，此接口针对Stream类型的功能单元生效。使用场景及约束如下：
 
-1. `FlowUnit::DataPre`、`FlowUnit::DataPost` 阶段无法操作数据，仅用于 `FlowUnit::Process`中需要用到的一些资源的初始化，如解码器等  
-1. `FlowUnit::DataPre`、`FlowUnit::DataPost` 不能有长耗时操作，比如文件下载、上传等，会影响并发性能
+  1. `FlowUnit::DataPre`、`FlowUnit::DataPost` 阶段无法操作数据，仅用于 `FlowUnit::Process`中需要用到的一些资源的初始化，如解码器等  
+  1. `FlowUnit::DataPre`、`FlowUnit::DataPost` 不能有长耗时操作，比如文件下载、上传等，会影响并发性能
 
-典型场景如，处理一个视频流时，在视频流开始时会调用`FlowUnit::DataPre`，视频流结束时会调用`FlowUnit::DataPost`。FlowUnit可以在DataPre阶段初始化解码器，在DataPost阶段关闭解码器，解码器的相关句柄可以设置到DataContext上下文中。DataPre、DataPost接口处理流程大致如下：
+  典型场景如，处理一个视频流时，在视频流开始时会调用`FlowUnit::DataPre`，视频流结束时会调用`FlowUnit::DataPost`。FlowUnit可以在DataPre阶段初始化解码器，在DataPost阶段关闭解码器，解码器的相关句柄可以设置到DataContext上下文中。DataPre、DataPost接口处理流程大致如下：
 
-1. Stream流数据开始时，在DataPre中获取数据流元数据信息，并初始化相关的上下文，存储DataContext->SetPrivate中。
-1. 处理Stream流数据时，在Process中，使用DataContext->GetPrivate获取到上下文对象，并从Input中获取输入，处理后，输出到Output中。
-1. Stream流数据结束时，在DataPost中释放相关的上下文信息。
+  1. Stream流数据开始时，在DataPre中获取数据流元数据信息，并初始化相关的上下文，存储DataContext->SetPrivate中。
+  1. 处理Stream流数据时，在Process中，使用DataContext->GetPrivate获取到上下文对象，并从Input中获取输入，处理后，输出到Output中。
+  1. Stream流数据结束时，在DataPost中释放相关的上下文信息。
 
-实现样例如下：
+  实现样例如下：
 
-```c++
-modelbox::Status VideoDecoderFlowUnit::DataPre(std::shared_ptr<modelbox::DataContext> data_ctx) {
-  // 获取Stream流元数据信息
-  auto stream_meta = data_ctx->GetInputMeta("Stream-Meta");
-
-  // 初始化Stream流数据处理上下文对象。
-  auto decoder = CreateDecoder(stream_meta);
-
-  // 保存流数据处理上下文对象。
-  data_ctx->SetPrivate("Decoder", decoder);
-  return modelbox::STATUS_OK;
-}
-
-modelbox::Status VideoDecoderFlowUnit::Process(std::shared_ptr<modelbox::DataContext> ctx) {
-  // 获取流数据处理上下文对象。
-  auto decoder = data_ctx->GetPrivate("Decoder");
-  auto inputs = ctx->Input("input");
-  auto outputs = ctx->Output("output");
-
-  // 处理输入数据。
-  decoder->Decode(inputs, outputs);
-
-  return modelbox::STATUS_OK;
-}
-
-modelbox::Status VideoDecoderFlowUnit::DataPost(std::shared_ptr<modelbox::DataContext> data_ctx) {
-  // 关闭解码器。
-  auto decoder = data_ctx->GetPrivate("Decoder");
-  decoder->DestroyDecoder();
-  return modelbox::STATUS_OK;
-}
-
-```
+  ```c++
+  modelbox::Status VideoDecoderFlowUnit::DataPre(std::shared_ptr<modelbox::DataContext> data_ctx) {
+    // 获取Stream流元数据信息
+    auto stream_meta = data_ctx->GetInputMeta("Stream-Meta");
+  
+    // 初始化Stream流数据处理上下文对象。
+    auto decoder = CreateDecoder(stream_meta);
+  
+    // 保存流数据处理上下文对象。
+    data_ctx->SetPrivate("Decoder", decoder);
+    return modelbox::STATUS_OK;
+  }
+  
+  modelbox::Status VideoDecoderFlowUnit::Process(std::shared_ptr<modelbox::DataContext> ctx) {
+    // 获取流数据处理上下文对象。
+    auto decoder = data_ctx->GetPrivate("Decoder");
+    auto inputs = ctx->Input("input");
+    auto outputs = ctx->Output("output");
+  
+    // 处理输入数据。
+    decoder->Decode(inputs, outputs);
+  
+    return modelbox::STATUS_OK;
+  }
+  
+  modelbox::Status VideoDecoderFlowUnit::DataPost(std::shared_ptr<modelbox::DataContext> data_ctx) {
+    // 关闭解码器。
+    auto decoder = data_ctx->GetPrivate("Decoder");
+    decoder->DestroyDecoder();
+    return modelbox::STATUS_OK;
+  }
+  ```
 
 * **条件功能单元**
 
-只需要通过条件判断往不同的输出端口构建buffer即可，其他无需任何特殊处理
+  只需要通过条件判断往不同的输出端口构建buffer即可，其他无需任何特殊处理
 
-```c++
-    static int num = 0;
-    modelbox::Status ConditionFlowUnit::Process(
-      std::shared_ptr<modelbox::DataContext> ctx) {
-        auto inputs = ctx->Input("input");
-        auto outputs1 = ctx->Output("output_true");
-        auto outputs2 = ctx->Output("output_false");
+  ```c++
+  static int num = 0;
+  modelbox::Status ConditionFlowUnit::Process(
+    std::shared_ptr<modelbox::DataContext> ctx) {
+      auto inputs = ctx->Input("input");
+      auto outputs1 = ctx->Output("output_true");
+      auto outputs2 = ctx->Output("output_false");
 
-        for (int i = 0; i < inputs->Size(); ++i) {
-          if (i % 2 == 0) {
-            outputs1->PushBack(inputs->At(i));
-          } else {
-            outputs2->PushBack(inputs->At(i));
-          }
+      for (int i = 0; i < inputs->Size(); ++i) {
+        if (i % 2 == 0) {
+          outputs1->PushBack(inputs->At(i));
+        } else {
+          outputs2->PushBack(inputs->At(i));
         }
+      }
 
-        return STATUS_OK;
-    }
-```
+      return STATUS_OK;
+  }
+  ```
 
 ### Buffer操作
 
@@ -291,136 +294,132 @@ modelbox::Status VideoDecoderFlowUnit::DataPost(std::shared_ptr<modelbox::DataCo
 
 * 获取功能单元输入Buffer信息
 
-根据功能单元属性配置中的输入端口名称获取输入数据队列BufferList，再获取每个Buffer对象即可获取Buffer的各种属性信息：数据指针、数据大小、BufferMeta字段等等。 此外BufferList也提供了快速获取数据指针的接口，样例如下：
+  根据功能单元属性配置中的输入端口名称获取输入数据队列BufferList，再获取每个Buffer对象即可获取Buffer的各种属性信息：数据指针、数据大小、BufferMeta字段等等。 此外BufferList也提供了快速获取数据指针的接口，样例如下：
 
-```c++
-    Status Process(std::shared_ptr<DataContext> data_ctx) {
-        // 根据输入端口名称获取输入Buffer队列，输入端口名为"in"
-        auto input_bufs = data_ctx->Input("in");
-        for (auto i = 0; i < input_bufs->Size(); ++i) {
-            // 方式一：先获取Buffer对象，再获取Buffer属性：数据指针、数据大小、BufferMeta字段
-            auto buffer = input_bufs->At(i);
-            const void* buffer_data1 = buffer->ConstData();
-            auto buffer_size = buffer->GetBytes();
-            int32_t height;
-            auto exists = buffer->Get("height", height);
-            if (!exists) {
-                MBLOG_ERROR << "meta don't have key height";
-                return {modelbox::STATUS_NOTSUPPORT, "meta don't have key height"};
-            }
+  ```c++
+  Status Process(std::shared_ptr<DataContext> data_ctx) {
+      // 根据输入端口名称获取输入Buffer队列，输入端口名为"in"
+      auto input_bufs = data_ctx->Input("in");
+      for (auto i = 0; i < input_bufs->Size(); ++i) {
+          // 方式一：先获取Buffer对象，再获取Buffer属性：数据指针、数据大小、BufferMeta字段
+          auto buffer = input_bufs->At(i);
+          const void* buffer_data1 = buffer->ConstData();
+          auto buffer_size = buffer->GetBytes();
+          int32_t height;
+          auto exists = buffer->Get("height", height);
+          if (!exists) {
+              MBLOG_ERROR << "meta don't have key height";
+              return {modelbox::STATUS_NOTSUPPORT, "meta don't have key height"};
+          }
 
-            // 方式二：通过buffer_list访问特定位置的数据指针，buffer_data1和buffer_data2内容相同
-            void* buffer_data2 = input_bufs->ConstBufferData(i);
-            ...
-        }
-
-    }
-```
+          // 方式二：通过buffer_list访问特定位置的数据指针，buffer_data1和buffer_data2内容相同
+          void* buffer_data2 = input_bufs->ConstBufferData(i);
+          ...
+      }
+  }
+  ```
 
 * 输入Buffer透传给输出端口
 
-此场景是将输入Buffer直接作为输出Buffer向后传递，此时Buffer的数据、BufferMeta等全部属性都将保留。此场景一般用于不需要实际访问数据的功能单元，如视频流跳帧。
+  此场景是将输入Buffer直接作为输出Buffer向后传递，此时Buffer的数据、BufferMeta等全部属性都将保留。此场景一般用于不需要实际访问数据的功能单元，如视频流跳帧。
 
-```c++
-    Status Process(std::shared_ptr<DataContext> data_ctx) {
-        // 所有输入透传给输出端口，输入端口名为"in", 输出端口名为"out"
-        auto input_bufs = data_ctx->Input("in");
-        auto output_bufs =  data_ctx->Output("out");
-        for (auto &buf: input_bufs) {
-            output_bufs->PushBack(buf);
-        }
-        return STATUS_OK;
-    }
-```
+  ```c++
+  Status Process(std::shared_ptr<DataContext> data_ctx) {
+      // 所有输入透传给输出端口，输入端口名为"in", 输出端口名为"out"
+      auto input_bufs = data_ctx->Input("in");
+      auto output_bufs =  data_ctx->Output("out");
+      for (auto &buf: input_bufs) {
+          output_bufs->PushBack(buf);
+      }
+      return STATUS_OK;
+  }
+  ```
 
 * 创建新的输出Buffer
 
-数据处理完成后，需要创建输出Buffer并把结果数据填充进Buffer，设置Buffer Meta。Modelbox提供多种方式创建Buffer：
+  数据处理完成后，需要创建输出Buffer并把结果数据填充进Buffer，设置Buffer Meta。Modelbox提供多种方式创建Buffer：
 
-BufferList::Build : 一次创建多个指定大小的Buffer, Buffer类型与当前功能单元硬件类型一致。Buffer数据内容需要单独填充。
+  BufferList::Build : 一次创建多个指定大小的Buffer, Buffer类型与当前功能单元硬件类型一致。Buffer数据内容需要单独填充。
 
-BufferList::BuildFromHost : 一次创建多个指定大小的Buffer，Buffer类型为cpu类型，Buffer数据在创建时写入，一次调用完成创建和赋值。
+  BufferList::BuildFromHost : 一次创建多个指定大小的Buffer，Buffer类型为cpu类型，Buffer数据在创建时写入，一次调用完成创建和赋值。
 
-BufferList::EmplaceBack ： 调用时隐式创建Buffer，Buffer类型与当前功能单元硬件类型一致。Buffer数据在调用时写入。一次调用完成创建和赋值，较BufferList::Build相比简单。
+  BufferList::EmplaceBack ： 调用时隐式创建Buffer，Buffer类型与当前功能单元硬件类型一致。Buffer数据在调用时写入。一次调用完成创建和赋值，较BufferList::Build相比简单。
 
-BufferList::EmplaceBackFromHost ： 调用时隐式创建Buffer，Buffer类型为cpu类型。Buffer数据在调用时写入。
+  BufferList::EmplaceBackFromHost ： 调用时隐式创建Buffer，Buffer类型为cpu类型。Buffer数据在调用时写入。
 
-```c++
-    Status Process(std::shared_ptr<DataContext> data_ctx) {
-        auto output_bufs = data_ctx->Output("out");
-        ..
+  ```c++
+  Status Process(std::shared_ptr<DataContext> data_ctx) {
+      auto output_bufs = data_ctx->Output("out");
+      ..
 
-        // 方式一 创建当前功能单元硬件类型相同的多个空Buffer，再填充数据
-        vector<size_t> data_size_list;
-        data_size_list.emplace_back(size1);
-        data_size_list.emplace_back(size2);
-        output_bufs->Build(data_size_list);
-        for (auto i = 0; i < output_bufs->Size(); ++i ) { 
-            auto output_buffer = output_bufs->At(0);
-            auto output_data = output_buffer->MutableData();
-            // 给输出Buffer填充数据
-            memcpy_s(output_data, output_buf->GetBytes(), data, data_size);
-            // 设置Buffer Meta
-            output_buffer->Set("width", width);
-            ...
-        }
+      // 方式一 创建当前功能单元硬件类型相同的多个空Buffer，再填充数据
+      vector<size_t> data_size_list;
+      data_size_list.emplace_back(size1);
+      data_size_list.emplace_back(size2);
+      output_bufs->Build(data_size_list);
+      for (auto i = 0; i < output_bufs->Size(); ++i ) { 
+          auto output_buffer = output_bufs->At(0);
+          auto output_data = output_buffer->MutableData();
+          // 给输出Buffer填充数据
+          memcpy_s(output_data, output_buf->GetBytes(), data, data_size);
+          // 设置Buffer Meta
+          output_buffer->Set("width", width);
+          ...
+      }
 
+      //方式二 创建cpu类型的多个Buffer并同时填充数据
+      vector<size_t> data_size_list{1,1,1};
+      vector<uint8_t> data_list{122,123,124}
+      output_bufs->BuildFromHost(shape, data.data(), 12);
 
-        //方式二 创建cpu类型的多个Buffer并同时填充数据
-        vector<size_t> data_size_list{1,1,1};
-        vector<uint8_t> data_list{122,123,124}
-        output_bufs->BuildFromHost(shape, data.data(), 12);
+      // 方式三 通过用户自行创建的设备数据直接创建Buffer
+      void* device_ready_data1 ;
+      std::shared_ptr<void> device_ready_data2 ;
+      void* host_ready_data1 ;
+      ...
+      //用户数据在设备上，且未通过智能指针管理
+      output_bufs->EmplaceBack(device_ready_data1, data_size, [](void*){})
+      //用户数据在设备上，通过智能指针管理
+      output_bufs->EmplaceBack(device_ready_data2, data_size);
+      //用户数据在cpu内存上
+      output_bufs->EmplaceBackFromHost(host_ready_data1, data_size);
 
-        // 方式三 通过用户自行创建的设备数据直接创建Buffer
-        void* device_ready_data1 ;
-        std::shared_ptr<void> device_ready_data2 ;
-        void* host_ready_data1 ;
-        ...
-        //用户数据在设备上，且未通过智能指针管理
-        output_bufs->EmplaceBack(device_ready_data1, data_size, [](void*){})
-        //用户数据在设备上，通过智能指针管理
-        output_bufs->EmplaceBack(device_ready_data2, data_size);
-        //用户数据在cpu内存上
-        output_bufs->EmplaceBackFromHost(host_ready_data1, data_size);
-
-        ...
-    }
-```
+      ...
+  }
+  ```
 
 * Buffer的拷贝
 
-Buffer的数据拷贝分三种情况：浅拷贝、深拷贝、拷贝BufferMeta。它们的区别如下：
+  Buffer的数据拷贝分三种情况：浅拷贝、深拷贝、拷贝BufferMeta。它们的区别如下：
 
-浅拷贝：接口为Copy，拷贝BufferMeta信息和DeviceData数据指针，源Buffer和目标Buffer共享数据内容。
+  浅拷贝：接口为Copy，拷贝BufferMeta信息和DeviceData数据指针，源Buffer和目标Buffer共享数据内容。
 
-深拷贝：接口为DeepCopy，拷贝BufferMeta信息和DeviceData数据内容，源Buffer和目标Buffer数据完全独立。
+  深拷贝：接口为DeepCopy，拷贝BufferMeta信息和DeviceData数据内容，源Buffer和目标Buffer数据完全独立。
 
-CopyMeta拷贝BufferMeta：接口为CopyMeta， 仅拷贝BufferMeta信息，不拷贝DeviceData数据部分。
+  CopyMeta拷贝BufferMeta：接口为CopyMeta， 仅拷贝BufferMeta信息，不拷贝DeviceData数据部分。
 
-实际
+  ```c++
+  Status Process(std::shared_ptr<DataContext> data_ctx) {
+      // 获取buffer中的指定meta值
+      auto input_bufs = data_ctx->Input("in");
+      auto output_bufs = data_ctx->Output("out");
+      auto buffer = input_bufs->At(0);
+  
+      // 浅拷贝， buffer和new_buffer 数据指针指向同一份数据
+      auto new_buffer = buffer->Copy();
+  
+      // 浅拷贝， buffer和new_buffer 数据指针指向不同数据，数据内容一样
+      auto new_deep_buffer = buffer->DeepCopy();
+  
+      output_bufs->Build({1});
+      auto out_buffer = output_bufs->At(0);
+      // 仅拷贝Buffer Meta信息， out_buffer和buffer Meta信息完全一致
+      out_buffer->CopyMeta(buffer);
+     
+  }
+  ```
 
-```c++
-    Status Process(std::shared_ptr<DataContext> data_ctx) {
-        // 获取buffer中的指定meta值
-        auto input_bufs = data_ctx->Input("in");
-        auto output_bufs = data_ctx->Output("out");
-        auto buffer = input_bufs->At(0);
-
-        // 浅拷贝， buffer和new_buffer 数据指针指向同一份数据
-        auto new_buffer = buffer->Copy();
-
-        // 浅拷贝， buffer和new_buffer 数据指针指向不同数据，数据内容一样
-        auto new_deep_buffer = buffer->DeepCopy();
-
-        output_bufs->Build({1});
-        auto out_buffer = output_bufs->At(0);
-        // 仅拷贝Buffer Meta信息， out_buffer和buffer Meta信息完全一致
-        out_buffer->CopyMeta(buffer);
-       
-    }
-```
-
-更多Buffer操作见[API接口](../../../api/c++.md)， Buffer的异常处理见[异常](../../../other-features/exception.md)章节。
+  更多Buffer操作见[API接口](../../../api/c++.md)， Buffer的异常处理见[异常](../../../other-features/exception.md)章节。
 
 ### DataContext与SessionContext
 
@@ -428,122 +427,123 @@ CopyMeta拷贝BufferMeta：接口为CopyMeta， 仅拷贝BufferMeta信息，不�
 
 * DataContext 数据上下文
 
-DataContext是提供给当前功能单元处理数据时的临时获取BufferList
-功能单元处理一次Stream流数据，或一组数据的上下文，当数据生命周期不再属于当前功能单元时，DataContext生命周期也随之结束。
+  DataContext是提供给当前功能单元处理数据时的临时获取BufferList
+  功能单元处理一次Stream流数据，或一组数据的上下文，当数据生命周期不再属于当前功能单元时，DataContext生命周期也随之结束。
 
-生命周期：绑定BufferList，从数据进入FlowUnit到处理完成。
+  生命周期：绑定BufferList，从数据进入FlowUnit到处理完成。
 
-使用场景：通过DataContext->Input接口获取输入端口BufferList，通过DataContext->Output接口获取输出端口BufferList对象,通过DataContext->SetPrivate接口设置临时对象，DataContext->GetPrivate接口获取临时对象。
+  使用场景：通过DataContext->Input接口获取输入端口BufferList，通过DataContext->Output接口获取输出端口BufferList对象,通过DataContext->SetPrivate接口设置临时对象，DataContext->GetPrivate接口获取临时对象。
 
 * SessionContext 会话上下文
 
-SessionContext主要供调用图的业务使用，业务处理数据时，设置状态对象。
+  SessionContext主要供调用图的业务使用，业务处理数据时，设置状态对象。
 
-生命周期：绑定ExternalData，从数据进入Flow，贯穿整个图，一直到数据处理完成结束。
+  生命周期：绑定ExternalData，从数据进入Flow，贯穿整个图，一直到数据处理完成结束。
 
-使用场景：例如http服务同步响应场景，首先接收到http请求后转化成buffer数据，然后通过ExternalData->GetSessionContext接口获取到SessionContext，接着调用SessionContext->SetPrivate设置响应的回调函数，之后通过ExternalData->Send接口把buffer数据发送到flow中；经过中间的业务处理功能单元；最后http响应功能单元中在业务数据处理完成后，再调用SessionContext->GetPrivate获取响应回调函数，发送http响应。至此SessionContext也结束。
+  使用场景：例如http服务同步响应场景，首先接收到http请求后转化成buffer数据，然后通过ExternalData->GetSessionContext接口获取到SessionContext，接着调用SessionContext->SetPrivate设置响应的回调函数，之后通过ExternalData->Send接口把buffer数据发送到flow中；经过中间的业务处理功能单元；最后http响应功能单元中在业务数据处理完成后，再调用SessionContext->GetPrivate获取响应回调函数，发送http响应。至此SessionContext也结束。
 
-DataContext 和 SessionContext提供了如下功能用于复杂业务的开发：
+  DataContext 和 SessionContext提供了如下功能用于复杂业务的开发：
 
 * 获取输入以及输出buffer
 
-通过Input， Output接口获取输入以及输出数据
+  通过Input， Output接口获取输入以及输出数据
 
-```c++
-    Status ExampleFlowUnit::Process(std::shared_ptr<DataContext> data_ctx) {
-        // 该flowunit为1输入1输出，端口号名字分别为input, output
-        auto input_bufs = data_ctx->Input("input");
-        auto output_bufs = data_ctx->Output("output");
-    }
-```
+  ```c++
+  Status ExampleFlowUnit::Process(std::shared_ptr<DataContext> data_ctx) {
+      // 该flowunit为1输入1输出，端口号名字分别为input, output
+      auto input_bufs = data_ctx->Input("input");
+      auto output_bufs = data_ctx->Output("output");
+  }
+  ```
 
 * 通过DataContext保存本功能单元Stream流级别数据。
-对于Stream流的一组数据，在本功能单元内DataPre、每次Process、 DataPost接口内可以通过SetPrivate接口设置数据来保存状态和传递信息，通过GetPrivate获取数据。如DataPre和Process间的数据传递，上一次Process和下一次Process间的数据传递。具体使用样例如下：
 
-```c++
-    modelbox::Status VideoDecoderFlowUnit::DataPre(
-    std::shared_ptr<modelbox::DataContext> data_ctx) {
-        // 获取Stream流元数据信息
-        auto stream_meta = data_ctx->GetInputMeta("Stream-Meta");
+  对于Stream流的一组数据，在本功能单元内DataPre、每次Process、 DataPost接口内可以通过SetPrivate接口设置数据来保存状态和传递信息，通过GetPrivate获取数据。如DataPre和Process间的数据传递，上一次Process和下一次Process间的数据传递。具体使用样例如下：
 
-        // 初始化Stream流数据处理上下文对象。
-        auto decoder = CreateDecoder(stream_meta);
-
-        // 保存流数据处理上下文对象。
-        data_ctx->SetPrivate("Decoder", decoder);
-        return modelbox::STATUS_OK;
-        }
-
-    modelbox::Status VideoDecoderFlowUnit::Process(
-        std::shared_ptr<modelbox::DataContext> ctx) {
-        // 获取流数据处理上下文对象。
-        auto decoder = data_ctx->GetPrivate("Decoder");
-        auto inputs = ctx->Input("input");
-        auto outputs = ctx->Output("output");
-
-        // 处理输入数据。
-        decoder->Decode(inputs, outputs);
-
-        return modelbox::STATUS_OK;
-    }
-
-    modelbox::Status VideoDecoderFlowUnit::DataPost(
-        std::shared_ptr<modelbox::DataContext> data_ctx) {
-        // 关闭解码器。
-        auto decoder = data_ctx->GetPrivate("Decoder");
-        decoder->DestroyDecoder();
-        return modelbox::STATUS_OK;
-    }
-```
+  ```c++
+  modelbox::Status VideoDecoderFlowUnit::DataPre(
+      std::shared_ptr<modelbox::DataContext> data_ctx) {
+      // 获取Stream流元数据信息
+      auto stream_meta = data_ctx->GetInputMeta("Stream-Meta");
+  
+      // 初始化Stream流数据处理上下文对象。
+      auto decoder = CreateDecoder(stream_meta);
+  
+      // 保存流数据处理上下文对象。
+      data_ctx->SetPrivate("Decoder", decoder);
+      return modelbox::STATUS_OK;
+      }
+  
+  modelbox::Status VideoDecoderFlowUnit::Process(
+      std::shared_ptr<modelbox::DataContext> ctx) {
+      // 获取流数据处理上下文对象。
+      auto decoder = data_ctx->GetPrivate("Decoder");
+      auto inputs = ctx->Input("input");
+      auto outputs = ctx->Output("output");
+  
+      // 处理输入数据。
+      decoder->Decode(inputs, outputs);
+  
+      return modelbox::STATUS_OK;
+  }
+  
+  modelbox::Status VideoDecoderFlowUnit::DataPost(
+      std::shared_ptr<modelbox::DataContext> data_ctx) {
+      // 关闭解码器。
+      auto decoder = data_ctx->GetPrivate("Decoder");
+      decoder->DestroyDecoder();
+      return modelbox::STATUS_OK;
+  }
+  ```
 
 * 获取输入端口的Meta和设置输出端口的Meta
 
-```c++
-    modelbox::Status ExampleFlowUnit::Process(std::shared_ptr<DataContext> data_ctx) {
-        auto input_meta = data_ctx->GetInputMeta("input");
-        data_ctx->SetOutputMeta("output", input_meta);
-    }
-```
+  ```c++
+  modelbox::Status ExampleFlowUnit::Process(std::shared_ptr<DataContext> data_ctx) {
+      auto input_meta = data_ctx->GetInputMeta("input");
+      data_ctx->SetOutputMeta("output", input_meta);
+  }
+  ```
 
 * 通过DataContext判断是否存在error
 
-```c++
-    modelbox::Status ExampleFlowUnit::Process(std::shared_ptr<DataContext> data_ctx) {
-        auto res = data_ctx->HasError();
-    }
-```
+  ```c++
+  modelbox::Status ExampleFlowUnit::Process(std::shared_ptr<DataContext> data_ctx) {
+      auto res = data_ctx->HasError();
+  }
+  ```
 
 * 通过DataContext发送event
 
-在写自定义流单元当中，存在通过单数据驱动一次，process继续自驱动的场景，此时需要通过在流单元东中发送event继续驱动调度器在没有数据的情况下调度该流单元
+  在写自定义流单元当中，存在通过单数据驱动一次，process继续自驱动的场景，此时需要通过在流单元东中发送event继续驱动调度器在没有数据的情况下调度该流单元
 
-```c++
-    modelbox::Status ExampleFlowUnit::Process(std::shared_ptr<DataContext> data_ctx) {
-        ...
-        auto event = std::make_shared<FlowUnitEvent>();
-        data_ctx->SendEvent(event);
-        return STATUS_CONTINUE;
-    }
-```
+  ```c++
+  modelbox::Status ExampleFlowUnit::Process(std::shared_ptr<DataContext> data_ctx) {
+      ...
+      auto event = std::make_shared<FlowUnitEvent>();
+      data_ctx->SendEvent(event);
+      return STATUS_CONTINUE;
+  }
+  ```
 
 * 通过SessionContext存储全局数据
 
-存储任务的全局变量，可用于在多个功能单元之间共享数据。SessionContext的全局数据的设置和获取方式如下：
+  存储任务的全局变量，可用于在多个功能单元之间共享数据。SessionContext的全局数据的设置和获取方式如下：
 
-```c++
-    modelbox::Status ExampleFlowUnit1::Process(std::shared_ptr<DataContext> data_ctx) {
-        auto session_cxt = data_ctx->GetSessionContext();
-        session_cxt->SetPrivate("http_limiter_" + session_cxt->GetSessionId(),
-                          http_limiter);
-    }
-```
+  ```c++
+  modelbox::Status ExampleFlowUnit1::Process(std::shared_ptr<DataContext> data_ctx) {
+      auto session_cxt = data_ctx->GetSessionContext();
+      session_cxt->SetPrivate("http_limiter_" + session_cxt->GetSessionId(),
+                        http_limiter);
+  }
+  ```
 
-```c++
-     modelbox::Status ExampleFlowUnit2::Process(std::shared_ptr<DataContext> data_ctx) {
-        auto session_cxt = data_ctx->GetSessionContext();
-        auto http_limiter = session_cxt->GetPrivate("http_limiter_" + session_cxt->GetSessionId());
-    }
-```
+  ```c++
+  modelbox::Status ExampleFlowUnit2::Process(std::shared_ptr<DataContext> data_ctx) {
+      auto session_cxt = data_ctx->GetSessionContext();
+      auto http_limiter = session_cxt->GetPrivate("http_limiter_" + session_cxt->GetSessionId());
+  }
+  ```
 
 ## 功能单元编译运行
 
@@ -555,7 +555,7 @@ ModelBox C++工程统一使用CMake进行编译，通过命令行或者WebUI创�
 1. 设置编译目标为动态库
 1. 指定功能单元安装目录
 
-功能单元编译生成的so命名需要以`libmodelbox-`开头，否则ModelBox无法扫描。
+功能单元编译生成的so命名需要以**libmodelbox-**开头，否则ModelBox无法扫描。
 通常情况开发cpu业务功能单元，开发者无需修改CMakeLists.txt即可完成编译，当存在引入第三方库时、设置cuda/ascend类型、修改编译选项等等诉求时需要自行修改。生成的so安装路径一般也无需修改，如果开发者需要改动，则需要将路径添加到图的扫描路径driver.dir中。
 
 ## 功能单元功能测试
@@ -569,7 +569,6 @@ Modelbox框架提供了基于gtest的单元测试框架， 开发者可以编写
 样例如下：
 
 ```c++
-
 class ExampleFlowUnitTest : public testing::Test {
  public:
   ExampleFlowUnitTest() : mock_modelbox_(std::make_shared<MockModelBox>()) {}
@@ -644,9 +643,7 @@ TEST_F(ExampleFlowUnitTest, TestCase1) {
   EXPECT_EQ(exists, true);
   exists = output_buffer->Get("height", height);
   EXPECT_EQ(exists, true);
-
 }
-
 ```
 
 测试用例的运行可以通过命令行，也可以通过vscode等IDE功能运行，方便调试。具体运行命令如下：  

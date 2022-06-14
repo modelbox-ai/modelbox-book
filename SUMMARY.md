@@ -43,7 +43,7 @@
   * [ModelBox Tool](tools/modelbox-tool/modelbox-tool.md)
 * [预置插件](plugins/plugins.md)
   * [modelbox-plugin](plugins/modelbox-plugin.md)
-  * [可视化编排服务](plugins/editor.md)
+  * [可视化编排插件](plugins/editor.md)
 * [预置功能单元](flowunits/flowunits.md)
   * [输入类](flowunits/flowunits-input.md)
     * [video_input](flowunits/flowunits-input.md#videoinput)
