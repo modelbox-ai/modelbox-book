@@ -9,11 +9,11 @@ ModelBox预置了多个常用功能单元，可用于完成AI应用的基本流�
 |业务分类|功能单元名称|功能单元类型|功能简介
 |--|--|--|--|
 |输入类|[video_input](./flowunits-input.md#video_input)|NORMAL|获取视频输入地址
-|输入类|[httpserver_async](./flowunits-input.md#httpserverasync)|NORMAL|收发http异步请求
-|输入类|[httpserver_sync_receive](./flowunits-input.md#httpserversyncreceive)|NORMAL|接受http同步请求
+|输入类|[httpserver_async](./flowunits-input.md#httpserverasync)|NORMAL|收发HTTP异步请求
+|输入类|[httpserver_sync_receive](./flowunits-input.md#httpserversyncreceive)|NORMAL|接受HTTP同步请求
 |输入类|[data_source_parse](./flowunits-input.md#datasourceparse)|STREAM|解析数据源，仅对接华为云ModelArts使用
 |输入类|[data_source_generator](./flowunits-input.md#datasourcegenerator)|NORMAL|产生数据源，给data_source_parse提供模拟输入，本地调试用
-|输出类|[httpserver_sync_reply](./flowunits-output.md#httpserversyncreply)|STREAM|回复http同步请求
+|输出类|[httpserver_sync_reply](./flowunits-output.md#httpserversyncreply)|STREAM|回复HTTP同步请求
 |输出类|[output_broker](./flowunits-output.md#outputbroker)|STREAM|将算法处理结果输出到外部
 |视频类|[video_demuxer](./flowunits-video.md#videodemuxer)|STREAM|视频解封装
 |视频类|[video_decoder](./flowunits-video.md#videodecoder)|STREAM|视频解码
@@ -30,48 +30,48 @@ ModelBox预置了多个常用功能单元，可用于完成AI应用的基本流�
 |图像类|[draw_bbox](./flowunits-image.md#drawbbox)|NORMAL|在图像上画框
 |通用类|[buff_meta_mapping](./flowunits-generic.md#buffmetamapping)|STREAM|做元数据映射
 |虚拟类|[inference](./flowunits-virtual.md#inference)|NORMAL|模型推理虚拟功能单元模板, 用于创建推理功能单元
-|虚拟类|[yolo_postprocess](./flowunits-virtual.md#yolopostprocess)|NORMAL|yolo后处理模板,用于创建yolo模型后处理功能单元
+|虚拟类|[yolo_postprocess](./flowunits-virtual.md#yolopostprocess)|NORMAL|yolo后处理模板,用于创建YOLO模型后处理功能单元
 |虚拟类|[input](./flowunits-virtual.md#input)|不涉及|虚拟输入功能单元，用于接受图外部输入
 |虚拟类|[output](./flowunits-virtual.md#output)|不涉及|虚拟输出功能单元，用于数据输出到图外部
 
 ## 常用数据类型
 
-Modelbox框架定义了一些通用数据类型，用于规定预置功能单元的输入数据和输出数据格式要求，每一种数据类型规定了该类型的buffer数据应该携带的buffer meta字段信息。
+ModelBox框架定义了一些通用数据类型，用于规定预置功能单元的输入数据和输出数据格式要求，每一种数据类型规定了该类型的Buffer数据应该携带的Buffer Meta字段信息。
 
-* **Tensor数据类型**
+### Tensor数据类型
 
   含义：基础数据类型。
 
-  buffer meta字段信息：
+  Buffer Meta字段信息：
 
 |参数名称|参数类型|参数含义|
 |--|--|--|  
 |shape|vector&lt;size_t&gt;|多维数据的每一维取值|
-|type|可取值：ModelBoxDataType::MODELBOX_UINT8、ModelBoxDataType::MODELBOX_FLOAT|buffer data数据类型|
+|type|可取值：ModelBoxDataType::MODELBOX_UINT8、ModelBoxDataType::MODELBOX_FLOAT|Buffer Data数据类型|
 
-* **图片数据类型**
+### 图片数据类型
 
   含义：描述一张图片的属性，图片数据类型包含Tensor数据类型信息。
 
-  buffer meta字段信息：
+  Buffer Meta字段信息：
 
 |参数名称|参数类型|参数含义|
 |--|--|--|
 |width|int32_t|图片宽|
 |height|int32_t|图片高|
-|width_stride|int32_t|对齐后的图片宽，目前仅用于ascend类型buffer|
-|height_stride|int32_t|对齐后的图片高，目前仅用于ascend类型buffer|
+|width_stride|int32_t|对齐后的图片宽，目前仅用于ascend类型Buffer|
+|height_stride|int32_t|对齐后的图片高，目前仅用于ascend类型Buffer|
 |channel|int32_t|图像通道数|
 |pix_fmt|string|图像格式，取值范围："rgb"、"bgr"、"nv12"、"rgbp"、"bgrp"、"gray"|
 |layout|int32_t|图片布局，取值范围：hwc、hcw|
 |shape|vector&lt;size_t&gt;|多维数据的每一维取值|
-|type|ModelBoxDataType::MODELBOX_UINT8|buffer data数据类型|
+|type|ModelBoxDataType::MODELBOX_UINT8|Buffer Data数据类型|
 
-* **视频帧数据类型**
+### 视频帧数据类型
 
   含义：描述视频解码后的每帧图片的属性，包含视频信息和图片数据类型信息。
 
-  buffer meta字段信息：
+  Buffer Meta字段信息：
 
 |参数名称|参数类型|参数含义|
 |--|--|--|
@@ -85,19 +85,19 @@ Modelbox框架定义了一些通用数据类型，用于规定预置功能单元
 |eos|int32_t|结束标识|
 |width|int32_t|图片宽|
 |height|int32_t|图片高|
-|width_stride|int32_t|对齐后的图片宽，目前仅用于ascend类型buffer|
-|height_stride|int32_t|对齐后的图片高，目前仅用于ascend类型buffer|
+|width_stride|int32_t|对齐后的图片宽，目前仅用于ascend类型Buffer|
+|height_stride|int32_t|对齐后的图片高，目前仅用于ascend类型Buffer|
 |channel|int32_t|图像通道数|
 |pix_fmt|string|图像格式，取值范围："rgb"、"bgr"、"nv12"、"rgbp"、"bgrp"、"gray"|
 |layout|int32_t|图片布局，取值范围：hwc、hcw|
 |shape|vector&lt;size_t&gt;|多维数据的每一维取值|
-|type|ModelBoxDataType::MODELBOX_UINT8|buffer data数据类型|
+|type|ModelBoxDataType::MODELBOX_UINT8|Buffer Data数据类型|
 
-* **视频包数据类型**
+### 视频包数据类型
 
   含义：描述视频解封装后的数据包，用于视频解码。
 
-  buffer meta字段信息：
+  Buffer Meta字段信息：
 
 |参数名称|参数类型|参数含义|
 |--|--|--|
@@ -110,13 +110,13 @@ Modelbox框架定义了一些通用数据类型，用于规定预置功能单元
 |width|int32_t|视频宽|
 |height|int32_t|视频高|
 
-* **矩形框数据类型**
+### 矩形框数据类型
 
   含义：描述矩形区域。
 
-  buffer meta字段信息：无
+  Buffer Meta字段信息：无
 
-  buffer data信息存放结构如下：
+  Buffer Data信息存放结构如下：
 
   ``` c++
   typedef struct RoiBox {
@@ -124,13 +124,13 @@ Modelbox框架定义了一些通用数据类型，用于规定预置功能单元
   } ;
   ```
 
-* **检测矩形框类型**
+### 检测矩形框类型
 
-  含义：描述yolo检测的结果，包含矩形区域、置信度、分类结果。
+  含义：描述YOLO检测的结果，包含矩形区域、置信度、分类结果。
 
-  buffer meta字段信息：无
+  Buffer Meta字段信息：无
 
-  buffer data信息信息存放结构如下。
+  Buffer Data信息信息存放结构如下。
 
   ``` c++
   typedef struct BoundingBox {
@@ -144,11 +144,11 @@ Modelbox框架定义了一些通用数据类型，用于规定预置功能单元
   };
   ```
 
-* **HTTP请求数据类型**
+### HTTP请求数据类型
 
   含义：描述HTTP请求数据类型。
 
-  buffer meta字段信息：
+  Buffer Meta字段信息：
 
 |参数名称|参数类型|参数含义|
 |--|--|--|
@@ -158,11 +158,11 @@ Modelbox框架定义了一些通用数据类型，用于规定预置功能单元
 |headers|map<string,string>|请求头信息|
 |endpoint|string|请求endpoint|
 
-* **HTTP请求响应数据类型**
+### HTTP请求响应数据类型
 
   含义：描述HTTP请求响应数据类型。
 
-  buffer meta字段信息：
+  Buffer Meta字段信息：
 
 |参数名称|参数类型|参数含义|
 |--|--|--|
@@ -171,7 +171,7 @@ Modelbox框架定义了一些通用数据类型，用于规定预置功能单元
 
 ## 查询功能单元命令
 
-开发者可以通过Modelbox Tool命令查询各个功能单元的详细信息，包括功能介绍、cpu/cuda类型、输入要求、输出信息、配置项、约束等。命令如下：
+开发者可以通过**ModelBox Tool**命令查询各个功能单元的详细信息，包括功能介绍、cpu/cuda类型、输入要求、输出信息、配置项、约束等。命令如下：
 
 查询当前系统目录下所有可以加载的功能单元列表：
 
@@ -203,8 +203,8 @@ modelbox-tool driver
 [root@996a6346d170 modelbox]$ modelbox-tool driver -info -type flowunit -detail -name resize
 --------------------------------------
 flowunit name   : resize # flowunit名称
-type            : cpu    # flowunit类型：cpu：普通cpu; cuda：nvidia gpu; ascend： ascend d310推理加速卡
-driver name     : resize # driver名称：c++场景一个driver对应一个so，一个driver可以包含多个flowunit
+type            : cpu    # flowunit类型：cpu：普通CPU; cuda：Nvidia GPU; ascend： Ascend D310推理加速卡
+driver name     : resize # driver名称：C++场景一个driver对应一个so，一个driver可以包含多个flowunit
 version         : 1.0.0
 descryption     :        
         @Brief: A resize flowunit on cpu                            # flowunit 功能简介

@@ -2,14 +2,14 @@
 
 |函数|作用|
 |-|-|
-|[build](#modelboxbufferlistbuild)|bufferlist对象申请指定长度大小的内存空间|
-|[copy_meta](#modelboxbufferlistcopymeta)|拷贝参数自带的所有meta信息给当前bufferlist|
-|[get_bytes](#modelboxbufferlistget_bytes)|获取当前bufferlist的字节大小|
-|[push_back](#modelboxbufferlistpush_back)|将一个buffer插入到当前的bufferlist当中|
-|[set](#modelboxbufferlistset)|设置当前bufferlist的某个meta值|
-|[size](#modelboxbufferlistsize)|获取当前bufferlist的长度|
-|[len](#modelboxbufferlistsize)|可以被len函数获取当前bufferlist的长度|
-|[构造方法](#构造方法)| bufferlist的构造方法|
+|[build](#modelboxbufferlistbuild)|BufferList对象申请指定长度大小的内存空间|
+|[copy_meta](#modelboxbufferlistcopymeta)|拷贝参数自带的所有Meta信息给当前BufferList|
+|[get_bytes](#modelboxbufferlistget_bytes)|获取当前BufferList的字节大小|
+|[push_back](#modelboxbufferlistpush_back)|将一个Buffer插入到当前的BufferList当中|
+|[set](#modelboxbufferlistset)|设置当前BufferList的某个Meta值|
+|[size](#modelboxbufferlistsize)|获取当前BufferList的长度|
+|[len](#modelboxbufferlistsize)|可以被len函数获取当前BufferList的长度|
+|[构造方法](#构造方法)| BufferList的构造方法|
 ---
 
 ## 构造方法
@@ -26,19 +26,19 @@ BufferList申请内存空间
 
 **args:**  
 
-* **device** (modelbox.Device) —— 构造当前buffer所在的modelbox.Device对象
+* **device** (modelbox.Device) —— 构造当前Buffer所在的modelbox.Device对象
 
 ### modelbox.BufferList(buffer)
 
 **args:**
 
-* **buffer** (modelbox.Buffer) —— 通过buffer构建bufferList
+* **buffer** (modelbox.Buffer) —— 通过Buffer构建BufferList
 
 ### modelbox.BufferList(buffer_list)
 
 **args:**
 
-* **buffer_list** (list[modelbox.Buffer]) —— 一组buffer
+* **buffer_list** (list[modelbox.Buffer]) —— 一组Buffer
 
 **return:**  
 
@@ -59,7 +59,7 @@ modelbox.BufferList
 
 **result:**  
 
-inputbuf_list和output_buf_list均为构建好的bufferlist，一般而言并不需要用户构建bufferlist
+inputbuf_list和output_buf_list均为构建好的BufferList，一般而言并不需要开发者构建BufferList
 
 ## modelbox.BufferList.build
 
@@ -67,7 +67,7 @@ BufferList申请内存空间
 
 **args:**  
 
-* **sizes** (list[int]) —— buffer_list当中每一个buffer的大小
+* **sizes** (list[int]) —— BufferList当中每一个Buffer的大小
 
 **return:**  
 
@@ -98,11 +98,11 @@ modelbox.Status 申请结果的状态
 
 ## modelbox.BufferList.copy_meta
 
-把参数的bufferlist里面的meta信息，copy给当前的bufferlist，一对一拷贝
+把参数的BufferList里面的Meta信息，copy给当前的BufferList，一对一拷贝
 
 **args:**  
 
-* **buffer_list** (modelbox.BufferList) —— meta来源的bufferlist
+* **buffer_list** (modelbox.BufferList) —— Meta来源的BufferList
 
 **return:**  
 
@@ -128,7 +128,7 @@ modelbox.Status
 
 **result:**
 
-output_bufs具有和原始input_bufs相同的meta信息
+output_bufs具有和原始input_bufs相同的Meta信息
 
 ## modelbox.BufferList.get_bytes
 
@@ -162,11 +162,11 @@ uint64
 
 ## modelbox.BufferList.push_back
 
-往bufferlist当中插入一个新的buffer
+往BufferList当中插入一个新的Buffer
 
 **args:**  
 
-* **buffer** (modelbox.Buffer) —— 需要插入到bufferlist当中的buffer
+* **buffer** (modelbox.Buffer) —— 需要插入到BufferList当中的Buffer
 
 **return:**  
 
@@ -190,11 +190,11 @@ uint64
 
 **result:**  
 
-buf_list当中的第一个buffer即为新建的buffer
+buf_list当中的第一个buffer即为新建的Buffer
 
 ## modelbox.BufferList.size
 
-获取当前bufferlist的长度
+获取当前BufferList的长度
 
 **args:**  
 
@@ -233,13 +233,13 @@ modelbox.Bufferlist的长度
 
 ## modelbox.BufferList.set
 
-设置当前bufferlist的某个meta值
+设置当前BufferList的某个Meta值
 
 **args:**  
 
-* **key** (str) ——  meta的key值
+* **key** (str) ——  Meta的key值
 
-* **obj** (int, str, double, bool, modelbox.ModelBoxDataType, list[str], list[int], list[double], list[bool]) ——  meta的value值
+* **obj** (int, str, double, bool, modelbox.ModelBoxDataType, list[str], list[int], list[double], list[bool]) ——  Meta的value值
 
 **return:**  
 

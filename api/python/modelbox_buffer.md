@@ -2,46 +2,46 @@
 
 |函数|作用|
 |-|-|
-|[as_object](#modelboxbufferasobject)|将modelbox buffer对象转换成python对象|
-|[copy_meta](#modelboxbuffercopymeta)|拷贝参数自带的所有meta信息给当前buffer|
-|[has_error](#modelboxbufferhaserror)|判断当前buffer是否存在error|
-|[get_error](#modelboxbuffergeterror)|获取当前buffer的error|
-|[get_bytes](#modelboxbuffergetbytes)|获取当前buffer的字节数|
-|[get](#modelboxbufferget)|获取当前buffer的某个meta值|
-|[set](#modelboxbufferset)|设置当前buffer的某个meta值|
-|[构造方法](#构造方法)| buffer的构造方法|
+|[as_object](#modelboxbufferasobject)|将ModelBox Buffer对象转换成Python对象|
+|[copy_meta](#modelboxbuffercopymeta)|拷贝参数自带的所有Meta信息给当前Buffer|
+|[has_error](#modelboxbufferhaserror)|判断当前Buffer是否存在error|
+|[get_error](#modelboxbuffergeterror)|获取当前Buffer的error|
+|[get_bytes](#modelboxbuffergetbytes)|获取当前Buffer的字节数|
+|[get](#modelboxbufferget)|获取当前Buffer的某个Meta值|
+|[set](#modelboxbufferset)|设置当前Buffer的某个Meta值|
+|[构造方法](#构造方法)| Buffer的构造方法|
 ---
 
 ## 构造方法
 
-把参数的buffer的meta信息 copy给当前buffer
+把参数的Buffer的Meta信息 copy给当前Buffer
 
 ### modelbox.Buffer(device, data)
 
 **args:**(建议args改为中文参数说明，建议用表格列举，参数名，类型，描述说明)
 
-* **device** (modelbox.Device) —— 构造当前buffer所在的modelbox.Device对象
-* **data**  (numpy.array) —— 当前buffer包含的numpy数据
+* **device** (modelbox.Device) —— 构造当前Buffer所在的modelbox.Device对象
+* **data**  (numpy.array) —— 当前Buffer包含的numpy数据
 
 ### modelbox.Buffer(device, string)
 
 **args:**
 
-* **device** (modelbox.Device) —— 构造当前buffer所在的modelbox.Device对象
-* **string**  (str) —— 当前buffer包含的string数据
+* **device** (modelbox.Device) —— 构造当前Buffer所在的modelbox.Device对象
+* **string**  (str) —— 当前Buffer包含的string数据
 
 ### modelbox.Buffer(device, list_item)
 
 **args:**
 
-* **device** (modelbox.Device) —— 构造当前buffer所在的modelbox.Device对象
-* **list_item**  (str) —— 当前buffer包含的list数据，其中每一个元素必须同一类型
+* **device** (modelbox.Device) —— 构造当前Buffer所在的modelbox.Device对象
+* **list_item**  (str) —— 当前Buffer包含的list数据，其中每一个元素必须同一类型
 
 **return:**  返回值
 
-modelbox.Buffer(补充文字说明)
+modelbox.Buffer
 
-**example:**  (使用示例：)
+**example:**  
 
 ```python
    import numpy as np
@@ -59,11 +59,11 @@ modelbox.Buffer(补充文字说明)
 
 **result:**
 
-new_buffer具有和原始buf相同的meta信息
+new_buffer具有和原始Buffer相同的Meta信息
 
 ## modelbox.Buffer.as_object
 
-将modelbox buffer object 转换成python对象(可以转换成numpy array和str对象)
+将modelbox buffer object 转换成Python对象(可以转换成numpy array和str对象)
 
 **args:**  
 
@@ -93,14 +93,14 @@ str 或者 numpy.array对象
 ```python
     # 在demo mnist 当中mnist_preprocess的结果为(str)
     {"image_base64": "iVBORw0..."} <class 'str'>
-    # 在test python当中的python_show flowunit中结果为(numpy.ndarray)
+    # 在test Python当中的Python_show flowunit中结果为(numpy.ndarray)
     [ 3  5  6 ...,  3  6 13] <class 'numpy.ndarray'>
 
 ```
 
 ## modelbox.Buffer.has_error
 
-判断当前buffer是否存在error
+判断当前Buffer是否存在error
 
 **args:**  
 
@@ -157,7 +157,7 @@ modelbox.FlowUnitError， 具体参见FlowUnitError章节
 
 ## modelbox.Buffer.get_bytes
 
-获取当前buffer的字节数
+获取当前Buffer的字节数
 
 **args:**  
 
@@ -165,7 +165,7 @@ modelbox.FlowUnitError， 具体参见FlowUnitError章节
 
 **return:**  
 
-int64, buffer的bytes
+int64, Buffer的字节数
 
 **example:**  
 
@@ -189,13 +189,13 @@ int64, buffer的bytes
 
 ## modelbox.Buffer.set
 
-设置当前buffer的某个meta值
+设置当前Buffer的某个Meta值
 
 **args:**  
 
-* **key** (str) —— meta的key值
+* **key** (str) —— Meta的key值
 
-* **obj** (int, str, double, bool, modelbox.ModelBoxDataType, list[str], list[int], list[double], list[bool]) —— meta的value值
+* **obj** (int, str, double, bool, modelbox.ModelBoxDataType, list[str], list[int], list[double], list[bool]) —— Meta的value值
 
 **return:**  
 
@@ -203,15 +203,15 @@ bool, 是否设置成功
 
 ## modelbox.Buffer.get
 
-获取当前buffer的某个meta值
+获取当前Buffer的某个Meta值
 
 **args:**  
 
-* **key** (str) —— meta的key值
+* **key** (str) ——Meta的key值
 
 **return:**  
 
-python object 获取key对应的value值
+Python object 获取key对应的value值
 
 type: int, double, str, bool, list[int], list[str], list[double], list[bool]
 
@@ -237,11 +237,11 @@ type: int, double, str, bool, list[int], list[str], list[double], list[bool]
 
 ## modelbox.Buffer.copy_meta
 
-把参数的buffer的meta信息 copy给当前buffer
+把参数的Buffer的Meta信息 copy给当前Buffer
 
 **args:**  
 
-* **buffer** (modelbox.Buffer) —— meta来源的buffer
+* **buffer** (modelbox.Buffer) —— Meta来源的Buffer
 
 **return:**  
 
@@ -266,4 +266,4 @@ modelbox.Status  返回copy_meta接口Status
 
 **result:**
 
-new_buffer具有和原始buf相同的meta信息
+new_buffer具有和原始Buffer相同的Meta信息

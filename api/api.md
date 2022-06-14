@@ -1,6 +1,6 @@
 # API
 
-ModelBox API包括了多种编程语言，有C++，python，具体API的支持范围如下：
+ModelBox API包括了多种编程语言，有C++，Python，具体API的支持范围如下：
 请选择合适的开发语言进行扩展。
 
 | 类型                   | 说明                      | C++ | Python            |
@@ -22,7 +22,7 @@ ModelBox插件可以调用的接口有：
 
 1. Job: 任务管理，可以添加，删除，查询图以及对应的任务。
 1. Config：配置读取，可以从ModelBox Server的配置文件/usr/local/etc/modelbox/modelbox.conf中读取配置项。
-1. Listener: http server，可以注册HTTP请求的URL事件。
+1. Listener: HTTP Server，可以注册HTTP请求的URL事件。
 1. Timer: 定时器，可以注册定时任务，定时触发特定的函数。
 1. ModelBox Library: ModelBox运行库的所有API。
 
@@ -51,7 +51,7 @@ ModelBox Library包含`基础Base`部分和`功能`部分。基础部分用于�
 1. OS Adapter API，OS抽象接口
 1. Driver，ModelBox插件接口。
 
-注意：python仅包含Log, Status, Config组件接口。
+注意：Python仅包含Log, Status, Config组件接口。
 
 ### ModelBox推理接口
 
@@ -65,7 +65,7 @@ ModelBox Library包含`基础Base`部分和`功能`部分。基础部分用于�
 1. Session，会话上下文，用于开发存储和会话相关的信息。
 1. Statistics，统计接口，用于统计，获取相关组件的统计信息。
 
-注意：python仅包含Buffer, Flow, Flowunit, tensor, Datacontext, Session相关的接口。
+注意：Python仅包含Buffer, Flow, Flowunit, tensor, Datacontext, Session相关的接口。
 
 ## 开发扩展
 

@@ -1,25 +1,25 @@
 # 推理功能单元
 
-本章节介绍推理功能单元的开发流程。ModelBox内置了主流的推理引擎，如TensorFlow，TensorRT，LibTorch，Ascend ACL，Mindspore。在开发推理功能单元时，只需要通过配置toml文件，即可完成推理功能单元的开发。
+本章节介绍推理功能单元的开发流程。ModelBox内置了主流的推理引擎，如TensorFlow，TensorRT，LibTorch，Ascend ACL，MindSpore。在开发推理功能单元时，只需要通过配置toml文件，即可完成推理功能单元的开发。
 开发之前，可以从[功能单元概念](../../../basic-conception/flowunit.md)章节了解流单的执行过程。
 
 ## 推理功能单元创建
 
-Modelbox提供了多种方式进行推理功能单元的创建：
+ModelBox提供了多种方式进行推理功能单元的创建：
 
-* 通过UI创建
+* **通过UI创建**
   
   可参考可视化编排服务的[任务编排页面](../../../plugins/editor.md#功能单元)章节操作步骤。
 
-* 通过命令行创建
+* **通过命令行创建**
 
-  ModelBox提供了模板创建工具，可以通过**ModelBox Tool**工具产生c++功能单元的模板，具体的命令为
+  ModelBox提供了模板创建工具，可以通过**ModelBox Tool**工具产生C++功能单元的模板，具体的命令为
 
   ```shell
   modelbox-tool template -flowunit -project-path [project_path] -name [flowunit_name] -lang infer -virtual-type [type]  -model [model_file_path] -copy-model -input name=in1,device=cuda -output name=out1
   ```
 
-  该命令将会在`[project_path]/src/flowunit`目录下创建名为`[flowunit_name]`的推理功能单元。
+  该命令将会在`$project_path]/src/flowunit`目录下创建名为`flowunit_name`的推理功能单元。
 
 创建完成的C++功能单元目录结构如下：
 
@@ -95,7 +95,7 @@ type = "datatype" # 输出端口数据类型, 取值float or uint8
 |acl| xxx.om|
 |mindspore| xxx.mindir|
 
-* 模型引擎为tensorrt时，可以对应三种模型格式，toml文件的修改如下：
+* 模型引擎为TensorRT时，可以对应三种模型格式，toml文件的修改如下：
 
 模型类型为uff, 配置文件当中增加
 
@@ -117,11 +117,11 @@ type = "datatype" # 输出端口数据类型, 取值float or uint8
 
 模型类型为onnx, 配置文件当中修改 ``` entry = "xxx.onnx" ```
 
-模型类型为tensorrt自己生成的序列化模型, 不论任何后缀直接配置到entry即可
+模型类型为TensorRT自己生成的序列化模型, 不论任何后缀直接配置到entry即可
 
 * base域下面的plugin选项
 
-plugin即为文件路径下面的so，该so为为自定义modelbox的tensorflow推理的预处理以及后处理函数，需要自定义实现以下接口(为可选项)
+plugin即为文件路径下面的so，该so为为自定义ModelBox的tensorflow推理的预处理以及后处理函数，需要自定义实现以下接口(为可选项)
 
 ```c++
    // tensorflow
@@ -155,16 +155,16 @@ plugin即为文件路径下面的so，该so为为自定义modelbox的tensorflow�
   };
 ```
 
-* tensorrt的自定义算子构建的PluginFactory
+* TensorRT的自定义算子构建的PluginFactory
 
-目前自带yolo版本的PluginFactory，只需要在toml配置文件当中增加
+目前自带YOLO版本的PluginFactory，只需要在toml配置文件当中增加
 
 ```toml
    [config]
    plugin = "yolo"
 ```
 
-后续支持自定义算子的tensorrt插件，编译成动态库，把路径配置在这里
+后续支持自定义算子的TensorRT插件，编译成动态库，把路径配置在这里
 
 * torch模型需要保存成成jit模型，参考sample如下：
 
@@ -179,7 +179,7 @@ plugin即为文件路径下面的so，该so为为自定义modelbox的tensorflow�
 
 模型加密分为2个部分：模型加密工具和模型解密插件。
 
-模型加密工具为`modelbox-tool key`内，使用`ModelBox Tool`加密模型后，可获取root key和模型密钥，以及加密后的模型。
+模型加密工具为`modelbox-tool key`内，使用**ModelBox Tool**加密模型后，可获取root key和模型密钥，以及加密后的模型。
 
 ModelBox目前默认自带了模型加密功能，但为了确保模型安全，开发者应该至少实现自己的模型解密插件，至少需要隐藏模型的rootkey和passwd，具体参考修改src/drivers/devices/cpu/flowunit/model_decrypt_plugin/model_decrypt_plugin.cc内的Init函数，
 
@@ -195,4 +195,4 @@ ModelBox目前默认自带了模型加密功能，但为了确保模型安全，
 
 ## 功能单元调试运行
 
-推理功能单元无需编译，通常情况下调试阶段可以将此功能单元所在的文件夹路径配置到流程图的扫描路径driver.dir中，再通过Modelbox-Tool 启动流程图运行，流程图启动时会扫描并加载推理功能单元。
+推理功能单元无需编译，通常情况下调试阶段可以将此功能单元所在的文件夹路径配置到流程图的扫描路径driver.dir中，再通过ModelBox-Tool 启动流程图运行，流程图启动时会扫描并加载推理功能单元。

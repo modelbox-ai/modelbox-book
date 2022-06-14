@@ -1,6 +1,6 @@
 # 配置类功能单元
 
-配置类功能单元是只由Modelbox提供的一类特殊的功能单元。
+配置类功能单元是只由ModelBox提供的一类特殊的功能单元。
 
 配置类功能单元是基于一些相似功能的通用功能单元抽象出来的一个功能单元模板，它不能直接使用，需要通过配置文件实例化之后就可以当作正常功能使用。当前模板类功能单元主要有：inference、yolo_postprocess。
 
@@ -8,7 +8,7 @@
 
 - 功能描述
 
-提供yolo模型后处理的模板，只需要填写配置文件，即可实现yolo模型的后处理功能单元
+提供YOLO模型后处理的模板，只需要填写配置文件，即可实现YOLO模型的后处理功能单元
 
 - 设备类型
 
@@ -25,10 +25,10 @@ name = "yolobox_name"  # 功能单元名称
 version = "1.0.0"  # 功能单元组件版本号
 description = "a common cpu yolobox flowunit" # 功能单元功能描述信息
 type = "yolo_postprocess"  # yolo_postprocess类型功能单元标识
-virtual_type = "yolov3_postprocess"  # yolo后处理类型，当前只支持yolov3_postprocess，后续可扩展其他yolo版本类型
+virtual_type = "yolov3_postprocess"  # YOLO后处理类型，当前只支持yolov3_postprocess，后续可扩展其他YOLO版本类型
 device = "cpu" # 当前只支持cpu
 
-# yolo后处理配置
+# YOLO后处理配置
 [config]   
 input_width = 800
 input_height = 480

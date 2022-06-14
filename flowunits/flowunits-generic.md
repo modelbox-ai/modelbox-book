@@ -4,7 +4,7 @@
 
 - 功能描述
 
-提供buffer meta 字段名称和值的转换功能。
+提供Buffer Meta 字段名称和值的转换功能。
 
 - 设备类型
 
@@ -26,8 +26,8 @@ cpu
 
 |参数名称|参数类型|是否必填|参数含义
 |--|--|--|--|
-|src_meta|string|是|源数据meta字段名称|
-|dest_meta|string|是|转换后数据meta字段名称|
+|src_meta|string|是|源数据Meta字段名称|
+|dest_meta|string|是|转换后数据Meta字段名称|
 |rules|string|否|src_meta转换为dest_meta时值的替换规则, 格式为： "1=2,3=4,5=6"表示将源数据src_meta字段值如果是1，则dest_meta值修改为2，如果是3则修改为4，如果是5则修改为6。再如"abc=efg"，则表示源数据src_meta字段值如果值是"abc"则dest_meta值修改为"efg",不填则不进行值的替换，仅将字段名src_meta替换为dest_meta|
 
 - 约束说明

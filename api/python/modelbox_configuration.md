@@ -40,7 +40,7 @@ meta的value值
 
 **return:**  
 
-python object 获取key对应的value值
+Python object 获取key对应的value值
 
 type: int, double, str, bool, list[int], list[str], list[double], list[bool]
 

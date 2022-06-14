@@ -8,7 +8,7 @@
 
 ## 模型准备
 
-AI应用开发前需要准备好匹配当前modelbox版本支持的推理框架和版本的模型文件，这里已经准备好人脸检测，表情识别两个torch模型文件。
+AI应用开发前需要准备好匹配当前ModelBox版本支持的推理框架和版本的模型文件，这里已经准备好人脸检测，表情识别两个torch模型文件。
 
 ## AI应用开发
 
@@ -24,7 +24,7 @@ docker pull modelbox/modelbox-develop-libtorch_1.9.1-cuda_10.2-ubuntu-x86_64:lat
 
 ### 创建项目
 
-可参考[创建项目](./hello-world.md#项目创建与运行)，最后可选择创建emotion_detction项目工程。
+可参考[创建项目](./hello-world.md#项目创建与运行)，最后可选择创建emotion_detection项目工程。
 
 本案例是测试本地视频文件，可以测试视频路径可以在video_input节点中设置，结果视频路径在videoencoder节点中设置。
 
@@ -42,7 +42,7 @@ docker pull modelbox/modelbox-develop-libtorch_1.9.1-cuda_10.2-ubuntu-x86_64:lat
 
 - 结果渲染：人脸图画出检测框渲染到图像上(draw_emotion)，最后将渲染结果图编码成视频文件(videoencoder)。
 
-整个流程只需要实现蓝色部分功能单元，其他功能单元都在modelbox中内置，只需修改配置即可使用。具体toml配置文件如下所示：
+整个流程只需要实现蓝色部分功能单元，其他功能单元都在ModelBox中内置，只需修改配置即可使用。具体toml配置文件如下所示：
 
 ```toml
 [graph]

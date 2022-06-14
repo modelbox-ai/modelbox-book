@@ -1,24 +1,24 @@
 # 手势识别
 
-手势识别解决方案是ModelBox提供可直接调用的API，用户启动手势识别solution后，输入需要推理的图片数据，会将推理结果返回给用户。检测效果如下图所示：
+手势识别解决方案是ModelBox提供可直接调用的API，开发者集成手势识别solution后，可以完成手势关键点的识别。检测效果如下图所示：
 
 ![hand_pose_result](../assets/images/figure/solution/hand_pose_result.jpg)
 
 ## 输入
 
-输入类型为为`ModelBox::Buffer`，其中包含data与meta两种数据，具体要求如下：
+输入类型为`ModelBox::Buffer`，其中包含Data与Meta两种数据，具体要求如下：
 
-- data：图片二进制数据
+- Data：图片二进制数据
 
-- meta：无要求
+- Meta：无要求
 
 ## 输出
 
-输出类型为为`ModelBox::Buffer`，其中包含data与meta两种数据，具体如下：
+输出类型为`ModelBox::Buffer`，其中包含Data与Meta两种数据，具体如下：
 
-- data：检测后图片，若检测到手，则画出手的框与手指连线；若未检测到手，则为原图。
+- Data：检测后图片，若检测到手，则画出手的框与手指连线；若未检测到手，则为原图。
 
-- meta：
+- Meta：
   - width：图片宽度。
   - height：图片高度。
   - channel：图片通道数。
@@ -31,22 +31,35 @@
 
 可以通过下面两种方式获取：
 
-- 安装包下载：进入[下载链接](http://download.modelbox-ai.com/solutions/hand_pose_detection/)，根据系统选择对应的版本进行下载到[ModelBox镜像](../environment/container-usage.md#支持容器列表)中，直接安装后可调用相关接口可以运行。
+- 安装包下载：进入[下载链接](http://download.modelbox-ai.com/solutions/hand_pose_detection/)，根据系统选择对应的版本进行下载到[ModelBox开发镜像](../environment/container-usage.md#支持容器列表)中，直接安装后可调用相关接口可以运行。
 
-- 源码编译：进入解决方案[代码仓](https://github.com/modelbox-ai/modelbox-solutions)，克隆代码仓到[ModelBox开发镜像](../environment/container-usage.md#支持容器列表)中，新建build目录后，执行`make package hand_pose_detection`可得到安装包。
+- 源码编译：进入[解决方案代码仓](https://github.com/modelbox-ai/modelbox-solutions)，克隆代码仓到[ModelBox开发镜像](../environment/container-usage.md#支持容器列表)中，编译`hand_pose_detection`解决方案并打包，具体命令如下：
+
+  ```shell
+  git clone https://github.com/modelbox-ai/modelbox-solutions.git
+  cd modelbox-solutions
+  mkdir build
+  cd build
+  cmake ..
+  make package -j16 hand_pose_detection
+  ```
+
+  编译打包完成后，将在`release`目录下生成对应的安装包，安装在镜像中即可。
 
 ## 使用样例
 
 ### C++样例
 
-- 需要引入如下头文件，并在编译时链接modelbox库：
+- **头文件**
+
+  需要引入如下头文件，并在编译时链接modelbox库：
 
   ```cpp
   #include <modelbox/solution.h>
   #include <modelbox/flow.h>
   ```
 
-- Solution创建初始化和启动
+- **Solution创建初始化和启动**
 
   ```c++
   modelbox::Flow CreateHandPoseDetectionSolution() {
@@ -68,10 +81,12 @@
       MBLOG_ERROR << "flow run failed";
     }
     MBLOG_INFO << "build hand_pose detection solution success";
+
   }
+
   ```
 
-- 外部数据交互
+- **外部数据交互**
 
   ```c++
   // 数据发送获取
@@ -106,7 +121,7 @@
   }
   ```
 
-- 创建输入
+- **创建输入**
 
   ```cpp
   modelbox::Status BuildInputData(const std::string &img_path, std::shared_ptr<modelbox::BufferList> &input_bufferlist) {
@@ -128,7 +143,7 @@
   }
   ```
 
-- 获取输出
+- **获取输出**
 
   ```cpp
   modelbox::Status RecvExternalData  (std::shared_ptr<modelbox::ExternalDataMap> ext_data) {
@@ -175,7 +190,7 @@
   }
   ```
 
-- 资源释放
+- **资源释放**
 
   ```c++
   void FlowStop(std::shared_ptr<modelbox::Flow> flow) {

@@ -2,7 +2,7 @@
 
 |函数|作用|
 |-|-|
-|[get_buffer_list](#modelboxextoutputbufferlistgetbufferlist)|获取数据中的buffer_list|
+|[get_buffer_list](#modelboxextoutputbufferlistgetbufferlist)|获取数据中的BufferList|
 ---
 
 ## modelbox.ExtOutputBufferList.get_buffer_list
@@ -43,4 +43,4 @@ modelbox.BufferList
 
 **result:**  
 
-获取指定端口的数据(bufferlist), 一般和externalDataMap一起使用
+获取指定端口的数据(BufferList), 一般和externalDataMap一起使用

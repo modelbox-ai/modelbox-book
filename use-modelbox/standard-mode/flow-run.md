@@ -50,6 +50,6 @@ modelbox-tool -verbose -log-level INFO flow -run [path_to_graph]
   path = "/var/log/modelbox/modelbox.log"      # 设置日志路径
   ```
 
-执行`$HOME/modelbox-service/modelbox restart`命令重启modelbox服务生效。
+执行`$HOME/modelbox-service/modelbox restart`命令重启ModelBox服务生效。
 
 更多详细modelbox运行参考[modelbox运行](./deployment/server.md#ModelBoxServer服务配置)。

@@ -86,7 +86,7 @@
 
 **args:**  
 
-* **key** (string) ——  需要获取的meta的key值
+* **key** (string) ——  需要获取的Meta的key值
 * **default_prop** (特定类型) —— 获取key值失败时的默认值
 
 **return:**  

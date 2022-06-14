@@ -2,24 +2,24 @@
 
 |函数|作用|
 |-|-|
-|[构造方法](#构造方法)| buffer的构造方法|
-|[Build](#build)|buffer申请特定大小的内存，内存来源于device侧|
-|[BuildFromHost](#buildfromhost)|buffer申请特定大小的内存，内存来源于host侧|
-|[ConstData](#constdata)|获取当前buffer的数据的常量指针|
-|[MutableData](#mutabledata)|获取当前buffer的数据的指针|
-|[HasError](#haserror)|判断buffer是否存在error|
-|[SetError](#seterror)|给buffer设置error|
+|[构造方法](#构造方法)| Buffer的构造方法|
+|[Build](#build)|Buffer申请特定大小的内存，内存来源于device侧|
+|[BuildFromHost](#buildfromhost)|Buffer申请特定大小的内存，内存来源于host侧|
+|[ConstData](#constdata)|获取当前Buffer的数据的常量指针|
+|[MutableData](#mutabledata)|获取当前Buffer的数据的指针|
+|[HasError](#haserror)|判断Buffer是否存在error|
+|[SetError](#seterror)|给Buffer设置error|
 |[GetErrorCode](#geterrorcode)|获取error_code|
 |[GetErrorMsg](#geterrormsg)|获取error_msg|
-|[GetBytes](#getbytes)|获取当前buffer的字节数|
-|[Get](#get)|获取指定key的meta值|
-|[Set](#set)|设置指定key的meta值|
-|[CopyMeta](#copymeta)|拷贝指定buffer的所有meta值给新buffer|
+|[GetBytes](#getbytes)|获取当前Bufferr的字节数|
+|[Get](#get)|获取指定key的Meta值|
+|[Set](#set)|设置指定key的Meta值|
+|[CopyMeta](#copymeta)|拷贝指定Buffer的所有Meta值给新Buffer|
 ---
 
 ## 构造方法
 
-构造新的buffer
+构造新的Buffer
 
 ```c++
     Buffer();
@@ -28,12 +28,12 @@
 
 **args:**
 
-* **device** (modelbox::Device) —— 构造当前buffer所在的modelbox::Device对象
+* **device** (modelbox::Device) —— 构造当前Buffer所在的modelbox::Device对象
 * **dev_mem_flags**  (uint32_t) —— ascend memory的类型，默认为Normal型
 
 **return:**  
 
-构造出来的新的buffer
+构造出来的新的Buffer
 
 **note:**
 
@@ -52,11 +52,11 @@
 
 **result:**
 
-构建出了和当前功能单元在同一个设备上面的buffer对象
+构建出了和当前功能单元在同一个设备上面的Buffer对象
 
 ## Build
 
-通过buffer对象构建特定大小的内存
+通过Buffer对象构建特定大小的内存
 
 ```c++
     Status Build(size_t size);
@@ -67,10 +67,10 @@
 
 **args:**  
 
-* **size** (size_t) —— buffer申请的内存字节大小
-* **data** (void*) 构建给buffer管理的数据指针
-* **data_size** (size_t) —— buffer申请的内存字节大小
-* **func** (DeleteFunction ) —— 释放buffer指针的函数
+* **size** (size_t) —— Buffer申请的内存字节大小
+* **data** (void*) 构建给Buffer管理的数据指针
+* **data_size** (size_t) —— Buffer申请的内存字节大小
+* **func** (DeleteFunction ) —— 释放Buffer指针的函数
 
 ## BuildFromHost
 
@@ -82,13 +82,13 @@
 
 **args:**  
 
-* **data** (void*) 构建给buffer管理的数据指针
-* **data_size** (size_t) —— buffer申请的内存字节大小
-* **func** (DeleteFunction ) —— 释放buffer指针的函数
+* **data** (void*) 构建给Buffer管理的数据指针
+* **data_size** (size_t) —— Buffer申请的内存字节大小
+* **func** (DeleteFunction ) —— 释放Buffer指针的函数
 
 **return:**  
 
-modelbox::Status, 构建buffer的返回的status状态
+modelbox::Status, 构建Buffer的返回的status状态
 
 **example:**  
 
@@ -115,11 +115,11 @@ modelbox::Status, 构建buffer的返回的status状态
 
 **result:**  
 
-构建成功了3个buffer，通过不同的方式申请内存赋值
+构建成功了3个Buffer，通过不同的方式申请内存赋值
 
 ## ConstData
 
-获取buffer的原始数据的常量指针
+获取Buffer的原始数据的常量指针
 
 **args:**  
 
@@ -131,7 +131,7 @@ const void*, 原始数据的常量指针
 
 ## MutableData
 
-获取buffer的原始数据的指针
+获取Buffer的原始数据的指针
 
 **args:**  
 
@@ -149,7 +149,7 @@ void*, 原始数据的指针
         auto input_bufs = data->Input("input");
         auto output_bufs = data->Output("output");
         for (auto i = 0; i < input_bufs->Size(); ++i) {
-            // 指定位置的buffer
+            // 指定位置的Buffer
             auto buffer = input_bufs->At(i);
             // 数据原始指针
             const void* data1 = buffer->ConstData();
@@ -158,7 +158,7 @@ void*, 原始数据的指针
         ...
         // output_bufs已经构建好了内存以及数据
         for (auto i = 0; i < output_bufs->Size(); ++i) {
-            // 指定位置的buffer
+            // 指定位置的Buffer
             auto buffer = output_bufs->At(i);
             void* data2 = buffer->MutableData();
         }
@@ -168,11 +168,11 @@ void*, 原始数据的指针
 
 **result:**
 
-data1和data2为获取buffer的数据指针
+data1和data2为获取Buffer的数据指针
 
 **note:**
 
-1. input的bufferList当中获取数据用ConstData()接口，output的bufferList当中获取数据使用MutableData()接口
+1. input的BufferList当中获取数据用ConstData()接口，output的BufferList当中获取数据使用MutableData()接口
 
 1. 流单元当中的输入数据是为不可变，输出数据需要构造赋值，为可变。  
 
@@ -188,7 +188,7 @@ data1和data2为获取buffer的数据指针
 
 **return:**  
 
-bool, 当前buffer是否存在error
+bool, 当前Buffer是否存在error
 
 ## SetError
 
@@ -219,7 +219,7 @@ bool, 当前buffer是否存在error
 
 **return:**  
 
-string, 当前buffer的错误码
+string, 当前Buffer的错误码
 
 ## GetErrorMsg
 
@@ -233,7 +233,7 @@ string, 当前buffer的错误码
 
 **return:**  
 
-string, 当前buffer的错误信息
+string, 当前Buffer的错误信息
 
 **example:**  
 
@@ -269,11 +269,11 @@ string, 当前buffer的错误信息
 
 **result:**
 
-可以在报错时给buffe设置error，然后在其他流单元里面补充获取存在buffer的error_code和error_msg
+可以在报错时给Buffer设置error，然后在其他流单元里面补充获取存在Bufferr的error_code和error_msg
 
 ## GetBytes
 
-获取当前buffer的字节数
+获取当前Buffer的字节数
 
 ```c++
     size_t GetBytes() const;
@@ -285,7 +285,7 @@ string, 当前buffer的错误信息
 
 **return:**  
 
-int64, buffer的bytes
+int64, Buffer的字节数
 
 **example:**  
 
@@ -306,11 +306,11 @@ int64, buffer的bytes
 
 **result:**
 
-获取该buffer的bytes
+获取该Buffer的字节数
 
 ## Set
 
-设置当前buffer的某个meta值
+设置当前Buffer的某个Meta值
 
 ```c++
     template <typename T>
@@ -319,9 +319,9 @@ int64, buffer的bytes
 
 **args:**  
 
-* **key** (str) —— meta的key值
+* **key** (str) —— Meta的key值
 
-* **value** (template) —— meta的value值
+* **value** (template) —— Meta的value值
 
 **return:**  
 
@@ -329,7 +329,7 @@ int64, buffer的bytes
 
 ## Get
 
-获取当前buffer的某个meta值
+获取当前Buffer的某个Meta值
 
 ```c++
     template <typename T>
@@ -338,28 +338,28 @@ int64, buffer的bytes
 
 **args:**  
 
-* **key** (str) —— meta的key值
-* **value** (template) —— 接收meta的value值
+* **key** (str) —— Meta的key值
+* **value** (template) —— 接收Meta的value值
 
 **return:**  
 
-bool, 是否获取meta值成功
+bool, 是否获取Meta值成功
 
 **example:**  
 
 ```c++
     Status Process(std::shared_ptr<DataContext> data_ctx) {
-        // 获取buffer中的指定meta值
+        // 获取Buffer中的指定Meta值
         auto input_bufs = data_ctx->Input("input");
         auto buffer = input_bufs->At(0);
-        // 获取buffer meta当中的shape信息，res为get的结果
+        // 获取Buffer Meta当中的shape信息，res为get的结果
         std::vector<int> shape;
         auto res = buffer->Get("shape", shape);
         if (!res) {
             return STATUS_FAULT;
         }
         
-        // 更新shape值后重新，设置到out_buffer的meta当中
+        // 更新shape值后重新，设置到out_buffer的Meta当中
         auto output_bufs = data_ctx->Output("output");
         shape.push_back(1);
         auto out_buffer = output_bufs->At(0);
@@ -369,7 +369,7 @@ bool, 是否获取meta值成功
 
 ## CopyMeta
 
-把参数的buffer的meta信息 copy给当前buffer
+把参数的Buffer Meta信息拷贝给当前Buffer
 
 ```c++
     Status CopyMeta(const std::shared_ptr<Buffer> buf,
@@ -378,8 +378,8 @@ bool, 是否获取meta值成功
 
 **args:**  
 
-* **buf** (modelbox::Buffer) —— meta来源的buffer
-* **is_override** (bool) —— meta是否需要覆盖
+* **buf** (modelbox::Buffer) —— Meta来源的Buffer
+* **is_override** (bool) —— Meta是否需要覆盖
 
 **return:**  
 
@@ -389,7 +389,7 @@ modelbox::Status  返回CopyMeta接口Status
 
 ```c++
     Status Process(std::shared_ptr<DataContext> data_ctx) {
-        // 获取buffer中的指定meta值
+        // 获取Buffer中的指定Meta值
         auto input_bufs = data_ctx->Input("input");
         auto output_bufs = data_ctx->Output("output");
         auto buffer = input_bufs->At(0);
@@ -404,4 +404,4 @@ modelbox::Status  返回CopyMeta接口Status
 
 **result:**
 
-new_buffer具有和原始buf相同的meta信息
+new_buffer具有和原始Buffer相同的Meta信息

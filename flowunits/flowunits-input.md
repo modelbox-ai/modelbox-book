@@ -72,10 +72,10 @@ cpu
 |endpoint|string|是|HTTP地址|
 |max_requests|uint64_t|否|并发最大请求数，默认值为1000|
 |keepalive_timeout_sec|uint64_t|否|请求保活时间，单位为秒，默认值为200|
-|cert|string|否|openssl证书路径，https时使用|
-|key|string|否|openssl私钥路径，https时使用|
-|passwd|string|否|经过加密的openssl密码，https时使用. 密码可使用Modelbox-tool加密，详细见[ModelBox Tool](../tools/modelbox-tool/modelbox-tool.md)密码加密章节|
-|key_pass|string|否|用于解密openssl密码的密钥，https时使用。详细见[ModelBox Tool](../tools/modelbox-tool/modelbox-tool.md)密码加密章节|
+|cert|string|否|openssl证书路径，HTTPS时使用|
+|key|string|否|openssl私钥路径，HTTPS时使用|
+|passwd|string|否|经过加密的openssl密码，HTTPS时使用. 密码可使用ModelBox-tool加密，详细见[ModelBox Tool](../tools/modelbox-tool/modelbox-tool.md)密码加密章节|
+|key_pass|string|否|用于解密openssl密码的密钥，HTTPS时使用。详细见[ModelBox Tool](../tools/modelbox-tool/modelbox-tool.md)密码加密章节|
 
 - 约束说明
 
@@ -113,10 +113,10 @@ cpu
 |max_requests|uint64_t|否|并发最大请求数，默认值为1000|
 |time_out_ms|uint64_t|否|请求超时时间，单位为毫秒，默认值为5000|
 |keepalive_timeout_sec|uint64_t|否|请求保活时间，单位为秒，默认值为200|
-|cert|string|否|openssl证书路径，https时使用|
-|key|string|否|openssl私钥路径，https时使用|
-|passwd|string|否|经过加密的openssl密码，https时使用. 密码可使用Modelbox-tool加密，详细见[ModelBox Tool](../tools/modelbox-tool/modelbox-tool.md)密码加密章节|
-|key_pass|string|否|用于解密openssl密码的密钥，https时使用。详细见[ModelBox Tool](../tools/modelbox-tool/modelbox-tool.md)密码加密章节|
+|cert|string|否|openssl证书路径，HTTPS时使用|
+|key|string|否|openssl私钥路径，HTTPS时使用|
+|passwd|string|否|经过加密的openssl密码，HTTPS时使用. 密码可使用ModelBox-tool加密，详细见[ModelBox Tool](../tools/modelbox-tool/modelbox-tool.md)密码加密章节|
+|key_pass|string|否|用于解密openssl密码的密钥，HTTPS时使用。详细见[ModelBox Tool](../tools/modelbox-tool/modelbox-tool.md)密码加密章节|
 
 - 约束说明
 
@@ -141,7 +141,7 @@ httpserver_sync_receive 需要和 httpserver_sync_reply 组合使用，使用方
 
 - 功能描述
 
-提供解析视频源的能力，如obs, vcn, vis, restful, url等，用于对接华为云ModelboxArts推理服务。
+提供解析视频源的能力，如obs, vcn, vis, restful, url等，用于对接华为云ModelArts推理服务。
 
 - 设备类型
 
@@ -169,7 +169,7 @@ cpu
 
 - 约束说明
 
-data_source_parse 需要配合华为云ModelboxArts推理服务和ModelboxArts插件配合使用。data_source_parse 一般后面接videodemuxer，用于视频解封装和解码。
+data_source_parse 需要配合华为云ModelArts推理服务和ModelArts插件配合使用。data_source_parse 一般后面接videodemuxer，用于视频解封装和解码。
 
 - 使用样例
 

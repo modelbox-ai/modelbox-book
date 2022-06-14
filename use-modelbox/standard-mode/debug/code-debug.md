@@ -1,6 +1,6 @@
-# Debug
+# 代码调试
 
-代码调试使用对应语言的调试方法即可，c++使用gdb，python使用pdb。
+代码调试使用对应语言的调试方法即可，C++使用gdb，Python使用pdb。
 
 ## GDB调试方法
 
@@ -23,7 +23,7 @@ make -j32
 
 ### 启动调试
 
-若是调试功能单元，可以使用ModelBox Tool辅助调试。
+若是调试功能单元，可以使用**ModelBox Tool**辅助调试。
 
 #### GDB命令
 
@@ -64,11 +64,11 @@ vscode调试，可以先下载GDB插件，再配置调试文件`.vscode/launch.j
 
 ## Python调试方法
 
-Python调试时，则需要先设置环境变量`MODELBOX_DEBUG_PYTHON=yes`后，直接使用IDE调试，其调试方法和标准的python脚本类似。
+Python调试时，则需要先设置环境变量`MODELBOX_DEBUG_PYTHON=yes`后，直接使用IDE调试，其调试方法和标准的Python脚本类似。
 
-环境变量可通过python脚本，或启动进程前的shell命令设置。
+环境变量可通过Python脚本，或启动进程前的shell命令设置。
 
-* python中设置启用
+* Python中设置启用
 
 ```python
 import os
@@ -119,7 +119,7 @@ vscode调试，可以配置调试文件`.vscode/launch.json`，设置`program`�
 }
 ```
 
-将`[/path/to/toml]`替换为实际的toml文件路径，并对需要调试的python功能单元设置断点。设置完成后，使用vscode的`F5`功能键进行调试。
+将`[/path/to/toml]`替换为实际的toml文件路径，并对需要调试的Python功能单元设置断点。设置完成后，使用vscode的`F5`功能键进行调试。
 
 **注意**： 若启用失败，则需要先安装`pydevd`包。
 

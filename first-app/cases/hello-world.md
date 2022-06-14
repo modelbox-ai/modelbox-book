@@ -1,12 +1,12 @@
 # Hello World
 
-Hello World案例是用使用ModelBox搭建一个简易的http请求服务，给收入消息加上时间戳返回。
+Hello World案例是使用ModelBox搭建一个简易的http请求服务，实现给请求字符串首字母变为大写并增加时间戳的功能。
 
 ## 功能
 
-启动一个HTTP Server监听端口接收http请求，然后从请求体中的msg获取输入消息，将首字母转换为大写并加上时间戳返回给用户。
+启动一个HTTP Server监听端口接收HTTP请求，然后从请求体中的`msg`字段获取输入字符串，将首字母转换为大写并加上时间戳返回给用户。
 
-Request 请求样例：
+**Request 请求样例**：
 
 ```json
 {
@@ -14,7 +14,7 @@ Request 请求样例：
 }
 ```
 
-Response 响应：
+**Response 响应**：
 
 ```json
 Hello World! Thu May 30 12:00:00 2022
@@ -24,11 +24,11 @@ Hello World! Thu May 30 12:00:00 2022
 
 ### 环境准备
 
-环境准备可以使用现成ModleBox镜像，也可以从源代码构建ModelBox。本章节使用现成ModelBox镜像开发，如果没有相关的镜像，可以参考[编译安装](../../environment/compile.md)。
+环境准备可以使用现成ModelBox镜像，也可以从源代码构建ModelBox。本章节使用现成ModelBox镜像开发，如果没有相关的镜像，可以参考[编译安装](../../environment/compile.md)。
 
 使用镜像开发，省去了准备复杂编译环境的巨大工作量，推荐ModelBox开发者直接使用镜像开发，ModelBox镜像相关的指导，可以先参考[容器使用](../../environment/container-usage.md)章节。
 
-1. 安装启动docker后，执行下列命令下载docker镜像
+1. 安装启动Docker后，执行下列命令下载Docker镜像
 
     ```shell
     docker pull modelbox/modelbox-develop-tensorrt_7.1.3-cuda_10.2-ubuntu-x86_64:latest
@@ -40,7 +40,7 @@ Hello World! Thu May 30 12:00:00 2022
 
 ### 项目创建与运行
 
-1. 进入容器并且切换至ModelBox开发者模式
+1. 进入容器并且切换至ModelBox开发模式
 
     ```shell
     modelbox-tool develop -s
@@ -52,7 +52,7 @@ Hello World! Thu May 30 12:00:00 2022
 
 1. 连接ModelBox编排服务
 
-    服务启动后，可直接链接编排服务，服务启动信息可通过如下命令查询：
+    服务启动后，可直接连接编排服务，服务启动信息可通过如下命令查询：
 
     ```shell
     modelbox-tool develop -q
@@ -60,7 +60,7 @@ Hello World! Thu May 30 12:00:00 2022
 
     浏览器访问上述地址的1104端口，注意事项：
     * 如有权限问题，修改conf/modelbox.conf配置文件中的acl.allow数组，增加允许访问的IP范围。
-    * 推荐使用vscode的远程链接的终端操作，vscode可以自动建立端口转发。[远程开发](https://code.visualstudio.com/docs/remote/ssh)
+    * 推荐使用vscode的[远程开发](https://code.visualstudio.com/docs/remote/ssh)的终端操作，vscode可以自动建立端口转发。
 
 1. 创建项目工程
 
@@ -81,7 +81,7 @@ Hello World! Thu May 30 12:00:00 2022
 
     * 命令行启动
 
-      执行如下命令即可启动hellw world识别http服务：
+      执行如下命令即可启动hellw world识别HTTP服务：
 
       ``` shell
       modelbox-tool -log-level INFO flow -run path_to_hello_world.toml
@@ -108,7 +108,7 @@ Hello World! Thu May 30 12:00:00 2022
 
 ![hello-world-flowchart align=center](../../assets/images/figure/first-app/hello_world_flow.png)
 
-如上图所示，根据业务流程，可将业务划分为3个功能单元，分别为接收http请求，hello world处理，发送http响应。对用图编排文件如下：
+如上图所示，根据业务流程，可将业务划分为3个功能单元，分别为接收HTTP请求，hello world处理，发送HTTP响应。对用图编排文件如下：
 
 ```toml
 [graph]
@@ -130,11 +130,11 @@ graphconf = '''digraph hello_world_diagraph {
 
 ModelBox提供基础预置功能单元，除此之外还需补充流程图中缺失的功能单元，具体开发可参考[功能单元开发章节](../../use-modelbox/standard-mode/flowunit/flowunit.md#功能单元开发)。
 
-这里接收http请求、发送http响应两个功能单元ModelBox已提供，我们只需实现hello world处理功能单元即可。
+这里接收HTTP请求、发送HTTP响应两个功能单元ModelBox已提供，我们只需实现hello world处理功能单元即可。
 
-* hellworld功能单元
+* hello world功能单元
   
-  解析收到的http请求，将首字母转换为大写并加上时间戳。
+  解析收到的HTTP请求，将首字母转换为大写并加上时间戳。
 
   ```python
   in_data = data_context.input("in_data")

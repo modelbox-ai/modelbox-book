@@ -59,7 +59,7 @@ cpu
 
 |端口名称|数据格式|数据存放设备类型|端口含义
 |--|--|--|--|
-|in_output_info|buffer meta信息:<br>字段名称：output_broker_names <br> 字段类型：string <br> 字段含义：输出目标类型 <br> buffer data信息:待发送数据 |cpu|需要发送的数据信息
+|in_output_info|Buffer Meta信息:<br>字段名称：output_broker_names <br> 字段类型：string <br> 字段含义：输出目标类型 <br> Buffer Data信息:待发送数据 |cpu|需要发送的数据信息
 
 - 输出端口
 
@@ -76,7 +76,7 @@ cpu
 
 - 约束说明
 
-output_broker 需要配合华为云ModelboxArts推理服务和ModelboxArts插件配合使用。
+output_broker 需要配合华为云ModelArts推理服务和ModelArts插件配合使用。
 
 - 使用样例
 

@@ -53,7 +53,7 @@
    }
    ```
 
-   python功能单元在功能单元配置文件中开启
+   Python功能单元在功能单元配置文件中开启
 
    ```toml
    exception_visible = true
@@ -80,7 +80,7 @@
    }
    ```
 
-   python功能单元中获取
+   Python功能单元中获取
 
    ```python
    def process(self, data_ctx):

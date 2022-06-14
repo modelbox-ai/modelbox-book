@@ -76,7 +76,7 @@ cpu、cuda、ascend
 - 约束说明
 
 1. 由于底层实现差异，不同硬件支持插值方式不同。
-1. ascend硬件当前只支持输入图片格式为"nv12"
+1. Ascend硬件当前只支持输入图片格式为"nv12"
 
 - 使用样例
 
@@ -111,7 +111,7 @@ cpu、cuda、ascend
 
 - 约束说明
 
-1. ascend硬件当前只支持输入图片格式为"nv12"
+1. Ascend硬件当前只支持输入图片格式为"nv12"
 
 - 使用样例
 
@@ -137,7 +137,7 @@ cpu、cuda
 
 |端口名称|数据格式|数据存放设备类型|端口含义|
 |--|--|--|--|
-|out_data|[图片数据类型](./flowunits.md#图片数据类型)|与功能单元设备类型一致|结果后数据,输出buffer数据类型为ModelBoxDataType::MODELBOX_FLOAT|
+|out_data|[图片数据类型](./flowunits.md#图片数据类型)|与功能单元设备类型一致|结果后数据,输出Buffer数据类型为ModelBoxDataType::MODELBOX_FLOAT|
 
 - 配置参数
 
@@ -173,7 +173,7 @@ cpu、cuda
 
 |端口名称|数据格式|数据存放设备类型|端口含义|
 |--|--|--|--|
-|out_data|[图片数据类型](./flowunits.md#图片数据类型)|与功能单元设备类型一致|结果后数据, 输出buffer数据类型为ModelBoxDataType::MODELBOX_FLOAT|
+|out_data|[图片数据类型](./flowunits.md#图片数据类型)|与功能单元设备类型一致|结果后数据, 输出Buffer数据类型为ModelBoxDataType::MODELBOX_FLOAT|
 
 - 配置参数
 
@@ -251,7 +251,7 @@ cpu、cuda
 
 |参数名称|参数类型|是否必填|参数含义
 |--|--|--|--|
-|rotate_angle|int_32|否|按顺时针旋转角度，取值范围：90, 180, 270。 如果不填该参数时，默认根据输入buffer meta携带的"rotate_angle"字段旋转。可用于视频解码携带"rotate"信息的场景|
+|rotate_angle|int_32|否|按顺时针旋转角度，取值范围：90, 180, 270。 如果不填该参数时，默认根据输入Buffer Meta携带的"rotate_angle"字段旋转。可用于视频解码携带"rotate"信息的场景|
 
 - 约束说明
 
@@ -317,7 +317,7 @@ cuda
 
 |端口名称|数据格式|数据存放设备类型|端口含义|
 |--|--|--|--|
-|out_data|[Tensor数据类型](./flowunits.md#tensor数据类型)|与功能单元设备类型一致| ,输出buffer数据类型为ModelBoxDataType::MODELBOX_FLOAT|
+|out_data|[Tensor数据类型](./flowunits.md#tensor数据类型)|与功能单元设备类型一致| ,输出Buffer数据类型为ModelBoxDataType::MODELBOX_FLOAT|
 
 - 配置参数
 
@@ -339,7 +339,7 @@ cuda
 
 - 功能描述
 
-在图片上画框, 一般用于yolo物体检测结果在原图上的显示。
+在图片上画框, 一般用于YOLO物体检测结果在原图上的显示。
 
 - 设备类型
 
@@ -350,7 +350,7 @@ cpu
 |端口名称|数据格式|数据存放设备类型|端口含义|
 |--|--|--|--|
 |in_image|[图片数据类型](./flowunits.md#图片数据类型)|与功能单元设备类型一致|源图片信息|
-|in_region|vector<[检测矩形框类型](./flowunits.md#yolo检测矩形框类型)>|cpu|待画框区域列表|
+|in_region|vector<[矩形框数据类型](./flowunits.md#矩形框数据类型)>|cpu|待画框区域列表|
 
 - 输出端口
 

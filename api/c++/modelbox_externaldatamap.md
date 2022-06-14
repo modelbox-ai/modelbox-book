@@ -2,9 +2,9 @@
 
 |函数|作用|
 |-|-|
-|[CreateBufferList](#CreateBufferList)|创建bufferlist|
-|[Send](#send)|发送给当前flow对象的bufferlist|
-|[Recv](#recv)|接收给当前flow对象的bufferlist|
+|[CreateBufferList](#CreateBufferList)|创建BufferList|
+|[Send](#send)|发送给当前flow对象的BufferList|
+|[Recv](#recv)|接收给当前flow对象的BufferList|
 |[Close](#close)|关闭当前ExternalDataMap对象，等待数据完全处理完成|
 |[Shutdown](#shutdown)|强制关闭当前ExternalDataMap对象，无论数据是否处理完成|
 |[SetOutputMeta](#setoutputmeta)|设置当前对象输入端口的DataMeta值|
@@ -12,7 +12,7 @@
 
 ## CreateBufferList
 
-创建bufferlist
+创建BufferList
 
 ```c++
     std::shared_ptr<BufferList> CreateBufferList()
@@ -28,7 +28,7 @@ modelbox::BufferList  创建存储数据的BufferList
 
 ## Send
 
-发送给当前flow对象的bufferlist
+发送给当前flow对象的BufferList
 
 ```c++
     Status Send(const std::string& port_name,
@@ -46,7 +46,7 @@ modelbox::Status 发送数据的状态
 
 ## Recv
 
-接收给当前flow对象的bufferlist
+接收给当前flow对象的BufferList
 
 ```c++
     using OutputBufferList = std::unordered_map<std::string, std::shared_ptr<BufferList>>;
@@ -60,7 +60,7 @@ modelbox::Status 发送数据的状态
 
 **return:**  
 
-modelbox::Status 接收给当前flow对象的bufferlist的状态
+modelbox::Status 接收给当前flow对象的BufferList的状态
 
 ## Close
 

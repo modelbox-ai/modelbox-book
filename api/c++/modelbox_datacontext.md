@@ -9,8 +9,8 @@
 |[External](#external)||
 |[HasError](#haserror)|datacontext当中是否存在error|
 |[SendEvent](#sendevent)|发送event|
-|[SetPrivate](#setprivate)|设置datacontext中的私有meta值|
-|[GetPrivate](#getprivate)|获取datacontext中的私有meta值|
+|[SetPrivate](#setprivate)|设置datacontext中的私有Meta值|
+|[GetPrivate](#getprivate)|获取datacontext中的私有Meta值|
 |[GetInputMeta](#getinputmeta)|获取datacontext当中绑定在input端口的值||
 |[SetOutputMeta](#setoutputmeta)|设置datacontext当中绑定在output端口的值|
 |[GetSessionConfig](#getsessionconfig)|获取datacontext当中的session config|
@@ -42,9 +42,9 @@ flowunit获取output端口的数据
 
 **return:**  
 
-modelbox::BufferListMap (map) —— 按照input port name存放bufferList的map
+modelbox::BufferListMap (map) —— 按照input port name存放BufferList的map
 
-modelbox::BufferList (modelbox::BufferList) —— 存放对应input port的bufferList数据
+modelbox::BufferList (modelbox::BufferList) —— 存放对应input port的BufferList数据
 
 * **example**
 
@@ -61,7 +61,7 @@ modelbox::BufferList (modelbox::BufferList) —— 存放对应input port的buff
 
 ## External
 
-获取datacontext绑定的从input端点传入的bufferlist
+获取datacontext绑定的从input端点传入的BufferList
 
 ```c++
     std::shared_ptr<BufferList> External();

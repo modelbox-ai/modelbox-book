@@ -75,7 +75,7 @@ cpu、cuda、ascend
 - 约束说明
 
 1. video_decoder 一般在前面连接 video_demuxer ，用于视频解码功能。
-1. ascend硬件只支持解码图片格式为"nv12"。
+1. Ascend硬件只支持解码图片格式为"nv12"。
 
 - 使用样例
 

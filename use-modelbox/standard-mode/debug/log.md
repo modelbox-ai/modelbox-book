@@ -16,8 +16,8 @@ ModelBox Server和ModelBox Tool中内置了File日志组件，在运行时，会
 
 | 进程            | 日志路径                       | 级别设置                                                          |
 | --------------- | ------------------------------ | ----------------------------------------------------------------- |
-| modelbox server | /var/log/modelbox/modelbox.log | /usr/local/etc/modelbox/modelbox.conf配置文件中，log字段的level。 |
-| modelbox tool   | /var/log/modelbox-tool.log     | modelbox-tool命令参数。                                           |
+| ModelBox Server | /var/log/modelbox/modelbox.log | /usr/local/etc/modelbox/modelbox.conf配置文件中，log字段的level。 |
+| ModelBox Tool   | /var/log/modelbox-tool.log     | modelbox-tool命令参数。                                           |
 
 ## 默认console日志
 
@@ -45,7 +45,7 @@ appender可以按需求输出日志。
 
 ### C++
 
-#### c++日志调用
+#### C++日志调用
 
 C++调用日志时，需要包含头文件，然后使用类似std::cout的语法输出日志。
 
@@ -62,9 +62,9 @@ void LogExample() {
 }
 ```
 
-#### c++日志捕获
+#### C++日志捕获
 
-c++提供了日志接口logger，只需要实现logger中的方法，即可将日志重定向。
+C++提供了日志接口logger，只需要实现logger中的方法，即可将日志重定向。
 
 ```c++
 class Logger {
@@ -94,7 +94,7 @@ ModelBoxLogger.SetLogger(logger);
 
 #### Python日志调用
 
-python输出日志时，需要包含modelbox包，使用上类似，print函数。
+Python输出日志时，需要包含ModelBox包，使用上类似，print函数。
 
 ```python
 import modelbox

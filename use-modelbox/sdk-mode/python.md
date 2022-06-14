@@ -1,6 +1,6 @@
 # Python开发方式
 
-开发前请先准备好Modelbox开发环境，详见[环境准备](../../environment/compile.md)章节。
+开发前请先准备好ModelBox开发环境，详见[环境准备](../../environment/compile.md)章节。
 
 ## Python SDK API接口说明
 
@@ -16,13 +16,13 @@ ModelBox提供了流程图的创建、运行、关闭等基础接口。下面是
 | Flow::run_async  | / | 图的运行： 异步运行， 调用后直接返回， wait()函数判断运行是否结束 |
 | Flow::wait | millisecond: 超时时间， 以毫秒为单位<br />ret_val: 图运行的结果 | 等待图运行状态为结束，当图的运行时间超过millisecond表示的时间时，则强制停止图的运行，并返回TIMEOUT |
 | Flow::stop | / | 强制停止运行中的图 |
-| Flow::create_external_data_map   | / | 当图中的第一个节点为input节点时， 使用此函数可以创建一个输入的ExternalDataMap， 用户可以通过向ExternalDataMap数据中赋值并传递数据给Input节点。具体使用方法可参考[外部数据交互](./python.md#外部数据交互)章节 |
+| Flow::create_external_data_map   | / | 当图中的第一个节点为input节点时， 使用此函数可以创建一个输入的ExternalDataMap， 开发者可以通过向ExternalDataMap数据中赋值并传递数据给Input节点。具体使用方法可参考[外部数据交互](./python.md#外部数据交互)章节 |
 
 Python开发调用流程图时，需要先安装C++的运行包，然后再编写C++函数，调用Flow执行API执行流程图。Flow流程图接口调用过程如下图所示：
 
-![python-sdk alt rect_w_1000](../../assets/images/figure/develop/flow/python-sdk.png)
+![python-sdk alt rect_w_1000](../../assets/images/figure/develop/flow/Python-sdk.png)
 
-1. 安装python SDK包
+1. 安装Python SDK包
 1. 开发流程图，配置基础部分和图部分。
 1. 调用Flow::init接口，输入流程图文件。
 1. 调用Flow::build初始化流程图。

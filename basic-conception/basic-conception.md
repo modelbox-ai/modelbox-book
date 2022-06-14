@@ -24,4 +24,4 @@ ModelBox为更好的支撑应用流程，抽象了许多概念，理解这些概
 
 ## [Buffer](buffer.md)
 
-流中包含多个数据实体，单个数据实体在ModelBox中由buffer承载。单个buffer包含了数据的元数据Meta部分和数据内容部分，它是数据在Node间的流动实体。
+流中包含多个数据实体，单个数据实体在ModelBox中由Buffer承载。单个Buffer包含了数据的元数据Meta部分和数据内容部分，它是数据在Node间的流动实体。

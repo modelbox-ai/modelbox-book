@@ -8,10 +8,10 @@ ModelBox提供了多种调试方法，包含了业务运行，性能，和代码
 
 | 组件         | 语言   | 调试方法                                                                                                |
 | ------------ | ------ | ------------------------------------------------------------------------------------------------------ |
-| ModelBox套件 | c++    | 编译[debug版本](../../compile/compile.md#编译和安装)，安装并配置GDB，日志。                              |
-| 自开发服务   | c++    | 编译[debug版本](../../compile/compile.md#编译和安装)，安装并配置GDB，日志。                              |
-| 功能单元     | c++    | 编译[debug版本](../../compile/compile.md#编译和安装)，安装并配置GDB，日志，[Profiling](./profiling.md)。 |
-| 功能单元     | python | PDB，日志，[Profiling](./profiling.md)。                                                                |
+| ModelBox套件 | C++    | 编译[debug版本](../../compile/compile.md#编译和安装)，安装并配置GDB，日志。                              |
+| 自开发服务   | C++    | 编译[debug版本](../../compile/compile.md#编译和安装)，安装并配置GDB，日志。                              |
+| 功能单元     | C++    | 编译[debug版本](../../compile/compile.md#编译和安装)，安装并配置GDB，日志，[Profiling](./profiling.md)。 |
+| 功能单元     | Python | PDB，日志，[Profiling](./profiling.md)。                                                                |
 
 上述表格中，使用GDB、PDB调试的，可以配合IDE完成。
 

@@ -17,7 +17,7 @@ ModelBox为标准的命令行工具，可以使用`modelbox-tool -h`查看详细
 
 ## help功能
 
-用于显示Modelbox各命令组帮助信息
+用于显示ModelBox各命令组帮助信息
 
 * 查询各命令组帮助信息
   
@@ -42,7 +42,7 @@ modelbox-tool driver [-type flowunit] [-path dir1,dir2] [-details [-name name]] 
 
 -path为添加扫描路径，不携带时默认扫描系统目录，携带时，扫描系统目录和新增目录。
 
--name 为过滤参数，不携带时默认列出所有扫描到的结果，可以输入功能单元名称进行过滤，也可以输入cpu/cuda/ascend进行设备类型过滤。
+-name 为过滤参数，不携带时默认列出所有扫描到的结果，可以输入功能单元名称进行过滤，也可以输入cpu、cuda、ascend进行设备类型过滤。
 
 ### 查询列表
 
@@ -136,13 +136,13 @@ modelbox-tool template [options]
     modelbox-tool template -project -name [name]
     ```
 
-* 创建c++功能单元模板
+* 创建C++功能单元模板
 
     ```shell
     modelbox-tool template -flowunit -lang c++ -name [name] -input name=[port_name],device=[cpu/cuda/ascend/...] -output name=[port_name],device=[cpu/cuda/ascend/...]
     ```
 
-* 创建python功能单元模板
+* 创建Python功能单元模板
 
     ```shell
     modelbox-tool template -flowunit -lang python -name [name] -input name=[port_name],device=[cpu/cuda/ascend/...] -output name=[port_name],device=[cpu/cuda/ascend/...]
@@ -272,7 +272,7 @@ modelbox-tool server stat --node [name]
 
 ## Develop
 
-创建开发运行环境，用于启动ModelBox编排UI，链接UI进行工程创建。此命令组为`modelbox-tool develop`, 命令格式如下：
+创建开发运行环境，用于启动ModelBox编排UI，连接UI进行工程创建。此命令组为`modelbox-tool develop`, 命令格式如下：
 
 ```shell
 modelbox-tool develop -s 

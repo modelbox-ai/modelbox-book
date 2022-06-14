@@ -1,4 +1,4 @@
-# Ascend卡
+# Huawei Ascend加速卡
 
 Huawei Ascend ACL支持接口编程，ACL接口相关的介绍，请点击[此处](https://support.huawei.com/enterprise/en/doc/EDOC1100155021/50a12c70/acl-api-reference)
 

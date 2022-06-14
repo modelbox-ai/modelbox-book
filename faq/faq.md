@@ -8,13 +8,13 @@ ModelBox是一个AI应用的推理框架，ModelBox通过编排和插件化的�
 
 ### 相比直接调用底层API开发AI业务，ModelBox有什么优势？
 
-ModelBox主要聚焦解决AI应用开发的问题，相比直接调用底层API，开发者需要关注每个底层的API使用方法，关注并发，关注GPU，NPU设备编程接口，关注tensorflow，tensorrt等推理框架的编程API，与云计算结合的接口，和分布式通信，日志等琐碎而复杂的周边代码。  
+ModelBox主要聚焦解决AI应用开发的问题，相比直接调用底层API，开发者需要关注每个底层的API使用方法，关注并发，关注GPU，NPU设备编程接口，关注TensorRT，TensorRT等推理框架的编程API，与云计算结合的接口，和分布式通信，日志等琐碎而复杂的周边代码。  
 
 ModelBox解决的就是业务开发的周边问题，将周边问题交由ModelBox处理，ModelBox通过对内存，CPU，GPU，周边组件的精细化管理，使AI推理业务开发更高效，性能也更高，质量也更好。
 
-### ModelBox目前支持哪些框架训练的模型（TensorFlow、Caffe、LibTorch等）
+### ModelBox目前支持哪些框架训练的模型（TensorFlow、Caffe、LibTorch、MindSpore等）
 
-ModelBox框架里面包含了支持TensorFlow, Caffe, LibTorch模型运行所需的功能单元Flowunit，我们称为推理功能单元(Inference Flowunit)，这些推理功能单元可以直接加载对应的模型文件，而不需要编写代码，只需提供一个简单的配置文件，即可将模型引入到ModelBox的流程中。目前支持的模型有TensorFlow, TensorRT, Ascend ACL模型。
+ModelBox框架里面包含了支持TensorFlow, Caffe, LibTorch、MindSpore模型运行所需的功能单元Flowunit，我们称为推理功能单元(Inference Flowunit)，这些推理功能单元可以直接加载对应的模型文件，而不需要编写代码，只需提供一个简单的配置文件，即可将模型引入到ModelBox的流程中。目前支持的模型有TensorFlow, TensorRT, Ascend ACL模型。
 
 ## ModelBox组件
 
@@ -27,7 +27,7 @@ ModelBox目前包含如下组件
 1. 维护工具ModelBox Tool
 1. CPU相关的功能单元
 1. Huawei Ascend相关的功能单元
-1. Cuda相关的功能单元
+1. CUDA相关的功能单元
 1. 可视化编辑工具
 
 ### ModelBox支持服务式吗？
@@ -46,9 +46,9 @@ ModelBox本身为C++代码编写，开发者可以通过如下方式调试ModelB
 
 ## 模型问题
 
-### tensorrt在解析模型出错
+### TensorRT在解析模型出错
 
-当tensorrt在解析模型出错时，如果报错 " expecting compute x.x got compute 7.5, please rebuild"，说明模型和推理引擎不配套，需要转换模型到配套的硬件, 并在与当前环境配置相同的环境上重新编译模型。
+当TensorRT在解析模型出错时，如果报错 " expecting compute x.x got compute 7.5, please rebuild"，说明模型和推理引擎不配套，需要转换模型到配套的硬件, 并在与当前环境配置相同的环境上重新编译模型。
 
 ### 查看当前的镜像对应的欧拉系统的版本
 
@@ -68,15 +68,15 @@ cat /etc/EulerLinux.conf
 
 #### 2. 虚拟功能单元
 
-只有一个in配置文件，所有的具体实现在一个tensorrt的模块中，端口名、数据类型都是通过配置文件配置的。
+只有一个in配置文件，所有的具体实现在一个TensorRT的模块中，端口名、数据类型都是通过配置文件配置的。
 
-其中的plugin参数指定了可以注册功能的类，比如plugin为yolo，也就是说，yolo的实例注册到tensorrt里面的。
+其中的plugin参数指定了可以注册功能的类，比如plugin为yolo，也就是说，YOLO的实例注册到TensorRT里面的。
 
 ### sessioncontext与datacontext
 
 sessioncontext保存的是当前flow的全局变量，每一个flowunit存储在里面的数据在其他flowunit也可以读到。
 
-datacontext表示当前flowunit在当前流的数据buffer，可以设置输入输出，也可以保存私有数据。
+datacontext表示当前flowunit在当前流的数据Buffer，可以设置输入输出，也可以保存私有数据。
 
 ### video_input
 
@@ -99,7 +99,7 @@ video_input的repeat可以创建多个并发视频，并不是串行视频流
 
 常见日志报错：`code: Invalid argument, errmsg: check stream fail.`, `build flow failed`等, 通常有以下几种可能错误：
 
-1. toml流程图中，node定义节点在后面边链接中未使用；
+1. toml流程图中，node定义节点在后面边连接中未使用；
 1. 端口冲突，如多个输出连接到同一输入端口（if-else终点除外）；
 1. if-else流单元之后的各分支，最终需要合并到一个端口上；
 1. if-else分支中不能使用stream类型流单元；

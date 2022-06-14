@@ -9,7 +9,7 @@
 |[data_post](#modelboxflowunitdatapost)|stream flowunit 结束stream时的逻辑|
 |[create_external_data](#modelboxflowunitcreateexternaldata)|创建external_data_map|
 |[get_bind_device](#modelboxflowunitgetbinddevice)|获取绑定的device|
-|[create_buffer](#modelboxflowunitcreatebuffer)|创建buffer|
+|[create_buffer](#modelboxflowunitcreatebuffer)|创建Buffer|
 ---
 
 ## modelbox.FlowUnit.open
@@ -203,7 +203,7 @@ modelbox.Device
 
 ## modelbox.FlowUnit.create_buffer
 
-创建buffer
+创建Buffer
 
 **args:**  
 
@@ -211,7 +211,7 @@ modelbox.Device
 
 **return:**  
 
-modelbox.Buffer  创建出来的buffer
+modelbox.Buffer  创建出来的Buffer
 
 **example:**  
 
@@ -226,4 +226,4 @@ modelbox.Buffer  创建出来的buffer
 
 **result:**  
 
-创建了一个空buffer
+创建了一个空Buffer

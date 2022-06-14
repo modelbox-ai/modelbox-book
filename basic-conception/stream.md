@@ -40,13 +40,13 @@ Stream由数据部分和元信息部分构成，数据部分由多个有序的Bu
 
 ![normal-process alt rect_w_800](../assets/images/figure/conception-feature/conception/stream_condition_process.png)
 
-单个数据流进入节点处理，功能单元一次处理一个buffer，多个buffer同时处理，每个输出buffer选择一个端口，输出的总量与单端口输入的数量一致。
+单个数据流进入节点处理，功能单元一次处理一个Buffer，多个Buffer同时处理，每个输出Buffer选择一个端口，输出的总量与单端口输入的数量一致。
 
 #### 数据流经过Expand功能单元
 
 ![normal-process alt rect_w_800](../assets/images/figure/conception-feature/conception/stream_expand_process.png)
 
-单个数据流进入节点处理，功能单元一次处理一个buffer，多个buffer同时处理，每个Buffer展开成一个子数据流。
+单个数据流进入节点处理，功能单元一次处理一个Buffer，多个Buffer同时处理，每个Buffer展开成一个子数据流。
 
 ### 数据流经过Collapse功能单元
 

@@ -21,27 +21,27 @@ Debug ModelBox Info:
   Manager Status:  modelbox-manager service is running. pid xxxx
 ```
 
-每个打印信息如下：
+打印信息说明如下：
 
 - Home：ModelBox开发调试管理工具目录
 
 - Config：ModelBox服务配置文件
 
-- Log：modelbox调试日志目录
+- Log：ModelBox调试日志目录
 
-- Service command：modelbox Server命令工具，可启动、停止、重启、查询modelbox服务状态
+- Service command：ModelBox Server命令工具，可启动、停止、重启、查询ModelBox服务状态
 
 - Manager command：modelbox-manager用来监控管理ModelBox服务
 
-- Tool Command：modelbox插件服务查询命令
+- Tool Command：ModelBox插件服务查询命令
 
 - UI URL：可视化编排服务服务URL
 
-- Service Status：modelbox服务状态和pid
+- Service Status：ModelBox服务状态和pid
 
 - Manager Status：modelbox-manager 服务状态和pid
 
-后面也可通过`modelbox-tool develop -q`查询modelbox开发调试信息。
+后面也可通过`modelbox-tool develop -q`查询ModelBox开发调试信息。
 
 ## 创建项目
 
@@ -86,10 +86,10 @@ modelbox-tool template -project -name [name] -template [template_name] -path [pr
 │  ├─flowunit：功能单元目录
 │  ├─graph：流程图目录
 │  └─service-plugin：服务插件目录
-├─test：单元测试目录，使用的是gtest框架
+├─test：单元测试目录，使用的是Gtest框架
 └─thirdparty：第三方库目录
 │    └─CMake：预制的下载第三方库cmake文件
 |---CMakeLists.txt  CMake编译文件
 ```
 
-工程目录创建好后，用户可在src目录下开发功能单元、流程图、服务插件（可选），基于此工程目录通过`cmake ..`、`make package`命令一键打包出tgz和rpm/deb包。
+工程目录创建好后，开发者可在src目录下开发功能单元、流程图、服务插件（可选），基于此工程目录通过`cmake ..`、`make package`命令一键打包出tgz和rpm/deb包。

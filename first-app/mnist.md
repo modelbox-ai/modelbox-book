@@ -1,12 +1,12 @@
 # Mnist
 
-MNIST案例是使用MNIST数据集，训练的一个手写数字识别tensorflow模型，搭建的一个简易的http请求服务。
+MNIST案例是使用MNIST数据集，训练的一个手写数字识别TensorFlow模型，搭建的一个简易的HTTP请求服务。
 
 ## 功能
 
 将MNIST数据，通过base64格式发送到ModelBox推理，并获取结果。
 
-流程上：启动HTTP Server监听端口接收http请求，然后从请求体中的image_base64解析出图片，接着用训练出的MNIST模型进行推理预测，最后将识别出的数字返回给用户。
+流程上：启动HTTP Server监听端口接收HTTP请求，然后从请求体中的image_base64解析出图片，接着用训练出的MNIST模型进行推理预测，最后将识别出的数字返回给用户。
 
 Request 请求样例：
 
@@ -26,7 +26,7 @@ Response 响应样例：
 
 ## 模型准备
 
-AI应用开发前需要准备好匹配当前modelbox版本支持的推理框架和版本的模型文件，这里默认已经准备好了tensorflow2.6.0版本的minist pb模型文件。模型训练可参考[tensorflow教程](https://doc.codingdict.com/tensorflow/tfdoc/tutorials/mnist_beginners.html) 。
+AI应用开发前需要准备好匹配当前ModelBox版本支持的推理框架和版本的模型文件，这里默认已经准备好了TensorFlow 2.6.0版本的minist pb模型文件。模型训练可参考[TensorFlow教程](https://doc.codingdict.com/tensorflow/tfdoc/tutorials/mnist_beginners.html) 。
 
 ## AI应用开发
 
@@ -34,11 +34,11 @@ AI应用开发前需要准备好匹配当前modelbox版本支持的推理框架�
 
 ### 环境准备
 
-环境准备可以使用现成ModleBox镜像，也可以从源代码构建ModelBox。本章节使用现成ModelBox镜像开发，如果没有相关的镜像，可以参考[编译安装](../environment/compile.md)。
+环境准备可以使用现成ModelBox镜像，也可以从源代码构建ModelBox。本章节使用现成ModelBox镜像开发，如果没有相关的镜像，可以参考[编译安装](../environment/compile.md)。
 
-使用镜像开发，省去了准备复杂编译环境的巨大工作量，推荐ModelBox开发者直接使用镜像开发，ModelBox镜像相关的指导，可以先参考[容器使用](../environment/container-usage.md)章节。
+使用镜像开发，省去了准备复杂编译环境的大量工作，推荐ModelBox开发者直接使用镜像开发，ModelBox镜像相关的指导，可以先参考[容器使用](../environment/container-usage.md)章节。
 
-1. 安装启动docker后，执行下列命令下载docker镜像。由于训练的是tensorflow的模型，所以这里拉取对应tensorflow版本镜像。
+1. 安装启动Docker后，执行下列命令下载Docker镜像。由于训练的是TensorFlow的模型，所以这里拉取对应TensorFlow版本镜像。
 
     ```shell
     docker pull modelbox/modelbox-develop-tensorflow_2.6.0-cuda_11.2-ubuntu-x86_64:latest
@@ -62,7 +62,7 @@ AI应用开发前需要准备好匹配当前modelbox版本支持的推理框架�
 
 1. 连接ModelBox编排服务
 
-    服务启动后，可直接链接编排服务，服务启动信息可通过如下命令查询：
+    服务启动后，可直接连接编排服务，服务启动信息可通过如下命令查询：
 
     ```shell
     modelbox-tool develop -q
@@ -70,7 +70,7 @@ AI应用开发前需要准备好匹配当前modelbox版本支持的推理框架�
 
     浏览器访问上述地址的1104端口，注意事项：
     * 如有权限问题，修改conf/modelbox.conf配置文件中的acl.allow数组，增加允许访问的IP范围。
-    * 推荐使用vscode的远程链接的终端操作，vscode可以自动建立端口转发。[远程开发](https://code.visualstudio.com/docs/remote/ssh)
+    * 推荐使用vscode的远程连接的终端操作，vscode可以自动建立端口转发。[远程开发](https://code.visualstudio.com/docs/remote/ssh)
 
 1. 创建项目工程
 
@@ -91,7 +91,7 @@ AI应用开发前需要准备好匹配当前modelbox版本支持的推理框架�
 
     * 命令行启动
 
-      执行如下命令即可启动mnist识别http服务：
+      执行如下命令即可启动mnist识别HTTP服务：
 
       ``` shell
       modelbox-tool -log-level INFO flow -run path_to_mnist.toml
@@ -109,11 +109,11 @@ AI应用开发前需要准备好匹配当前modelbox版本支持的推理框架�
 
 ### 流程图开发
 
-流程图编排是根据实际情况将现有业务逻辑拆分为N个功能单元，再将功能单元串联成一个完整的业务的过程。功能单元分为ModelBox预置功能单元和用户自定义功能单元，当预置功能单元满足不了业务场景时，需要用户进行功能单元开发。有两种方式可编排流程图，第一种是使用UI进行可视化UI编排，第二种是直接编写图文件。具体可参考[流程图开发章节](../flow/flow.md#流程图开发及运行)。这里采用第二种方式。
+流程图编排是根据实际情况将现有业务逻辑拆分为N个功能单元，再将功能单元串联成一个完整的业务的过程。功能单元分为ModelBox预置功能单元和自定义功能单元，当预置功能单元满足不了业务场景时，需要开发者进行功能单元开发。有两种方式可编排流程图，第一种是使用UI进行可视化UI编排，第二种是直接编写图文件。具体可参考[流程图开发章节](../flow/flow.md#流程图开发及运行)。这里采用第二种方式。
 
 ![mnist-flowchart alt rect_w_300](../assets/images/figure/solution/mnist-flowchart.png)
 
-如上图所示，根据业务流程可以将业务划分为5个功能单元，分别为接收http请求，MNIST预处理，MNIST模型推理，MNIST响应构造，发送http响应。对应图编排文件描述如下
+如上图所示，根据业务流程可以将业务划分为5个功能单元，分别为接收HTTP请求，MNIST预处理，MNIST模型推理，MNIST响应构造，发送HTTP响应。对应图编排文件描述如下
 
 ``` toml
 [graph]
@@ -139,11 +139,11 @@ graphconf = '''digraph mnist_sample {
 
 ModelBox提供基础预置功能单元，除此之外还需补充流程图中缺失的功能单元，具体开发可参考[功能单元开发章节](../../develop/flowunit/flowunit.md#功能单元开发)。
 
-这里接收http请求、发送http响应两个功能单元ModelBox已提供，我们只需实现MNIST的预处理，推理，响应构造三个功能单元即可。
+这里接收HTTP请求、发送HTTP响应两个功能单元ModelBox已提供，我们只需实现MNIST的预处理，推理，响应构造三个功能单元即可。
 
 * MNIST预处理功能单元
   
-  预处理需要做：解析出图片，对图片进行reshape，构建功能单元输出buffer。
+  预处理需要做：解析出图片，对图片进行reshape，构建功能单元输出Buffer。
   
   ``` python
   # get input/output port buffer_list

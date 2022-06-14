@@ -2,7 +2,7 @@
 
 ## 流程图开发步骤
 
-流程图开发是指开发者根据实际的业务需求，对业务处理流程进行设计拆分，最后按照流程图的开发规范创建流程图，形成Modelbox能识别的配置文件的过程。流程图基本概念可参考基础概念中的[流程图](../../../basic-conception/graph.md)章节。流程图的开发是首要进行的，流程图开发完毕后，才能明确业务处理流程，同时明确开发者还需要开发哪些功能单元。
+流程图开发是指开发者根据实际的业务需求，对业务处理流程进行设计拆分，最后按照流程图的开发规范创建流程图，形成ModelBox能识别的配置文件的过程。流程图基本概念可参考基础概念中的[流程图](../../../basic-conception/graph.md)章节。流程图的开发是首要进行的，流程图开发完毕后，才能明确业务处理流程，同时明确开发者还需要开发哪些功能单元。
 
 ![car_detection_flow](../../../assets/images/figure/first-app/car_detection_flow.png)
 
@@ -14,7 +14,7 @@
 
 1. 确定自定义功能单元的类型和属性，是否是条件分支、展开、合并等。具体概念可参考基础概念中[功能单元](../flowunit/flowunit.md)章节。
 
-1. 创建自定义功能单元，根据Modelbox流程图规范进行构图。可以通过[ModelBox编排UI](../../../plugins/editor.md)构图，也可以手工编写配置文件。
+1. 创建自定义功能单元，根据ModelBox流程图规范进行构图。可以通过[ModelBox编排UI](../../../plugins/editor.md)构图，也可以手工编写配置文件。
 
 ## 流程图设计原则
 
@@ -24,13 +24,13 @@
 
 - ModelBox内置了大量高性能[预处理功能单元](../../../flowunits/flowunits.md#功能单元列表)，可直接作为流程图节点;
 
-- ModelBox也内置了部分后处理功能单元，如[yolo后处理](../../../flowunits/flowunits-virtual.md#yolo_postprocess)，可直接作为流程图节点；
+- ModelBox也内置了部分后处理功能单元，如[YOLO后处理](../../../flowunits/flowunits-virtual.md#yolo_postprocess)，可直接作为流程图节点；
 
 - 如有业务逻辑在中有分支判断、拆分合并则需要作为单独的功能单元；
 
 - 其他业务逻辑，如果不是处理瓶颈，不需要拆分。
 
-典型场景业务可以参考ModelBox提供的应用样例，具体可参考[第一个应用](../../../first-app/first-app.md)中每个案例的的`流程图开发`章节。
+典型场景业务可以参考ModelBox提供的应用样例，具体可参考[第一个应用](../../../first-app/first-app.md)中每个案例的的流程图开发章节。
 
 ## 流程图构建规范
 
@@ -93,7 +93,7 @@ ModelBox流程图的描述采用Graphviz DOT语法表达，关于DOT语法，可
 
     `type`参数指定点node的类型，可以是`input`, `output`, `flowunit`，当未指定`type`参数时，node缺省为`flowunit`。不同取值含义如下：
 
-    - `flowunit`表示此点为功能单元功能模块，配合`flowunit=xx`指定功能单元的执行实体。
+    - **`flowunit`**: 表示此点为功能单元功能模块，配合`flowunit=xx`指定功能单元的执行实体。
 
         ```markdown
         node[type=flowunit, flowunit=httpserver]
@@ -101,7 +101,7 @@ ModelBox流程图的描述采用Graphviz DOT语法表达，关于DOT语法，可
 
         上述配置表示，点的名称为`node`，类型为`flowunit`，其执行实体为`httpserver`。
 
-    - `input`：表示此点的类型为输入端口，为整个图的配置，表示图的数据输入端口，主要用于外部数据输入到流程图。
+    - **`input`**：表示此点的类型为输入端口，为整个图的配置，表示图的数据输入端口，主要用于外部数据输入到流程图。
 
         ```markdown
         graphinput[type=input]
@@ -109,7 +109,7 @@ ModelBox流程图的描述采用Graphviz DOT语法表达，关于DOT语法，可
 
         上述配置表示，图输入点的名称为`graphinput`，在使用SDK形式调用ModelBox时可以使用此名称发送数据给图。
 
-    - `output`: 表示此点的类型为输出端口，为整个图的配置，表示图的数据输出端口，主要用于数据输出到流程图外。
+    - **`output`**: 表示此点的类型为输出端口，为整个图的配置，表示图的数据输出端口，主要用于数据输出到流程图外。
 
         ```markdown
         graphoutput[type=output]

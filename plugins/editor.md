@@ -164,7 +164,7 @@ modelbox-tool develop -s
 
   注意事项：
 
-  1. 对应网址的端口号以docker启动脚本中的 `EDITOR_MAP_PORT` 为准，默认端口号为1104。
+  1. 对应网址的端口号以Docker启动脚本中的 `EDITOR_MAP_PORT` 为准，默认端口号为1104。
 
 ## 任务编排页面
 

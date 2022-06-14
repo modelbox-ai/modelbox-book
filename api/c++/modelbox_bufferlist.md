@@ -2,20 +2,20 @@
 
 |函数|作用|
 |-|-|
-|[构造方法](#构造方法)| bufferlist的构造方法|
-|[Build](#build)|bufferlist对象申请指定长度大小的内存空间|
-|[BuildFromHost](#buildfromhost)|bufferlist对象申请指定长度大小的内存空间|
-|[Size](#size)|获取当前bufferlist的长度|
-|[GetBytes](#GetBytes)|获取当前bufferlist的字节大小|
-|[At](#At)|获取bufferlist当中特定位置的buffer|
-|[遍历](#遍历)|遍历bufferlist|
-|[EmplaceBack](#emplaceback)|把当前设备的数据塞入bufferlist当中|
-|[EmplaceBackFromHost](#emplacebackfromhost)|把当前设备的数据塞入bufferlist当中|
-|[ConstBufferData](#constbufferdata)|返回特定位置的buffer的数据常量指针|
-|[MutableBufferData](#mutablebufferdata)|返回特定位置的buffer的数据指针|
-|[CopyMeta](#copymeta)|把参数的bufferlist的meta信息，copy给当前bufferlist|
-|[Set](#set)|设置当前bufferlist的某个meta值|
-|[PushBack](#pushback)|将一个buffer插入到当前的bufferlist当中|
+|[构造方法](#构造方法)| BufferList的构造方法|
+|[Build](#build)|BufferList对象申请指定长度大小的内存空间|
+|[BuildFromHost](#buildfromhost)|BufferList对象申请指定长度大小的内存空间|
+|[Size](#size)|获取当前BufferList的长度|
+|[GetBytes](#GetBytes)|获取当前BufferList的字节大小|
+|[At](#At)|获取BufferList当中特定位置的Buffer|
+|[遍历](#遍历)|遍历BufferList|
+|[EmplaceBack](#emplaceback)|把当前设备的数据塞入BufferList当中|
+|[EmplaceBackFromHost](#emplacebackfromhost)|把当前设备的数据塞入BufferList当中|
+|[ConstBufferData](#constbufferdata)|返回特定位置的Buffer的数据常量指针|
+|[MutableBufferData](#mutablebufferdata)|返回特定位置的Buffer的数据指针|
+|[CopyMeta](#copymeta)|把参数的BufferList的Meta信息，copy给当前BufferList|
+|[Set](#set)|设置当前BufferList的某个Meta值|
+|[PushBack](#pushback)|将一个Buffer插入到当前的BufferList当中|
 
 ---
 
@@ -31,7 +31,7 @@ BufferList申请内存空间
 
 **args:**  
 
-* **device** (modelbox::Device) —— 构建bufferlist的device对象
+* **device** (modelbox::Device) —— 构建BufferList的device对象
 * **device_mem_flags** (uint32_t) —— device的内存的flag值，只有ascend才会使用，flag=1指的是dvpp的内存
 
 ```c++
@@ -41,8 +41,8 @@ BufferList申请内存空间
 
 **args:**  
 
-* **buffer** (modelbox::Buffer) —— 单buffer构造bufferList
-* **buffer_vector** (vector) —— vector的buffer构建bufferlist
+* **buffer** (modelbox::Buffer) —— 单Buffer构造BufferList
+* **buffer_vector** (vector) —— vector的Buffer构建BufferList
 
 ## Build
 
@@ -55,8 +55,8 @@ BufferList申请内存空间
 
 **args:**  
 
-* **data_size_list** (vector<size_t>) —— bufferlist当中每一个buffer的size大小
-* **contiguous** (bool) —— bufferlist当中每个buffer的数据是否连续，默认连续
+* **data_size_list** (vector<size_t>) —— BufferList当中每一个Buffer的size大小
+* **contiguous** (bool) —— BufferList当中每个Buffer的数据是否连续，默认连续
 
 **return:**  
 
@@ -97,8 +97,8 @@ BufferList从host侧申请内存空间
 
 **args:**  
 
-* **data_size_list** (vector<size_t>) —— bufferlist当中每一个buffer的size大小
-* **data** (void*) —— 需要交给bufferlist的管理的host的数据指针
+* **data_size_list** (vector<size_t>) —— BufferList当中每一个Buffer的size大小
+* **data** (void*) —— 需要交给BufferList的管理的host的数据指针
 * **data_size** (size_t) —— 数据的大小
 * **func** (std::function<void(void *)>) —— 析构的函数
 
@@ -132,7 +132,7 @@ modelbox.Status 申请结果的状态
 
 ## Size
 
-获取bufferlist的大小
+获取BufferList的大小
 
 **args:**  
 
@@ -144,7 +144,7 @@ size_t
 
 ## GetBytes
 
-获取bufferlist 字节大小
+获取BufferList字节大小
 
 **args:**  
 
@@ -156,7 +156,7 @@ size_t
 
 ## At
 
-获取指定位置的buffer
+获取指定位置的Buffer
 
 **args:**  
 
@@ -168,7 +168,7 @@ size_t
 
 ## 遍历
 
-遍历bufferlist
+遍历BufferList
 
 **example:**  
 
@@ -200,7 +200,7 @@ size_t
 
 ## EmplaceBack
 
-把当前设备的数据塞入bufferlist当中
+把当前设备的数据塞入BufferList当中
 
 ```c++
     Status EmplaceBack(void* device_data, size_t data_size,
@@ -210,13 +210,13 @@ size_t
 
 **args:**  
 
-* **device_data** (void*/std::shared_ptr<void>) —— 需要交给bufferlist的管理的device的数据指针
+* **device_data** (void*/std::shared_ptr<void>) —— 需要交给BufferList的管理的device的数据指针
 * **data_size** (size_t) —— 数据的大小
 * **func** (std::function<void(void *)>) —— 析构的函数
 
 **return:**  
 
-modelbox.Status 插入到bufferlist的状态
+modelbox.Status 插入到BufferList的状态
 
 ## EmplaceBackFromHost
 
@@ -226,12 +226,12 @@ modelbox.Status 插入到bufferlist的状态
 
 **args:**  
 
-* **host_data** (void*) —— 需要交给bufferlist的管理的host的数据指针
+* **host_data** (void*) —— 需要交给BufferList的管理的host的数据指针
 * **data_size** (size_t) —— 数据的大小
 
 **return:**  
 
-modelbox.Status 插入到bufferlist的状态
+modelbox.Status 插入到BufferList的状态
 
 **example:**  
 
@@ -258,7 +258,7 @@ modelbox.Status 插入到bufferlist的状态
 
 **result:**
 
-output_bufs插入了3个buffer
+output_bufs插入了3个Buffer
 
 ## ConstBufferData
 
@@ -272,7 +272,7 @@ output_bufs插入了3个buffer
 
 **return:**  
 
-第idx buffer的数据常量指针
+第idx Buffer的数据常量指针
 
 ## MutableBufferData
 
@@ -286,7 +286,7 @@ output_bufs插入了3个buffer
 
 **return:**  
 
-第idx buffer的数据指针
+第idx Buffer的数据指针
 
 **example:**  
 
@@ -296,7 +296,7 @@ output_bufs插入了3个buffer
     Status Process(std::shared_ptr<DataContext> data_ctx) {
         auto input_bufs = data->Input("input");
         for (auto i = 0; i < input_bufs->Size(); ++i) {
-            // 通过buffer_list访问特定位置的数据指针，data1和data2是同一个指针
+            // 通过BufferList访问特定位置的数据指针，data1和data2是同一个指针
             void* data2 = input_bufs->ConstBufferData(i);
             ...
         }
@@ -306,7 +306,7 @@ output_bufs插入了3个buffer
 
 ## CopyMeta
 
-把参数的bufferlist的meta信息 copy给当前bufferlist
+把参数的BufferList的Meta信息 copy给当前BufferList
 
 ```c++
      Status CopyMeta(const std::shared_ptr<BufferList>& bufferlist,
@@ -315,8 +315,8 @@ output_bufs插入了3个buffer
 
 **args:**  
 
-* **bufferlist** (modelbox::BufferList) —— meta来源的bufferlist
-* **is_override** (bool) —— meta是否需要覆盖
+* **bufferlist** (modelbox::BufferList) —— Meta来源的BufferList
+* **is_override** (bool) —— Meta是否需要覆盖
 
 **return:**  
 
@@ -326,7 +326,7 @@ modelbox::Status  返回CopyMeta接口Status
 
 ```c++
     Status Process(std::shared_ptr<DataContext> data_ctx) {
-        // 获取buffer中的指定meta值
+        // 获取Buffer中的指定Meta值
         auto input_bufs = data_ctx->Input("input");
         auto output_bufs = data_ctx->Output("output");
         output_bufs->Build({1});
@@ -339,11 +339,11 @@ modelbox::Status  返回CopyMeta接口Status
 
 **result:**
 
-output_bufs具有和原始input_bufs相同的meta信息
+output_bufs具有和原始input_bufs相同的Meta信息
 
 ## Set
 
-给bufferlist当中每一个buffer都设置meta值
+给BufferList当中每一个Buffer都设置Meta值
 
 ```c++
     template <typename T>
@@ -352,9 +352,9 @@ output_bufs具有和原始input_bufs相同的meta信息
 
 **args:**  
 
-* **key** (str) —— meta的key值
+* **key** (str) —— Meta的key值
 
-* **value** (template) —— meta的value值
+* **value** (template) —— Meta的value值
 
 **return:**  
 
@@ -364,7 +364,7 @@ output_bufs具有和原始input_bufs相同的meta信息
 
 ```c++
     Status Process(std::shared_ptr<DataContext> data_ctx) {
-        // 获取buffer中的指定meta值
+        // 获取Buffer中的指定Meta值
         auto input_bufs = data_ctx->Input("input");
         auto output_bufs = data_ctx->Output("output");
         output_bufs->Build({1});
@@ -378,11 +378,11 @@ output_bufs具有和原始input_bufs相同的meta信息
 
 **result:**
 
-output_bufs当中的每一个buffer都一个meta值为shape
+output_bufs当中的每一个Buffer都一个Meta值为shape
 
 ## PushBack
 
-往bufferList当中push一个buffer
+往BufferList当中push一个Buffer
 
 ```c++
     void PushBack(const std::shared_ptr<Buffer>& buf)
@@ -390,7 +390,7 @@ output_bufs当中的每一个buffer都一个meta值为shape
 
 **args:**  
 
-* **buf** (modelbox::Buffer) —— 需要插入到bufferlist当中的buffer
+* **buf** (modelbox::Buffer) —— 需要插入到BufferList当中的Buffer
 
 **return:**  
 
@@ -400,7 +400,7 @@ output_bufs当中的每一个buffer都一个meta值为shape
 
 ```c++
    Status Process(std::shared_ptr<DataContext> data_ctx) {
-        // 获取buffer中的指定meta值
+        // 获取Buffer中的指定Meta值
         auto input_bufs = data_ctx->Input("input");
         auto output_bufs = data_ctx->Output("output");
         auto buffer = Buffer(GetBindDevice());
@@ -413,6 +413,4 @@ output_bufs当中的每一个buffer都一个meta值为shape
 
 **result:**  
 
-output_bufs当中push了一个buffer到数组内
-
-# 更多的api可以参考容器当中拉起的api文档
+output_bufs当中push了一个Buffer到数组内
