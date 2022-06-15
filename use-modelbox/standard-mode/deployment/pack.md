@@ -2,8 +2,6 @@
 
 ModelBox工程采用CMake内置的CPack工具打包，将功能单元、流程图、插件（可选）等打包成rpm/deb/tar包，可一键安装，方便生产环境的部署和使用。
 
-ModelBox配置只需按照修改
-
 ## 打包
 
 打包内容包括下面几个部分：
@@ -13,7 +11,6 @@ ModelBox配置只需按照修改
 | 流程图           | 是       |
 | 功能单元         | 是       |
 | 插件             | 否       |
-| ModelBox服务配置 | 是       |
 
 打包步骤：
 
@@ -111,6 +108,6 @@ files = [
 
 安装步骤：
 
-1. 可直接使用对应的[运行镜像](../../../environment/container-usage.md#支持容器列表)，
+1. 选择对应的[运行镜像](../../../environment/container-usage.md#支持容器列表);
 1. 在运行镜像中rpm/deb可通过对应命令直接安装，tar包在根目录解压即可。默认安装目录为`/opt/modelbox/application/$project_name/`目录，这个目录下包括流程图（graph）、功能单元（flowunit）、插件。
 1. ModelBox配置文件建议安装在`/usr/local/etc/modelbox/modelbox.conf`路径下。

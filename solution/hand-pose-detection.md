@@ -31,9 +31,9 @@
 
 可以通过下面两种方式获取：
 
-- 安装包下载：进入[下载链接](http://download.modelbox-ai.com/solutions/hand_pose_detection/)，根据系统选择对应的版本进行下载到[ModelBox开发镜像](../environment/container-usage.md#支持容器列表)中，直接安装后可调用相关接口可以运行。
+- 安装包下载：进入[下载链接](http://download.modelbox-ai.com/solutions/hand_pose_detection/)，根据系统选择对应的版本进行下载到**libtorch**[ModelBox开发镜像](../environment/container-usage.md#支持容器列表)中，直接安装后可调用相关接口可以运行。
 
-- 源码编译：进入[解决方案代码仓](https://github.com/modelbox-ai/modelbox-solutions)，克隆代码仓到[ModelBox开发镜像](../environment/container-usage.md#支持容器列表)中，编译`hand_pose_detection`解决方案并打包，具体命令如下：
+- 源码编译：进入[解决方案代码仓](https://github.com/modelbox-ai/modelbox-solutions)，克隆代码仓到**libtorch**[ModelBox开发镜像](../environment/container-usage.md#支持容器列表)中，编译`hand_pose_detection`解决方案并打包，具体命令如下：
 
   ```shell
   git clone https://github.com/modelbox-ai/modelbox-solutions.git
