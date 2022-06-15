@@ -60,7 +60,7 @@
   ```
 
 - **Solution创建初始化和启动**
-
+  
   ```c++
   modelbox::Flow CreateHandPoseDetectionSolution() {
     ModelBoxLogger.GetLogger()->SetLogLevel  modelbox::LogLevel::LOG_INFO);
@@ -87,6 +87,8 @@
   ```
 
 - **外部数据交互**
+
+  待处理数据的输入，和处理完成后结果获取。
 
   ```c++
   // 数据发送获取
@@ -121,7 +123,7 @@
   }
   ```
 
-- **创建输入**
+  - 创建输入
 
   ```cpp
   modelbox::Status BuildInputData(const std::string &img_path, std::shared_ptr<modelbox::BufferList> &input_bufferlist) {
@@ -143,7 +145,7 @@
   }
   ```
 
-- **获取输出**
+  - 获取输出结果
 
   ```cpp
   modelbox::Status RecvExternalData  (std::shared_ptr<modelbox::ExternalDataMap> ext_data) {
@@ -172,6 +174,8 @@
   }
   ```
   
+  - 结果处理
+
   ```cpp
   void ProcessOutputData(std::shared_ptr<modelbox::BufferList> &output_buffer_list) {
     for (auto &buffer : *output_buffer_list) {

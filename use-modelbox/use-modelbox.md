@@ -13,4 +13,4 @@ AI应用开发的主要工作是流程图的设计开发和自定义功能单元
 * [标准模式](./standard-mode/modelbox-app-mode.md)
 * [SDK模式](./sdk-mode/sdk-mode.md)
 
-应用模式的介绍和选择可参考[开发模式概述](./develop-mode.md)章节：
+推荐使用**标准模式**，应用模式的介绍和选择可参考[开发模式概述](./develop-mode.md)章节：

@@ -7,7 +7,7 @@ ModelBox提供了统计功能单元，以及运行任务的时间统计功能，
 ![perf alt rect_w_600](../../../assets/images/figure/develop/debug/perf.png)
 
 * 配置流程图。
-* 配置文件中指定启动profiling。
+* 配置文件中指定启动Profiling。
 * 运行流程图。
 * 获取统计信息。
 * chrome浏览器打开`chrome://tracing/`。

@@ -55,7 +55,7 @@ docker run -itd --gpus all -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,video \
     $IMAGE_NAME
 ```
 
-如果Docker版本低于19.03，则需要替换docker run命令为
+如果Docker版本低于19.03，则需要替换`docker run`命令为
 
 ```shell
 docker run -itd --runtime=nvidia -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,video \
@@ -65,7 +65,7 @@ docker run -itd --runtime=nvidia -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,v
     $IMAGE_NAME
 ```
 
-上述脚本可支持GPU设备的挂载，如果需要使用Ascend加速硬件，则需要替换docker run命令为
+上述脚本可支持GPU设备的挂载，如果需要使用Ascend加速硬件，则需要替换`docker run`命令为
 
 ```shell
 
@@ -86,7 +86,7 @@ docker run -itd --device=/dev/davinci$ASCEND_NPU_ID --device=/dev/davinci_manage
 * `EDITOR_MAP_PORT`: 为可视化开发界面链接端口号。
 * `HTTP_SERVER_PORT`: 为HTTP功能单元端口号。
 * `IMAGE_NAME`: 要启动的镜像名称。
-* `ASCEND_NPU_ID`: 需要挂载的Ascend加速卡设备号，可以通过npu-smi info 查询，一般取值为0~7。
+* `ASCEND_NPU_ID`: 需要挂载的Ascend加速卡设备号，可以通过`npu-smi info` 查询，一般取值为0~7。
 
 **注意事项**：
 
@@ -136,7 +136,7 @@ modelbox/modelbox-develop-tensorflow_2.6.0-cuda_11.2-ubuntu-x86_64:latest
 
 * **参数: -gpus**
 
-  请通过 docker -v 检查 Docker 版本。对于 19.03 之前的版本，需要使用 nvidia-docker2 和 --runtime=nvidia 标记；对于 19.03 及之后的版本，则使用 nvidia-container-toolkit 软件包和 --gpus all 标记。
+  请通过 `docker -v` 检查 Docker 版本。对于 19.03 之前的版本，需要使用 nvidia-docker2 和 --runtime=nvidia 参数；对于 19.03 及之后的版本，则使用 nvidia-container-toolkit 软件包和 --gpus all 参数。
 
 * **参数：--device**
 

@@ -12,13 +12,13 @@ ModelBox提供了多种方式进行功能单元的创建，以YOLO功能单元�
 
 * **通过命令行创建**
 
-  ModelBox提供了模板创建工具，可以通过**ModelBox Tool**工具产生Python功能单元的模板，具体的命令为
+  ModelBox提供了模板创建工具，可以通过**ModelBox Tool**工具产生配置类功能单元的模板，以YOLO功能单元为例具体的命令为
 
   ```shell
   modelbox-tool template -flowunit -project-path [project_path] -name [flowunit_name] -lang yolo -virtual-type [type] -input name=in1,device=cpu -output name=out1 
   ```
 
-创建完成的C++功能单元目录结构如下：
+创建完成的配置类功能单元目录结构如下：
 
 ```shell
 [flowunit-name]
@@ -32,4 +32,4 @@ ModelBox提供了多种方式进行功能单元的创建，以YOLO功能单元�
 
 ## 功能单元调试运行
 
-配置类功能单元无需编译，通常情况下调试阶段可以将此功能单元所在的文件夹路径配置到流程图的扫描路径driver.dir中，再通过ModelBox-Tool 启动流程图运行，流程图启动时会扫描并加载功能单元。
+配置类功能单元无需编译，通常情况下调试阶段可以将此功能单元所在的文件夹路径配置到流程图的扫描路径driver.dir中，再通过**ModelBox-Tool** 启动流程图运行，流程图启动时会扫描并加载功能单元。

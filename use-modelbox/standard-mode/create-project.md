@@ -2,7 +2,7 @@
 
 ## 启动开发模式
 
-创建项目前需要先启动ModelBox开发模式，ModelBox开发模式提供了WebUI编排等多种开发能力。
+创建项目前需要先启动ModelBox开发模式，ModelBox开发模式提供了可视化UI编排等多种开发能力。
 开发者可以通过命令行工具[modelbox-tool](../../tools/modelbox-tool/modelbox-tool.md)来启动ModelBox开发模式：
 
 ```shell
@@ -49,7 +49,7 @@ Debug ModelBox Info:
 
 ### UI界面创建项目
 
-通过[UI界面](../../plugins/editor.md#可视化编排服务)创建项目步骤如下：
+通过[可视化UI编排](../../plugins/editor.md#可视化编排服务)界面创建项目步骤如下：
 
 ```txt
 进入UI界面 -> 点击“编排”进入任务编排页面 -> 点击“项目”，“新建项目” -> 填写“项目名称”、“项目路径”、“项目模板”

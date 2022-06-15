@@ -2,7 +2,7 @@
 
 流程图完成后，有如下两种方式可运行图：
 
-## modelbox-tool
+## 通过modelbox-tool运行
 
 [modelbox-tool](../../tools/modelbox-tool/modelbox-tool.md)是ModelBox提供的**调试**工具，可以快速检查结果是否正确，命令如下：
 
@@ -16,7 +16,7 @@ modelbox-tool -verbose -log-level INFO flow -run [path_to_graph]
 
 - flow：快速运行一个流程，快速验证，具体可参考[flow功能](../../tools/modelbox-tool/modelbox-tool.md#flow功能)；
 
-## modelbox
+## 通过modelbox进程运行
 
 使用ModelBox加载流程图，不仅可以运行流程图，还可以加载自定义插件
 
