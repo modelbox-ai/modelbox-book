@@ -92,7 +92,7 @@
 
   ```c++
   // 数据发送获取
-  modelbox::Status Process(std::shared_ptr<modelbox::Flow> flow, void *data, int len) {
+  modelbox::Status Process(std::shared_ptr<modelbox::Flow> flow, const std::string &test_file) {
     // 创建输入输出句柄
     auto ext_data = flow->CreateExternalDataMap();
     if (ext_data == nullptr) {
@@ -102,7 +102,6 @@
     auto input_bufs = ext_data->CreateBufferList();
   
     // push输入数据
-    std::string test_file = "path_to_test_image";
     if (!BuildInputData(test_file, input_bufs)) {
       return modelbox::STATUS_FAULT;
     }
@@ -148,7 +147,7 @@
   - 获取输出结果
 
   ```cpp
-  modelbox::Status RecvExternalData  (std::shared_ptr<modelbox::ExternalDataMap> ext_data) {
+  modelbox::Status RecvExternalData(std::shared_ptr<modelbox::ExternalDataMap> ext_data) {
     modelbox::OutputBufferList map_buffer_list;
     // 接收数据
     while (true) {

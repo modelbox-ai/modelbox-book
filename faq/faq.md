@@ -56,32 +56,6 @@ ModelBox本身为C++代码编写，开发者可以通过如下方式调试ModelB
 cat /etc/EulerLinux.conf
 ```
 
-## 功能单元
-
-### 功能单元的分类
-
-功能单元可以分为两大类
-
-#### 1. 实际的功能单元
-
-由实际代码所实现，每套代码对应自己的功能单元
-
-#### 2. 虚拟功能单元
-
-只有一个in配置文件，所有的具体实现在一个TensorRT的模块中，端口名、数据类型都是通过配置文件配置的。
-
-其中的plugin参数指定了可以注册功能的类，比如plugin为yolo，也就是说，YOLO的实例注册到TensorRT里面的。
-
-### sessioncontext与datacontext
-
-sessioncontext保存的是当前flow的全局变量，每一个flowunit存储在里面的数据在其他flowunit也可以读到。
-
-datacontext表示当前flowunit在当前流的数据Buffer，可以设置输入输出，也可以保存私有数据。
-
-### video_input
-
-video_input的repeat可以创建多个并发视频，并不是串行视频流
-
 ## 开发常见问题
 
 ### 流单元找不到

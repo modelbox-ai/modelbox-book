@@ -60,8 +60,8 @@ docker run -itd --gpus all -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,video \
 ```shell
 docker run -itd --runtime=nvidia -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,video \
     --tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
-    --name $CONTAINER_NAME -v /opt/modelbox:/opt/modelbox -v /home:/home \
-    -p $SSH_MAP_PORT:22 -p $EDITOR_MAP_PORT:1104 $HTTP_DOCKER_PORT_COMMAND \
+    --name $CONTAINER_NAME -v /home:/home -p $SSH_MAP_PORT:22 \
+    -p $EDITOR_MAP_PORT:1104 $HTTP_DOCKER_PORT_COMMAND \
     $IMAGE_NAME
 ```
 
@@ -75,8 +75,8 @@ ASCEND_NPU_ID=0
 docker run -itd --device=/dev/davinci$ASCEND_NPU_ID --device=/dev/davinci_manager \
         --device=/dev/hisi_hdc --device=/dev/devmm_svm \
         --tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro \  
-        --name $CONTAINER_NAME -v /opt/modelbox:/opt/modelbox -v /home:/home \
-        -p $SSH_MAP_PORT:22 -p $EDITOR_MAP_PORT:1104 $HTTP_DOCKER_PORT_COMMAND \
+        --name $CONTAINER_NAME -v /home:/home -p $SSH_MAP_PORT:22 \
+        -p $EDITOR_MAP_PORT:1104 $HTTP_DOCKER_PORT_COMMAND \
         $IMAGE_NAME
 ```
 

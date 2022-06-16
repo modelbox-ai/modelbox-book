@@ -30,7 +30,7 @@ docker pull modelbox/modelbox-develop-libtorch_1.9.1-cuda_10.2-ubuntu-x86_64:lat
 
 ### 流程图开发
 
-![emotion_detection_flow](../../assets/images/figure/first-app/emotion_detection_flow.png)
+![emotion_detection_flow](../assets/images/figure/first-app/emotion_detection_flow.png)
 
 如上图所示，整个流程图分为4个阶段：视频读取/解码、人脸检测、表情识别、结果渲染；
 
