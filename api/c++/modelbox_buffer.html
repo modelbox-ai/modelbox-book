@@ -1,0 +1,2205 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Buffer · ModelBox User Refference</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="CE">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-yahei/yahei.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-theme-api/theme-api.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-theme-comscore/test.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../../style.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="modelbox_bufferlist.html" />
+    
+    
+    <link rel="prev" href="../c++.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    ModelBox介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../environment/environment.html">
+            
+                <a href="../../environment/environment.html">
+            
+                    
+                    环境准备
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../environment/compile.html">
+            
+                <a href="../../environment/compile.html">
+            
+                    
+                    源码编译安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../environment/container-usage.html">
+            
+                <a href="../../environment/container-usage.html">
+            
+                    
+                    使用容器镜像
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../first-app/first-app.html">
+            
+                <a href="../../first-app/first-app.html">
+            
+                    
+                    第一个应用
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../first-app/mnist.html">
+            
+                <a href="../../first-app/mnist.html">
+            
+                    
+                    mnist
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../../use-modelbox/use-modelbox.html">
+            
+                <a href="../../use-modelbox/use-modelbox.html">
+            
+                    
+                    AI应用开发
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../../use-modelbox/develop-mode.html">
+            
+                <a href="../../use-modelbox/develop-mode.html">
+            
+                    
+                    开发模式概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../../use-modelbox/standard-mode/modelbox-app-mode.html">
+            
+                <a href="../../use-modelbox/standard-mode/modelbox-app-mode.html">
+            
+                    
+                    标准模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.1" data-path="../../use-modelbox/standard-mode/create-project.html">
+            
+                <a href="../../use-modelbox/standard-mode/create-project.html">
+            
+                    
+                    项目创建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.2" data-path="../../use-modelbox/standard-mode/flow/flow.html">
+            
+                <a href="../../use-modelbox/standard-mode/flow/flow.html">
+            
+                    
+                    流程图开发
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.3" data-path="../../use-modelbox/standard-mode/flowunit/flowunit.html">
+            
+                <a href="../../use-modelbox/standard-mode/flowunit/flowunit.html">
+            
+                    
+                    功能单元开发
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.3.1" data-path="../../use-modelbox/standard-mode/flowunit/c++.html">
+            
+                <a href="../../use-modelbox/standard-mode/flowunit/c++.html">
+            
+                    
+                    C++功能单元
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.3.2" data-path="../../use-modelbox/standard-mode/flowunit/python.html">
+            
+                <a href="../../use-modelbox/standard-mode/flowunit/python.html">
+            
+                    
+                    Python功能单元
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.3.3" data-path="../../use-modelbox/standard-mode/flowunit/inference.html">
+            
+                <a href="../../use-modelbox/standard-mode/flowunit/inference.html">
+            
+                    
+                    推理功能单元
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.3.4" data-path="../../use-modelbox/standard-mode/flowunit/config.html">
+            
+                <a href="../../use-modelbox/standard-mode/flowunit/config.html">
+            
+                    
+                    配置功能单元
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.4" data-path="../../use-modelbox/standard-mode/flow-run.html">
+            
+                <a href="../../use-modelbox/standard-mode/flow-run.html">
+            
+                    
+                    流程图运行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.5" data-path="../../use-modelbox/standard-mode/service-plugin/service-plugin.html">
+            
+                <a href="../../use-modelbox/standard-mode/service-plugin/service-plugin.html">
+            
+                    
+                    插件开发
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.6" data-path="../../use-modelbox/standard-mode/debug/debug.html">
+            
+                <a href="../../use-modelbox/standard-mode/debug/debug.html">
+            
+                    
+                    调试
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.6.1" data-path="../../use-modelbox/standard-mode/debug/code-debug.html">
+            
+                <a href="../../use-modelbox/standard-mode/debug/code-debug.html">
+            
+                    
+                    代码调试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.6.2" data-path="../../use-modelbox/standard-mode/debug/log.html">
+            
+                <a href="../../use-modelbox/standard-mode/debug/log.html">
+            
+                    
+                    日志
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.6.3" data-path="../../use-modelbox/standard-mode/debug/profiling.html">
+            
+                <a href="../../use-modelbox/standard-mode/debug/profiling.html">
+            
+                    
+                    性能优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.7" data-path="../../use-modelbox/standard-mode/deployment/deployment.html">
+            
+                <a href="../../use-modelbox/standard-mode/deployment/deployment.html">
+            
+                    
+                    部署
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.7.1" data-path="../../use-modelbox/standard-mode/deployment/pack.html">
+            
+                <a href="../../use-modelbox/standard-mode/deployment/pack.html">
+            
+                    
+                    打包安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.7.2" data-path="../../use-modelbox/standard-mode/deployment/server.html">
+            
+                <a href="../../use-modelbox/standard-mode/deployment/server.html">
+            
+                    
+                    ModelBox运行
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../../use-modelbox/sdk-mode/sdk-mode.html">
+            
+                <a href="../../use-modelbox/sdk-mode/sdk-mode.html">
+            
+                    
+                    SDK模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.3.1" data-path="../../use-modelbox/sdk-mode/c++.html">
+            
+                <a href="../../use-modelbox/sdk-mode/c++.html">
+            
+                    
+                    C++
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.2" data-path="../../use-modelbox/sdk-mode/python.html">
+            
+                <a href="../../use-modelbox/sdk-mode/python.html">
+            
+                    
+                    Python
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../../other-features/other-features.html">
+            
+                <a href="../../other-features/other-features.html">
+            
+                    
+                    特性列表
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../../other-features/device/device.html">
+            
+                <a href="../../other-features/device/device.html">
+            
+                    
+                    多设备开发
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.1" data-path="../../other-features/device/ascend.html">
+            
+                <a href="../../other-features/device/ascend.html">
+            
+                    
+                    Huawei Ascend
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2" data-path="../../other-features/device/cuda.html">
+            
+                <a href="../../other-features/device/cuda.html">
+            
+                    
+                    Nvidia CUDA
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../../other-features/exception.html">
+            
+                <a href="../../other-features/exception.html">
+            
+                    
+                    异常
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../../tools/tools.html">
+            
+                <a href="../../tools/tools.html">
+            
+                    
+                    配套工具
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../../tools/modelbox-tool/modelbox-tool.html">
+            
+                <a href="../../tools/modelbox-tool/modelbox-tool.html">
+            
+                    
+                    ModelBox Tool
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../../plugins/plugins.html">
+            
+                <a href="../../plugins/plugins.html">
+            
+                    
+                    预置插件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../../plugins/modelbox-plugin.html">
+            
+                <a href="../../plugins/modelbox-plugin.html">
+            
+                    
+                    modelbox-plugin
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../../plugins/editor.html">
+            
+                <a href="../../plugins/editor.html">
+            
+                    
+                    可视化编排插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../../flowunits/flowunits.html">
+            
+                <a href="../../flowunits/flowunits.html">
+            
+                    
+                    预置功能单元
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../../flowunits/flowunits-input.html">
+            
+                <a href="../../flowunits/flowunits-input.html">
+            
+                    
+                    输入类
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1.1" data-path="../../flowunits/flowunits-input.html">
+            
+                <a href="../../flowunits/flowunits-input.html#videoinput">
+            
+                    
+                    video_input
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.1.2" data-path="../../flowunits/flowunits-input.html">
+            
+                <a href="../../flowunits/flowunits-input.html#httpserverasync">
+            
+                    
+                    httpserver_async
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.1.3" data-path="../../flowunits/flowunits-input.html">
+            
+                <a href="../../flowunits/flowunits-input.html#httpserversyncreceive">
+            
+                    
+                    httpserver_sync_receive
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.1.4" data-path="../../flowunits/flowunits-input.html">
+            
+                <a href="../../flowunits/flowunits-input.html#datasourceparse">
+            
+                    
+                    data_source_parse
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.1.5" data-path="../../flowunits/flowunits-input.html">
+            
+                <a href="../../flowunits/flowunits-input.html#datasourcegenerator">
+            
+                    
+                    data_source_generator
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../../flowunits/flowunits-output.html">
+            
+                <a href="../../flowunits/flowunits-output.html">
+            
+                    
+                    输出类
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.2.1" data-path="../../flowunits/flowunits-output.html">
+            
+                <a href="../../flowunits/flowunits-output.html#httpserversyncreply">
+            
+                    
+                    httpserver_sync_reply
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2.2" data-path="../../flowunits/flowunits-output.html">
+            
+                <a href="../../flowunits/flowunits-output.html#outputbroker">
+            
+                    
+                    output_broker
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../../flowunits/flowunits-video.html">
+            
+                <a href="../../flowunits/flowunits-video.html">
+            
+                    
+                    视频类
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.3.1" data-path="../../flowunits/flowunits-video.html">
+            
+                <a href="../../flowunits/flowunits-video.html#videodemuxer">
+            
+                    
+                    video_demuxer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3.2" data-path="../../flowunits/flowunits-video.html">
+            
+                <a href="../../flowunits/flowunits-video.html#videodecoder">
+            
+                    
+                    video_decoder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3.3" data-path="../../flowunits/flowunits-video.html">
+            
+                <a href="../../flowunits/flowunits-video.html#videoencoder">
+            
+                    
+                    video_encoder
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="../../flowunits/flowunits-image.html">
+            
+                <a href="../../flowunits/flowunits-image.html">
+            
+                    
+                    图像类
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.4.1" data-path="../../flowunits/flowunits-image.html">
+            
+                <a href="../../flowunits/flowunits-image.html#resize">
+            
+                    
+                    resize
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.2" data-path="../../flowunits/flowunits-image.html">
+            
+                <a href="../../flowunits/flowunits-image.html#padding">
+            
+                    
+                    padding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.3" data-path="../../flowunits/flowunits-image.html">
+            
+                <a href="../../flowunits/flowunits-image.html#crop">
+            
+                    
+                    crop
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.4" data-path="../../flowunits/flowunits-image.html">
+            
+                <a href="../../flowunits/flowunits-image.html#normalize">
+            
+                    
+                    normalize
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.5" data-path="../../flowunits/flowunits-image.html">
+            
+                <a href="../../flowunits/flowunits-image.html#mean">
+            
+                    
+                    mean
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.6" data-path="../../flowunits/flowunits-image.html">
+            
+                <a href="../../flowunits/flowunits-image.html#colorconvert">
+            
+                    
+                    color_convert
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.7" data-path="../../flowunits/flowunits-image.html">
+            
+                <a href="../../flowunits/flowunits-image.html#imagerotate">
+            
+                    
+                    image_rotate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.8" data-path="../../flowunits/flowunits-image.html">
+            
+                <a href="../../flowunits/flowunits-image.html#imagedecoder">
+            
+                    
+                    image_decoder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.9" data-path="../../flowunits/flowunits-image.html">
+            
+                <a href="../../flowunits/flowunits-image.html#imagepreprocess">
+            
+                    
+                    image_preprocess
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.10" data-path="../../flowunits/flowunits-image.html">
+            
+                <a href="../../flowunits/flowunits-image.html#drawbbox">
+            
+                    
+                    draw_bbox
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="../../flowunits/flowunits-generic.html">
+            
+                <a href="../../flowunits/flowunits-generic.html">
+            
+                    
+                    通用类
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.5.1" data-path="../../flowunits/flowunits-generic.html">
+            
+                <a href="../../flowunits/flowunits-generic.html#buffmetamapping">
+            
+                    
+                    buff_meta_mapping
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.6" data-path="../../flowunits/flowunits-virtual.html">
+            
+                <a href="../../flowunits/flowunits-virtual.html">
+            
+                    
+                    配置类
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.6.1" data-path="../../flowunits/flowunits-virtual.html">
+            
+                <a href="../../flowunits/flowunits-virtual.html#yolopostprocess">
+            
+                    
+                    yolo_postprocess
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../../cases/cases.html">
+            
+                <a href="../../cases/cases.html">
+            
+                    
+                    经典案例
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../../cases/hello-world.html">
+            
+                <a href="../../cases/hello-world.html">
+            
+                    
+                    hello world
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../../cases/mnist-on-sbc.html">
+            
+                <a href="../../cases/mnist-on-sbc.html">
+            
+                    
+                    树莓派开发板Mnist
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../../cases/car-detection.html">
+            
+                <a href="../../cases/car-detection.html">
+            
+                    
+                    车辆检测
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../../cases/emotion-detection.html">
+            
+                <a href="../../cases/emotion-detection.html">
+            
+                    
+                    表情识别
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../../solution/solution.html">
+            
+                <a href="../../solution/solution.html">
+            
+                    
+                    Solution
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../../solution/hand-pose-detection.html">
+            
+                <a href="../../solution/hand-pose-detection.html">
+            
+                    
+                    手势识别
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../../basic-conception/basic-conception.html">
+            
+                <a href="../../basic-conception/basic-conception.html">
+            
+                    
+                    基础概念
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../../basic-conception/graph.html">
+            
+                <a href="../../basic-conception/graph.html">
+            
+                    
+                    流程图
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../../basic-conception/flowunit.html">
+            
+                <a href="../../basic-conception/flowunit.html">
+            
+                    
+                    功能单元
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../../basic-conception/stream.html">
+            
+                <a href="../../basic-conception/stream.html">
+            
+                    
+                    数据流
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../../basic-conception/buffer.html">
+            
+                <a href="../../basic-conception/buffer.html">
+            
+                    
+                    Buffer
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../api.html">
+            
+                <a href="../api.html">
+            
+                    
+                    API
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../c++.html">
+            
+                <a href="../c++.html">
+            
+                    
+                    C++
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.12.1.1" data-path="modelbox_buffer.html">
+            
+                <a href="modelbox_buffer.html">
+            
+                    
+                    Buffer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.1.2" data-path="modelbox_bufferlist.html">
+            
+                <a href="modelbox_bufferlist.html">
+            
+                    
+                    BufferList
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.1.3" data-path="modelbox_configuration.html">
+            
+                <a href="modelbox_configuration.html">
+            
+                    
+                    Configuration
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.1.4" data-path="modelbox_datacontext.html">
+            
+                <a href="modelbox_datacontext.html">
+            
+                    
+                    DataContext
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.1.5" data-path="modelbox_datameta.html">
+            
+                <a href="modelbox_datameta.html">
+            
+                    
+                    DataMeta
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.1.6" data-path="modelbox_flowunit.html">
+            
+                <a href="modelbox_flowunit.html">
+            
+                    
+                    FlowUnit
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.1.7" data-path="modelbox_flowunitevent.html">
+            
+                <a href="modelbox_flowunitevent.html">
+            
+                    
+                    FlowUnitEvent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.1.8" data-path="modelbox_sessioncontext.html">
+            
+                <a href="modelbox_sessioncontext.html">
+            
+                    
+                    SessionContext
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.1.9" data-path="modelbox_driverdesc.html">
+            
+                <a href="modelbox_driverdesc.html">
+            
+                    
+                    DriverDesc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.1.10" data-path="modelbox_flowunitdesc.html">
+            
+                <a href="modelbox_flowunitdesc.html">
+            
+                    
+                    FlowUnitDesc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.1.11" data-path="modelbox_flowunitport.html">
+            
+                <a href="modelbox_flowunitport.html">
+            
+                    
+                    FlowUnitPort
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.1.12" data-path="modelbox_flow.html">
+            
+                <a href="modelbox_flow.html">
+            
+                    
+                    Flow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.1.13" data-path="modelbox_externaldatamap.html">
+            
+                <a href="modelbox_externaldatamap.html">
+            
+                    
+                    ExternalDataMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.1.14" data-path="modelbox_solution.html">
+            
+                <a href="modelbox_solution.html">
+            
+                    
+                    Solution
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../python.html">
+            
+                <a href="../python.html">
+            
+                    
+                    Python
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.2.1" data-path="../python/modelbox_buffer.html">
+            
+                <a href="../python/modelbox_buffer.html">
+            
+                    
+                    Buffer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2.2" data-path="../python/modelbox_bufferlist.html">
+            
+                <a href="../python/modelbox_bufferlist.html">
+            
+                    
+                    BufferList
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2.3" data-path="../python/modelbox_configuration.html">
+            
+                <a href="../python/modelbox_configuration.html">
+            
+                    
+                    Configuration
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2.4" data-path="../python/modelbox_datacontext.html">
+            
+                <a href="../python/modelbox_datacontext.html">
+            
+                    
+                    DataContext
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2.5" data-path="../python/modelbox_datameta.html">
+            
+                <a href="../python/modelbox_datameta.html">
+            
+                    
+                    DataMeta
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2.6" data-path="../python/modelbox_device.html">
+            
+                <a href="../python/modelbox_device.html">
+            
+                    
+                    Device
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2.7" data-path="../python/modelbox_externaldata.html">
+            
+                <a href="../python/modelbox_externaldata.html">
+            
+                    
+                    ExternalData
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2.8" data-path="../python/modelbox_externaldatamap.html">
+            
+                <a href="../python/modelbox_externaldatamap.html">
+            
+                    
+                    ExternalDataMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2.9" data-path="../python/modelbox_extoutputbufferlist.html">
+            
+                <a href="../python/modelbox_extoutputbufferlist.html">
+            
+                    
+                    ExtOutputBufferList
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2.10" data-path="../python/modelbox_flow.html">
+            
+                <a href="../python/modelbox_flow.html">
+            
+                    
+                    Flow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2.11" data-path="../python/modelbox_flowunit.html">
+            
+                <a href="../python/modelbox_flowunit.html">
+            
+                    
+                    Flowunit
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2.12" data-path="../python/modelbox_flowuniterror.html">
+            
+                <a href="../python/modelbox_flowuniterror.html">
+            
+                    
+                    FlowunitError
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2.13" data-path="../python/modelbox_flowunitevent.html">
+            
+                <a href="../python/modelbox_flowunitevent.html">
+            
+                    
+                    FlowunitEvent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2.14" data-path="../python/modelbox_log.html">
+            
+                <a href="../python/modelbox_log.html">
+            
+                    
+                    Log
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2.15" data-path="../python/modelbox_sessioncontext.html">
+            
+                <a href="../python/modelbox_sessioncontext.html">
+            
+                    
+                    SessionContext
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2.16" data-path="../python/modelbox_status.html">
+            
+                <a href="../python/modelbox_status.html">
+            
+                    
+                    Status
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../../faq/faq.html">
+            
+                <a href="../../faq/faq.html">
+            
+                    
+                    FAQ
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Buffer</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#modelboxbuffer"><b></b>modelbox::Buffer</a></li><ul><li><span class="title-icon "></span><a href="#&#x6784;&#x9020;&#x65B9;&#x6CD5;"><b></b>&#x6784;&#x9020;&#x65B9;&#x6CD5;</a></li><li><span class="title-icon "></span><a href="#build"><b></b>Build</a></li><li><span class="title-icon "></span><a href="#buildfromhost"><b></b>BuildFromHost</a></li><li><span class="title-icon "></span><a href="#constdata"><b></b>ConstData</a></li><li><span class="title-icon "></span><a href="#mutabledata"><b></b>MutableData</a></li><li><span class="title-icon "></span><a href="#haserror"><b></b>HasError</a></li><li><span class="title-icon "></span><a href="#seterror"><b></b>SetError</a></li><li><span class="title-icon "></span><a href="#geterrorcode"><b></b>GetErrorCode</a></li><li><span class="title-icon "></span><a href="#geterrormsg"><b></b>GetErrorMsg</a></li><li><span class="title-icon "></span><a href="#getbytes"><b></b>GetBytes</a></li><li><span class="title-icon "></span><a href="#set"><b></b>Set</a></li><li><span class="title-icon "></span><a href="#get"><b></b>Get</a></li><li><span class="title-icon "></span><a href="#copymeta"><b></b>CopyMeta</a></li></ul></ul></div><h1 id="modelboxbuffer"><a name="modelboxbuffer" class="anchor-navigation-ex-anchor" href="#modelboxbuffer"><i class="fa fa-link" aria-hidden="true"></i></a>modelbox::Buffer</h1>
+<table>
+<thead>
+<tr>
+<th>&#x51FD;&#x6570;</th>
+<th>&#x4F5C;&#x7528;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#&#x6784;&#x9020;&#x65B9;&#x6CD5;">&#x6784;&#x9020;&#x65B9;&#x6CD5;</a></td>
+<td>Buffer&#x7684;&#x6784;&#x9020;&#x65B9;&#x6CD5;</td>
+</tr>
+<tr>
+<td><a href="#build">Build</a></td>
+<td>Buffer&#x7533;&#x8BF7;&#x7279;&#x5B9A;&#x5927;&#x5C0F;&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x5185;&#x5B58;&#x6765;&#x6E90;&#x4E8E;device&#x4FA7;</td>
+</tr>
+<tr>
+<td><a href="#buildfromhost">BuildFromHost</a></td>
+<td>Buffer&#x7533;&#x8BF7;&#x7279;&#x5B9A;&#x5927;&#x5C0F;&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x5185;&#x5B58;&#x6765;&#x6E90;&#x4E8E;host&#x4FA7;</td>
+</tr>
+<tr>
+<td><a href="#constdata">ConstData</a></td>
+<td>&#x83B7;&#x53D6;&#x5F53;&#x524D;Buffer&#x7684;&#x6570;&#x636E;&#x7684;&#x5E38;&#x91CF;&#x6307;&#x9488;</td>
+</tr>
+<tr>
+<td><a href="#mutabledata">MutableData</a></td>
+<td>&#x83B7;&#x53D6;&#x5F53;&#x524D;Buffer&#x7684;&#x6570;&#x636E;&#x7684;&#x6307;&#x9488;</td>
+</tr>
+<tr>
+<td><a href="#haserror">HasError</a></td>
+<td>&#x5224;&#x65AD;Buffer&#x662F;&#x5426;&#x5B58;&#x5728;error</td>
+</tr>
+<tr>
+<td><a href="#seterror">SetError</a></td>
+<td>&#x7ED9;Buffer&#x8BBE;&#x7F6E;error</td>
+</tr>
+<tr>
+<td><a href="#geterrorcode">GetErrorCode</a></td>
+<td>&#x83B7;&#x53D6;error_code</td>
+</tr>
+<tr>
+<td><a href="#geterrormsg">GetErrorMsg</a></td>
+<td>&#x83B7;&#x53D6;error_msg</td>
+</tr>
+<tr>
+<td><a href="#getbytes">GetBytes</a></td>
+<td>&#x83B7;&#x53D6;&#x5F53;&#x524D;Bufferr&#x7684;&#x5B57;&#x8282;&#x6570;</td>
+</tr>
+<tr>
+<td><a href="#get">Get</a></td>
+<td>&#x83B7;&#x53D6;&#x6307;&#x5B9A;key&#x7684;Meta&#x503C;</td>
+</tr>
+<tr>
+<td><a href="#set">Set</a></td>
+<td>&#x8BBE;&#x7F6E;&#x6307;&#x5B9A;key&#x7684;Meta&#x503C;</td>
+</tr>
+<tr>
+<td><a href="#copymeta">CopyMeta</a></td>
+<td>&#x62F7;&#x8D1D;&#x6307;&#x5B9A;Buffer&#x7684;&#x6240;&#x6709;Meta&#x503C;&#x7ED9;&#x65B0;Buffer</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="&#x6784;&#x9020;&#x65B9;&#x6CD5;"><a name="&#x6784;&#x9020;&#x65B9;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#&#x6784;&#x9020;&#x65B9;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6784;&#x9020;&#x65B9;&#x6CD5;</h2>
+<p>&#x6784;&#x9020;&#x65B0;&#x7684;Buffer</p>
+<pre><code class="lang-c++">    Buffer();
+    Buffer(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;Device&gt;&amp; device, <span class="hljs-keyword">uint32_t</span> dev_mem_flags = <span class="hljs-number">0</span>);
+</code></pre>
+<p><strong>args:</strong></p>
+<ul>
+<li><strong>device</strong> (modelbox::Device) &#x2014;&#x2014; &#x6784;&#x9020;&#x5F53;&#x524D;Buffer&#x6240;&#x5728;&#x7684;modelbox::Device&#x5BF9;&#x8C61;</li>
+<li><strong>dev_mem_flags</strong>  (uint32_t) &#x2014;&#x2014; ascend memory&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;Normal&#x578B;</li>
+</ul>
+<p><strong>return:</strong>  </p>
+<p>&#x6784;&#x9020;&#x51FA;&#x6765;&#x7684;&#x65B0;&#x7684;Buffer</p>
+<p><strong>note:</strong></p>
+<ol>
+<li>dev_mem_flags&#x6539;&#x53C2;&#x6570;&#x53EA;&#x5728;ascend&#x7684;&#x5185;&#x5B58;&#x4E0A;&#x9762;&#x6709;&#x533A;&#x5206;&#xFF0C;0&#x4E3A;&#x666E;&#x901A;&#x5185;&#x5B58;&#x7C7B;&#x578B;&#xFF0C;1&#x4F4D;dvpp&#x5185;&#x5B58;&#xFF0C;&#x5176;&#x4ED6;&#x8BBE;&#x5907;&#x4E0D;&#x9700;&#x8981;&#x533A;&#x5206;</li>
+</ol>
+<p><strong>example:</strong></p>
+<pre><code class="lang-c++">   <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;modelbox/buffer.h&gt;</span></span>
+
+   <span class="hljs-function">Status <span class="hljs-title">Process</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;DataContext&gt; data_ctx)</span> </span>{
+       <span class="hljs-keyword">auto</span> buffer = <span class="hljs-built_in">std</span>::make_shared&lt;Buffer&gt;(GetBindDevice());
+   }
+</code></pre>
+<p><strong>result:</strong></p>
+<p>&#x6784;&#x5EFA;&#x51FA;&#x4E86;&#x548C;&#x5F53;&#x524D;&#x529F;&#x80FD;&#x5355;&#x5143;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x8BBE;&#x5907;&#x4E0A;&#x9762;&#x7684;Buffer&#x5BF9;&#x8C61;</p>
+<h2 id="build"><a name="build" class="anchor-navigation-ex-anchor" href="#build"><i class="fa fa-link" aria-hidden="true"></i></a>Build</h2>
+<p>&#x901A;&#x8FC7;Buffer&#x5BF9;&#x8C61;&#x6784;&#x5EFA;&#x7279;&#x5B9A;&#x5927;&#x5C0F;&#x7684;&#x5185;&#x5B58;</p>
+<pre><code class="lang-c++">    <span class="hljs-function">Status <span class="hljs-title">Build</span><span class="hljs-params">(size_t size)</span></span>;
+    <span class="hljs-comment">//data&#x5728;device&#x4FA7;</span>
+    <span class="hljs-function">Status <span class="hljs-title">Build</span><span class="hljs-params">(<span class="hljs-keyword">void</span>* data, size_t data_size,
+                       DeleteFunction func = <span class="hljs-literal">nullptr</span>)</span></span>;
+</code></pre>
+<p><strong>args:</strong>  </p>
+<ul>
+<li><strong>size</strong> (size_t) &#x2014;&#x2014; Buffer&#x7533;&#x8BF7;&#x7684;&#x5185;&#x5B58;&#x5B57;&#x8282;&#x5927;&#x5C0F;</li>
+<li><strong>data</strong> (void*) &#x6784;&#x5EFA;&#x7ED9;Buffer&#x7BA1;&#x7406;&#x7684;&#x6570;&#x636E;&#x6307;&#x9488;</li>
+<li><strong>data_size</strong> (size_t) &#x2014;&#x2014; Buffer&#x7533;&#x8BF7;&#x7684;&#x5185;&#x5B58;&#x5B57;&#x8282;&#x5927;&#x5C0F;</li>
+<li><strong>func</strong> (DeleteFunction ) &#x2014;&#x2014; &#x91CA;&#x653E;Buffer&#x6307;&#x9488;&#x7684;&#x51FD;&#x6570;</li>
+</ul>
+<h2 id="buildfromhost"><a name="buildfromhost" class="anchor-navigation-ex-anchor" href="#buildfromhost"><i class="fa fa-link" aria-hidden="true"></i></a>BuildFromHost</h2>
+<pre><code class="lang-c++">    <span class="hljs-comment">// data&#x5728;host&#x4FA7;</span>
+    <span class="hljs-function">Status <span class="hljs-title">BuildFromHost</span><span class="hljs-params">(<span class="hljs-keyword">void</span>* data, size_t data_size,
+                               DeleteFunction func = <span class="hljs-literal">nullptr</span>)</span></span>;
+</code></pre>
+<p><strong>args:</strong>  </p>
+<ul>
+<li><strong>data</strong> (void*) &#x6784;&#x5EFA;&#x7ED9;Buffer&#x7BA1;&#x7406;&#x7684;&#x6570;&#x636E;&#x6307;&#x9488;</li>
+<li><strong>data_size</strong> (size_t) &#x2014;&#x2014; Buffer&#x7533;&#x8BF7;&#x7684;&#x5185;&#x5B58;&#x5B57;&#x8282;&#x5927;&#x5C0F;</li>
+<li><strong>func</strong> (DeleteFunction ) &#x2014;&#x2014; &#x91CA;&#x653E;Buffer&#x6307;&#x9488;&#x7684;&#x51FD;&#x6570;</li>
+</ul>
+<p><strong>return:</strong>  </p>
+<p>modelbox::Status, &#x6784;&#x5EFA;Buffer&#x7684;&#x8FD4;&#x56DE;&#x7684;status&#x72B6;&#x6001;</p>
+<p><strong>example:</strong>  </p>
+<pre><code class="lang-c++">    <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;modelbox/buffer.h&gt;</span></span>
+
+    <span class="hljs-function">Status <span class="hljs-title">Process</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;DataContext&gt; data_ctx)</span> </span>{
+       <span class="hljs-keyword">auto</span> buffer1 = <span class="hljs-built_in">std</span>::make_shared&lt;Buffer&gt;(GetBindDevice());
+       <span class="hljs-keyword">auto</span> buffer2 = <span class="hljs-built_in">std</span>::make_shared&lt;Buffer&gt;(GetBindDevice());
+       <span class="hljs-keyword">auto</span> buffer3 = <span class="hljs-built_in">std</span>::make_shared&lt;Buffer&gt;(GetBindDevice());
+       Status status{STATUS_OK};
+       status = buffer1-&gt;Build(<span class="hljs-number">1</span>);
+       <span class="hljs-keyword">auto</span> *data = buffer1-&gt;MutableData();
+       data[<span class="hljs-number">0</span>] = <span class="hljs-number">122</span>;
+
+       <span class="hljs-keyword">auto</span> device_data = <span class="hljs-built_in">std</span>::make_shared&lt;<span class="hljs-keyword">uint8_t</span>&gt;(<span class="hljs-number">123</span>);
+       status = buffer2-&gt;Build(device_data.get(), <span class="hljs-number">1</span>);
+
+       <span class="hljs-keyword">auto</span> host_data = <span class="hljs-built_in">std</span>::make_shared&lt;<span class="hljs-keyword">uint8_t</span>&gt;(<span class="hljs-number">124</span>);
+       status = buffer3-&gt;Build(host_data.get(), <span class="hljs-number">1</span>, [](<span class="hljs-keyword">void</span> *){});
+    }
+</code></pre>
+<p><strong>result:</strong>  </p>
+<p>&#x6784;&#x5EFA;&#x6210;&#x529F;&#x4E86;3&#x4E2A;Buffer&#xFF0C;&#x901A;&#x8FC7;&#x4E0D;&#x540C;&#x7684;&#x65B9;&#x5F0F;&#x7533;&#x8BF7;&#x5185;&#x5B58;&#x8D4B;&#x503C;</p>
+<h2 id="constdata"><a name="constdata" class="anchor-navigation-ex-anchor" href="#constdata"><i class="fa fa-link" aria-hidden="true"></i></a>ConstData</h2>
+<p>&#x83B7;&#x53D6;Buffer&#x7684;&#x539F;&#x59CB;&#x6570;&#x636E;&#x7684;&#x5E38;&#x91CF;&#x6307;&#x9488;</p>
+<p><strong>args:</strong>  </p>
+<p>&#x65E0;</p>
+<p><strong>return:</strong>  </p>
+<p>const void*, &#x539F;&#x59CB;&#x6570;&#x636E;&#x7684;&#x5E38;&#x91CF;&#x6307;&#x9488;</p>
+<h2 id="mutabledata"><a name="mutabledata" class="anchor-navigation-ex-anchor" href="#mutabledata"><i class="fa fa-link" aria-hidden="true"></i></a>MutableData</h2>
+<p>&#x83B7;&#x53D6;Buffer&#x7684;&#x539F;&#x59CB;&#x6570;&#x636E;&#x7684;&#x6307;&#x9488;</p>
+<p><strong>args:</strong>  </p>
+<p>&#x65E0;</p>
+<p><strong>return:</strong>  </p>
+<p>void*, &#x539F;&#x59CB;&#x6570;&#x636E;&#x7684;&#x6307;&#x9488;</p>
+<p><strong>example:</strong>  </p>
+<pre><code class="lang-c++">    <span class="hljs-function">Status <span class="hljs-title">Process</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;DataContext&gt; data_ctx)</span> </span>{
+        <span class="hljs-comment">//&#x5047;&#x8BBE;&#x8BE5;&#x6D41;&#x5355;&#x5143;&#x4E3A;1&#x8F93;&#x5165;1&#x8F93;&#x51FA;&#xFF0C;&#x8F93;&#x5165;&#x7AEF;&#x53E3;&#x540D;&#x4E3A;input&#xFF0C;&#x8F93;&#x51FA;&#x7AEF;&#x53E3;&#x540D;&#x4E3A;output</span>
+        <span class="hljs-keyword">auto</span> input_bufs = data-&gt;Input(<span class="hljs-string">&quot;input&quot;</span>);
+        <span class="hljs-keyword">auto</span> output_bufs = data-&gt;Output(<span class="hljs-string">&quot;output&quot;</span>);
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> i = <span class="hljs-number">0</span>; i &lt; input_bufs-&gt;Size(); ++i) {
+            <span class="hljs-comment">// &#x6307;&#x5B9A;&#x4F4D;&#x7F6E;&#x7684;Buffer</span>
+            <span class="hljs-keyword">auto</span> buffer = input_bufs-&gt;At(i);
+            <span class="hljs-comment">// &#x6570;&#x636E;&#x539F;&#x59CB;&#x6307;&#x9488;</span>
+            <span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span>* data1 = buffer-&gt;ConstData();
+        }
+
+        ...
+        <span class="hljs-comment">// output_bufs&#x5DF2;&#x7ECF;&#x6784;&#x5EFA;&#x597D;&#x4E86;&#x5185;&#x5B58;&#x4EE5;&#x53CA;&#x6570;&#x636E;</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> i = <span class="hljs-number">0</span>; i &lt; output_bufs-&gt;Size(); ++i) {
+            <span class="hljs-comment">// &#x6307;&#x5B9A;&#x4F4D;&#x7F6E;&#x7684;Buffer</span>
+            <span class="hljs-keyword">auto</span> buffer = output_bufs-&gt;At(i);
+            <span class="hljs-keyword">void</span>* data2 = buffer-&gt;MutableData();
+        }
+    }
+</code></pre>
+<p><strong>result:</strong></p>
+<p>data1&#x548C;data2&#x4E3A;&#x83B7;&#x53D6;Buffer&#x7684;&#x6570;&#x636E;&#x6307;&#x9488;</p>
+<p><strong>note:</strong></p>
+<ol>
+<li><p>input&#x7684;BufferList&#x5F53;&#x4E2D;&#x83B7;&#x53D6;&#x6570;&#x636E;&#x7528;ConstData()&#x63A5;&#x53E3;&#xFF0C;output&#x7684;BufferList&#x5F53;&#x4E2D;&#x83B7;&#x53D6;&#x6570;&#x636E;&#x4F7F;&#x7528;MutableData()&#x63A5;&#x53E3;</p>
+</li>
+<li><p>&#x6D41;&#x5355;&#x5143;&#x5F53;&#x4E2D;&#x7684;&#x8F93;&#x5165;&#x6570;&#x636E;&#x662F;&#x4E3A;&#x4E0D;&#x53EF;&#x53D8;&#xFF0C;&#x8F93;&#x51FA;&#x6570;&#x636E;&#x9700;&#x8981;&#x6784;&#x9020;&#x8D4B;&#x503C;&#xFF0C;&#x4E3A;&#x53EF;&#x53D8;&#x3002;  </p>
+</li>
+</ol>
+<h2 id="haserror"><a name="haserror" class="anchor-navigation-ex-anchor" href="#haserror"><i class="fa fa-link" aria-hidden="true"></i></a>HasError</h2>
+<pre><code class="lang-c++">    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">HasError</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>;
+</code></pre>
+<p><strong>args:</strong>  </p>
+<p>&#x65E0;</p>
+<p><strong>return:</strong>  </p>
+<p>bool, &#x5F53;&#x524D;Buffer&#x662F;&#x5426;&#x5B58;&#x5728;error</p>
+<h2 id="seterror"><a name="seterror" class="anchor-navigation-ex-anchor" href="#seterror"><i class="fa fa-link" aria-hidden="true"></i></a>SetError</h2>
+<pre><code class="lang-c++">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SetError</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; error_code,
+                           <span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; error_msg)</span></span>;
+</code></pre>
+<p><strong>args:</strong>  </p>
+<ul>
+<li><p><strong>error_code</strong> (string) &#x2014;&#x2014; error&#x7684;&#x9519;&#x8BEF;&#x7801;</p>
+</li>
+<li><p><strong>error_msg</strong> (string) &#x2014;&#x2014; error&#x7684;&#x9519;&#x8BEF;&#x4FE1;&#x606F;</p>
+</li>
+</ul>
+<p><strong>return:</strong>  </p>
+<p>&#x65E0;</p>
+<h2 id="geterrorcode"><a name="geterrorcode" class="anchor-navigation-ex-anchor" href="#geterrorcode"><i class="fa fa-link" aria-hidden="true"></i></a>GetErrorCode</h2>
+<pre><code class="lang-c++">    <span class="hljs-built_in">std</span>::<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">GetErrorCode</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>;
+</code></pre>
+<p><strong>args:</strong>  </p>
+<p>&#x65E0;</p>
+<p><strong>return:</strong>  </p>
+<p>string, &#x5F53;&#x524D;Buffer&#x7684;&#x9519;&#x8BEF;&#x7801;</p>
+<h2 id="geterrormsg"><a name="geterrormsg" class="anchor-navigation-ex-anchor" href="#geterrormsg"><i class="fa fa-link" aria-hidden="true"></i></a>GetErrorMsg</h2>
+<pre><code class="lang-c++">    <span class="hljs-built_in">std</span>::<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">GetErrorMsg</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>;
+</code></pre>
+<p><strong>args:</strong>  </p>
+<p>&#x65E0;</p>
+<p><strong>return:</strong>  </p>
+<p>string, &#x5F53;&#x524D;Buffer&#x7684;&#x9519;&#x8BEF;&#x4FE1;&#x606F;</p>
+<p><strong>example:</strong>  </p>
+<pre><code class="lang-c++">    <span class="hljs-function">Status <span class="hljs-title">Process</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;DataContext&gt; data_ctx)</span> </span>{
+        <span class="hljs-comment">//&#x5047;&#x8BBE;&#x8BE5;&#x6D41;&#x5355;&#x5143;&#x4E3A;1&#x8F93;&#x5165;1&#x8F93;&#x51FA;&#xFF0C;&#x8F93;&#x5165;&#x7AEF;&#x53E3;&#x540D;&#x4E3A;input&#xFF0C;&#x8F93;&#x51FA;&#x7AEF;&#x53E3;&#x540D;&#x4E3A;output</span>
+        ...
+        <span class="hljs-keyword">auto</span> output_bufs = data-&gt;Output(<span class="hljs-string">&quot;output&quot;</span>);
+        output_bufs-&gt;Build({<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>});
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> i = <span class="hljs-number">0</span>; i &lt; output_bufs-&gt;Size(); ++i) {
+            <span class="hljs-keyword">auto</span> buffer = output_bufs-&gt;At(i);
+            <span class="hljs-keyword">bool</span> error = <span class="hljs-literal">true</span>;
+            <span class="hljs-keyword">if</span> (error) {
+                buffer-&gt;SetError(<span class="hljs-string">&quot;Sample.FAILED_001&quot;</span>, <span class="hljs-string">&quot;test error&quot;</span>);
+            }
+        }
+    }
+
+    <span class="hljs-function">Status <span class="hljs-title">Process</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;DataContext&gt; data_ctx)</span> </span>{
+        <span class="hljs-comment">//&#x5047;&#x8BBE;&#x8BE5;&#x6D41;&#x5355;&#x5143;&#x4E3A;1&#x8F93;&#x5165;1&#x8F93;&#x51FA;&#xFF0C;&#x8F93;&#x5165;&#x7AEF;&#x53E3;&#x540D;&#x4E3A;input&#xFF0C;&#x8F93;&#x51FA;&#x7AEF;&#x53E3;&#x540D;&#x4E3A;output</span>
+        <span class="hljs-keyword">auto</span> input_bufs = data-&gt;Input(<span class="hljs-string">&quot;input&quot;</span>);
+        <span class="hljs-keyword">auto</span> output_bufs = data-&gt;Output(<span class="hljs-string">&quot;output&quot;</span>);
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> i = <span class="hljs-number">0</span>; i &lt; input_bufs-&gt;Size(); ++i) {
+            <span class="hljs-keyword">auto</span> buffer = input_bufs-&gt;At(i);
+            <span class="hljs-keyword">if</span> (buffer-&gt;HasError()) {
+                <span class="hljs-keyword">auto</span> error_code = buffer-&gt;GetErrorCode();
+                <span class="hljs-keyword">auto</span> error_msg = buffer-&gt;GetErrorMsg();
+            }
+        }
+    }
+</code></pre>
+<p><strong>result:</strong></p>
+<p>&#x53EF;&#x4EE5;&#x5728;&#x62A5;&#x9519;&#x65F6;&#x7ED9;Buffer&#x8BBE;&#x7F6E;error&#xFF0C;&#x7136;&#x540E;&#x5728;&#x5176;&#x4ED6;&#x6D41;&#x5355;&#x5143;&#x91CC;&#x9762;&#x8865;&#x5145;&#x83B7;&#x53D6;&#x5B58;&#x5728;Bufferr&#x7684;error_code&#x548C;error_msg</p>
+<h2 id="getbytes"><a name="getbytes" class="anchor-navigation-ex-anchor" href="#getbytes"><i class="fa fa-link" aria-hidden="true"></i></a>GetBytes</h2>
+<p>&#x83B7;&#x53D6;&#x5F53;&#x524D;Buffer&#x7684;&#x5B57;&#x8282;&#x6570;</p>
+<pre><code class="lang-c++">    <span class="hljs-keyword">size_t</span> GetBytes() <span class="hljs-keyword">const</span>;
+</code></pre>
+<p><strong>args:</strong>  </p>
+<p>&#x65E0;</p>
+<p><strong>return:</strong>  </p>
+<p>int64, Buffer&#x7684;&#x5B57;&#x8282;&#x6570;</p>
+<p><strong>example:</strong>  </p>
+<pre><code class="lang-c++">
+    <span class="hljs-function">Status <span class="hljs-title">Process</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;DataContext&gt; data_ctx)</span> </span>{
+        <span class="hljs-comment">//&#x5047;&#x8BBE;&#x8BE5;&#x6D41;&#x5355;&#x5143;&#x4E3A;1&#x8F93;&#x5165;1&#x8F93;&#x51FA;&#xFF0C;&#x8F93;&#x5165;&#x7AEF;&#x53E3;&#x540D;&#x4E3A;input&#xFF0C;&#x8F93;&#x51FA;&#x7AEF;&#x53E3;&#x540D;&#x4E3A;output</span>
+        ...
+        <span class="hljs-keyword">auto</span> output_bufs = data-&gt;Output(<span class="hljs-string">&quot;output&quot;</span>);
+        output_bufs-&gt;Build({<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>});
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> i = <span class="hljs-number">0</span>; i &lt; output_bufs-&gt;Size(); ++i) {
+            <span class="hljs-keyword">auto</span> buffer = output_bufs-&gt;At(i);
+            <span class="hljs-keyword">auto</span> bytes = buffer-&gt;GetBytes();
+        }
+    }
+</code></pre>
+<p><strong>result:</strong></p>
+<p>&#x83B7;&#x53D6;&#x8BE5;Buffer&#x7684;&#x5B57;&#x8282;&#x6570;</p>
+<h2 id="set"><a name="set" class="anchor-navigation-ex-anchor" href="#set"><i class="fa fa-link" aria-hidden="true"></i></a>Set</h2>
+<p>&#x8BBE;&#x7F6E;&#x5F53;&#x524D;Buffer&#x7684;&#x67D0;&#x4E2A;Meta&#x503C;</p>
+<pre><code class="lang-c++">    <span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Set</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; key, T&amp;&amp; value)</span>
+</span></code></pre>
+<p><strong>args:</strong>  </p>
+<ul>
+<li><p><strong>key</strong> (str) &#x2014;&#x2014; Meta&#x7684;key&#x503C;</p>
+</li>
+<li><p><strong>value</strong> (template) &#x2014;&#x2014; Meta&#x7684;value&#x503C;</p>
+</li>
+</ul>
+<p><strong>return:</strong>  </p>
+<p>&#x65E0;</p>
+<h2 id="get"><a name="get" class="anchor-navigation-ex-anchor" href="#get"><i class="fa fa-link" aria-hidden="true"></i></a>Get</h2>
+<p>&#x83B7;&#x53D6;&#x5F53;&#x524D;Buffer&#x7684;&#x67D0;&#x4E2A;Meta&#x503C;</p>
+<pre><code class="lang-c++">    <span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">Get</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; key, T&amp;&amp; value)</span>
+</span></code></pre>
+<p><strong>args:</strong>  </p>
+<ul>
+<li><strong>key</strong> (str) &#x2014;&#x2014; Meta&#x7684;key&#x503C;</li>
+<li><strong>value</strong> (template) &#x2014;&#x2014; &#x63A5;&#x6536;Meta&#x7684;value&#x503C;</li>
+</ul>
+<p><strong>return:</strong>  </p>
+<p>bool, &#x662F;&#x5426;&#x83B7;&#x53D6;Meta&#x503C;&#x6210;&#x529F;</p>
+<p><strong>example:</strong>  </p>
+<pre><code class="lang-c++">    <span class="hljs-function">Status <span class="hljs-title">Process</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;DataContext&gt; data_ctx)</span> </span>{
+        <span class="hljs-comment">// &#x83B7;&#x53D6;Buffer&#x4E2D;&#x7684;&#x6307;&#x5B9A;Meta&#x503C;</span>
+        <span class="hljs-keyword">auto</span> input_bufs = data_ctx-&gt;Input(<span class="hljs-string">&quot;input&quot;</span>);
+        <span class="hljs-keyword">auto</span> buffer = input_bufs-&gt;At(<span class="hljs-number">0</span>);
+        <span class="hljs-comment">// &#x83B7;&#x53D6;Buffer Meta&#x5F53;&#x4E2D;&#x7684;shape&#x4FE1;&#x606F;&#xFF0C;res&#x4E3A;get&#x7684;&#x7ED3;&#x679C;</span>
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; shape;
+        <span class="hljs-keyword">auto</span> res = buffer-&gt;Get(<span class="hljs-string">&quot;shape&quot;</span>, shape);
+        <span class="hljs-keyword">if</span> (!res) {
+            <span class="hljs-keyword">return</span> STATUS_FAULT;
+        }
+
+        <span class="hljs-comment">// &#x66F4;&#x65B0;shape&#x503C;&#x540E;&#x91CD;&#x65B0;&#xFF0C;&#x8BBE;&#x7F6E;&#x5230;out_buffer&#x7684;Meta&#x5F53;&#x4E2D;</span>
+        <span class="hljs-keyword">auto</span> output_bufs = data_ctx-&gt;Output(<span class="hljs-string">&quot;output&quot;</span>);
+        shape.push_back(<span class="hljs-number">1</span>);
+        <span class="hljs-keyword">auto</span> out_buffer = output_bufs-&gt;At(<span class="hljs-number">0</span>);
+        out_buffer-&gt;Set(<span class="hljs-string">&quot;shape&quot;</span>, shape);
+    }
+</code></pre>
+<h2 id="copymeta"><a name="copymeta" class="anchor-navigation-ex-anchor" href="#copymeta"><i class="fa fa-link" aria-hidden="true"></i></a>CopyMeta</h2>
+<p>&#x628A;&#x53C2;&#x6570;&#x7684;Buffer Meta&#x4FE1;&#x606F;&#x62F7;&#x8D1D;&#x7ED9;&#x5F53;&#x524D;Buffer</p>
+<pre><code class="lang-c++">    <span class="hljs-function">Status <span class="hljs-title">CopyMeta</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;Buffer&gt; buf,
+                          <span class="hljs-keyword">bool</span> is_override = <span class="hljs-literal">false</span>)</span>
+</span></code></pre>
+<p><strong>args:</strong>  </p>
+<ul>
+<li><strong>buf</strong> (modelbox::Buffer) &#x2014;&#x2014; Meta&#x6765;&#x6E90;&#x7684;Buffer</li>
+<li><strong>is_override</strong> (bool) &#x2014;&#x2014; Meta&#x662F;&#x5426;&#x9700;&#x8981;&#x8986;&#x76D6;</li>
+</ul>
+<p><strong>return:</strong>  </p>
+<p>modelbox::Status  &#x8FD4;&#x56DE;CopyMeta&#x63A5;&#x53E3;Status</p>
+<p><strong>example:</strong>  </p>
+<pre><code class="lang-c++">    <span class="hljs-function">Status <span class="hljs-title">Process</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;DataContext&gt; data_ctx)</span> </span>{
+        <span class="hljs-comment">// &#x83B7;&#x53D6;Buffer&#x4E2D;&#x7684;&#x6307;&#x5B9A;Meta&#x503C;</span>
+        <span class="hljs-keyword">auto</span> input_bufs = data_ctx-&gt;Input(<span class="hljs-string">&quot;input&quot;</span>);
+        <span class="hljs-keyword">auto</span> output_bufs = data_ctx-&gt;Output(<span class="hljs-string">&quot;output&quot;</span>);
+        <span class="hljs-keyword">auto</span> buffer = input_bufs-&gt;At(<span class="hljs-number">0</span>);
+        output_bufs-&gt;Build({<span class="hljs-number">1</span>});
+
+        <span class="hljs-keyword">auto</span> new_buffer = output_bufs-&gt;At(<span class="hljs-number">0</span>);
+        new_buffer-&gt;CopyMeta(buffer);
+
+    }
+</code></pre>
+<p><strong>result:</strong></p>
+<p>new_buffer&#x5177;&#x6709;&#x548C;&#x539F;&#x59CB;Buffer&#x76F8;&#x540C;&#x7684;Meta&#x4FE1;&#x606F;</p>
+<footer class="page-footer"><span class="copyright">&#xA9;2022 ModelBox Team all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2022-06-16 01:44:00
+</span></footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Buffer","level":"1.12.1.1","depth":3,"next":{"title":"BufferList","level":"1.12.1.2","depth":3,"path":"api/c++/modelbox_bufferlist.md","ref":"api/c++/modelbox_bufferlist.md","articles":[]},"previous":{"title":"C++","level":"1.12.1","depth":2,"path":"api/c++.md","ref":"api/c++.md","articles":[{"title":"Buffer","level":"1.12.1.1","depth":3,"path":"api/c++/modelbox_buffer.md","ref":"api/c++/modelbox_buffer.md","articles":[]},{"title":"BufferList","level":"1.12.1.2","depth":3,"path":"api/c++/modelbox_bufferlist.md","ref":"api/c++/modelbox_bufferlist.md","articles":[]},{"title":"Configuration","level":"1.12.1.3","depth":3,"path":"api/c++/modelbox_configuration.md","ref":"api/c++/modelbox_configuration.md","articles":[]},{"title":"DataContext","level":"1.12.1.4","depth":3,"path":"api/c++/modelbox_datacontext.md","ref":"api/c++/modelbox_datacontext.md","articles":[]},{"title":"DataMeta","level":"1.12.1.5","depth":3,"path":"api/c++/modelbox_datameta.md","ref":"api/c++/modelbox_datameta.md","articles":[]},{"title":"FlowUnit","level":"1.12.1.6","depth":3,"path":"api/c++/modelbox_flowunit.md","ref":"api/c++/modelbox_flowunit.md","articles":[]},{"title":"FlowUnitEvent","level":"1.12.1.7","depth":3,"path":"api/c++/modelbox_flowunitevent.md","ref":"api/c++/modelbox_flowunitevent.md","articles":[]},{"title":"SessionContext","level":"1.12.1.8","depth":3,"path":"api/c++/modelbox_sessioncontext.md","ref":"api/c++/modelbox_sessioncontext.md","articles":[]},{"title":"DriverDesc","level":"1.12.1.9","depth":3,"path":"api/c++/modelbox_driverdesc.md","ref":"api/c++/modelbox_driverdesc.md","articles":[]},{"title":"FlowUnitDesc","level":"1.12.1.10","depth":3,"path":"api/c++/modelbox_flowunitdesc.md","ref":"api/c++/modelbox_flowunitdesc.md","articles":[]},{"title":"FlowUnitPort","level":"1.12.1.11","depth":3,"path":"api/c++/modelbox_flowunitport.md","ref":"api/c++/modelbox_flowunitport.md","articles":[]},{"title":"Flow","level":"1.12.1.12","depth":3,"path":"api/c++/modelbox_flow.md","ref":"api/c++/modelbox_flow.md","articles":[]},{"title":"ExternalDataMap","level":"1.12.1.13","depth":3,"path":"api/c++/modelbox_externaldatamap.md","ref":"api/c++/modelbox_externaldatamap.md","articles":[]},{"title":"Solution","level":"1.12.1.14","depth":3,"path":"api/c++/modelbox_solution.md","ref":"api/c++/modelbox_solution.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore","anchor-navigation-ex"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导文档"},"file":{"path":"api/c++/modelbox_buffer.md","mtime":"2022-06-16T01:44:00.711Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-16T01:44:52.978Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-book-summary-scroll-position-saver/book-summary-scroll-position-saver.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-theme-api/theme-api.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
+        
+    
+
+    </body>
+</html>
+
