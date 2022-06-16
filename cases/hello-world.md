@@ -24,9 +24,9 @@ Hello World! Thu May 30 12:00:00 2022
 
 ### 环境准备
 
-环境准备可以使用现成ModelBox镜像，也可以从源代码构建ModelBox。本章节使用现成ModelBox镜像开发，如果没有相关的镜像，可以参考[编译安装](../../environment/compile.md)。
+环境准备可以使用现成ModelBox镜像，也可以从源代码构建ModelBox。本章节使用现成ModelBox镜像开发，如果没有相关的镜像，可以参考[编译安装](../environment/compile.md)。
 
-使用镜像开发，省去了准备复杂编译环境的巨大工作量，推荐ModelBox开发者直接使用镜像开发，ModelBox镜像相关的指导，可以先参考[容器使用](../../environment/container-usage.md)章节。
+使用镜像开发，省去了准备复杂编译环境的巨大工作量，推荐ModelBox开发者直接使用镜像开发，ModelBox镜像相关的指导，可以先参考[容器使用](../environment/container-usage.md)章节。
 
 1. 安装启动Docker后，执行下列命令下载Docker镜像
 
@@ -36,7 +36,7 @@ Hello World! Thu May 30 12:00:00 2022
 
 1. 配置并启动容器
 
-    可采用一键式脚本快速进入容器。参考[一键式启动脚本](../../environment/container-usage.md)相关内容。
+    可采用一键式脚本快速进入容器。参考[一键式启动脚本](../environment/container-usage.md)相关内容。
 
 ### 项目创建与运行
 
@@ -47,8 +47,8 @@ Hello World! Thu May 30 12:00:00 2022
     ```
 
    注意事项：
-    * 如果需要通过可视化UI进行图的编排，可参考[可视化编排服务](../../plugins/editor.md)章节访问`http://[host]:[EDITOR_MAP_PORT]/editor/`地址；
-    * 如果访问被拒绝，可参考[运行编排服务](../../plugins/editor.md)中的[访问控制列表](../../plugins/editor.md#访问控制列表)相关内容。
+    * 如果需要通过可视化UI进行图的编排，可参考[可视化编排服务](../plugins/editor.md)章节访问`http://[host]:[EDITOR_MAP_PORT]/editor/`地址；
+    * 如果访问被拒绝，可参考[运行编排服务](../plugins/editor.md)中的[访问控制列表](../plugins/editor.md#访问控制列表)相关内容。
 
 1. 连接ModelBox编排服务
 
@@ -71,7 +71,7 @@ Hello World! Thu May 30 12:00:00 2022
       * 路径: `/home/[user]`
       * 项目模板为: `hello world`
 
-    创建出的文件夹说明可参考[工程目录](../../use-modelbox/standard-mode/create-project.md#工程目录)。
+    创建出的文件夹说明可参考[工程目录](../use-modelbox/standard-mode/create-project.md#工程目录)。
 
 1. 运行流程图
 
@@ -106,7 +106,7 @@ Hello World! Thu May 30 12:00:00 2022
 
 流程图编排是根据实际情况将现有业务逻辑拆分为N个功能单元，再将功能单元串联成一个完整的业务的过程。有两种方式可编排流程图，第一种是使用UI进行可视化UI编排，第二种是直接编写图文件。具体可参考[流程图开发章节](../../flow/flow.md#流程图开发及运行)。这里采用第二种方式。
 
-![hello-world-flowchart align=center](../../assets/images/figure/first-app/hello_world_flow.png)
+![hello-world-flowchart align=center](../assets/images/figure/first-app/hello_world_flow.png)
 
 如上图所示，根据业务流程，可将业务划分为3个功能单元，分别为接收HTTP请求，hello world处理，发送HTTP响应。对用图编排文件如下：
 
@@ -128,7 +128,7 @@ graphconf = '''digraph hello_world_diagraph {
 
 ### 功能单元开发
 
-ModelBox提供基础预置功能单元，除此之外还需补充流程图中缺失的功能单元，具体开发可参考[功能单元开发章节](../../use-modelbox/standard-mode/flowunit/flowunit.md#功能单元开发)。
+ModelBox提供基础预置功能单元，除此之外还需补充流程图中缺失的功能单元，具体开发可参考[功能单元开发章节](../use-modelbox/standard-mode/flowunit/flowunit.md#功能单元开发)。
 
 这里接收HTTP请求、发送HTTP响应两个功能单元ModelBox已提供，我们只需实现hello world处理功能单元即可。
 

@@ -62,3 +62,7 @@ ModelBox可以给开发者提供如下能力：
 | 调测能力           | ModelBox Tool工具，性能跟踪Profiling工具                                                   |
 | 一次开发，多处运行  | Python功能单元，C++功能单元 |
 | 预置功能单元        | 包含了大部分高性能的基础功能单元，包括HTTP，视频，图像，云相关的功能单元|
+
+## Solution
+
+ModelBox提供了一些预置的解决方案，可供直接调用API即可使用，详见[Solution](./solution/solution.md)章节。
