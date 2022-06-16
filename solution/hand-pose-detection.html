@@ -1107,7 +1107,7 @@
                 <a href="../cases/cases.html">
             
                     
-                    经典案例
+                    样例
             
                 </a>
             
@@ -1178,7 +1178,7 @@
                 <a href="solution.html">
             
                     
-                    Solution
+                    ModelBox应用
             
                 </a>
             
@@ -1861,7 +1861,7 @@ make package -j16 hand_pose_detection
 <li><p><strong>&#x5916;&#x90E8;&#x6570;&#x636E;&#x4EA4;&#x4E92;</strong></p>
 <p>&#x5F85;&#x5904;&#x7406;&#x6570;&#x636E;&#x7684;&#x8F93;&#x5165;&#xFF0C;&#x548C;&#x5904;&#x7406;&#x5B8C;&#x6210;&#x540E;&#x7ED3;&#x679C;&#x83B7;&#x53D6;&#x3002;</p>
 <pre><code class="lang-c++"><span class="hljs-comment">// &#x6570;&#x636E;&#x53D1;&#x9001;&#x83B7;&#x53D6;</span>
-modelbox::<span class="hljs-function">Status <span class="hljs-title">Process</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::Flow&gt; flow, <span class="hljs-keyword">void</span> *data, <span class="hljs-keyword">int</span> len)</span> </span>{
+modelbox::<span class="hljs-function">Status <span class="hljs-title">Process</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::Flow&gt; flow, <span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;test_file)</span> </span>{
   <span class="hljs-comment">// &#x521B;&#x5EFA;&#x8F93;&#x5165;&#x8F93;&#x51FA;&#x53E5;&#x67C4;</span>
   <span class="hljs-keyword">auto</span> ext_data = flow-&gt;CreateExternalDataMap();
   <span class="hljs-keyword">if</span> (ext_data == <span class="hljs-literal">nullptr</span>) {
@@ -1871,7 +1871,6 @@ modelbox::<span class="hljs-function">Status <span class="hljs-title">Process</s
   <span class="hljs-keyword">auto</span> input_bufs = ext_data-&gt;CreateBufferList();
 
   <span class="hljs-comment">// push&#x8F93;&#x5165;&#x6570;&#x636E;</span>
-  <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> test_file = <span class="hljs-string">&quot;path_to_test_image&quot;</span>;
   <span class="hljs-keyword">if</span> (!BuildInputData(test_file, input_bufs)) {
     <span class="hljs-keyword">return</span> modelbox::STATUS_FAULT;
   }
@@ -1915,7 +1914,7 @@ modelbox::<span class="hljs-function">Status <span class="hljs-title">Process</s
 <ul>
 <li>&#x83B7;&#x53D6;&#x8F93;&#x51FA;&#x7ED3;&#x679C;</li>
 </ul>
-<pre><code class="lang-cpp">modelbox::<span class="hljs-function">Status <span class="hljs-title">RecvExternalData</span>  <span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::ExternalDataMap&gt; ext_data)</span> </span>{
+<pre><code class="lang-cpp">modelbox::<span class="hljs-function">Status <span class="hljs-title">RecvExternalData</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::ExternalDataMap&gt; ext_data)</span> </span>{
   modelbox::OutputBufferList map_buffer_list;
   <span class="hljs-comment">// &#x63A5;&#x6536;&#x6570;&#x636E;</span>
   <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
@@ -1969,7 +1968,7 @@ modelbox::<span class="hljs-function">Status <span class="hljs-title">Process</s
 </li>
 </ul>
 <footer class="page-footer"><span class="copyright">&#xA9;2022 ModelBox Team all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-06-16 01:44:00
+2022-06-16 03:05:14
 </span></footer>
                                 
                                 </section>
@@ -2003,7 +2002,7 @@ modelbox::<span class="hljs-function">Status <span class="hljs-title">Process</s
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"手势识别","level":"1.10.1","depth":2,"next":{"title":"基础概念","level":"1.11","depth":1,"path":"basic-conception/basic-conception.md","ref":"basic-conception/basic-conception.md","articles":[{"title":"流程图","level":"1.11.1","depth":2,"path":"basic-conception/graph.md","ref":"basic-conception/graph.md","articles":[]},{"title":"功能单元","level":"1.11.2","depth":2,"path":"basic-conception/flowunit.md","ref":"basic-conception/flowunit.md","articles":[]},{"title":"数据流","level":"1.11.3","depth":2,"path":"basic-conception/stream.md","ref":"basic-conception/stream.md","articles":[]},{"title":"Buffer","level":"1.11.4","depth":2,"path":"basic-conception/buffer.md","ref":"basic-conception/buffer.md","articles":[]}]},"previous":{"title":"Solution","level":"1.10","depth":1,"path":"solution/solution.md","ref":"solution/solution.md","articles":[{"title":"手势识别","level":"1.10.1","depth":2,"path":"solution/hand-pose-detection.md","ref":"solution/hand-pose-detection.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore","anchor-navigation-ex"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导文档"},"file":{"path":"solution/hand-pose-detection.md","mtime":"2022-06-16T01:44:00.739Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-16T01:44:52.978Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"手势识别","level":"1.10.1","depth":2,"next":{"title":"基础概念","level":"1.11","depth":1,"path":"basic-conception/basic-conception.md","ref":"basic-conception/basic-conception.md","articles":[{"title":"流程图","level":"1.11.1","depth":2,"path":"basic-conception/graph.md","ref":"basic-conception/graph.md","articles":[]},{"title":"功能单元","level":"1.11.2","depth":2,"path":"basic-conception/flowunit.md","ref":"basic-conception/flowunit.md","articles":[]},{"title":"数据流","level":"1.11.3","depth":2,"path":"basic-conception/stream.md","ref":"basic-conception/stream.md","articles":[]},{"title":"Buffer","level":"1.11.4","depth":2,"path":"basic-conception/buffer.md","ref":"basic-conception/buffer.md","articles":[]}]},"previous":{"title":"ModelBox应用","level":"1.10","depth":1,"path":"solution/solution.md","ref":"solution/solution.md","articles":[{"title":"手势识别","level":"1.10.1","depth":2,"path":"solution/hand-pose-detection.md","ref":"solution/hand-pose-detection.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore","anchor-navigation-ex"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导文档"},"file":{"path":"solution/hand-pose-detection.md","mtime":"2022-06-16T03:05:14.873Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-16T03:06:07.641Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
