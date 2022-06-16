@@ -48,7 +48,7 @@ Hello World! Thu May 30 12:00:00 2022
 
    注意事项：
     * 如果需要通过可视化UI进行图的编排，可参考[可视化编排服务](../plugins/editor.md)章节访问`http://[host]:[EDITOR_MAP_PORT]/editor/`地址；
-    * 如果访问被拒绝，可参考[运行编排服务](../plugins/editor.md)中的[访问控制列表](../plugins/editor.md#访问控制列表)相关内容。
+    * 如果访问被拒绝，可参考[运行编排服务](../plugins/editor.md)中的[访问控制列表](../plugins/editor.md#编排插件配置)相关内容。
 
 1. 连接ModelBox编排服务
 
@@ -75,17 +75,7 @@ Hello World! Thu May 30 12:00:00 2022
 
 1. 运行流程图
 
-    * UI界面启动
-
-      在**任务编排**页面中打开流程图，点击绿色**运行按钮**可运行流程图；
-
-    * 命令行启动
-
-      执行如下命令即可启动hellw world识别HTTP服务：
-
-      ``` shell
-      modelbox-tool -log-level INFO flow -run path_to_hello_world.toml
-      ```
+    在**任务编排**页面中打开流程图，点击绿色**运行按钮**可运行流程图；
 
 1. 测试
 
@@ -104,7 +94,7 @@ Hello World! Thu May 30 12:00:00 2022
 
 ### 流程图开发
 
-流程图编排是根据实际情况将现有业务逻辑拆分为N个功能单元，再将功能单元串联成一个完整的业务的过程。有两种方式可编排流程图，第一种是使用UI进行可视化UI编排，第二种是直接编写图文件。具体可参考[流程图开发章节](../../flow/flow.md#流程图开发及运行)。这里采用第二种方式。
+流程图编排是根据实际情况将现有业务逻辑拆分为N个功能单元，再将功能单元串联成一个完整的业务的过程。有两种方式可编排流程图，第一种是使用UI进行可视化UI编排，第二种是直接编写图文件。具体可参考[流程图开发章节](../use-modelbox/standard-mode/flow/flow.md#流程图开发)。这里采用第二种方式。
 
 ![hello-world-flowchart align=center](../assets/images/figure/first-app/hello_world_flow.png)
 
