@@ -30,7 +30,7 @@ docker pull modelbox/modelbox-develop-libtorch_1.9.1-cuda_10.2-ubuntu-x86_64:lat
 
 ### 流程图开发
 
-![car_detection_flow](../../assets/images/figure/first-app/car_detection_flow.png)
+![car_detection_flow](../assets/images/figure/first-app/car_detection_flow.png)
 
 如上图所示，整个流程图分为5个阶段：视频输入/解码、车辆检测预处理、车辆检测推理、车辆检测后处理、视频编码。
 
