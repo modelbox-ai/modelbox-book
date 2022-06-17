@@ -1,10 +1,10 @@
-# modelbox port属性
+# modelbox::FlowUnitPort
 
 |函数|作用|
 |-|-|
-|[FlowUnitInput](#flowunitinput)|流单元输入端口|
-|[FlowUnitOutput](#flowunitoutput)|流单元输出端口|
-|[FlowUnitOption](#flowunitoption)|流单元配置项|
+|[FlowUnitInput](#flowunitinput)|功能单元输入端口|
+|[FlowUnitOutput](#flowunitoutput)|功能单元输出端口|
+|[FlowUnitOption](#flowunitoption)|功能单元配置项|
 ---
 
 ## modelbox::FlowUnitInput

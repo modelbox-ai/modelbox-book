@@ -2,19 +2,19 @@
 
 |函数|作用|
 |-|-|
-|[open](#modelboxflowunitopen)|flowunit初始化逻辑|
-|[process](#modelboxflowunitprocess)|flowunit处理逻辑|
-|[close](#modelboxflowunitclose)|flowunit关闭逻辑|
-|[data_pre](#modelboxflowunitdatapre)|stream flowunit 初始化stream时的逻辑|
-|[data_post](#modelboxflowunitdatapost)|stream flowunit 结束stream时的逻辑|
+|[open](#modelboxflowunitopen)|功能单元初始化逻辑|
+|[process](#modelboxflowunitprocess)|功能单元处理逻辑|
+|[close](#modelboxflowunitclose)|功能单元关闭逻辑|
+|[data_pre](#modelboxflowunitdatapre)|Stream流初始化时逻辑|
+|[data_post](#modelboxflowunitdatapost)|Stream流结束时逻辑|
 |[create_external_data](#modelboxflowunitcreateexternaldata)|创建external_data_map|
-|[get_bind_device](#modelboxflowunitgetbinddevice)|获取绑定的device|
+|[get_bind_device](#modelboxflowunitgetbinddevice)|获取绑定设备|
 |[create_buffer](#modelboxflowunitcreatebuffer)|创建Buffer|
 ---
 
 ## modelbox.FlowUnit.open
 
-flowunit初始化逻辑
+功能单元初始化逻辑。
 
 **args:**  
 
@@ -26,7 +26,7 @@ modelbox.Status  初始化flowunit的返回状态
 
 ## modelbox.FlowUnit.process
 
-flowunit处理逻辑
+功能单元处理逻辑。
 
 **args:**  
 
@@ -38,7 +38,7 @@ modelbox.Status flowunit处理逻辑的返回状态
 
 ## modelbox.FlowUnit.close
 
-flowunit 结束逻辑
+功能单元结束逻辑。
 
 **args:**  
 
@@ -50,7 +50,7 @@ modelbox.Status flowunit 结束逻辑的返回状态
 
 ## modelbox.FlowUnit.data_pre
 
-stream flowunit 初始化stream时的逻辑
+Stream流初始化时逻辑。
 
 **args:**  
 
@@ -62,7 +62,7 @@ modelbox.Status 初始化stream时的逻辑的返回状态
 
 ## modelbox.FlowUnit.data_post
 
-stream flowunit 结束stream时的逻辑
+Stream流结束时逻辑。
 
 **args:**  
 
@@ -76,7 +76,6 @@ modelbox.Status 结束stream逻辑的返回状态
 
 ```python
    ...
-   # 典型flowunit场景
    class ExampleFlowUnit(modelbox.FlowUnit):
     # Derived from modelbox.FlowUnit
     def __init__(self):
@@ -176,7 +175,7 @@ modelbox.ExternalData, 创建好的external_data
 
 ## modelbox.FlowUnit.get_bind_device
 
-获取当前flowunit绑定的device
+获取当前flowunit绑定设备
 
 **args:**  
 
@@ -184,7 +183,7 @@ modelbox.ExternalData, 创建好的external_data
 
 **return:**  
 
-modelbox.Device, 当前绑定的device
+modelbox.Device
 
 **example:**  
 
@@ -196,10 +195,6 @@ modelbox.Device, 当前绑定的device
        ...
        return modelbox.Status()
 ```
-
-**result:**  
-
-modelbox.Device
 
 ## modelbox.FlowUnit.create_buffer
 
@@ -223,7 +218,3 @@ modelbox.Buffer  创建出来的Buffer
        ...
        return modelbox.Status()
 ```
-
-**result:**  
-
-创建了一个空Buffer

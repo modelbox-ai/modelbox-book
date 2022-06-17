@@ -68,7 +68,7 @@ pip install requests opencv-python
     npm config set registry https://registry.npmmirror.com
     ```
 
-如果需要使用模型推理，还需要安装对应推理框架、CUDA或CANN等相关依赖。
+如果需要使用模型推理，还需要安装对应推理引擎、CUDA或CANN等相关依赖。
 
 ## 编译ModelBox
 

@@ -3,7 +3,7 @@
 |函数|作用|
 |-|-|
 |[create_buffer_list](#modelboxexternaldatacreatebufferlist)|创建BufferList|
-|[send](#modelboxexternaldatasend)|发送要给本流单元的process单元的BufferList|
+|[send](#modelboxexternaldatasend)|发送要给本功能单元的process单元的BufferList|
 |[get_session_context](#modelboxexternaldatagetsessioncontext)|获取session_context对象|
 |[get_session_config](#modelboxexternaldatagetsessionconfig)|获取session_config对象|
 |[close](#modelboxexternaldataclose)|关闭当前external_data的链接|
@@ -11,7 +11,7 @@
 
 ## modelbox.ExternalData.create_buffer_list
 
-创建BufferList
+创建BufferList。
 
 **args:**  
 
@@ -23,7 +23,7 @@ modelbox.BufferList
 
 ## modelbox.ExternalData.send
 
-发送BufferList给下一个流单元
+发送BufferList给下一个功能单元。使用场景：可以在当前功能单元open中发送数据，在process中处理。
 
 **args:**  
 
@@ -31,11 +31,11 @@ modelbox.BufferList
 
 **return:**  
 
-modelbox.Status  发送的返回状态
+modelbox.Status  
 
 ## modelbox.ExternalData.close
 
-关闭external对象
+关闭external对象。
 
 **args:**  
 
@@ -43,13 +43,13 @@ modelbox.Status  发送的返回状态
 
 **return:**  
 
-modelbox.Status  关闭的返回状态
+modelbox.Status
 
 **example:**  
 
 ```python
     ...
-    def Open(self, config):
+    def open(self, config):
         extern_data = create_external_data()
         buffer_list = extern_data.create_buffer_list()
 
@@ -64,13 +64,11 @@ modelbox.Status  关闭的返回状态
         
 ```
 
-**result:**  
-
-本流单元的process既可以接受到当前BufferList 
+本功能单元的process既可以接受到当前BufferList
 
 ## modelbox.ExternalData.get_session_context
 
-获取session_context对象
+获取SessionContext对象。
 
 **args:**  
 
@@ -82,7 +80,7 @@ modelbox.SessionContext
 
 ## modelbox.ExternalData.get_session_config
 
-获取session_config对象
+获取Session级别配置对象。
 
 **args:**  
 
@@ -90,7 +88,7 @@ modelbox.SessionContext
 
 **return:**  
 
-modelbox.SessionConfig
+modelbox.Configuration
 
 **example:**  
 
@@ -105,7 +103,3 @@ modelbox.SessionConfig
         return modelbox.Status()
         
 ```
-
-**result:**  
-
-获取session_config和session_context

@@ -13,7 +13,7 @@
 
 ## modelbox.Flow.init
 
-初始化flow对象
+初始化flow对象。
 
 ### modelbox.Flow.init(conf_file, format)  
 
@@ -34,15 +34,15 @@
 
 **args:**
 
-* **config** (modelbox.Configuration) —— 构建图的config
+* **config** (modelbox.Configuration) —— 构建图的配置
 
 **return:**  
 
-modelbox.Status 初始化flow的状态
+modelbox.Status
 
 ## modelbox.Flow.build
 
-构建flow对象，当中主要通过配置文件构建图
+构建流程图对象，当中主要通过配置文件构建图。
 
 **args:**  
 
@@ -50,11 +50,11 @@ modelbox.Status 初始化flow的状态
 
 **return:**  
 
-modelbox.Status 构建flow的状态
+modelbox.Status
 
 ## modelbox.Flow.run
 
-同步运行flow
+同步运行流程图。
 
 **args:**  
 
@@ -62,7 +62,7 @@ modelbox.Status 构建flow的状态
 
 **return:**  
 
-modelbox.Status 同步运行flow的状态
+modelbox.Status
 
 ## modelbox.Flow.run_async
 
@@ -74,11 +74,11 @@ modelbox.Status 同步运行flow的状态
 
 **return:**  
 
-modelbox.Status 异步运行flow的状态
+modelbox.Status
 
 ## modelbox.Flow.wait
 
-flow对象等待返回
+等待流程图运行结束。
 
 **args:**  
 
@@ -86,11 +86,11 @@ flow对象等待返回
 
 **return:**  
 
-modelbox.Status 等待flow的状态
+modelbox.Status
 
 ## modelbox.Flow.stop
 
-停止运行flow
+停止运行flow。
 
 **args:**  
 
@@ -98,7 +98,7 @@ modelbox.Status 等待flow的状态
 
 **return:**  
 
-modelbox.Status 停止运行flow的状态
+modelbox.Status
 
 **example:**  
 
@@ -118,13 +118,9 @@ modelbox.Status 停止运行flow的状态
         
 ```
 
-**result:**  
-
-flow的构建流程
-
 ## modelbox.Flow.create_external_data_map
 
-创建external_data_map
+创建流程图的外部输入对象。
 
 **args:**  
 
@@ -140,7 +136,3 @@ modelbox.ExternalDataMap, 创建好的external_data_map
    flow = modelbox.Flow()
    extern_data_map = flow.create_external_data_map()
 ```
-
-**result:**  
-
-通过flow构建external_data_map

@@ -2,17 +2,17 @@
 
 |函数|作用|
 |-|-|
-|[set_private_string](#modelboxsessioncontextsetprivatestring)|设置session_context中的私有字符串值|
-|[get_private_string](#modelboxsessioncontextgetprivatestring)|获取session_context中的私有字符串值|
-|[set_private_int](#modelboxsessioncontextsetprivateint)|设置session_context中的私有整型值|
-|[get_private_int](#modelboxsessioncontextgetprivateint)|获取session_context中的私有整型值|
-|[get_session_config](#modelboxsessioncontextgetsessionconfig)|获取session_context中的session confg|
-|[get_session_id](#modelboxsessioncontextgetsessionid)|获取session_context中的session id|
+|[set_private_string](#modelboxsessioncontextsetprivatestring)|设置SessionContext中的私有字符串值|
+|[get_private_string](#modelboxsessioncontextgetprivatestring)|获取SessionContext中的私有字符串值|
+|[set_private_int](#modelboxsessioncontextsetprivateint)|设置SessionContext中的私有整型值|
+|[get_private_int](#modelboxsessioncontextgetprivateint)|获取SessionContext中的私有整型值|
+|[get_session_config](#modelboxsessioncontextgetsessionconfig)|获取SessionContext中的配置对象|
+|[get_session_id](#modelboxsessioncontextgetsessionid)|获取SessionContext的ID|
 ---
 
 ## modelbox.SessionContext.set_private_string
 
-设置SessionContext私有字符串值
+设置SessionContext私有字符串值。
 
 **args:**  
 
@@ -26,7 +26,7 @@
 
 ## modelbox.SessionContext.get_private_string
 
-获取SessionContext私有字符串值
+获取SessionContext私有字符串值。
 
 **args:**  
 
@@ -38,7 +38,7 @@ str  获取当前key值的字符串型value值
 
 ## modelbox.SessionContext.set_private_int
 
-设置SessionContext私有整型值
+设置SessionContext私有整型值。
 
 **args:**  
 
@@ -52,7 +52,7 @@ str  获取当前key值的字符串型value值
 
 ## modelbox.SessionContext.get_private_int
 
-获取SessionContext私有整型值
+获取SessionContext私有整型值。
 
 **args:**  
 
@@ -66,7 +66,7 @@ int  获取当前key值的整型value值
 
 ```python
     ...
-    def Process(self, data_ctx):
+    def process(self, data_ctx):
         session_ctx = data_ctx.get_session_context()
         session_ctx.set_private_string("test", "test")
         print(session_ctx.get_private_string("test"))
@@ -85,7 +85,7 @@ int  获取当前key值的整型value值
 
 ## modelbox.SessionContext.get_session_config
 
-获取session_config
+获取Session级别配置对象。
 
 **args:**  
 
@@ -97,7 +97,7 @@ modelbox.Configuration
 
 ## modelbox.SessionContext.get_session_id
 
-获取session_id
+获取Session ID。
 
 **args:**  
 
@@ -111,7 +111,7 @@ str  获取当前session的id
 
 ```python
     ...
-    def Process(self, data_ctx):
+    def process(self, data_ctx):
         session_ctx = data_ctx.get_session_context()
         id = session_ctx.get_session_id()
         config = session_ctx.get_session_config()
@@ -121,6 +121,3 @@ str  获取当前session的id
         
 ```
 
-**result:**  
-
-获取当前session对应的config和id

@@ -15,7 +15,7 @@
 1. 对于单个Buffer输出错误时，调用Buffer::SetError接口，设置错误的详细信息，错误即可发出。
 
    ```cpp
-   Status Flowunit::Process(std::shared_ptr<DataContext> data_ctx) {
+   modelbox::Status Flowunit::Process(std::shared_ptr<modelbox::DataContext> data_ctx) {
       auto outputs = data_ctx->Output("out1");
       outputs->Build({1});
       auto buffer1 = outputs->At(0);
@@ -27,7 +27,7 @@
 1. 对于多个Buffer同时设置错误时，调用BufferList::SetError接口，设置错误的详细信息，错误即可发出。
 
    ```cpp
-   Status Flowunit::Process(std::shared_ptr<DataContext> data_ctx) {
+   modelbox::Status Flowunit::Process(std::shared_ptr<modelbox::DataContext> data_ctx) {
       auto outputs = data_ctx->Output("out1");
       outputs->Build({1, 1});
       outputs->SetError("Custom.Crop.OutOfBound", "Crop area width xxx is great than image width xxx");
@@ -70,7 +70,7 @@
    cpp功能单元中获取
 
    ```cpp
-   Status GetException::Process(std::shared_ptr<DataContext> data_ctx) {
+   modelbox::Status Flowunit::Process(std::shared_ptr<modelbox::DataContext> data_ctx) {
       auto inputs = data_ctx->Input("in1");
       for (auto buffer : inputs) {
          if (buffer->HasError()) {

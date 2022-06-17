@@ -58,16 +58,16 @@ cat /etc/EulerLinux.conf
 
 ## 开发常见问题
 
-### 流单元找不到
+### 功能单元找不到
 
 常见日志报错：`code: Not Found, errmsg: create flowunit 'xxx' failed.`, 通常有如下几个原因，可一一进行排查：
 
-1. 流程图toml配置的driver路径不包含所需流单元so或文件夹；
-1. 流单元编译异常，找不到符号。通常会在日志前面扫描到so时提示错误，可通过ldd、c++filt命令进行具体定位；
+1. 流程图toml配置的driver路径不包含所需功能单元so或文件夹；
+1. 功能单元编译异常，找不到符号。通常会在日志前面扫描到so时提示错误，可通过ldd、c++filt命令进行具体定位；
 
 ### 端口未连接
 
-常见日志报错：`code: Bad config, errmsg: flowunit 'xxxx' config error, port not connect correctly`, 可能错误原因：代码中流单元定义的端口，未在toml图中使用。需检查定义输入输出端口名称、或driver路径是否错误。
+常见日志报错：`code: Bad config, errmsg: flowunit 'xxxx' config error, port not connect correctly`, 可能错误原因：代码中功能单元定义的端口，未在toml图中使用。需检查定义输入输出端口名称、或driver路径是否错误。
 
 ### 创建图失败
 
@@ -75,9 +75,9 @@ cat /etc/EulerLinux.conf
 
 1. toml流程图中，node定义节点在后面边连接中未使用；
 1. 端口冲突，如多个输出连接到同一输入端口（if-else终点除外）；
-1. if-else流单元之后的各分支，最终需要合并到一个端口上；
-1. if-else分支中不能使用stream类型流单元；
-1. 多个if-else流单元不能共用同一个终点；
-1. 流单元端口连接不能跨越if-else，拆分合并流单元；
+1. if-else功能单元之后的各分支，最终需要合并到一个端口上；
+1. if-else分支中不能使用stream类型功能单元；
+1. 多个if-else功能单元不能共用同一个终点；
+1. 功能单元端口连接不能跨越if-else，拆分合并功能单元；
 
 具体约束原因详见[stream流](../basic-conception/stream.md)章节。

@@ -111,14 +111,15 @@
       return modelbox::STATUS_FAULT;
     }
   
+    // 关闭输入
+    if (!ext_data->Close()) {
+      MBLOG_ERROR << "external data close failed.";
+      return modelbox::STATUS_FAULT;
+    }
+
     // 获取推理结果
     RecvExternalData(ext_data);
   
-    // 关闭输入输出句柄
-    if (!ext_data->Shutdown()) {
-      MBLOG_ERROR << "shutdown external data failed.";
-      return modelbox::STATUS_FAULT;
-    }
   }
   ```
 
@@ -160,7 +161,7 @@
         }
         // 处理出错，关闭输出。
         auto error = ext_data->GetLastError();
-        ext_data->Close();
+        ext_data->Shutdown();
         MBLOG_ERROR << "Recv failed, " << status << ", error:" <<   error->GetDesc();
         break;
       }

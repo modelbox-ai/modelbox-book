@@ -7,7 +7,7 @@
 
 ## modelbox.ExtOutputBufferList.get_buffer_list
 
-获取当前device id
+获取指定端口的BufferList数据, 一般和externalDataMap一起使用。
 
 **args:**  
 
@@ -35,12 +35,8 @@ modelbox.BufferList
     buffer_list_map = modelbox.ExtOutputBufferList()
     ret = extern_data_map.recv(buffer_list_map)
     self.assertTrue(ret)
-
+    # output1 为流程图中定义的output类型端口的端口名称
     result_buffer_list = buffer_list_map.get_buffer_list("output1")
     ...
         
 ```
-
-**result:**  
-
-获取指定端口的数据(BufferList), 一般和externalDataMap一起使用

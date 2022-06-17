@@ -2,15 +2,15 @@
 
 |函数|作用|
 |-|-|
-|[set_private_string](#modelboxdatametasetprivatestring)|设置datameta中的私有字符串值|
-|[get_private_string](#modelboxdatametagetprivatestring)|获取datameta中的私有字符串值|
-|[set_private_int](#modelboxdatametasetprivateint)|设置datameta中的私有整型值|
-|[get_private_int](#modelboxdatametagetprivateint)|获取datameta中的私有整型值|
+|[set_private_string](#modelboxdatametasetprivatestring)|设置DataMeta中的私有字符串值|
+|[get_private_string](#modelboxdatametagetprivatestring)|获取DataMeta中的私有字符串值|
+|[set_private_int](#modelboxdatametasetprivateint)|设置DataMeta中的私有整型值|
+|[get_private_int](#modelboxdatametagetprivateint)|获取DataMeta中的私有整型值|
 ---
 
 ## modelbox.DataMeta.set_private_string
 
-设置DataMeta私有字符串值
+设置DataMeta私有字符串值。
 
 **args:**  
 
@@ -24,7 +24,7 @@
 
 ## modelbox.DataMeta.get_private_string
 
-获取DataMeta私有字符串值
+获取DataMeta私有字符串值。
 
 **args:**  
 
@@ -36,7 +36,7 @@ str  获取当前key值的字符串型value值
 
 ## modelbox.DataMeta.set_private_int
 
-设置DataMeta私有整型值
+设置DataMeta私有整型值。
 
 **args:**  
 
@@ -50,7 +50,7 @@ str  获取当前key值的字符串型value值
 
 ## modelbox.DataMeta.get_private_int
 
-获取DataMeta私有整型值
+获取DataMeta私有整型值。
 
 **args:**  
 

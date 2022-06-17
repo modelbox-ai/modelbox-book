@@ -2,6 +2,7 @@
 
 |函数|作用|
 |-|-|
+|[构造方法](#构造方法)| BufferList的构造方法|
 |[build](#modelboxbufferlistbuild)|BufferList对象申请指定长度大小的内存空间|
 |[copy_meta](#modelboxbufferlistcopymeta)|拷贝参数自带的所有Meta信息给当前BufferList|
 |[get_bytes](#modelboxbufferlistget_bytes)|获取当前BufferList的字节大小|
@@ -9,12 +10,12 @@
 |[set](#modelboxbufferlistset)|设置当前BufferList的某个Meta值|
 |[size](#modelboxbufferlistsize)|获取当前BufferList的长度|
 |[len](#modelboxbufferlistsize)|可以被len函数获取当前BufferList的长度|
-|[构造方法](#构造方法)| BufferList的构造方法|
+
 ---
 
 ## 构造方法
 
-BufferList申请内存空间
+构造BufferList对象。
 
 ### modelbox.BufferList()
 
@@ -38,7 +39,7 @@ BufferList申请内存空间
 
 **args:**
 
-* **buffer_list** (list[modelbox.Buffer]) —— 一组Buffer
+* **buffer_list** (list[modelbox.Buffer]) —— 通过一组Buffer构建BufferList
 
 **return:**  
 
@@ -48,7 +49,7 @@ modelbox.BufferList
 
 ```python
     ...
-    def Process(self, data_ctx):
+    def process(self, data_ctx):
         inputbuf_list = data_ctx.input("input")
         outputbuf_list = data_ctx.output("output")
         ...
@@ -57,13 +58,11 @@ modelbox.BufferList
         
 ```
 
-**result:**  
-
-inputbuf_list和output_buf_list均为构建好的BufferList，一般而言并不需要开发者构建BufferList
+inputbuf_list和output_buf_list均为构建好的BufferList，一般而言并不需要开发者构建BufferList。
 
 ## modelbox.BufferList.build
 
-BufferList申请内存空间
+BufferList申请Buffer内存空间
 
 **args:**  
 
@@ -71,13 +70,13 @@ BufferList申请内存空间
 
 **return:**  
 
-modelbox.Status 申请结果的状态
+modelbox.Status 申请结果
 
 **example:**  
 
 ```python
     ...
-    def Process(self, data_ctx):
+    def process(self, data_ctx):
         buf_list = data_ctx.output("output")
         res = buf_list.build([20, 20, 20])
         print(res, buf_list.size())
@@ -98,11 +97,11 @@ modelbox.Status 申请结果的状态
 
 ## modelbox.BufferList.copy_meta
 
-把参数的BufferList里面的Meta信息，copy给当前的BufferList，一对一拷贝
+把参数的BufferList里面的Meta信息拷贝给当前的BufferList，按照Buffer一对一拷贝。
 
 **args:**  
 
-* **buffer_list** (modelbox.BufferList) —— Meta来源的BufferList
+* **buffer_list** (modelbox.BufferList) —— 源BufferList
 
 **return:**  
 
@@ -112,23 +111,21 @@ modelbox.Status
 
 ```python
     ...
-    def Process(self, data_ctx):
+    def process(self, data_ctx):
         input_bufs = data_ctx.input("input")
         output_bufs = data_ctx.output("output")
         input_bytes = []
         for buf in input_bufs:
             input_bytes.append(buf.get_bytes())
         output_bufs.build(input_bytes)
+
+        # output_bufs具有和原始input_bufs相同的Meta信息
         res = output_bufs.copy_meta(input_bufs)
         ...
         
         return modelbox.Status()
         
 ```
-
-**result:**
-
-output_bufs具有和原始input_bufs相同的Meta信息
 
 ## modelbox.BufferList.get_bytes
 
@@ -146,7 +143,7 @@ uint64
 
 ```python
     ...
-    def Process(self, data_ctx):
+    def process(self, data_ctx):
         buf_list = data_ctx.output("output")
         buf_list.build([20,20,20])
         print(buf_list.get_bytes())
@@ -162,7 +159,7 @@ uint64
 
 ## modelbox.BufferList.push_back
 
-往BufferList当中插入一个新的Buffer
+往BufferList当中插入一个新的Buffer。
 
 **args:**  
 
@@ -177,7 +174,7 @@ uint64
 ```python
    import numpy as np
    ...
-   def Process(self, data_ctx):
+   def process(self, data_ctx):
        buf_list = data_ctx.output("output")
        infer_data = np.ones((5,5))
        new_buffer = modelbox.Buffer(self.get_bind_device(), infer_data)
@@ -187,10 +184,6 @@ uint64
        return modelbox.Status()
         
 ```
-
-**result:**  
-
-buf_list当中的第一个buffer即为新建的Buffer
 
 ## modelbox.BufferList.size
 
@@ -208,7 +201,7 @@ modelbox.Bufferlist的长度
 
 ```python
     ...
-    def Process(self, data_ctx):
+    def process(self, data_ctx):
         buf_list = data_ctx.output("output")
         buf_list.build([20,20,20])
         size = buf_list.size()
@@ -249,17 +242,17 @@ modelbox.Bufferlist的长度
 
 ```python
     ...
-    def Process(self, data_ctx):
+    def process(self, data_ctx):
         buf_list = data_ctx.output("output")
         for i in range(3):
             infer_data = np.ones((5,5))
             new_buffer = modelbox.Buffer(self.get_bind_device(), infer_data)
             buf_list.push_back(new_buffer)
         
-        res = buf_list.set("test", "test")
+        res = buf_list.set("key", "test")
         print(res)
         for buf in buf_list:
-            print(buf.get("test"))
+            print(buf.get("key"))
         ...
         
         return modelbox.Status()

@@ -2,10 +2,10 @@
 
 |函数|作用|
 |-|-|
-|[set_private_string](#modelboxflowuniteventsetprivatestring)|设置flowunit_event中的私有字符串值|
-|[get_private_string](#modelboxflowuniteventgetprivatestring)|获取flowunit_event中的私有字符串值|
-|[set_private_int](#modelboxflowuniteventsetprivateint)|设置flowunit_event中的私有整型值|
-|[get_private_int](#modelboxflowuniteventgetprivateint)|获取flowunit_event中的私有整型值|
+|[set_private_string](#modelboxflowuniteventsetprivatestring)|设置FlowUnitEvent事件中的私有字符串值|
+|[get_private_string](#modelboxflowuniteventgetprivatestring)|获取FlowUnitEvent事件中的私有字符串值|
+|[set_private_int](#modelboxflowuniteventsetprivateint)|设置FlowUnitEvent事件中的私有整型值|
+|[get_private_int](#modelboxflowuniteventgetprivateint)|获取FlowUnitEvent事件中的私有整型值|
 ---
 
 ## modelbox.FlowUnitEvent.set_private_string
@@ -64,7 +64,7 @@ int  获取当前key值的整型value值
 
 ```python
     ...
-    def Process(self, data_ctx):
+    def process(self, data_ctx):
         event = modelbox.FlowUnitEvent()
         event.set_private_string("test", "test")
         print(event.get_private_string("test"))

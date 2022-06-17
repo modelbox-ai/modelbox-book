@@ -1,6 +1,6 @@
 # modelbox::SessionContext
 
-整个stream过程的全局会话上下文
+整个任务全局会话上下文
 
 |函数|作用|
 |-|-|

@@ -21,7 +21,7 @@
 
 ## 构造方法
 
-BufferList申请内存空间
+构造BufferList对象
 
 ```c++
     BufferList();
@@ -46,7 +46,7 @@ BufferList申请内存空间
 
 ## Build
 
-BufferList申请内存空间
+BufferList申请Buffer内存空间
 
 ```c++
     Status Build(const std::vector<size_t>& data_size_list,
@@ -87,7 +87,7 @@ modelbox.Status 申请结果的状态
 
 ## BuildFromHost
 
-BufferList从host侧申请内存空间
+BufferList从主机内存上申请内存空间
 
 ```c++
     Status BuildFromHost(const std::vector<size_t>& data_size_list,
@@ -132,7 +132,7 @@ modelbox.Status 申请结果的状态
 
 ## Size
 
-获取BufferList的大小
+获取BufferList的Buffer个数
 
 **args:**  
 
@@ -200,7 +200,7 @@ size_t
 
 ## EmplaceBack
 
-把当前设备的数据塞入BufferList当中
+把当前设备的数据转换成Buffer并插入BufferList当中
 
 ```c++
     Status EmplaceBack(void* device_data, size_t data_size,
@@ -219,6 +219,8 @@ size_t
 modelbox.Status 插入到BufferList的状态
 
 ## EmplaceBackFromHost
+
+把主机内存数据转换成Buffer并插入BufferList当中
 
 ```c++
     Status EmplaceBackFromHost(void* host_data, size_t data_size);
@@ -262,6 +264,8 @@ output_bufs插入了3个Buffer
 
 ## ConstBufferData
 
+获取指定Buffer的数据指针，且只读
+
 ```c++
     const void* ConstBufferData(size_t idx) const;
 ```
@@ -275,6 +279,8 @@ output_bufs插入了3个Buffer
 第idx Buffer的数据常量指针
 
 ## MutableBufferData
+
+获取指定Buffer的数据指针，且可修改
 
 ```c++
     void* MutableBufferData(size_t idx);
@@ -306,7 +312,7 @@ output_bufs插入了3个Buffer
 
 ## CopyMeta
 
-把参数的BufferList的Meta信息 copy给当前BufferList
+把参数的BufferList的Meta信息拷贝给当前BufferList
 
 ```c++
      Status CopyMeta(const std::shared_ptr<BufferList>& bufferlist,
@@ -382,7 +388,7 @@ output_bufs当中的每一个Buffer都一个Meta值为shape
 
 ## PushBack
 
-往BufferList当中push一个Buffer
+往BufferList当中插入一个Buffer
 
 ```c++
     void PushBack(const std::shared_ptr<Buffer>& buf)

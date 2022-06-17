@@ -58,93 +58,93 @@ format = "graphviz"
 
 ## 流程图运行
 
-* 导入ModelBox包
+* **导入ModelBox包**
 
-编写时，需要导入ModelBox的开发包。
+  编写时，需要导入ModelBox的开发包。
+  
+  ```python
+  import modelbox
+  ```
+  
+  * 图创建初始化和启动
+  
+  ```python
+  def CreateFlow(flow_file):
+  
+      flow = modelbox.Flow()
+      # 初始化Flow接口
+      ret = flow.init(flow_file)
+      if ret == False:
+          modelbox.error(flow_file + " flow init failed")
+  
+      # 创建流程图
+      ret = flow.build()
+      if ret == False:
+          modelbox.error(flow_file + " flow build failed")
+  
+      # 异步执行流程图
+      ret = flow.run_async()
+      if ret == False:
+          modelbox.error(flow_file + " flow run async failed")
+      
+      return flow
+  ```
+  
+* **外部数据交互**
 
-```python
-import modelbox
-```
+  业务数据往往需要输入给流程图进行处理，同时处理完成后需要获取结果。一次数据的发送和结果过程如下：
+  
+  ```python
+  
+  def send_external_data(extern_data, img_rgb):
+      # 申请Buffer
+      buffer_list = extern_data.create_buffer_list()
+      im_array = np.asarray(img_rgb[:,:])
+      buffer_list.push_back(im_array)
+      # 将数据发送到"input"。
+      extern_data.send("input1", buffer_list)
+      # 结束输入。
+      extern_data.close()
+  # 从图中接收数据
+  
+  def recv_flow_data(extern_data):
+      out_buffer = extern_data.create_buffer_list()
+      # 使用创建的external对象从output接收数据
+      while True:
+          ret = extern_data.recv(out_buffer)
+          if ret != modelbox.Status.StatusCode.STATUS_SUCCESS:
+              if ret == modelbox.Status.StatusCode.STATUS_EOF:
+                  break
+              extern_data.shundown()
+              print("recv data failed", ret)
+              break
+          result_buffer_list = out_buffer.get_buffer_list("output1")
+          # 循环处理数据
+          for i in range(result_buffer_list.size()):
+              aa = result_buffer_list[i]
+              np_image = np.array(aa, copy= False)
+              image = Image.fromarray(np_image)
+              # ....
+  
+  def Process(flow, img_rgb);
+      # 创建外部输入句柄
+      extern_data = flow.create_external_data_map()
+      
+      # 发送数据到流程图
+      send_external_data(extern_data, img_rgb)
+  
+      # 获取输出结果并处理
+      recv_flow_data(extern_data)
+  ```
 
-* 图创建初始化和启动
+* **图的资源释放**
 
-```python
-def CreateFlow(flow_file):
-
-    flow = modelbox.Flow()
-    # 初始化Flow接口
-    ret = flow.init(flow_file)
-    if ret == False:
-        modelbox.error(flow_file + " flow init failed")
-
-    # 创建流程图
-    ret = flow.build()
-    if ret == False:
-        modelbox.error(flow_file + " flow build failed")
-
-    # 异步执行流程图
-    ret = flow.run_async()
-    if ret == False:
-        modelbox.error(flow_file + " flow run async failed")
-    
-    return flow
-```
-
-* 外部数据交互
-
-业务数据往往需要输入给流程图进行处理，同时处理完成后需要获取结果。一次数据的发送和结果过程如下：
-
-```python
-
-def send_external_data(extern_data, img_rgb):
-    # 申请Buffer
-    buffer_list = extern_data.create_buffer_list()
-    im_array = np.asarray(img_rgb[:,:])
-    buffer_list.push_back(im_array)
-    # 将数据发送到"input"。
-    extern_data.send("input1", buffer_list)
-    # 结束输入。
-    extern_data.shutdown()
-# 从图中接收数据
-
-def recv_flow_data(extern_data):
-    out_buffer = extern_data.create_buffer_list()
-    # 使用创建的external对象从output接收数据
-    while True:
-        ret = extern_data.recv(out_buffer)
-        if ret != modelbox.Status.StatusCode.STATUS_SUCCESS:
-            if ret == modelbox.Status.StatusCode.STATUS_EOF:
-                break
-            extern_data.close()
-            print("recv data failed", ret)
-            break
-        result_buffer_list = out_buffer.get_buffer_list("output1")
-        # 循环处理数据
-        for i in range(result_buffer_list.size()):
-            aa = result_buffer_list[i]
-            np_image = np.array(aa, copy= False)
-            image = Image.fromarray(np_image)
-            # ....
-
-def Process(flow, img_rgb);
-    # 创建外部输入句柄
-    extern_data = flow.create_external_data_map()
-    
-    # 发送数据到流程图
-    send_external_data(extern_data, img_rgb)
-
-    # 获取输出结果并处理
-    recv_flow_data(extern_data)
-```
-
-* 图的资源释放
-
-```c++
-def FlowFtop(flow) {
-  // 结束执行
-  flow.stop();
-}
-```
+  ```c++
+  def FlowFtop(flow) {
+    // 结束执行
+    flow.stop();
+  }
+  ```
 
 ## Python日志
 

@@ -1,10 +1,10 @@
-# modelbox.ExternalDataMap
+# modelbox::ExternalDataMap
 
 |函数|作用|
 |-|-|
 |[CreateBufferList](#CreateBufferList)|创建BufferList|
-|[Send](#send)|发送给当前flow对象的BufferList|
-|[Recv](#recv)|接收给当前flow对象的BufferList|
+|[Send](#send)|发送BufferList给流程图的输入|
+|[Recv](#recv)|接收当前流程图处理结果的BufferList|
 |[Close](#close)|关闭当前ExternalDataMap对象，等待数据完全处理完成|
 |[Shutdown](#shutdown)|强制关闭当前ExternalDataMap对象，无论数据是否处理完成|
 |[SetOutputMeta](#setoutputmeta)|设置当前对象输入端口的DataMeta值|
@@ -28,7 +28,7 @@ modelbox::BufferList  创建存储数据的BufferList
 
 ## Send
 
-发送给当前flow对象的BufferList
+发送BufferList给流程图的输入
 
 ```c++
     Status Send(const std::string& port_name,
@@ -46,7 +46,7 @@ modelbox::Status 发送数据的状态
 
 ## Recv
 
-接收给当前flow对象的BufferList
+接收当前流程图处理结果的BufferList
 
 ```c++
     using OutputBufferList = std::unordered_map<std::string, std::shared_ptr<BufferList>>;
@@ -122,18 +122,18 @@ modelbox::Status 设置当前对象输入端口的DataMeta的状态
         auto external_map = flow->CreateExternalDataMap();
         auto buffer_list = external_map->CreateBufferList();
         auto data_meta = std::make_shared<DataMeta>()
-        data_meta->SetMeta("test", "test");
+        data_meta->SetMeta("key", "value");
         external_map->SetOutputMeta("input1", data_meta);
 
         // build buffer
         ...
 
         auto status = external_map->Send("input1", buffer_list);
+        extern_data->Close();
 
         OutputBufferList map_buffer_list;
         status = extern_data->Recv(map_buffer_list);
-        
-        extern_data->Close();
+
         // or shutdown
         extern_data->ShutDown();
         return 0;

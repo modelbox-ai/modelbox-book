@@ -13,10 +13,10 @@ ModelBox框架会自动管理Stream，开发功能单元时，开发者可以通
 ```c++
 #include "modelbox/device/cuda/device_cuda.h"
 
-class SomeCudaFlowUnit : public modelbox::CudaFlowUnit {
+class ExampleCudaFlowUnit : public modelbox::CudaFlowUnit {
  public:
-  SomeCudaFlowUnit() = default;
-  virtual ~SomeCudaFlowUnit() = default;
+  ExampleCudaFlowUnit() = default;
+  virtual ~ExampleCudaFlowUnit() = default;
 
   // 数据处理接口，需要实现CudaProcess，第二个参数为CUDA Stream。
   virtual modelbox::Status CudaProcess(std::shared_ptr<modelbox::DataContext> data_ctx,cudaStream_t stream);
@@ -26,7 +26,7 @@ class SomeCudaFlowUnit : public modelbox::CudaFlowUnit {
 除CudaProcess以外，其他接口和通用功能单元一致，CudaProcess接口如下：
 
 ```c++
-modelbox::Status CUdaFlowUnit::CudaProcess(
+modelbox::Status ExampleCudaFlowUnit::CudaProcess(
     std::shared_ptr<modelbox::DataContext> data_ctx, cudaStream_t stream) {
   auto inputs = ctx->Input("input");
   auto outputs = ctx->Output("output");
@@ -55,13 +55,15 @@ modelbox::Status CUdaFlowUnit::CudaProcess(
 }
 ```
 
+由于不确定输入数据是否是异步执行的数据，**如果CudaProcess里需要调用ACL同步接口，则需要在调用前，先调用`cudaStreamSynchronize(stream)`进行数据同步**。
+
 ```c++
-modelbox::Status CUdaFlowUnit::CudaProcess(
+modelbox::Status ExampleCudaFlowUnit::CudaProcess(
     std::shared_ptr<modelbox::DataContext> data_ctx, cudaStream_t stream) {
   auto inputs = ctx->Input("input");
   auto outputs = ctx->Output("output");
 
-  // 同步Stream
+  // 同步数据
   cudaStreamSynchronize(stream);
 
   // 申请内存

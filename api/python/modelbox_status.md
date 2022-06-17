@@ -14,6 +14,8 @@
 
 ## 构造方法
 
+构造modelbox.Status对象。
+
 ### modelbox.Status(status_code)
 
 **args:**  
@@ -42,11 +44,11 @@
 
 modelbox.Status
 
-**__str__:**  
+****str**:**  
 
 "code: " + StrCode() + ", errmsg: " + errmsg_
 
-**__bool__:**  
+****bool**:**  
 
 bool(status)
 
@@ -80,7 +82,7 @@ bool(status)
 
 ## modelbox.Status.code
 
-获取status的code值
+获取status的状态信息。
 
 **args:**  
 
@@ -106,7 +108,7 @@ modelbox.StatusCode
 
 ## modelbox.Status.str_code
 
-获取status的str_code值
+获取status的状态信息字符串。
 
 **args:**  
 
@@ -131,6 +133,8 @@ str
 > Success
 
 ## modelbox.Status.StatusCode
+
+状态码：
 
 |code|str_code|
 |-|-|
@@ -166,7 +170,7 @@ str
 
 ## modelbox.Status.set_errormsg
 
-设置status的错误信息
+设置错误信息。
 
 **args:**  
 
@@ -178,7 +182,7 @@ errmsg: str 错误信息
 
 ## modelbox.Status.errormsg
 
-获取status的errormsg
+获取错误信息。
 
 **args:**  
 
@@ -190,7 +194,7 @@ str 当前status的errmsg
 
 ## modelbox.Status.wrap_errormsgs
 
-获取status的所有子层次的errmsg
+获取status的所有子层次的错误信息。
 
 **args:**  
 
@@ -198,11 +202,11 @@ str 当前status的errmsg
 
 **return:**  
 
-str 当前status的子层次errmsg
+str 当前status的子层次错误信息
 
 ## modelbox.Status.unwrap
 
-返回wrap的status
+返回wrap的status。
 
 **args:**  
 

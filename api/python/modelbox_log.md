@@ -6,16 +6,15 @@
 |[set_log_level](#modelboxlogsetloglevel)|设置log的日志级别|
 |[print](#modelboxlogprint)|打印日志|
 |[print_ext](#modelboxlogprintext)|打印带有额外信息的日志|
-|[log推荐用法](#modelboxlogprintext)|推荐使用log的用法|
 ---
 
 ## modelbox.Log.reg
 
-注册一个log的回调函数
+注册一个log的回调函数。
 
 **args:**  
 
-* **Callable** (python function)  —— 注册的python回调函数Callable[[Level level, str file, int lineno, str func, str msg], None]
+* **Callable** (python function)  —— 注册的Python回调函数Callable[[Level level, str file, int lineno, str func, str msg], None]
 
 **return:**  
 
@@ -23,7 +22,7 @@
 
 ## modelbox.Log.set_log_level
 
-设置log组件的日志级别
+设置log组件的日志级别。
 
 **args:**  
 
@@ -35,7 +34,7 @@
 
 ## modelbox.Log.print
 
-打印日志
+打印日志。
 
 **args:**  
 
@@ -47,6 +46,8 @@
 无
 
 ## modelbox.Log.printExt
+
+打印带有额外信息的日志
 
 **args:**  
 
