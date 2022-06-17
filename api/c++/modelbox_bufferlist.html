@@ -194,7 +194,7 @@
                 <a href="../../first-app/mnist.html">
             
                     
-                    mnist
+                    Mnist
             
                 </a>
             
@@ -657,7 +657,7 @@
                 <a href="../../plugins/modelbox-plugin.html">
             
                     
-                    modelbox-plugin
+                    ModelBox Plugin
             
                 </a>
             
@@ -1369,7 +1369,33 @@
             
         </li>
     
-        <li class="chapter " data-level="1.12.1.6" data-path="modelbox_flowunit.html">
+        <li class="chapter " data-level="1.12.1.6" data-path="modelbox_driverdesc.html">
+            
+                <a href="modelbox_driverdesc.html">
+            
+                    
+                    DriverDesc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.1.7" data-path="modelbox_externaldatamap.html">
+            
+                <a href="modelbox_externaldatamap.html">
+            
+                    
+                    ExternalDataMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.1.8" data-path="modelbox_flowunit.html">
             
                 <a href="modelbox_flowunit.html">
             
@@ -1382,38 +1408,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.12.1.7" data-path="modelbox_flowunitevent.html">
+        <li class="chapter " data-level="1.12.1.9" data-path="modelbox_flowunitevent.html">
             
                 <a href="modelbox_flowunitevent.html">
             
                     
                     FlowUnitEvent
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.12.1.8" data-path="modelbox_sessioncontext.html">
-            
-                <a href="modelbox_sessioncontext.html">
-            
-                    
-                    SessionContext
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.12.1.9" data-path="modelbox_driverdesc.html">
-            
-                <a href="modelbox_driverdesc.html">
-            
-                    
-                    DriverDesc
             
                 </a>
             
@@ -1460,12 +1460,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.12.1.13" data-path="modelbox_externaldatamap.html">
+        <li class="chapter " data-level="1.12.1.13" data-path="modelbox_sessioncontext.html">
             
-                <a href="modelbox_externaldatamap.html">
+                <a href="modelbox_sessioncontext.html">
             
                     
-                    ExternalDataMap
+                    SessionContext
             
                 </a>
             
@@ -1850,7 +1850,7 @@
 </table>
 <hr>
 <h2 id="&#x6784;&#x9020;&#x65B9;&#x6CD5;"><a name="&#x6784;&#x9020;&#x65B9;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#&#x6784;&#x9020;&#x65B9;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6784;&#x9020;&#x65B9;&#x6CD5;</h2>
-<p>BufferList&#x7533;&#x8BF7;&#x5185;&#x5B58;&#x7A7A;&#x95F4;</p>
+<p>&#x6784;&#x9020;BufferList&#x5BF9;&#x8C61;</p>
 <pre><code class="lang-c++">    BufferList();
     BufferList(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;Device&gt;&amp; device,
              <span class="hljs-keyword">uint32_t</span> device_mem_flags = <span class="hljs-number">0</span>);
@@ -1869,7 +1869,7 @@
 <li><strong>buffer_vector</strong> (vector) &#x2014;&#x2014; vector&#x7684;Buffer&#x6784;&#x5EFA;BufferList</li>
 </ul>
 <h2 id="build"><a name="build" class="anchor-navigation-ex-anchor" href="#build"><i class="fa fa-link" aria-hidden="true"></i></a>Build</h2>
-<p>BufferList&#x7533;&#x8BF7;&#x5185;&#x5B58;&#x7A7A;&#x95F4;</p>
+<p>BufferList&#x7533;&#x8BF7;Buffer&#x5185;&#x5B58;&#x7A7A;&#x95F4;</p>
 <pre><code class="lang-c++">    <span class="hljs-function">Status <span class="hljs-title">Build</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;size_t&gt;&amp; data_size_list,
                        <span class="hljs-keyword">bool</span> contiguous = <span class="hljs-literal">true</span>)</span>
 </span></code></pre>
@@ -1898,7 +1898,7 @@
 1<br>1<br>1</p>
 </blockquote>
 <h2 id="buildfromhost"><a name="buildfromhost" class="anchor-navigation-ex-anchor" href="#buildfromhost"><i class="fa fa-link" aria-hidden="true"></i></a>BuildFromHost</h2>
-<p>BufferList&#x4ECE;host&#x4FA7;&#x7533;&#x8BF7;&#x5185;&#x5B58;&#x7A7A;&#x95F4;</p>
+<p>BufferList&#x4ECE;&#x4E3B;&#x673A;&#x5185;&#x5B58;&#x4E0A;&#x7533;&#x8BF7;&#x5185;&#x5B58;&#x7A7A;&#x95F4;</p>
 <pre><code class="lang-c++">    <span class="hljs-function">Status <span class="hljs-title">BuildFromHost</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;size_t&gt;&amp; data_size_list,
                                <span class="hljs-keyword">void</span>* data, size_t data_size,
                                DeleteFunction func = <span class="hljs-literal">nullptr</span>)</span></span>;
@@ -1933,7 +1933,7 @@
 1, 124</p>
 </blockquote>
 <h2 id="size"><a name="size" class="anchor-navigation-ex-anchor" href="#size"><i class="fa fa-link" aria-hidden="true"></i></a>Size</h2>
-<p>&#x83B7;&#x53D6;BufferList&#x7684;&#x5927;&#x5C0F;</p>
+<p>&#x83B7;&#x53D6;BufferList&#x7684;Buffer&#x4E2A;&#x6570;</p>
 <p><strong>args:</strong>  </p>
 <p>&#x65E0;</p>
 <p><strong>return:</strong>  </p>
@@ -1979,7 +1979,7 @@
 123</p>
 </blockquote>
 <h2 id="emplaceback"><a name="emplaceback" class="anchor-navigation-ex-anchor" href="#emplaceback"><i class="fa fa-link" aria-hidden="true"></i></a>EmplaceBack</h2>
-<p>&#x628A;&#x5F53;&#x524D;&#x8BBE;&#x5907;&#x7684;&#x6570;&#x636E;&#x585E;&#x5165;BufferList&#x5F53;&#x4E2D;</p>
+<p>&#x628A;&#x5F53;&#x524D;&#x8BBE;&#x5907;&#x7684;&#x6570;&#x636E;&#x8F6C;&#x6362;&#x6210;Buffer&#x5E76;&#x63D2;&#x5165;BufferList&#x5F53;&#x4E2D;</p>
 <pre><code class="lang-c++">    <span class="hljs-function">Status <span class="hljs-title">EmplaceBack</span><span class="hljs-params">(<span class="hljs-keyword">void</span>* device_data, size_t data_size,
                      DeleteFunction func = <span class="hljs-literal">nullptr</span>)</span></span>;
     <span class="hljs-function">Status <span class="hljs-title">EmplaceBack</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;<span class="hljs-keyword">void</span>&gt; device_data, size_t data_size)</span></span>;
@@ -1993,6 +1993,7 @@
 <p><strong>return:</strong>  </p>
 <p>modelbox.Status &#x63D2;&#x5165;&#x5230;BufferList&#x7684;&#x72B6;&#x6001;</p>
 <h2 id="emplacebackfromhost"><a name="emplacebackfromhost" class="anchor-navigation-ex-anchor" href="#emplacebackfromhost"><i class="fa fa-link" aria-hidden="true"></i></a>EmplaceBackFromHost</h2>
+<p>&#x628A;&#x4E3B;&#x673A;&#x5185;&#x5B58;&#x6570;&#x636E;&#x8F6C;&#x6362;&#x6210;Buffer&#x5E76;&#x63D2;&#x5165;BufferList&#x5F53;&#x4E2D;</p>
 <pre><code class="lang-c++">    <span class="hljs-function">Status <span class="hljs-title">EmplaceBackFromHost</span><span class="hljs-params">(<span class="hljs-keyword">void</span>* host_data, size_t data_size)</span></span>;
 </code></pre>
 <p><strong>args:</strong>  </p>
@@ -2024,6 +2025,7 @@
 <p><strong>result:</strong></p>
 <p>output_bufs&#x63D2;&#x5165;&#x4E86;3&#x4E2A;Buffer</p>
 <h2 id="constbufferdata"><a name="constbufferdata" class="anchor-navigation-ex-anchor" href="#constbufferdata"><i class="fa fa-link" aria-hidden="true"></i></a>ConstBufferData</h2>
+<p>&#x83B7;&#x53D6;&#x6307;&#x5B9A;Buffer&#x7684;&#x6570;&#x636E;&#x6307;&#x9488;&#xFF0C;&#x4E14;&#x53EA;&#x8BFB;</p>
 <pre><code class="lang-c++">    <span class="hljs-function"><span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span>* <span class="hljs-title">ConstBufferData</span><span class="hljs-params">(size_t idx)</span> <span class="hljs-keyword">const</span></span>;
 </code></pre>
 <p><strong>args:</strong>  </p>
@@ -2033,6 +2035,7 @@
 <p><strong>return:</strong>  </p>
 <p>&#x7B2C;idx Buffer&#x7684;&#x6570;&#x636E;&#x5E38;&#x91CF;&#x6307;&#x9488;</p>
 <h2 id="mutablebufferdata"><a name="mutablebufferdata" class="anchor-navigation-ex-anchor" href="#mutablebufferdata"><i class="fa fa-link" aria-hidden="true"></i></a>MutableBufferData</h2>
+<p>&#x83B7;&#x53D6;&#x6307;&#x5B9A;Buffer&#x7684;&#x6570;&#x636E;&#x6307;&#x9488;&#xFF0C;&#x4E14;&#x53EF;&#x4FEE;&#x6539;</p>
 <pre><code class="lang-c++">    <span class="hljs-function"><span class="hljs-keyword">void</span>* <span class="hljs-title">MutableBufferData</span><span class="hljs-params">(size_t idx)</span></span>;
 </code></pre>
 <p><strong>args:</strong>  </p>
@@ -2054,7 +2057,7 @@
     }
 </code></pre>
 <h2 id="copymeta"><a name="copymeta" class="anchor-navigation-ex-anchor" href="#copymeta"><i class="fa fa-link" aria-hidden="true"></i></a>CopyMeta</h2>
-<p>&#x628A;&#x53C2;&#x6570;&#x7684;BufferList&#x7684;Meta&#x4FE1;&#x606F; copy&#x7ED9;&#x5F53;&#x524D;BufferList</p>
+<p>&#x628A;&#x53C2;&#x6570;&#x7684;BufferList&#x7684;Meta&#x4FE1;&#x606F;&#x62F7;&#x8D1D;&#x7ED9;&#x5F53;&#x524D;BufferList</p>
 <pre><code class="lang-c++">     <span class="hljs-function">Status <span class="hljs-title">CopyMeta</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;BufferList&gt;&amp; bufferlist,
                           <span class="hljs-keyword">bool</span> is_override = <span class="hljs-literal">false</span>)</span></span>;
 </code></pre>
@@ -2107,7 +2110,7 @@
 <p><strong>result:</strong></p>
 <p>output_bufs&#x5F53;&#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;Buffer&#x90FD;&#x4E00;&#x4E2A;Meta&#x503C;&#x4E3A;shape</p>
 <h2 id="pushback"><a name="pushback" class="anchor-navigation-ex-anchor" href="#pushback"><i class="fa fa-link" aria-hidden="true"></i></a>PushBack</h2>
-<p>&#x5F80;BufferList&#x5F53;&#x4E2D;push&#x4E00;&#x4E2A;Buffer</p>
+<p>&#x5F80;BufferList&#x5F53;&#x4E2D;&#x63D2;&#x5165;&#x4E00;&#x4E2A;Buffer</p>
 <pre><code class="lang-c++">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">PushBack</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;Buffer&gt;&amp; buf)</span>
 </span></code></pre>
 <p><strong>args:</strong>  </p>
@@ -2130,7 +2133,7 @@
 <p><strong>result:</strong>  </p>
 <p>output_bufs&#x5F53;&#x4E2D;push&#x4E86;&#x4E00;&#x4E2A;Buffer&#x5230;&#x6570;&#x7EC4;&#x5185;</p>
 <footer class="page-footer"><span class="copyright">&#xA9;2022 ModelBox Team all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-06-16 10:36:42
+2022-06-17 09:26:24
 </span></footer>
                                 
                                 </section>
@@ -2164,7 +2167,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"BufferList","level":"1.12.1.2","depth":3,"next":{"title":"Configuration","level":"1.12.1.3","depth":3,"path":"api/c++/modelbox_configuration.md","ref":"api/c++/modelbox_configuration.md","articles":[]},"previous":{"title":"Buffer","level":"1.12.1.1","depth":3,"path":"api/c++/modelbox_buffer.md","ref":"api/c++/modelbox_buffer.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore","anchor-navigation-ex"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导文档"},"file":{"path":"api/c++/modelbox_bufferlist.md","mtime":"2022-06-16T10:36:42.437Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-16T10:37:43.293Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"BufferList","level":"1.12.1.2","depth":3,"next":{"title":"Configuration","level":"1.12.1.3","depth":3,"path":"api/c++/modelbox_configuration.md","ref":"api/c++/modelbox_configuration.md","articles":[]},"previous":{"title":"Buffer","level":"1.12.1.1","depth":3,"path":"api/c++/modelbox_buffer.md","ref":"api/c++/modelbox_buffer.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore","anchor-navigation-ex"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导文档"},"file":{"path":"api/c++/modelbox_bufferlist.md","mtime":"2022-06-17T09:26:24.074Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-17T09:27:12.755Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

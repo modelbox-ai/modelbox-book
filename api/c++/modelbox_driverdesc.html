@@ -85,10 +85,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="modelbox_flowunitdesc.html" />
+    <link rel="next" href="modelbox_externaldatamap.html" />
     
     
-    <link rel="prev" href="modelbox_sessioncontext.html" />
+    <link rel="prev" href="modelbox_datameta.html" />
     
 
     </head>
@@ -194,7 +194,7 @@
                 <a href="../../first-app/mnist.html">
             
                     
-                    mnist
+                    Mnist
             
                 </a>
             
@@ -657,7 +657,7 @@
                 <a href="../../plugins/modelbox-plugin.html">
             
                     
-                    modelbox-plugin
+                    ModelBox Plugin
             
                 </a>
             
@@ -1369,7 +1369,33 @@
             
         </li>
     
-        <li class="chapter " data-level="1.12.1.6" data-path="modelbox_flowunit.html">
+        <li class="chapter active" data-level="1.12.1.6" data-path="modelbox_driverdesc.html">
+            
+                <a href="modelbox_driverdesc.html">
+            
+                    
+                    DriverDesc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.1.7" data-path="modelbox_externaldatamap.html">
+            
+                <a href="modelbox_externaldatamap.html">
+            
+                    
+                    ExternalDataMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.1.8" data-path="modelbox_flowunit.html">
             
                 <a href="modelbox_flowunit.html">
             
@@ -1382,38 +1408,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.12.1.7" data-path="modelbox_flowunitevent.html">
+        <li class="chapter " data-level="1.12.1.9" data-path="modelbox_flowunitevent.html">
             
                 <a href="modelbox_flowunitevent.html">
             
                     
                     FlowUnitEvent
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.12.1.8" data-path="modelbox_sessioncontext.html">
-            
-                <a href="modelbox_sessioncontext.html">
-            
-                    
-                    SessionContext
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter active" data-level="1.12.1.9" data-path="modelbox_driverdesc.html">
-            
-                <a href="modelbox_driverdesc.html">
-            
-                    
-                    DriverDesc
             
                 </a>
             
@@ -1460,12 +1460,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.12.1.13" data-path="modelbox_externaldatamap.html">
+        <li class="chapter " data-level="1.12.1.13" data-path="modelbox_sessioncontext.html">
             
-                <a href="modelbox_externaldatamap.html">
+                <a href="modelbox_sessioncontext.html">
             
                     
-                    ExternalDataMap
+                    SessionContext
             
                 </a>
             
@@ -1830,6 +1830,7 @@
 </table>
 <hr>
 <h2 id="setname"><a name="setname" class="anchor-navigation-ex-anchor" href="#setname"><i class="fa fa-link" aria-hidden="true"></i></a>SetName</h2>
+<p>&#x8BBE;&#x7F6E;Driver&#x540D;&#x79F0;</p>
 <pre><code class="lang-c++">     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SetName</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;name)</span></span>;
 </code></pre>
 <p><strong>args:</strong></p>
@@ -1839,15 +1840,17 @@
 <p><strong>return:</strong>  </p>
 <p>&#x65E0;</p>
 <h2 id="setclass"><a name="setclass" class="anchor-navigation-ex-anchor" href="#setclass"><i class="fa fa-link" aria-hidden="true"></i></a>SetClass</h2>
+<p>&#x8BBE;&#x7F6E;Driver&#x7C7B;&#x578B;</p>
 <pre><code class="lang-c++">     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SetClass</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;classname)</span></span>;
 </code></pre>
 <p><strong>args:</strong></p>
 <ul>
-<li><strong>classname</strong> (string) &#x2014;&#x2014; &#x63D2;&#x4EF6;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;DRIVER-FLOWUNIT, DRIVER-DEVICE&#x7B49;&#x7B49;, &#x5177;&#x4F53;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x5176;&#x4ED6;&#x6D41;&#x5355;&#x5143;&#x7684;&#x5B9E;&#x73B0;</li>
+<li><strong>classname</strong> (string) &#x2014;&#x2014; &#x63D2;&#x4EF6;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;DRIVER-FLOWUNIT, DRIVER-DEVICE&#x7B49;&#x7B49;, &#x5177;&#x4F53;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x5176;&#x4ED6;&#x529F;&#x80FD;&#x5355;&#x5143;&#x7684;&#x5B9E;&#x73B0;</li>
 </ul>
 <p><strong>return:</strong>  </p>
 <p>&#x65E0;</p>
 <h2 id="settype"><a name="settype" class="anchor-navigation-ex-anchor" href="#settype"><i class="fa fa-link" aria-hidden="true"></i></a>SetType</h2>
+<p>&#x8BBE;&#x7F6E;Driver&#x8BBE;&#x5907;&#x7C7B;&#x578B;</p>
 <pre><code class="lang-c++">     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SetType</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;type)</span></span>;
 </code></pre>
 <p><strong>args:</strong></p>
@@ -1932,9 +1935,9 @@
     }
 </code></pre>
 <p><strong>result:</strong></p>
-<p>&#x8BBE;&#x7F6E;&#x4E86;&#x63D2;&#x4EF6;&#x7684;&#x5C5E;&#x6027;&#x503C;</p>
+<p>&#x8BBE;&#x7F6E;&#x4E86;Driver&#x5C5E;&#x6027;&#x503C;</p>
 <footer class="page-footer"><span class="copyright">&#xA9;2022 ModelBox Team all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-06-16 10:36:42
+2022-06-17 09:26:24
 </span></footer>
                                 
                                 </section>
@@ -1968,7 +1971,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"DriverDesc","level":"1.12.1.9","depth":3,"next":{"title":"FlowUnitDesc","level":"1.12.1.10","depth":3,"path":"api/c++/modelbox_flowunitdesc.md","ref":"api/c++/modelbox_flowunitdesc.md","articles":[]},"previous":{"title":"SessionContext","level":"1.12.1.8","depth":3,"path":"api/c++/modelbox_sessioncontext.md","ref":"api/c++/modelbox_sessioncontext.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore","anchor-navigation-ex"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导文档"},"file":{"path":"api/c++/modelbox_driverdesc.md","mtime":"2022-06-16T10:36:42.437Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-16T10:37:43.293Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"DriverDesc","level":"1.12.1.6","depth":3,"next":{"title":"ExternalDataMap","level":"1.12.1.7","depth":3,"path":"api/c++/modelbox_externaldatamap.md","ref":"api/c++/modelbox_externaldatamap.md","articles":[]},"previous":{"title":"DataMeta","level":"1.12.1.5","depth":3,"path":"api/c++/modelbox_datameta.md","ref":"api/c++/modelbox_datameta.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore","anchor-navigation-ex"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导文档"},"file":{"path":"api/c++/modelbox_driverdesc.md","mtime":"2022-06-17T09:26:24.074Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-17T09:27:12.755Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

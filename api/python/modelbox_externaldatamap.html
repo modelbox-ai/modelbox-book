@@ -194,7 +194,7 @@
                 <a href="../../first-app/mnist.html">
             
                     
-                    mnist
+                    Mnist
             
                 </a>
             
@@ -657,7 +657,7 @@
                 <a href="../../plugins/modelbox-plugin.html">
             
                     
-                    modelbox-plugin
+                    ModelBox Plugin
             
                 </a>
             
@@ -1369,7 +1369,33 @@
             
         </li>
     
-        <li class="chapter " data-level="1.12.1.6" data-path="../c++/modelbox_flowunit.html">
+        <li class="chapter " data-level="1.12.1.6" data-path="../c++/modelbox_driverdesc.html">
+            
+                <a href="../c++/modelbox_driverdesc.html">
+            
+                    
+                    DriverDesc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.1.7" data-path="../c++/modelbox_externaldatamap.html">
+            
+                <a href="../c++/modelbox_externaldatamap.html">
+            
+                    
+                    ExternalDataMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.1.8" data-path="../c++/modelbox_flowunit.html">
             
                 <a href="../c++/modelbox_flowunit.html">
             
@@ -1382,38 +1408,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.12.1.7" data-path="../c++/modelbox_flowunitevent.html">
+        <li class="chapter " data-level="1.12.1.9" data-path="../c++/modelbox_flowunitevent.html">
             
                 <a href="../c++/modelbox_flowunitevent.html">
             
                     
                     FlowUnitEvent
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.12.1.8" data-path="../c++/modelbox_sessioncontext.html">
-            
-                <a href="../c++/modelbox_sessioncontext.html">
-            
-                    
-                    SessionContext
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.12.1.9" data-path="../c++/modelbox_driverdesc.html">
-            
-                <a href="../c++/modelbox_driverdesc.html">
-            
-                    
-                    DriverDesc
             
                 </a>
             
@@ -1460,12 +1460,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.12.1.13" data-path="../c++/modelbox_externaldatamap.html">
+        <li class="chapter " data-level="1.12.1.13" data-path="../c++/modelbox_sessioncontext.html">
             
-                <a href="../c++/modelbox_externaldatamap.html">
+                <a href="../c++/modelbox_sessioncontext.html">
             
                     
-                    ExternalDataMap
+                    SessionContext
             
                 </a>
             
@@ -1781,7 +1781,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#modelboxexternaldatamap"><b></b>modelbox.ExternalDataMap</a></li><ul><li><span class="title-icon "></span><a href="#modelboxexternaldatamapcreatebufferlist"><b></b>modelbox.ExternalDataMap.create_buffer_list</a></li><li><span class="title-icon "></span><a href="#modelboxexternaldatamapsend"><b></b>modelbox.ExternalDataMap.send</a></li><li><span class="title-icon "></span><a href="#modelboxexternaldatamaprecv"><b></b>modelbox.ExternalDataMap.recv</a></li><li><span class="title-icon "></span><a href="#modelboxexternaldatamapshutdown"><b></b>modelbox.ExternalDataMap.shutdown</a></li><li><span class="title-icon "></span><a href="#modelboxexternaldatamapsetoutputmeta"><b></b>modelbox.ExternalDataMap.set_output_meta</a></li></ul></ul></div><h1 id="modelboxexternaldatamap"><a name="modelboxexternaldatamap" class="anchor-navigation-ex-anchor" href="#modelboxexternaldatamap"><i class="fa fa-link" aria-hidden="true"></i></a>modelbox.ExternalDataMap</h1>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#modelboxexternaldatamap"><b></b>modelbox.ExternalDataMap</a></li><ul><li><span class="title-icon "></span><a href="#modelboxexternaldatamapcreatebufferlist"><b></b>modelbox.ExternalDataMap.create_buffer_list</a></li><li><span class="title-icon "></span><a href="#modelboxexternaldatamapsend"><b></b>modelbox.ExternalDataMap.send</a></li><li><span class="title-icon "></span><a href="#modelboxexternaldatamaprecv"><b></b>modelbox.ExternalDataMap.recv</a></li><li><span class="title-icon "></span><a href="#modelboxexternaldatamapclose"><b></b>modelbox.ExternalDataMap.close</a></li><li><span class="title-icon "></span><a href="#modelboxexternaldatamapshutdown"><b></b>modelbox.ExternalDataMap.shutdown</a></li><li><span class="title-icon "></span><a href="#modelboxexternaldatamapsetoutputmeta"><b></b>modelbox.ExternalDataMap.set_output_meta</a></li></ul></ul></div><h1 id="modelboxexternaldatamap"><a name="modelboxexternaldatamap" class="anchor-navigation-ex-anchor" href="#modelboxexternaldatamap"><i class="fa fa-link" aria-hidden="true"></i></a>modelbox.ExternalDataMap</h1>
 <table>
 <thead>
 <tr>
@@ -1796,15 +1796,19 @@
 </tr>
 <tr>
 <td><a href="#modelboxexternaldatamapsend">send</a></td>
-<td>&#x53D1;&#x9001;&#x7ED9;&#x5F53;&#x524D;flow&#x5BF9;&#x8C61;&#x7684;BufferList</td>
+<td>&#x53D1;&#x9001;BufferList&#x7ED9;&#x5F53;&#x524D;&#x6D41;&#x7A0B;&#x56FE;</td>
 </tr>
 <tr>
 <td><a href="#modelboxexternaldatamaprecv">recv</a></td>
-<td>&#x63A5;&#x6536;&#x7ED9;&#x5F53;&#x524D;flow&#x5BF9;&#x8C61;&#x7684;BufferList</td>
+<td>&#x63A5;&#x6536;&#x7ED9;&#x5F53;&#x524D;&#x6D41;&#x7A0B;&#x56FE;&#x5904;&#x7406;&#x7ED3;&#x679C;</td>
+</tr>
+<tr>
+<td><a href="#modelboxexternaldatamapclose">close</a></td>
+<td>&#x5173;&#x95ED;&#x5F53;&#x524D;external_data_map&#x7684;&#x8F93;&#x5165;</td>
 </tr>
 <tr>
 <td><a href="#modelboxexternaldatamapshutdown">shutdown</a></td>
-<td>&#x5173;&#x95ED;&#x5F53;&#x524D;external_data_map&#x7684;&#x8FDE;&#x63A5;</td>
+<td>&#x5F3A;&#x5236;&#x5173;&#x95ED;&#x5F53;&#x524D;external_data_map&#x7684;&#x8FDE;&#x63A5;</td>
 </tr>
 <tr>
 <td><a href="#modelboxexternaldatamapsetoutputmeta">set_output_meta</a></td>
@@ -1814,13 +1818,13 @@
 </table>
 <hr>
 <h2 id="modelboxexternaldatamapcreatebufferlist"><a name="modelboxexternaldatamapcreatebufferlist" class="anchor-navigation-ex-anchor" href="#modelboxexternaldatamapcreatebufferlist"><i class="fa fa-link" aria-hidden="true"></i></a>modelbox.ExternalDataMap.create_buffer_list</h2>
-<p>&#x521B;&#x5EFA;BufferList</p>
+<p>&#x521B;&#x5EFA;BufferList&#x3002;</p>
 <p><strong>args:</strong>  </p>
 <p>&#x65E0;</p>
 <p><strong>return:</strong>  </p>
 <p>modelbox.BufferList</p>
 <h2 id="modelboxexternaldatamapsend"><a name="modelboxexternaldatamapsend" class="anchor-navigation-ex-anchor" href="#modelboxexternaldatamapsend"><i class="fa fa-link" aria-hidden="true"></i></a>modelbox.ExternalDataMap.send</h2>
-<p>&#x53D1;&#x9001;BufferList&#x7ED9;&#x4E0B;&#x4E00;&#x4E2A;&#x6D41;&#x5355;&#x5143;</p>
+<p>&#x53D1;&#x9001;BufferList&#x7ED9;&#x6D41;&#x7A0B;&#x56FE;&#x4E2D;&#x7684;&#x8F93;&#x5165;&#x7AEF;&#x53E3;&#x3002;</p>
 <p><strong>args:</strong>  </p>
 <ul>
 <li><p><strong>port_name</strong> (str) &#x2014;&#x2014;  &#x9700;&#x8981;&#x53D1;&#x9001;&#x7684;&#x6570;&#x636E;&#x7684;&#x7AEF;&#x53E3;&#x540D;</p>
@@ -1829,22 +1833,27 @@
 </li>
 </ul>
 <p><strong>return:</strong>  </p>
-<p>modelbox.Status  &#x53D1;&#x9001;&#x7684;&#x8FD4;&#x56DE;&#x72B6;&#x6001;</p>
+<p>modelbox.Status  </p>
 <h2 id="modelboxexternaldatamaprecv"><a name="modelboxexternaldatamaprecv" class="anchor-navigation-ex-anchor" href="#modelboxexternaldatamaprecv"><i class="fa fa-link" aria-hidden="true"></i></a>modelbox.ExternalDataMap.recv</h2>
-<p>&#x5728;&#x53C2;&#x6570;&#x7684;output_bufferlist&#x63A5;&#x6536;&#x6570;&#x636E;</p>
+<p>&#x63A5;&#x6536;&#x7ED9;&#x5F53;&#x524D;&#x6D41;&#x7A0B;&#x56FE;&#x5904;&#x7406;&#x7ED3;&#x679C;&#x3002;</p>
 <p><strong>args:</strong>  </p>
 <ul>
 <li><strong>bufferlist</strong> (modelbox.ExtOutputBufferList) &#x2014;&#x2014;  &#x7528;&#x6765;&#x63A5;&#x6536;&#x6570;&#x636E;&#x7684;BufferList</li>
 </ul>
 <p><strong>return:</strong>  </p>
-<p>modelbox.Status  &#x53D1;&#x9001;&#x7684;&#x8FD4;&#x56DE;&#x72B6;&#x6001;</p>
-<h2 id="modelboxexternaldatamapshutdown"><a name="modelboxexternaldatamapshutdown" class="anchor-navigation-ex-anchor" href="#modelboxexternaldatamapshutdown"><i class="fa fa-link" aria-hidden="true"></i></a>modelbox.ExternalDataMap.shutdown</h2>
-<p>&#x5173;&#x95ED;external data map&#x5BF9;&#x8C61;</p>
+<p>modelbox.Status  </p>
+<h2 id="modelboxexternaldatamapclose"><a name="modelboxexternaldatamapclose" class="anchor-navigation-ex-anchor" href="#modelboxexternaldatamapclose"><i class="fa fa-link" aria-hidden="true"></i></a>modelbox.ExternalDataMap.close</h2>
+<p>&#x5173;&#x95ED;&#x5F53;&#x524D;external_data_map&#x7684;&#x8F93;&#x5165;&#xFF0C;&#x8868;&#x793A;&#x6570;&#x636E;&#x8F93;&#x5165;&#x7ED3;&#x675F;</p>
 <p><strong>args:</strong>  </p>
 <p>&#x65E0;</p>
 <p><strong>return:</strong>  </p>
 <p>modelbox.Status  </p>
-<p>&#x5173;&#x95ED;&#x7684;&#x8FD4;&#x56DE;&#x72B6;&#x6001;</p>
+<h2 id="modelboxexternaldatamapshutdown"><a name="modelboxexternaldatamapshutdown" class="anchor-navigation-ex-anchor" href="#modelboxexternaldatamapshutdown"><i class="fa fa-link" aria-hidden="true"></i></a>modelbox.ExternalDataMap.shutdown</h2>
+<p>&#x5F3A;&#x5236;&#x5173;&#x95ED;&#x5F53;&#x524D;ExternalDataMap&#x5BF9;&#x8C61;&#x7684;&#x72B6;&#x6001;</p>
+<p><strong>args:</strong>  </p>
+<p>&#x65E0;</p>
+<p><strong>return:</strong>  </p>
+<p>modelbox.Status  </p>
 <p><strong>example:</strong>  </p>
 <pre><code class="lang-python">    ...
     <span class="hljs-keyword">import</span> modelbox
@@ -1856,35 +1865,36 @@
     extern_data_map = flow.create_external_data_map()
     buffer_list = extern_data_map.create_buffer_list()
     buffer_list.push_back(img_np)
+    <span class="hljs-comment"># input1 &#x4E3A;&#x6D41;&#x7A0B;&#x56FE;&#x4E2D;&#x5B9A;&#x4E49;&#x7684;input&#x7C7B;&#x578B;&#x7AEF;&#x53E3;&#x7684;&#x7AEF;&#x53E3;&#x540D;&#x79F0;</span>
     ret = extern_data_map.send(<span class="hljs-string">&quot;input1&quot;</span>, buffer_list)
-    ret = extern_data_map.shutdown()
+    ret = extern_data_map.close()
 
     buffer_list_map = modelbox.ExtOutputBufferList()
     ret = extern_data_map.recv(buffer_list_map)
+
+    ret = extern_data_map.shutdown()
 </code></pre>
 <pre><code class="lang-toml">   digraph demo {                                                                            
     input1[type=input]   
-    python_buffer[type=flowunit, flowunit=python_buffer, device=cpu, deviceid=0, label=&quot;&lt;buffer_in&gt; | &lt;buffer_out&gt;&quot;, buffer_config = 0.2]  
+    python_buffer[type=flowunit, flowunit=python_buffer, device=cpu, deviceid=0]  
     output1[type=output]   
     input1 -&gt; python_buffer:buffer_in
     python_buffer:buffer_out -&gt; output1                                                                                             
    }
 </code></pre>
-<p><strong>result:</strong>  </p>
-<p>&#x5728;&#x5B9A;&#x4E49;&#x7684;&#x6D41;&#x7A0B;&#x56FE;&#x4E2D;&#x4ECE;input1&#x8F93;&#x5165;&#x6570;&#x636E;</p>
 <h2 id="modelboxexternaldatamapsetoutputmeta"><a name="modelboxexternaldatamapsetoutputmeta" class="anchor-navigation-ex-anchor" href="#modelboxexternaldatamapsetoutputmeta"><i class="fa fa-link" aria-hidden="true"></i></a>modelbox.ExternalDataMap.set_output_meta</h2>
-<p>&#x8BBE;&#x7F6E;&#x8F93;&#x51FA;&#x7AEF;&#x53E3;&#x7684;meta&#x503C;</p>
+<p>&#x8BBE;&#x7F6E;&#x5916;&#x90E8;&#x6570;&#x636E;&#x8F93;&#x51FA;&#x7AEF;&#x53E3;&#x7684;Meta&#x503C;&#x3002;</p>
 <p><strong>args:</strong>  </p>
 <ul>
 <li><p><strong>port_name</strong> (str) &#x2014;&#x2014; &#x8F93;&#x51FA;&#x7684;&#x7AEF;&#x53E3;&#x540D;&#x5B57;</p>
 </li>
-<li><p><strong>meta</strong> (modelbox.DataMeta) &#x2014;&#x2014; &#x5B58;&#x653E;meta&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;</p>
+<li><p><strong>meta</strong> (modelbox.DataMeta) &#x2014;&#x2014; &#x5B58;&#x653E;Meta&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;</p>
 </li>
 </ul>
 <p><strong>return:</strong>  </p>
-<p>modelbox.Status  &#x8FD4;&#x56DE;&#x72B6;&#x6001;</p>
+<p>modelbox.Status</p>
 <footer class="page-footer"><span class="copyright">&#xA9;2022 ModelBox Team all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-06-16 10:36:42
+2022-06-17 09:26:24
 </span></footer>
                                 
                                 </section>
@@ -1918,7 +1928,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"ExternalDataMap","level":"1.12.2.8","depth":3,"next":{"title":"ExtOutputBufferList","level":"1.12.2.9","depth":3,"path":"api/python/modelbox_extoutputbufferlist.md","ref":"api/python/modelbox_extoutputbufferlist.md","articles":[]},"previous":{"title":"ExternalData","level":"1.12.2.7","depth":3,"path":"api/python/modelbox_externaldata.md","ref":"api/python/modelbox_externaldata.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore","anchor-navigation-ex"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导文档"},"file":{"path":"api/python/modelbox_externaldatamap.md","mtime":"2022-06-16T10:36:42.441Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-16T10:37:43.293Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"ExternalDataMap","level":"1.12.2.8","depth":3,"next":{"title":"ExtOutputBufferList","level":"1.12.2.9","depth":3,"path":"api/python/modelbox_extoutputbufferlist.md","ref":"api/python/modelbox_extoutputbufferlist.md","articles":[]},"previous":{"title":"ExternalData","level":"1.12.2.7","depth":3,"path":"api/python/modelbox_externaldata.md","ref":"api/python/modelbox_externaldata.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore","anchor-navigation-ex"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导文档"},"file":{"path":"api/python/modelbox_externaldatamap.md","mtime":"2022-06-17T09:26:24.078Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-17T09:27:12.755Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

@@ -194,7 +194,7 @@
                 <a href="../../first-app/mnist.html">
             
                     
-                    mnist
+                    Mnist
             
                 </a>
             
@@ -657,7 +657,7 @@
                 <a href="../../plugins/modelbox-plugin.html">
             
                     
-                    modelbox-plugin
+                    ModelBox Plugin
             
                 </a>
             
@@ -1369,7 +1369,33 @@
             
         </li>
     
-        <li class="chapter " data-level="1.12.1.6" data-path="../c++/modelbox_flowunit.html">
+        <li class="chapter " data-level="1.12.1.6" data-path="../c++/modelbox_driverdesc.html">
+            
+                <a href="../c++/modelbox_driverdesc.html">
+            
+                    
+                    DriverDesc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.1.7" data-path="../c++/modelbox_externaldatamap.html">
+            
+                <a href="../c++/modelbox_externaldatamap.html">
+            
+                    
+                    ExternalDataMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.1.8" data-path="../c++/modelbox_flowunit.html">
             
                 <a href="../c++/modelbox_flowunit.html">
             
@@ -1382,38 +1408,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.12.1.7" data-path="../c++/modelbox_flowunitevent.html">
+        <li class="chapter " data-level="1.12.1.9" data-path="../c++/modelbox_flowunitevent.html">
             
                 <a href="../c++/modelbox_flowunitevent.html">
             
                     
                     FlowUnitEvent
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.12.1.8" data-path="../c++/modelbox_sessioncontext.html">
-            
-                <a href="../c++/modelbox_sessioncontext.html">
-            
-                    
-                    SessionContext
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.12.1.9" data-path="../c++/modelbox_driverdesc.html">
-            
-                <a href="../c++/modelbox_driverdesc.html">
-            
-                    
-                    DriverDesc
             
                 </a>
             
@@ -1460,12 +1460,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.12.1.13" data-path="../c++/modelbox_externaldatamap.html">
+        <li class="chapter " data-level="1.12.1.13" data-path="../c++/modelbox_sessioncontext.html">
             
-                <a href="../c++/modelbox_externaldatamap.html">
+                <a href="../c++/modelbox_sessioncontext.html">
             
                     
-                    ExternalDataMap
+                    SessionContext
             
                 </a>
             
@@ -1826,6 +1826,7 @@
 </table>
 <hr>
 <h2 id="&#x6784;&#x9020;&#x65B9;&#x6CD5;"><a name="&#x6784;&#x9020;&#x65B9;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#&#x6784;&#x9020;&#x65B9;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6784;&#x9020;&#x65B9;&#x6CD5;</h2>
+<p>&#x6784;&#x9020;modelbox.Status&#x5BF9;&#x8C61;&#x3002;</p>
 <h3 id="modelboxstatusstatuscode"><a name="modelboxstatusstatuscode" class="anchor-navigation-ex-anchor" href="#modelboxstatusstatuscode"><i class="fa fa-link" aria-hidden="true"></i></a>modelbox.Status(status_code)</h3>
 <p><strong>args:</strong>  </p>
 <ul>
@@ -1849,9 +1850,9 @@
 </ul>
 <p><strong>return:</strong>  </p>
 <p>modelbox.Status</p>
-<p><strong><strong>str</strong>:</strong>  </p>
+<p><strong>**str</strong>:**  </p>
 <p>&quot;code: &quot; + StrCode() + &quot;, errmsg: &quot; + errmsg_</p>
-<p><strong><strong>bool</strong>:</strong>  </p>
+<p><strong>**bool</strong>:**  </p>
 <p>bool(status)</p>
 <p><strong>example:</strong>  </p>
 <pre><code class="lang-python">   <span class="hljs-keyword">import</span> modelbox
@@ -1873,7 +1874,7 @@
 <p>Success<br>Continue operation<br>Fault<br>code: Continue operation, errmsg: continue<br>code: Fault, errmsg: continue<br>True</p>
 </blockquote>
 <h2 id="modelboxstatuscode"><a name="modelboxstatuscode" class="anchor-navigation-ex-anchor" href="#modelboxstatuscode"><i class="fa fa-link" aria-hidden="true"></i></a>modelbox.Status.code</h2>
-<p>&#x83B7;&#x53D6;status&#x7684;code&#x503C;</p>
+<p>&#x83B7;&#x53D6;status&#x7684;&#x72B6;&#x6001;&#x4FE1;&#x606F;&#x3002;</p>
 <p><strong>args:</strong>  </p>
 <p>&#x65E0;</p>
 <p><strong>return:</strong>  </p>
@@ -1889,7 +1890,7 @@
 <p>StatusCode.STATUS_SUCCESS</p>
 </blockquote>
 <h2 id="modelboxstatusstrcode"><a name="modelboxstatusstrcode" class="anchor-navigation-ex-anchor" href="#modelboxstatusstrcode"><i class="fa fa-link" aria-hidden="true"></i></a>modelbox.Status.str_code</h2>
-<p>&#x83B7;&#x53D6;status&#x7684;str_code&#x503C;</p>
+<p>&#x83B7;&#x53D6;status&#x7684;&#x72B6;&#x6001;&#x4FE1;&#x606F;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
 <p><strong>args:</strong>  </p>
 <p>&#x65E0;</p>
 <p><strong>return:</strong>  </p>
@@ -1905,6 +1906,7 @@
 <p>Success</p>
 </blockquote>
 <h2 id="modelboxstatusstatuscode_1"><a name="modelboxstatusstatuscode_1" class="anchor-navigation-ex-anchor" href="#modelboxstatusstatuscode_1"><i class="fa fa-link" aria-hidden="true"></i></a>modelbox.Status.StatusCode</h2>
+<p>&#x72B6;&#x6001;&#x7801;&#xFF1A;</p>
 <table>
 <thead>
 <tr>
@@ -2032,25 +2034,25 @@
 </tbody>
 </table>
 <h2 id="modelboxstatusseterrormsg"><a name="modelboxstatusseterrormsg" class="anchor-navigation-ex-anchor" href="#modelboxstatusseterrormsg"><i class="fa fa-link" aria-hidden="true"></i></a>modelbox.Status.set_errormsg</h2>
-<p>&#x8BBE;&#x7F6E;status&#x7684;&#x9519;&#x8BEF;&#x4FE1;&#x606F;</p>
+<p>&#x8BBE;&#x7F6E;&#x9519;&#x8BEF;&#x4FE1;&#x606F;&#x3002;</p>
 <p><strong>args:</strong>  </p>
 <p>errmsg: str &#x9519;&#x8BEF;&#x4FE1;&#x606F;</p>
 <p><strong>return:</strong>  </p>
 <p>&#x65E0;</p>
 <h2 id="modelboxstatuserrormsg"><a name="modelboxstatuserrormsg" class="anchor-navigation-ex-anchor" href="#modelboxstatuserrormsg"><i class="fa fa-link" aria-hidden="true"></i></a>modelbox.Status.errormsg</h2>
-<p>&#x83B7;&#x53D6;status&#x7684;errormsg</p>
+<p>&#x83B7;&#x53D6;&#x9519;&#x8BEF;&#x4FE1;&#x606F;&#x3002;</p>
 <p><strong>args:</strong>  </p>
 <p>&#x65E0;</p>
 <p><strong>return:</strong>  </p>
 <p>str &#x5F53;&#x524D;status&#x7684;errmsg</p>
 <h2 id="modelboxstatuswraperrormsgs"><a name="modelboxstatuswraperrormsgs" class="anchor-navigation-ex-anchor" href="#modelboxstatuswraperrormsgs"><i class="fa fa-link" aria-hidden="true"></i></a>modelbox.Status.wrap_errormsgs</h2>
-<p>&#x83B7;&#x53D6;status&#x7684;&#x6240;&#x6709;&#x5B50;&#x5C42;&#x6B21;&#x7684;errmsg</p>
+<p>&#x83B7;&#x53D6;status&#x7684;&#x6240;&#x6709;&#x5B50;&#x5C42;&#x6B21;&#x7684;&#x9519;&#x8BEF;&#x4FE1;&#x606F;&#x3002;</p>
 <p><strong>args:</strong>  </p>
 <p>&#x65E0;</p>
 <p><strong>return:</strong>  </p>
-<p>str &#x5F53;&#x524D;status&#x7684;&#x5B50;&#x5C42;&#x6B21;errmsg</p>
+<p>str &#x5F53;&#x524D;status&#x7684;&#x5B50;&#x5C42;&#x6B21;&#x9519;&#x8BEF;&#x4FE1;&#x606F;</p>
 <h2 id="modelboxstatusunwrap"><a name="modelboxstatusunwrap" class="anchor-navigation-ex-anchor" href="#modelboxstatusunwrap"><i class="fa fa-link" aria-hidden="true"></i></a>modelbox.Status.unwrap</h2>
-<p>&#x8FD4;&#x56DE;wrap&#x7684;status</p>
+<p>&#x8FD4;&#x56DE;wrap&#x7684;status&#x3002;</p>
 <p><strong>args:</strong>  </p>
 <p>&#x65E0;</p>
 <p><strong>return:</strong>  </p>
@@ -2071,7 +2073,7 @@
 <p>test failed<br>Fault, test failed outside -&gt; test failed<br>True</p>
 </blockquote>
 <footer class="page-footer"><span class="copyright">&#xA9;2022 ModelBox Team all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-06-16 10:36:42
+2022-06-17 09:26:24
 </span></footer>
                                 
                                 </section>
@@ -2105,7 +2107,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Status","level":"1.12.2.16","depth":3,"next":{"title":"FAQ","level":"1.13","depth":1,"path":"faq/faq.md","ref":"faq/faq.md","articles":[]},"previous":{"title":"SessionContext","level":"1.12.2.15","depth":3,"path":"api/python/modelbox_sessioncontext.md","ref":"api/python/modelbox_sessioncontext.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore","anchor-navigation-ex"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导文档"},"file":{"path":"api/python/modelbox_status.md","mtime":"2022-06-16T10:36:42.441Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-16T10:37:43.293Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Status","level":"1.12.2.16","depth":3,"next":{"title":"FAQ","level":"1.13","depth":1,"path":"faq/faq.md","ref":"faq/faq.md","articles":[]},"previous":{"title":"SessionContext","level":"1.12.2.15","depth":3,"path":"api/python/modelbox_sessioncontext.md","ref":"api/python/modelbox_sessioncontext.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore","anchor-navigation-ex"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导文档"},"file":{"path":"api/python/modelbox_status.md","mtime":"2022-06-17T09:26:24.078Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-17T09:27:12.755Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

@@ -194,7 +194,7 @@
                 <a href="../../first-app/mnist.html">
             
                     
-                    mnist
+                    Mnist
             
                 </a>
             
@@ -657,7 +657,7 @@
                 <a href="../../plugins/modelbox-plugin.html">
             
                     
-                    modelbox-plugin
+                    ModelBox Plugin
             
                 </a>
             
@@ -1369,7 +1369,33 @@
             
         </li>
     
-        <li class="chapter " data-level="1.12.1.6" data-path="../../api/c++/modelbox_flowunit.html">
+        <li class="chapter " data-level="1.12.1.6" data-path="../../api/c++/modelbox_driverdesc.html">
+            
+                <a href="../../api/c++/modelbox_driverdesc.html">
+            
+                    
+                    DriverDesc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.1.7" data-path="../../api/c++/modelbox_externaldatamap.html">
+            
+                <a href="../../api/c++/modelbox_externaldatamap.html">
+            
+                    
+                    ExternalDataMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.1.8" data-path="../../api/c++/modelbox_flowunit.html">
             
                 <a href="../../api/c++/modelbox_flowunit.html">
             
@@ -1382,38 +1408,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.12.1.7" data-path="../../api/c++/modelbox_flowunitevent.html">
+        <li class="chapter " data-level="1.12.1.9" data-path="../../api/c++/modelbox_flowunitevent.html">
             
                 <a href="../../api/c++/modelbox_flowunitevent.html">
             
                     
                     FlowUnitEvent
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.12.1.8" data-path="../../api/c++/modelbox_sessioncontext.html">
-            
-                <a href="../../api/c++/modelbox_sessioncontext.html">
-            
-                    
-                    SessionContext
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.12.1.9" data-path="../../api/c++/modelbox_driverdesc.html">
-            
-                <a href="../../api/c++/modelbox_driverdesc.html">
-            
-                    
-                    DriverDesc
             
                 </a>
             
@@ -1460,12 +1460,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.12.1.13" data-path="../../api/c++/modelbox_externaldatamap.html">
+        <li class="chapter " data-level="1.12.1.13" data-path="../../api/c++/modelbox_sessioncontext.html">
             
-                <a href="../../api/c++/modelbox_externaldatamap.html">
+                <a href="../../api/c++/modelbox_sessioncontext.html">
             
                     
-                    ExternalDataMap
+                    SessionContext
             
                 </a>
             
@@ -1789,17 +1789,17 @@
 <p>&#x5728;&#x5B9E;&#x73B0;&#x529F;&#x80FD;&#x5355;&#x5143;&#x4E4B;&#x524D;&#xFF0C;cuda&#x7C7B;&#x578B;&#x7684;&#x529F;&#x80FD;&#x5355;&#x5143;&#xFF0C;&#x9700;&#x8981;&#x4ECE;<code>CudaFlowUnit</code>&#x6D3E;&#x751F;&#xFF0C;&#x5E76;&#x5B9E;&#x73B0;<code>CudaProcess</code>&#x63A5;&#x53E3;&#x3002;</p>
 <pre><code class="lang-c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-string">&quot;modelbox/device/cuda/device_cuda.h&quot;</span></span>
 
-<span class="hljs-keyword">class</span> SomeCudaFlowUnit : <span class="hljs-keyword">public</span> modelbox::CudaFlowUnit {
+<span class="hljs-keyword">class</span> ExampleCudaFlowUnit : <span class="hljs-keyword">public</span> modelbox::CudaFlowUnit {
  <span class="hljs-keyword">public</span>:
-  SomeCudaFlowUnit() = <span class="hljs-keyword">default</span>;
-  <span class="hljs-keyword">virtual</span> ~SomeCudaFlowUnit() = <span class="hljs-keyword">default</span>;
+  ExampleCudaFlowUnit() = <span class="hljs-keyword">default</span>;
+  <span class="hljs-keyword">virtual</span> ~ExampleCudaFlowUnit() = <span class="hljs-keyword">default</span>;
 
   <span class="hljs-comment">// &#x6570;&#x636E;&#x5904;&#x7406;&#x63A5;&#x53E3;&#xFF0C;&#x9700;&#x8981;&#x5B9E;&#x73B0;CudaProcess&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x4E3A;CUDA Stream&#x3002;</span>
   <span class="hljs-keyword">virtual</span> modelbox::<span class="hljs-function">Status <span class="hljs-title">CudaProcess</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::DataContext&gt; data_ctx,cudaStream_t stream)</span></span>;
 };
 </code></pre>
 <p>&#x9664;CudaProcess&#x4EE5;&#x5916;&#xFF0C;&#x5176;&#x4ED6;&#x63A5;&#x53E3;&#x548C;&#x901A;&#x7528;&#x529F;&#x80FD;&#x5355;&#x5143;&#x4E00;&#x81F4;&#xFF0C;CudaProcess&#x63A5;&#x53E3;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-c++">modelbox::Status CUdaFlowUnit::CudaProcess(
+<pre><code class="lang-c++">modelbox::Status ExampleCudaFlowUnit::CudaProcess(
     <span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::DataContext&gt; data_ctx, cudaStream_t stream) {
   <span class="hljs-keyword">auto</span> inputs = ctx-&gt;Input(<span class="hljs-string">&quot;input&quot;</span>);
   <span class="hljs-keyword">auto</span> outputs = ctx-&gt;Output(<span class="hljs-string">&quot;output&quot;</span>);
@@ -1827,12 +1827,13 @@
   <span class="hljs-keyword">return</span> modelbox::STATUS_OK;
 }
 </code></pre>
-<pre><code class="lang-c++">modelbox::Status CUdaFlowUnit::CudaProcess(
+<p>&#x7531;&#x4E8E;&#x4E0D;&#x786E;&#x5B9A;&#x8F93;&#x5165;&#x6570;&#x636E;&#x662F;&#x5426;&#x662F;&#x5F02;&#x6B65;&#x6267;&#x884C;&#x7684;&#x6570;&#x636E;&#xFF0C;<strong>&#x5982;&#x679C;CudaProcess&#x91CC;&#x9700;&#x8981;&#x8C03;&#x7528;ACL&#x540C;&#x6B65;&#x63A5;&#x53E3;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x5728;&#x8C03;&#x7528;&#x524D;&#xFF0C;&#x5148;&#x8C03;&#x7528;<code>cudaStreamSynchronize(stream)</code>&#x8FDB;&#x884C;&#x6570;&#x636E;&#x540C;&#x6B65;</strong>&#x3002;</p>
+<pre><code class="lang-c++">modelbox::Status ExampleCudaFlowUnit::CudaProcess(
     <span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::DataContext&gt; data_ctx, cudaStream_t stream) {
   <span class="hljs-keyword">auto</span> inputs = ctx-&gt;Input(<span class="hljs-string">&quot;input&quot;</span>);
   <span class="hljs-keyword">auto</span> outputs = ctx-&gt;Output(<span class="hljs-string">&quot;output&quot;</span>);
 
-  <span class="hljs-comment">// &#x540C;&#x6B65;Stream</span>
+  <span class="hljs-comment">// &#x540C;&#x6B65;&#x6570;&#x636E;</span>
   cudaStreamSynchronize(stream);
 
   <span class="hljs-comment">// &#x7533;&#x8BF7;&#x5185;&#x5B58;</span>
@@ -1856,7 +1857,7 @@
 </code></pre>
 <p>&#x6570;&#x636E;&#x5904;&#x7406;&#x65F6;&#xFF0C;Stream&#x4F1A;&#x81EA;&#x52A8;&#x7531;ModelBox&#x6846;&#x67B6;&#x751F;&#x6210;&#xFF0C;&#x518D;&#x8C03;&#x7528;CUDA&#x63A5;&#x53E3;&#x65F6;&#xFF0C;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x6B64;Stream&#x5BF9;&#x8C61;&#x5373;&#x53EF;&#x3002;</p>
 <footer class="page-footer"><span class="copyright">&#xA9;2022 ModelBox Team all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-06-16 10:36:42
+2022-06-17 09:26:24
 </span></footer>
                                 
                                 </section>
@@ -1890,7 +1891,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Nvidia CUDA","level":"1.5.1.2","depth":3,"next":{"title":"异常","level":"1.5.2","depth":2,"path":"other-features/exception.md","ref":"other-features/exception.md","articles":[]},"previous":{"title":"Huawei Ascend","level":"1.5.1.1","depth":3,"path":"other-features/device/ascend.md","ref":"other-features/device/ascend.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore","anchor-navigation-ex"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导文档"},"file":{"path":"other-features/device/cuda.md","mtime":"2022-06-16T10:36:42.473Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-16T10:37:43.293Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Nvidia CUDA","level":"1.5.1.2","depth":3,"next":{"title":"异常","level":"1.5.2","depth":2,"path":"other-features/exception.md","ref":"other-features/exception.md","articles":[]},"previous":{"title":"Huawei Ascend","level":"1.5.1.1","depth":3,"path":"other-features/device/ascend.md","ref":"other-features/device/ascend.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore","anchor-navigation-ex"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导文档"},"file":{"path":"other-features/device/cuda.md","mtime":"2022-06-17T09:26:24.106Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-17T09:27:12.755Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
