@@ -9,6 +9,8 @@
 
 ## 构造方法
 
+构造FlowUnitEvent对象
+
 ```c++
     FlowUnitEvent();
 ```
@@ -26,7 +28,7 @@
 
 ## SetPrivate
 
-设置当前flowunit中保存在flowunitevent中的对象
+设置当前功能单元中保存在flowunitevent中的对象
 
 ```c++
     void SetPrivate(const std::string &key,
@@ -44,7 +46,7 @@
 
 ## GetPrivate
 
-获取当前flowunit中保存在flowunitevent中的对象
+获取当前功能单元中保存在flowunitevent中的对象
 
 ```c++
     std::shared_ptr<void> GetPrivate(const std::string &key);

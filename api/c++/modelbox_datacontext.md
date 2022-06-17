@@ -1,11 +1,11 @@
-# modelbox.DataContext
+# modelbox::DataContext
 
-每一个流单元当中存放数据上下文的所有接口
+每一个功能单元当中存放数据上下文的所有接口
 
 |函数|作用|
 |-|-|
-|[Input](#input)|flowunit获取input端口的数据|
-|[Output](#output)|flowunit获取output端口的数据|
+|[Input](#input)|获取功能单元输入端口数据|
+|[Output](#output)|获取功能单元输出端口数据|
 |[External](#external)||
 |[HasError](#haserror)|datacontext当中是否存在error|
 |[SendEvent](#sendevent)|发送event|
@@ -20,7 +20,7 @@
 
 ## Input
 
-flowunit获取input端口的数据
+获取功能单元输入端口对象
 
 ```c++
     std::shared_ptr<BufferListMap> Input() const;
@@ -29,7 +29,7 @@ flowunit获取input端口的数据
 
 ## Output
 
-flowunit获取output端口的数据
+获取功能单元输出端口数据
 
 ```c++
     std::shared_ptr<BufferListMap> Output() const;
@@ -86,7 +86,7 @@ modelbox::BufferList
 
 ## SendEvent
 
-从当前数据上下文发送event给调度器可重新调度当前流单元
+从当前数据上下文发送event给调度器可重新调度当前功能单元
 
 ```c++
     void SendEvent(std::shared_ptr<FlowUnitEvent> event);

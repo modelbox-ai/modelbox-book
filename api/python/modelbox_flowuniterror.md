@@ -2,13 +2,13 @@
 
 |函数|作用|
 |-|-|
-|[get_description](#modelboxflowuniterrorgetdescription)|获取error的描述信息|
 |[构造方法](#构造方法)|构造modelbox.FlowUnitError|
+|[get_description](#modelboxflowuniterrorgetdescription)|获取异常的描述信息|
 ---
 
 ## 构造方法
 
-构造modelbox.FlowUnitError
+构造FlowUnitError对象。
 
 **args:**  
 
@@ -20,7 +20,7 @@ modelbox.FlowUnitError
 
 ## modelbox.FlowUnitError.get_description
 
-获取error的描述信息
+获取异常的描述信息
 
 **args:**  
 

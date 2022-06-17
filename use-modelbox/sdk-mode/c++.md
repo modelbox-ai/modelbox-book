@@ -17,7 +17,7 @@ ModelBox提供了流程图的创建、运行、关闭等基础接口。下面是
 | Flow::RunAsync | / | 图的运行： 异步运行， 调用后直接返回， 通过调用Wait()函数判断运行是否结束 |
 | Flow::Wait | millisecond: 超时时间， 以毫秒为单位<br />ret_val: 图运行的结果 | 等待图运行结束，当图的运行时间超过millisecond表示的时间时，则强制停止图的运行，并返回TIMEOUT |
 | Flow::Stop() | / | 强制停止运行中的图 |
-| Flow::CreateExternalDataMap | / | 当图中的第一个节点为input节点时， 使用此函数可以创建一个输入的ExternalDataMap， 开发者可以通过向ExternalDataMap数据中赋值并传递数据给Input节点。具体使用方法可参考[<外部数据交互>](./c++.md#外部数据交互)章节 |
+| Flow::CreateExternalDataMap | / | 当图中的第一个节点为input节点时， 使用此函数可以创建一个输入的ExternalDataMap， 开发者可以通过向ExternalDataMap数据中赋值并传递数据给Input节点。具体使用方法可参考[<外部数据交互>](./c++.md#流程图运行)章节 |
 
 C++开发调用流程图时，需要先安装C++的运行包，然后再编写C++函数，调用Flow执行API执行流程图。Flow流程图接口调用过程如下图所示：
 
@@ -59,124 +59,125 @@ format = "graphviz"
 
 ## 流程图运行
 
-* 导入ModelBox包
-编写时，需要引入头文件，并在编译时链接ModelBox库。
+* **导入ModelBox包**
 
-```c++
-#include <modelbox/flow.h>
-```
+  编写时，需要引入头文件，并在编译时链接ModelBox库。
 
-* 图创建初始化和启动
+  ```c++
+  #include <modelbox/flow.h>
+  ```
 
-```c++
-modelbox::Flow CreateFlow(const std::string &file) {
-  // 创建Flow执行对象
-  auto flow = std::make_shared<modelbox::Flow>();
+  * 图创建初始化和启动
 
-  // 输入流程图配置文件
-  MBLOG_INFO << "run flow " << file;
-  auto ret = flow->Init(file);
-  if (!ret) {
-    MBLOG_ERROR << "init flow failed, " << ret.WrapErrormsgs();
-    return nullptr;
+  ```c++
+  modelbox::Flow CreateFlow(const std::string &file) {
+    // 创建Flow执行对象
+    auto flow = std::make_shared<modelbox::Flow>();
+
+    // 输入流程图配置文件
+    MBLOG_INFO << "run flow " << file;
+    auto ret = flow->Init(file);
+    if (!ret) {
+      MBLOG_ERROR << "init flow failed, " << ret.WrapErrormsgs();
+      return nullptr;
+    }
+
+    // 创建流程图
+    ret = flow->Build();
+    if (!ret) {
+      MBLOG_ERROR << "build flow failed, " << ret.WrapErrormsgs();
+      return nullptr;
+    }
+
+    // 异步执行
+    flow->RunAsync(); 
+
+    return flow;
+  }
+  ```
+
+* **外部数据交互**
+
+  业务数据往往需要输入给流程图进行处理，同时处理完成后需要获取结果。一次数据的发送和结果过程如下：
+
+  ```c++
+  modelbox::Status SendExternalData(std::shared_ptr<ExternalDataMap> ext_data, void *data, int len) {
+    // 申请外部数据对象
+    auto output_buf = ext_data->CreateBufferList();
+
+    // 申请内存，并设置内容
+    output_buf->Build({len});
+    auto buff = (int*)output_buf->MutableData();
+    memcpy(buff, data, len);
+    
+    // 将数据发送到input1端口
+    auto status = ext_data->Send("input1", output_buf);
+    if (!status) {
+      return {status, "send data to input failed."};
+    }
+    
+    // 关闭输入
+    status = ext_data->Close();
+    if (!status) {
+      return {status, "external data close failed."};
+    }
+
+    return modelbox::STATUS_OK;
   }
 
-  // 创建流程图
-  ret = flow->Build();
-  if (!ret) {
-    MBLOG_ERROR << "build flow failed, " << ret.WrapErrormsgs();
-    return nullptr;
-  }
+  modelbox::Status RecvExternalData(std::shared_ptr<ExternalDataMap> ext_data) {
+    OutputBufferList map_buffer_list;
 
-  // 异步执行
-  flow->RunAsync(); 
+    // 接收数据
+    while (true) {
+      auto status = ext_data->Recv(map_buffer_list);
+      if (status != STATUS_SUCCESS) {
+        if (status == STATUS_EOF) {
+          // 数据处理结束
+          break;
+        }
 
-  return flow;
-}
-```
-
-* 外部数据交互
-
-业务数据往往需要输入给流程图进行处理，同时处理完成后需要获取结果。一次数据的发送和结果过程如下：
-
-```c++
-modelbox::Status SendExternalData(std::shared_ptr<ExternalDataMap> ext_data, void *data, int len) {
-  // 申请外部数据对象
-  auto output_buf = ext_data->CreateBufferList();
-
-  // 申请内存，并设置内容
-  output_buf->Build({len});
-  auto buff = (int*)output_buf->MutableData();
-  memcpy(buff, data, len);
-  
-  // 将数据发送到input1端口
-  auto status = ext_data->Send("input1", output_buf);
-  if (!status) {
-    return {status, "send data to input failed."};
-  }
-  
-  // 关闭输入
-  status = ext_data->Shutdown();
-  if (!status) {
-    return {status, "shutdown failed."};
-  }
-
-  return modelbox::STATUS_OK;
-}
-
-modelbox::Status RecvExternalData(std::shared_ptr<ExternalDataMap> ext_data) {
-  OutputBufferList map_buffer_list;
-
-  // 接收数据
-  while (true) {
-    auto status = ext_data->Recv(map_buffer_list);
-    if (status != STATUS_SUCCESS) {
-      if (status == STATUS_EOF) {
-        // 数据处理结束
+        // 处理出错，关闭输出。
+        auto error = ext_data->GetLastError();
+        ext_data->Shutdown();
+        MBLOG_ERROR << "Recv failed, " << status, << ", error:" << error->GetDesc();
         break;
       }
 
-      // 处理出错，关闭输出。
-      auto error = ext_data->GetLastError();
-      ext_data->Close();
-      MBLOG_ERROR << "Recv failed, " << status, << ", error:" << error->GetDesc();
-      break;
+      // 处理结果数据
+      auto buffer_list = map_buffer_list["output1"];
+
+      //开发者自定义结果处理逻辑
+      ProcessData(buffer_list);
     }
 
-    // 处理结果数据
-    auto buffer_list = map_buffer_list["output1"];
-
-    //开发者自定义结果处理逻辑
-    ProcessData(buffer_list);
+    return modelbox::STATUS_OK;
   }
 
-  return modelbox::STATUS_OK;
-}
+  // 数据发送获取
+  modelbox::Status Process(std::shared_ptr<modelbox::Flow> flow, void *data, int len) {
 
-// 数据发送获取
-modelbox::Status Process(std::shared_ptr<modelbox::Flow> flow, void *data, int len) {
+    ... 
+    // 创建外部输入句柄
+    auto ext_data = flow->CreateExternalDataMap(); 
 
-  ... 
-  // 创建外部输入句柄
-  auto ext_data = flow->CreateExternalDataMap(); 
+    // 发送数据到流程图
+    SendExternalData(ext_data, data, len);
+    
+    // 获取输出结果并处理
+    RecvExternalData(ext_data);
+    ...
+  }
+  ```
 
-  // 发送数据到流程图
-  SendExternalData(ext_data, data, len);
-  
-  // 获取输出结果并处理
-  RecvExternalData(ext_data);
-  ...
-}
-```
+* **图的资源释放**
 
-* 图的资源释放
-
-```c++
-void FlowStop(std::shared_ptr<modelbox::Flow> flow) {
-  // 结束执行
-  flow->Stop();
-}
-```
+  ```c++
+  void FlowStop(std::shared_ptr<modelbox::Flow> flow) {
+    // 结束执行
+    flow->Stop();
+  }
+  ```
 
 开发者可以根据自身业务，选择在合适的地方调用图的启动停止和数据发送。如果用户业务是多线程时，可以将flow对象可作为多线程共享对象，每个线程都往同一流程图发生数据，这样可以充分利用ModelBox的bacth并发能力。
 

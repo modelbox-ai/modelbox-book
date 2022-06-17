@@ -19,7 +19,7 @@
 
 ## 构造方法
 
-构造新的Buffer
+构造新的Buffer。
 
 ```c++
     Buffer();
@@ -29,11 +29,11 @@
 **args:**
 
 * **device** (modelbox::Device) —— 构造当前Buffer所在的modelbox::Device对象
-* **dev_mem_flags**  (uint32_t) —— ascend memory的类型，默认为Normal型
+* **dev_mem_flags**  (uint32_t) —— 内存类型，ascend memory的类型时有效。
 
 **return:**  
 
-构造出来的新的Buffer
+构造出来的新的Buffer。
 
 **note:**
 
@@ -56,7 +56,7 @@
 
 ## Build
 
-通过Buffer对象构建特定大小的内存
+通过Buffer对象构建特定大小的内存。
 
 ```c++
     Status Build(size_t size);
@@ -145,7 +145,7 @@ void*, 原始数据的指针
 
 ```c++
     Status Process(std::shared_ptr<DataContext> data_ctx) {
-        //假设该流单元为1输入1输出，输入端口名为input，输出端口名为output
+        //假设该功能单元为1输入1输出，输入端口名为input，输出端口名为output
         auto input_bufs = data->Input("input");
         auto output_bufs = data->Output("output");
         for (auto i = 0; i < input_bufs->Size(); ++i) {
@@ -174,9 +174,11 @@ data1和data2为获取Buffer的数据指针
 
 1. input的BufferList当中获取数据用ConstData()接口，output的BufferList当中获取数据使用MutableData()接口
 
-1. 流单元当中的输入数据是为不可变，输出数据需要构造赋值，为可变。  
+1. 功能单元当中的输入数据是为不可变，输出数据需要构造赋值，为可变。  
 
 ## HasError
+
+判断当前Buffer是否存在处理异常
 
 ```c++
     bool HasError() const;
@@ -191,6 +193,8 @@ data1和data2为获取Buffer的数据指针
 bool, 当前Buffer是否存在error
 
 ## SetError
+
+设置当前Buffer处理异常信息
 
 ```c++
     void SetError(const std::string& error_code,
@@ -209,6 +213,8 @@ bool, 当前Buffer是否存在error
 
 ## GetErrorCode
 
+获取当前Buffer异常信息的错误码
+
 ```c++
     std::string GetErrorCode() const;
 ```
@@ -222,6 +228,8 @@ bool, 当前Buffer是否存在error
 string, 当前Buffer的错误码
 
 ## GetErrorMsg
+
+获取当前Buffer异常信息的错误信息
 
 ```c++
     std::string GetErrorMsg() const;
@@ -239,7 +247,7 @@ string, 当前Buffer的错误信息
 
 ```c++
     Status Process(std::shared_ptr<DataContext> data_ctx) {
-        //假设该流单元为1输入1输出，输入端口名为input，输出端口名为output
+        //假设该功能单元为1输入1输出，输入端口名为input，输出端口名为output
         ...
         auto output_bufs = data->Output("output");
         output_bufs->Build({1,1,1});
@@ -253,7 +261,7 @@ string, 当前Buffer的错误信息
     }
 
     Status Process(std::shared_ptr<DataContext> data_ctx) {
-        //假设该流单元为1输入1输出，输入端口名为input，输出端口名为output
+        //假设该功能单元为1输入1输出，输入端口名为input，输出端口名为output
         auto input_bufs = data->Input("input");
         auto output_bufs = data->Output("output");
         for (auto i = 0; i < input_bufs->Size(); ++i) {
@@ -269,7 +277,7 @@ string, 当前Buffer的错误信息
 
 **result:**
 
-可以在报错时给Buffer设置error，然后在其他流单元里面补充获取存在Bufferr的error_code和error_msg
+可以在报错时给Buffer设置error，然后在其他功能单元里面补充获取存在Bufferr的error_code和error_msg
 
 ## GetBytes
 
@@ -292,7 +300,7 @@ int64, Buffer的字节数
 ```c++
     
     Status Process(std::shared_ptr<DataContext> data_ctx) {
-        //假设该流单元为1输入1输出，输入端口名为input，输出端口名为output
+        //假设该功能单元为1输入1输出，输入端口名为input，输出端口名为output
         ...
         auto output_bufs = data->Output("output");
         output_bufs->Build({1,1,1});

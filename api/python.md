@@ -1,5 +1,7 @@
 # Python API
 
+Python API如下表所示：
+
 |组件名|功能|
 |-|-|
 |[modelbox.Buffer](python/modelbox_buffer.md)| ModelBox存储基本数据的数据结构|
@@ -9,8 +11,8 @@
 |[modelbox.DataMeta](python/modelbox_datameta.md)| ModelBox挂在端口上面存放数据元信息的数据结构|
 |[modelbox.Device](python/modelbox_device.md)| ModelBox映射设备的数据结构|
 |[modelbox.ExtOutputBufferList](python/modelbox_extoutputbufferlist.md)| ModelBox获取入口信息的数据结构 |
-|[modelbox.ExternalData](python/modelbox_externaldata.md)| ModelBox流单元中自驱动产生数据的数据结构|
-|[modelbox.ExternalDataMap](python/modelbox_externaldatamap.md)| ModelBox当中flow对象产生数据的数据结构|
+|[modelbox.ExternalData](python/modelbox_externaldata.md)| ModelBox功能单元中自驱动产生数据的数据结构|
+|[modelbox.ExternalDataMap](python/modelbox_externaldatamap.md)| ModelBox当中流程图对象产生数据的数据结构|
 |[modelbox.Flow](python/modelbox_flow.md)| ModelBox中启动任务的组件|
 |[modelbox.FlowUnit](python/modelbox_flowunit.md)| ModelBox当中构建业务的基本节点的数据结构|
 |[modelbox.FlowUnitError](python/modelbox_flowuniterror.md)| ModelBox中描述error的数据结构 |

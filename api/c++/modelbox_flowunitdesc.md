@@ -1,20 +1,20 @@
 # modelbox::FlowUnitDesc
 
-描述flowunit描述信息的数据结构
+描述功能单元描述信息的数据结构
 
 |函数|作用|
 |-|-|
-|[SetFlowUnitName](#setflowunitname)|设置流单元名字|
-|[SetDescription](#setdescription)|设置流单元描述|
-|[SetFlowUnitGroupType](#setflowunitgrouptype)|设置流单元组类型|
-|[AddFlowUnitInput](#addflowunitinput)|给流单元添加输入|
-|[AddFlowUnitOutput](#addflowunitoutput)|给流单元添加输出|
-|[AddFlowUnitOption](#addflowunitoption)|给流单元添加配置项|
-|[SetFlowType](#setflowtype)| 设置流单元数据处理类型|
-|[SetOutputType](#setoutputtype)|设置流单元输入类型|
-|[SetConditionType](#setconditiontype)|设置流单元条件类型|
-|[SetInputContiguous](#setinputcontiguous)|设置流单元输入是否连续|
-|[SetExceptionVisible](#setexceptionvisible)|设置流单元异常是否可见|
+|[SetFlowUnitName](#setflowunitname)|设置功能单元名字|
+|[SetDescription](#setdescription)|设置功能单元描述|
+|[SetFlowUnitGroupType](#setflowunitgrouptype)|设置功能单元组类型|
+|[AddFlowUnitInput](#addflowunitinput)|给功能单元添加输入|
+|[AddFlowUnitOutput](#addflowunitoutput)|给功能单元添加输出|
+|[AddFlowUnitOption](#addflowunitoption)|给功能单元添加配置项|
+|[SetFlowType](#setflowtype)| 设置功能单元数据处理类型|
+|[SetOutputType](#setoutputtype)|设置功能单元输入类型|
+|[SetConditionType](#setconditiontype)|设置功能单元条件类型|
+|[SetInputContiguous](#setinputcontiguous)|设置功能单元输入是否连续|
+|[SetExceptionVisible](#setexceptionvisible)|设置功能单元异常是否可见|
 ---
 
 ## SetFlowUnitName
@@ -25,7 +25,7 @@
 
 **args:**
 
-* **flowunit_name** (string) —— 流单元的名字
+* **flowunit_name** (string) —— 功能单元的名字
 
 **return:**  
 
@@ -39,7 +39,7 @@
 
 **args:**
 
-* **description** (string) —— 流单元的详细描述
+* **description** (string) —— 功能单元的详细描述
 
 **return:**  
 
@@ -53,7 +53,7 @@
 
 **args:**
 
-* **group_type** (string) —— 流单元的组类型，限制为智能a-z, A-Z, 0-9, _，只允许存在一个/, 已有的group_type为“Image"等等
+* **group_type** (string) —— 功能单元的组类型，限制为智能a-z, A-Z, 0-9, _，只允许存在一个/, 已有的group_type为“Image"等等
 
 **return:**  
 
@@ -137,7 +137,7 @@ modelbox::Status, 添加flowunit option返回的status状态
 
 **args:**
 
-* **condition_type** (ConditionType) —— 流单元条件type， 分为IF_ELSE, NONE
+* **condition_type** (ConditionType) —— 功能单元条件type， 分为IF_ELSE, NONE
 
 **return:**  
 
@@ -145,7 +145,7 @@ modelbox::Status, 添加flowunit option返回的status状态
 
 **note:**
 
-1. 上述3个接口共同确认流单元为五种类型，分别为NORMAL, STREAM, IF_ELSE, EXPAND, COLLAPSE
+1. 上述3个接口共同确认功能单元为五种类型，分别为NORMAL, STREAM, IF_ELSE, EXPAND, COLLAPSE
 1. 只需要设置某个特定接口即可
 1. 五种flowunit设置样例如下：
 

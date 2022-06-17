@@ -1,30 +1,30 @@
-# modelbox.FlowUnit
+# modelbox::FlowUnit
 
 |函数|作用|
 |-|-|
-|[Open](#open)|flowunit初始化逻辑|
-|[Process](#process)|flowunit处理逻辑|
-|[Close](#close)|flowunit关闭逻辑|
-|[DataPre](#datapre)|stream flowunit 初始化stream时的逻辑|
-|[DataPost](#datapost)|stream flowunit 结束stream时的逻辑|
-|[GetBindDevice](#getbinddevice)|flowunit 获取绑定的设备|
+|[Open](#open)|功能单元初始化逻辑|
+|[Process](#process)|功能单元处理逻辑|
+|[Close](#close)|功能单元关闭逻辑|
+|[DataPre](#datapre)|Stream流初始化逻辑|
+|[DataPost](#datapost)|Stream流结束逻辑|
+|[GetBindDevice](#getbinddevice)|获取功能单元绑定的设备|
 ---
 
 ## Open
 
-flowunit初始化逻辑
+功能单元初始化逻辑
 
 **args:**  
 
-* **config** (modelbox::Configuration) ——  流程图当中配给当前flowunit的配置项
+* **config** (modelbox::Configuration) ——  流程图当中配给当前功能单元的配置项
 
 **return:**  
 
-modelbox::Status  初始化flowunit的返回状态
+modelbox::Status  初始化功能单元的返回状态
 
 ## Process
 
-flowunit处理逻辑
+功能单元处理逻辑
 
 **args:**  
 
@@ -32,11 +32,11 @@ flowunit处理逻辑
 
 **return:**  
 
-modelbox::Status flowunit处理逻辑的返回状态
+modelbox::Status 功能单元处理逻辑的返回状态
 
 ## Close
 
-flowunit 结束逻辑
+功能单元结束逻辑
 
 **args:**  
 
@@ -44,31 +44,31 @@ flowunit 结束逻辑
 
 **return:**  
 
-modelbox::Status flowunit 结束逻辑的返回状态
+modelbox::Status 功能单元结束逻辑的返回状态
 
 ## DataPre
 
-stream flowunit 初始化stream时的逻辑
+Stream流初始化逻辑
 
 **args:**  
 
-* **data_context**  (modelbox::DataContext) ——  初始化stream逻辑当中存放数据的上下文
+* **data_context**  (modelbox::DataContext) ——  初始化Stream逻辑当中存放数据的上下文
 
 **return:**  
 
-modelbox::Status 初始化stream时的逻辑的返回状态
+modelbox::Status 初始化Stream时的逻辑的返回状态
 
 ## DataPost
 
-stream flowunit 结束stream时的逻辑
+Stream流结束逻辑
 
 **args:**  
 
-* **data_context**  (modelbox::DataContext) ——  结束stream逻辑当中存放数据的上下文
+* **data_context**  (modelbox::DataContext) ——  结束Stream逻辑当中存放数据的上下文
 
 **return:**  
 
-modelbox::Status 结束stream逻辑的返回状态
+modelbox::Status 结束Stream逻辑的返回状态
 
 ```c++
     /**
@@ -147,7 +147,7 @@ modelbox::Status 结束stream逻辑的返回状态
 
 ## GetBindDevice
 
-获取当前flowunit绑定的device
+获取当前功能单元绑定设备
 
 **args:**  
 
@@ -155,7 +155,7 @@ modelbox::Status 结束stream逻辑的返回状态
 
 **return:**  
 
-modelbox::Device, 当前绑定的device
+modelbox::Device, 当前绑定设备
 
 **example:**  
 

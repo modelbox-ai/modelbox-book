@@ -1,4 +1,4 @@
-# modelbox.Flow
+# modelbox::Flow
 
 |函数|作用|
 |-|-|
@@ -6,9 +6,9 @@
 |[Build](#build)|构造flow|
 |[Run](#run)|同步运行flow|
 |[RunAsync](#runasync)|异步运行flow|
-|[Wait](#wait)|等待flow运行状态返回|
+|[Wait](#wait)|等待流程图flow运行状态返回|
 |[Stop](#stop)|停止flow|
-|[CreateExternalDataMap](#createexternaldatamap) | flow创建输入的字典对象|
+|[CreateExternalDataMap](#createexternaldatamap) | 流程图flow创建输入的字典对象|
 ---
 
 ## Init
@@ -64,7 +64,7 @@ modelbox::Status  初始化flow的返回状态
 
 **return:**  
 
-modelbox::Status  初始化flow的返回状态
+modelbox::Status  初始化流程图flow的返回状态
 
 ## Build
 
@@ -80,7 +80,7 @@ modelbox::Status  初始化flow的返回状态
 
 **return:**  
 
-modelbox::Status 构造flow的返回状态
+modelbox::Status 构造流程图flow的返回状态
 
 ## Run
 
@@ -96,7 +96,7 @@ modelbox::Status 构造flow的返回状态
 
 **return:**  
 
-modelbox::Status 同步运行flow的返回状态
+modelbox::Status 同步运行流程图flow的返回状态
 
 ## RunAsync
 
@@ -112,7 +112,7 @@ modelbox::Status 同步运行flow的返回状态
 
 **return:**  
 
-modelbox::Status 异步运行flow的返回状态
+modelbox::Status 异步运行流程图flow的返回状态
 
 ## Stop
 
@@ -128,7 +128,7 @@ modelbox::Status 异步运行flow的返回状态
 
 **return:**  
 
-modelbox::Status 停止运行flow的返回状态
+modelbox::Status 停止运行流程图flow的返回状态
 
 ## Wait
 
@@ -145,7 +145,7 @@ modelbox::Status 停止运行flow的返回状态
 
 **return:**  
 
-modelbox::Status 等待flow运行结束的返回状态
+modelbox::Status 等待流程图flow运行结束的返回状态
 
 **example:**  
 

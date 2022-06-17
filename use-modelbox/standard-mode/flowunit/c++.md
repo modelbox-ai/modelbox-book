@@ -198,7 +198,7 @@ ModelBox框架提供的功能单元开发C++接口如下，开发者按需实现
   ```c++
   modelbox::Status ExampleFlowUnit::CudaProcess(std::shared_ptr<modelbox::DataContext> data_ctx, cudaStream_t stream) {
      // 实现核心业务逻辑。 接口携带cuda stream ，可直接用于调用cuda异步接口。
-     // 如果调用cuda同步接口，则需要先调用cudaStreamSynchronize(stream)同步数据。
+     // 如果调用ascend同步接口，则需要先调用cudaStreamSynchronize(stream)同步数据。
      ...
     }
   
@@ -498,7 +498,7 @@ ModelBox框架提供的功能单元开发C++接口如下，开发者按需实现
 
 * **通过DataContext发送事件**
 
-  在开发功能单元时，存在通过功能单元自驱动的场景。如视频解码时，在输入一次视频地址数据后，后续在没有数据驱动的情况下需要反复调度解封装功能单元。 此时需要通过在功能单元中发送事件，来驱动调度器在没有数据的情况下继续调度该流单元。
+  在开发功能单元时，存在通过功能单元自驱动的场景。如视频解码时，在输入一次视频地址数据后，后续在没有数据驱动的情况下需要反复调度解封装功能单元。 此时需要通过在功能单元中发送事件，来驱动调度器在没有数据的情况下继续调度该功能单元。
 
   ```c++
   modelbox::Status ExampleFlowUnit::Process(std::shared_ptr<modelbox::DataContext> data_ctx) {

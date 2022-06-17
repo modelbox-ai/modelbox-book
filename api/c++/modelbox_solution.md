@@ -1,4 +1,4 @@
-# modelbox.Solution
+# modelbox::Solution
 
 |函数|作用|
 |-|-|

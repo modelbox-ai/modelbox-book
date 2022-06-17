@@ -15,6 +15,8 @@
 
 ## SetName
 
+设置Driver名称
+
 ```c++
      void SetName(const std::string &name);
 ```
@@ -29,19 +31,23 @@
 
 ## SetClass
 
+设置Driver类型
+
 ```c++
      void SetClass(const std::string &classname);
 ```
 
 **args:**
 
-* **classname** (string) —— 插件的类型，例如：DRIVER-FLOWUNIT, DRIVER-DEVICE等等, 具体可以参考其他流单元的实现
+* **classname** (string) —— 插件的类型，例如：DRIVER-FLOWUNIT, DRIVER-DEVICE等等, 具体可以参考其他功能单元的实现
 
 **return:**  
 
 无
 
 ## SetType
+
+设置Driver设备类型
 
 ```c++
      void SetType(const std::string &type);
@@ -166,4 +172,4 @@ modelbox::Status, 设置是否成功, 非必须， 默认为空
 
 **result:**
 
-设置了插件的属性值
+设置了Driver属性值

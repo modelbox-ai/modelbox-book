@@ -13,10 +13,10 @@ ModelBox框架会自动管理Stream，开发功能单元时，开发者可以通
 ```c++
 #include <modelbox/device/ascend/device_ascend.h>
 
-class SomeAscendFlowUnit : public modelbox::AscendFlowUnit {
+class ExampleAscendFlowUnit : public modelbox::AscendFlowUnit {
  public:
-  SomeAscendFlowUnit() = default;
-  virtual ~SomeAscendFlowUnit() = default;
+  ExampleAscendFlowUnit() = default;
+  virtual ~ExampleAscendFlowUnit() = default;
 
   // 数据处理接口，需要实现AscendProcess，第二个参数为Ascend ACL Stream。
   virtual modelbox::Status AscendProcess(std::shared_ptr<modelbox::DataContext> data_ctx, aclrtStream stream);
@@ -26,7 +26,7 @@ class SomeAscendFlowUnit : public modelbox::AscendFlowUnit {
 除AscendProcess以外，其他接口和通用功能单元一致，AscendProcess接口如下：
 
 ```c++
-modelbox::Status AscendFlowUnit::AscendProcess(
+modelbox::Status ExampleAscendFlowUnit::AscendProcess(
     std::shared_ptr<modelbox::DataContext> data_ctx, aclrtStream stream) {
   auto inputs = ctx->Input("input");
   auto outputs = ctx->Output("output");
@@ -55,13 +55,15 @@ modelbox::Status AscendFlowUnit::AscendProcess(
 }
 ```
 
+由于不确定输入数据是否是异步执行的数据，**如果AscendProcess里需要调用ACL同步接口，则需要在调用前，先调用`aclrtSynchronizeStream(stream)`进行数据同步**。
+
 ```c++
-modelbox::Status AscendFlowUnit::AscendProcess(
+modelbox::Status ExampleAscendFlowUnit::AscendProcess(
     std::shared_ptr<modelbox::DataContext> data_ctx, aclrtStream stream) {
   auto inputs = ctx->Input("input");
   auto outputs = ctx->Output("output");
 
-  // 同步Stream
+  // 同步数据
   aclrtSynchronizeStream(stream);
 
   // 申请内存

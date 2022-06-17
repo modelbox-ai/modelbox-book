@@ -4,11 +4,11 @@
 
 * **什么是ModelBox插件**
 
-ModelBox插件是指基于ModelBox框架对外交互的组件，它可以用来作为AI应用和周边系统对接的桥梁。ModelBox框架提供了ModelBox插件管理和扩展开发能力，用户可以定制化开发属于自己业务的插件来对接第三方平台，ModelBox框架可以将其加载并运行。在ModelBox插件内可以完成流程图的加载和运行、任务的创建和启停，统计数据的收集等。同时，ModelBox框架可以支持多个ModelBox插件的加载。
+  ModelBox插件是指基于ModelBox框架对外交互的组件，它可以用来作为AI应用和周边系统对接的桥梁。ModelBox框架提供了ModelBox插件管理和扩展开发能力，用户可以定制化开发属于自己业务的插件来对接第三方平台，ModelBox框架可以将其加载并运行。在ModelBox插件内可以完成流程图的加载和运行、任务的创建和启停，统计数据的收集等。同时，ModelBox框架可以支持多个ModelBox插件的加载。
 
 * **ModelBox插件使用场景**
 
-ModelBox插件在视频场景使用较为普遍，典型使用场景为：视频分析任务需要从外部平台或者组件下发到ModelBox框架进行任务分析时，需要通过ModelBox插件来接受外部的请求并转化为ModelBox框架里的分析任务进行业务分析。同时ModelBox插件也可以实现统计信息的收集并发送给外部运维平台，实现与外部系统的对接。
+  ModelBox插件在视频场景使用较为普遍，典型使用场景为：视频分析任务需要从外部平台或者组件下发到ModelBox框架进行任务分析时，需要通过ModelBox插件来接受外部的请求并转化为ModelBox框架里的分析任务进行业务分析。同时ModelBox插件也可以实现统计信息的收集并发送给外部运维平台，实现与外部系统的对接。
 
 ModelBox框架提供了预置的ModelBox插件`ModelBox Plugin`，用于流程图的加载和运行, 见[ModelBox Plugin](../../../plugins/modelbox-plugin.md)章节。在大部分情况下，可以直接使用ModelBox Plugin完成相应的业务功能，当某些场景下，ModelBox Plugin功能无法满足要求时，需要自定义开发ModelBox插件，下面介绍ModelBox插件的具体开发流程。
 
@@ -27,7 +27,7 @@ ModelBox API按照类型包含：
 | CreatePlugin  | 创建ModelBox插件对象，并返回给ModelBox框架                 | ModelBox框架启动时加载参加时调用                                         |
 | Plugin::Init  | 实现ModelBox插件初始化逻辑，提供系统配置，插件初始化时调用 | ModelBox框架启动时，在CreatePlugin成功后插件初始化调用；不能存在阻塞操作 |
 | Plugin::Start | 实现ModelBox插件启动逻辑，插件启动时调用                   | 插件启动时调用                                                           |
-| Plugin::Stop  | 实现ModelBox插件停止逻辑，插件停止时调用                   | ModelBox框架进程退出时插件停止时调用                                     |
+| Plugin::Stop  | 实现ModelBox插件停止逻辑，插件停止时调用                   | ModelBox框架进程退出时插件停止时调用                                   |
 
 * **Job**： 任务管理组件
 
@@ -104,117 +104,111 @@ modelbox-tool template -service-plugin -name PluginName
 
 * **ModelBox插件启动入口实现**
 
-```c++
+  ```c++
 
-#include "modelbox/server/plugin.h"
+  #include "modelbox/server/plugin.h"
 
-// 插件需要实现的接口
-class ModelBoxExamplePlugin : public Plugin {
- public:
-  ModelBoxExamplePlugin(){};
-  ~ModelBoxExamplePlugin(){};
+  // 插件需要实现的接口
+  class ModelBoxExamplePlugin : public Plugin {
+  public:
+    ModelBoxExamplePlugin(){};
+    ~ModelBoxExamplePlugin(){};
 
-  // 插件初始化时调用。
-  bool Init(std::shared_ptr<modelbox::Configuration> config) override;
-  // 插件开工启动时调用，非阻塞。
-  bool Start() override;
-  // 插件停止时调用。
-  bool Stop() override;
-};
+    // 插件初始化时调用。
+    bool Init(std::shared_ptr<modelbox::Configuration> config) override;
+    // 插件开工启动时调用，非阻塞。
+    bool Start() override;
+    // 插件停止时调用。
+    bool Stop() override;
+  };
 
-// 插件创建接口
-extern "C" {
-std::shared_ptr<Plugin> CreatePlugin() {
-    return std::make_shared<ModelBoxExamplePlugin>();
-};
-}
-```
+  // 插件创建接口
+  extern "C" {
+  std::shared_ptr<Plugin> CreatePlugin() {
+      return std::make_shared<ModelBoxExamplePlugin>();
+  };
+  }
+  ```
 
-ModelBox加载ModelBox插件流程如下：
+  ModelBox加载ModelBox插件流程如下：
 
-1. ModelBox Server先调用插件中的`CreatePlugin`函数创建插件对象。
+  1. ModelBox Server先调用插件中的`CreatePlugin`函数创建插件对象。
 
-    插件需要在此函数中，创建插件对象，返回智能指针。
+      插件需要在此函数中，创建插件对象，返回智能指针。
 
-1. 再调用`Plugin::Init()`初始化插件，入参为TOML文件配置。
+  1. 再调用`Plugin::Init()`初始化插件，入参为TOML文件配置。
 
-    插件可在初始化函数中，获取配置，并调用插件自身的初始化功能。
+      插件可在初始化函数中，获取配置，并调用插件自身的初始化功能。
 
-1. 再调用`Plugin::Start()`启动插件。
+  1. 再调用`Plugin::Start()`启动插件。
 
-    插件在Start函数中启动插件服务，申请相关的资源；此函数不能阻塞。
+      插件在Start函数中启动插件服务，申请相关的资源；此函数不能阻塞。
 
-1. 进程退出时，调用`Plugin::Stop()`停止插件功能。
+  1. 进程退出时，调用`Plugin::Stop()`停止插件功能。
 
-    插件在Stop函数中停止插件的功能，并释放相关的资源。
+      插件在Stop函数中停止插件的功能，并释放相关的资源。
 
-1. 调用ModelBox Server，ModelBox Library相关接口。
+  1. 调用ModelBox Server，ModelBox Library相关接口。
 
-    插件调用ModelBox Server，以及ModelBox Library的API进行业务控制和运行。具体参考相关的API。
+      插件调用ModelBox Server，以及ModelBox Library的API进行业务控制和运行。具体参考相关的API。
 
 * **Job创建流程**
 
-使用场景为流程图不依赖于外部给其输入，直接加载图配置即可运行场景。如图片推理服务，数据流可由流程图中的HTTP功能单元产生数据，再比如流程图中读本地文件作为数据源的场景。
+  使用场景为流程图不依赖于外部给其输入，直接加载图配置即可运行场景。如图片推理服务，数据流可由流程图中的HTTP功能单元产生数据，再比如流程图中读本地文件作为数据源的场景。
 
   ```c++
-   std::shared_ptr<modelbox::Job> job_;
-   std::shared_ptr<modelbox::JobManager> job_manager_;
-
+  std::shared_ptr<modelbox::Job> job_;
+  std::shared_ptr<modelbox::JobManager> job_manager_;
   bool ModelBoxExamplePlugin::Init(std::shared_ptr<modelbox::Configuration> config)
   {
-     //创建JobManager
-     job_manager_ = std::make_shared<JobManager>();
-     //从配置文件获取图配置，config对象为运行时传入的conf配置文件，默认路径为/usr/local/etc/modelbox/modelbox.conf
-     auto graph_path = config->GetString("server.flow_path");
-     //创建Job
-     job_ = job_manager_->CreateJob("my_job", graph_path);
-     
-     auto ret = job_->Init();
-     return ret;
+    //创建JobManager
+    job_manager_ = std::make_shared<JobManager>();
+    //从配置文件获取图配置，config对象为运行时传入的conf配置文件，默认路为/usr/local/etc/modelbox/modelbox.conf
+    auto graph_path = config->GetString("server.flow_path");
+    //创建Job
+    job_ = job_manager_->CreateJob("my_job", graph_path);
+    
+    auto ret = job_->Init();
+    return ret;
   }
-
   bool ModelBoxExamplePlugin::Start()
   {
-     job_->Build();
-     job_->Run();
-     return true;
+    job_->Build();
+    job_->Run();
+    return true;
   }
-
-
   bool ModelBoxExamplePlugin::Stop()
   {
-     auto ret = job_->Stop();
-     ret = job_manager_->DeleteJob("my_job");
-     return ret; 
+    auto ret = job_->Stop();
+    ret = job_manager_->DeleteJob("my_job");
+    return ret; 
   }
-
   ```
 
-* **Task创建流程**
+  * **Task创建流程**
 
-使用场景为流程图运行依赖与外部输入的场景，如分析的视频流信息需要由外部传入ModelBox插件，再用ModelBox插件创建Task，并把相应配置参数数据传递到流程图。
+  使用场景为流程图运行依赖与外部输入的场景，如分析的视频流信息需要由外部传入ModelBox插件，再用ModelBox插件创建Task，并把相应配置参数数据传递到流程图。
 
-由于流程图需要接受插件输入，所以需要首先给流程图配置输入节点：
+  由于流程图需要接受插件输入，所以需要首先给流程图配置输入节点：
 
-```toml
-[graph]
-graphconf = '''digraph demo {
-    input1[type=input, device=cpu, deviceid=0]   # 设置图的输入端口，端口名为"input1" 
-    data_source_parser[type=flowunit, flowunit=data_source_parser, device=cpu, deviceid=0, retry_interval_ms = 1000] 
-    videodemuxer[type=flowunit, flowunit=video_demuxer, device=cpu, deviceid=0]
-    videodecoder[type=flowunit, flowunit=video_decoder, device=cpu, deviceid=0,pix_fmt=nv12]  
-    ...
-    input1 -> data_source_parser:in_data
-    data_source_parser:out_video_url -> videodemuxer:in_video_url
-    videodemuxer:out_video_packet -> videodecoder:in_video_packet
-    videodecoder:out_video_frame -> ...
-}'''
-format = "graphviz"
-```
+  ```toml
+  [graph]
+  graphconf = '''digraph demo {
+      input1[type=input, device=cpu, deviceid=0]   # 设置图的输入端口，端口名为"input1" 
+      data_source_parser[type=flowunit, flowunit=data_source_parser, device=cpu, deviceid=0, retry_interval_ms = 1000] 
+      videodemuxer[type=flowunit, flowunit=video_demuxer, device=cpu, deviceid=0]
+      videodecoder[type=flowunit, flowunit=video_decoder, device=cpu, deviceid=0,pix_fmt=nv12]  
+      ...
+      input1 -> data_source_parser:in_data
+      data_source_parser:out_video_url -> videodemuxer:in_video_url
+      videodemuxer:out_video_packet -> videodecoder:in_video_packet
+      videodecoder:out_video_frame -> ...
+  }'''
+  format = "graphviz"
+  ```
 
-```c++
-  void ModelBoxExamplePlugin::ModelBoxTaskStatusCallback(modelbox::OneShotTask *task,
-                                     modelbox::TaskStatus status) {
+  ```c++
+  void ModelBoxExamplePlugin::ModelBoxTaskStatusCallback(modelbox::OneShotTask *task, modelbox::TaskStatus status) {
     //实现任务结束或者任务异常时处理逻辑
     return;
   }
@@ -272,8 +266,8 @@ format = "graphviz"
       //删除任务
       task_manager->DeleteTaskById(oneshot_task->GetTaskId());
       return true;
-}
-```
+  }
+  ```
 
 ## ModelBox插件编译运行
 
