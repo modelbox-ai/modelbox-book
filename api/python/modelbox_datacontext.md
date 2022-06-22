@@ -8,9 +8,11 @@
 |[output](#modelboxdatacontextoutput)|获取功能单元输出端口的数据|
 |[has_error](#modelboxdatacontexthaserror)|datacontext当中是否存在error|
 |[get_error](#modelboxdatacontextgeterror)|从datacontext中获取error|
+|[set_private](#modelboxdatacontextsetprivate)|设置datacontext中的私有值，值可以是Python任意对象|
+|[get_private](#modelboxdatacontextgetprivate)|获取datacontext中的私有值，值可以是Python任意对象|
 |[set_private_string](#modelboxdatacontextsetprivateint)|设置datacontext中的私有字符串值|
 |[get_private_string](#modelboxdatacontextgetprivatestring)|获取datacontext中的私有字符串值|
-|[set_private_int](#modelboxdatacontextgetprivateint)|设置datacontext中的私有整型值|
+|[set_private_int](#modelboxdatacontextsetprivateint)|设置datacontext中的私有整型值|
 |[get_private_int](#modelboxdatacontextgetprivateint)|获取datacontext中的私有整型值|
 |[get_input_meta](#modelboxdatacontextgetinputmeta)|获取datacontext当中绑定在input端口的值|
 |[set_output_meta](#modelboxdatacontextsetoutputmeta)|设置datacontext当中绑定在output端口的值|
@@ -123,6 +125,32 @@ modelbox.FlowUnitEvent对象
         return modelbox.Status()
         
 ```
+
+## modelbox.DataContext.set_private
+
+设置当前数据上下文任意对象。
+
+**args:**  
+
+* **key** (str)  —— 设置字符串型值的key
+
+* **value** (str) ——  设置任意Python对象
+
+**return:**  
+
+无
+
+## modelbox.DataContext.get_private
+
+获取当前数据上下文私有对象。
+
+**args:**  
+
+* **key** (str)  ——  需要获取的字符串型的key
+
+**return:**  
+
+py::object  获取当前key值的Python对象
 
 ## modelbox.DataContext.set_private_string
 

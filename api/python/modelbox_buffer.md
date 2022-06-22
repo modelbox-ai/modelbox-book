@@ -175,11 +175,11 @@ int64, Buffer的字节数
 
 * **key** (str) —— Meta的key值
 
-* **obj** (int, str, double, bool, modelbox.ModelBoxDataType, list[str], list[int], list[double], list[bool]) —— Meta的value值
+* **obj** (int, str, double, bool, modelbox.ModelBoxDataType, list[str], list[int], list[double], list[bool], list[list], numpy) —— Meta的value值
 
 **return:**  
 
-bool, 是否设置成功
+无
 
 ## modelbox.Buffer.get
 
@@ -193,7 +193,7 @@ bool, 是否设置成功
 
 Python object 获取key对应的value值
 
-type: int, double, str, bool, list[int], list[str], list[double], list[bool]
+type: int, double, str, bool, list[int], list[str], list[double], list[bool], list[list], numpy
 
 **example:**  
 
