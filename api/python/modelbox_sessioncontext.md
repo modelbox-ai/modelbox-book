@@ -2,6 +2,8 @@
 
 |函数|作用|
 |-|-|
+|[set_private](#modelboxsessioncontextsetprivate)|设置SessionContext中的私有值|
+|[get_private](#modelboxsessioncontextgetprivate)|获取SessionContext中的私有值|
 |[set_private_string](#modelboxsessioncontextsetprivatestring)|设置SessionContext中的私有字符串值|
 |[get_private_string](#modelboxsessioncontextgetprivatestring)|获取SessionContext中的私有字符串值|
 |[set_private_int](#modelboxsessioncontextsetprivateint)|设置SessionContext中的私有整型值|
@@ -9,6 +11,32 @@
 |[get_session_config](#modelboxsessioncontextgetsessionconfig)|获取SessionContext中的配置对象|
 |[get_session_id](#modelboxsessioncontextgetsessionid)|获取SessionContext的ID|
 ---
+
+## modelbox.SessionContext.set_private
+
+设置SessionContext私有值。
+
+**args:**  
+
+* **key** (str)  —— 设置字符串型值的key
+
+* **value** (str) ——  设置任意Python对象
+
+**return:**  
+
+无
+
+## modelbox.SessionContext.get_private
+
+获取SessionContext私有值。
+
+**args:**  
+
+* **key** (str)  ——  设置字符串型值得key
+
+**return:**  
+
+py::object  获取当前key值的Python对象
 
 ## modelbox.SessionContext.set_private_string
 
