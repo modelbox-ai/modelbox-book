@@ -41,7 +41,9 @@ ModelBox Server安装完成后，编排插件会通过插件的形式由ModelBox
 modelbox-tool develop -s 
 ```
 
-命令执行后，将在用户$HOME/modelbox-service创建运行目录，并开启http编排服务，可使用对应主机的IP地址，和开启的端口号（默认端口号为1104），在配置**访问控制列表**并重启modelbox服务使之生效后，即可访问Editor界面。
+命令执行后，将在用户$HOME/modelbox-service创建运行目录，并开启http编排服务，可使用对应主机的IP地址，和开启的端口号（默认端口号为1104）访问Editor界面。
+
+**如果访问被拒绝，可以尝试检查并修改ACL配置**，并重启ModelBox服务生效，详见**访问控制列表**章节。
 
 * **Editor配置**
 
