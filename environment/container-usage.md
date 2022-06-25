@@ -50,7 +50,7 @@ HTTP_DOCKER_PORT_COMMAND="-p $HTTP_SERVER_PORT:$HTTP_SERVER_PORT"
 
 docker run -itd --gpus all -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,video \
     --tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
-    --name $CONTAINER_NAME -v /opt/modelbox:/opt/modelbox -v /home:/home \
+    --name $CONTAINER_NAME -v /home:/home \
     -p $SSH_MAP_PORT:22 -p $EDITOR_MAP_PORT:1104 $HTTP_DOCKER_PORT_COMMAND \
     $IMAGE_NAME
 ```
