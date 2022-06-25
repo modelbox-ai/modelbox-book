@@ -4,6 +4,18 @@ ModelBox框架采用C++语言编写，工程编译软件是CMake，本章节主�
 
 基于ModelBox开发AI应用，推荐使用[容器镜像](./container-usage.md)方式开发，避免从源代码构建ModelBox耗时。源码编译安装方式主要用于不支持Docker的系统，如部分端侧、嵌入式设备等。
 
+## 一键式脚本
+
+如果只是运行mnist验证，可以使用如下一键式脚本准备编译环境。脚本：[get-start.sh](get-start.sh)
+
+```shell
+curl https://modelbox-ai.com/modelbox-book/environment/get-start.sh | sh /dev/stdin -m -j2
+```
+
+参数说明：
+  * `-m`： 从国内镜像下载依赖软件包。
+  * `-j[n]`： 并发编译数量。默认是2个。
+
 ## 编译依赖准备
 
 在编译ModelBox之前，需要安装依赖软件，ModelBox依赖软件要求如下:
