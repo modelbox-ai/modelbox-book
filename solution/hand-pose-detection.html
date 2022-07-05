@@ -1781,7 +1781,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#&#x624B;&#x52BF;&#x8BC6;&#x522B;"><b></b>&#x624B;&#x52BF;&#x8BC6;&#x522B;</a></li><ul><li><span class="title-icon "></span><a href="#&#x8F93;&#x5165;"><b></b>&#x8F93;&#x5165;</a></li><li><span class="title-icon "></span><a href="#&#x8F93;&#x51FA;"><b></b>&#x8F93;&#x51FA;</a></li><li><span class="title-icon "></span><a href="#&#x83B7;&#x53D6;&#x65B9;&#x6CD5;"><b></b>&#x83B7;&#x53D6;&#x65B9;&#x6CD5;</a></li><li><span class="title-icon "></span><a href="#&#x4F7F;&#x7528;&#x6837;&#x4F8B;"><b></b>&#x4F7F;&#x7528;&#x6837;&#x4F8B;</a></li><ul><li><span class="title-icon "></span><a href="#c&#x6837;&#x4F8B;"><b></b>C++&#x6837;&#x4F8B;</a></li></ul></ul></ul></div><h1 id="&#x624B;&#x52BF;&#x8BC6;&#x522B;"><a name="&#x624B;&#x52BF;&#x8BC6;&#x522B;" class="anchor-navigation-ex-anchor" href="#&#x624B;&#x52BF;&#x8BC6;&#x522B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x624B;&#x52BF;&#x8BC6;&#x522B;</h1>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#&#x624B;&#x52BF;&#x8BC6;&#x522B;"><b></b>&#x624B;&#x52BF;&#x8BC6;&#x522B;</a></li><ul><li><span class="title-icon "></span><a href="#&#x8F93;&#x5165;"><b></b>&#x8F93;&#x5165;</a></li><li><span class="title-icon "></span><a href="#&#x8F93;&#x51FA;"><b></b>&#x8F93;&#x51FA;</a></li><li><span class="title-icon "></span><a href="#&#x83B7;&#x53D6;&#x65B9;&#x6CD5;"><b></b>&#x83B7;&#x53D6;&#x65B9;&#x6CD5;</a></li><li><span class="title-icon "></span><a href="#&#x4F7F;&#x7528;&#x6837;&#x4F8B;"><b></b>&#x4F7F;&#x7528;&#x6837;&#x4F8B;</a></li><ul><li><span class="title-icon "></span><a href="#c&#x6837;&#x4F8B;"><b></b>C++&#x6837;&#x4F8B;</a></li><li><span class="title-icon "></span><a href="#python&#x6837;&#x4F8B;"><b></b>Python&#x6837;&#x4F8B;</a></li></ul></ul></ul></div><h1 id="&#x624B;&#x52BF;&#x8BC6;&#x522B;"><a name="&#x624B;&#x52BF;&#x8BC6;&#x522B;" class="anchor-navigation-ex-anchor" href="#&#x624B;&#x52BF;&#x8BC6;&#x522B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x624B;&#x52BF;&#x8BC6;&#x522B;</h1>
 <p>&#x624B;&#x52BF;&#x8BC6;&#x522B;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x662F;ModelBox&#x63D0;&#x4F9B;&#x53EF;&#x76F4;&#x63A5;&#x8C03;&#x7528;&#x7684;API&#xFF0C;&#x5F00;&#x53D1;&#x8005;&#x96C6;&#x6210;&#x624B;&#x52BF;&#x8BC6;&#x522B;solution&#x540E;&#xFF0C;&#x53EF;&#x4EE5;&#x5B8C;&#x6210;&#x624B;&#x52BF;&#x5173;&#x952E;&#x70B9;&#x7684;&#x8BC6;&#x522B;&#x3002;&#x68C0;&#x6D4B;&#x6548;&#x679C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
 <p><img src="../assets/images/figure/solution/hand_pose_result.jpg" alt="hand_pose_result"></p>
 <h2 id="&#x8F93;&#x5165;"><a name="&#x8F93;&#x5165;" class="anchor-navigation-ex-anchor" href="#&#x8F93;&#x5165;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8F93;&#x5165;</h2>
@@ -1830,31 +1830,28 @@ make package -j16 hand_pose_detection
 <ul>
 <li><p><strong>&#x5934;&#x6587;&#x4EF6;</strong></p>
 <p>&#x9700;&#x8981;&#x5F15;&#x5165;&#x5982;&#x4E0B;&#x5934;&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x94FE;&#x63A5;modelbox&#x5E93;&#xFF1A;</p>
-<pre><code class="lang-cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;modelbox/solution.h&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;modelbox/flow.h&gt;</span></span>
+<pre><code class="lang-cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;modelbox/flow.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;opencv2/opencv.hpp&gt;</span></span>
 </code></pre>
 </li>
 <li><p><strong>Solution&#x521B;&#x5EFA;&#x521D;&#x59CB;&#x5316;&#x548C;&#x542F;&#x52A8;</strong></p>
-<pre><code class="lang-c++">modelbox::<span class="hljs-function">Flow <span class="hljs-title">CreateHandPoseDetectionSolution</span><span class="hljs-params">()</span> </span>{
-  ModelBoxLogger.GetLogger()-&gt;SetLogLevel  modelbox::LogLevel::LOG_INFO);
-  modelbox::<span class="hljs-function">Solution <span class="hljs-title">solution_test</span><span class="hljs-params">(<span class="hljs-string">&quot;hand_pose_detection&quot;</span>)</span></span>;
+<pre><code class="lang-c++"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::Flow&gt; CreateHandPoseDetectionSolution() {
+  ModelBoxLogger.GetLogger()-&gt;SetLogLevel(modelbox::LogLevel::LOG_INFO);
   <span class="hljs-keyword">auto</span> flow = <span class="hljs-built_in">std</span>::make_shared&lt;modelbox::Flow&gt;();
-
-  <span class="hljs-keyword">if</span> (!flow-&gt;Init(solution_test)) {
-    MBLOG_ERROR &lt;&lt; <span class="hljs-string">&quot;init flow failed, &quot;</span> &lt;&lt; ret.WrapErrormsgs();
-    <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+  modelbox::Status mb_ret;
+  mb_ret = flow-&gt;InitByName(<span class="hljs-string">&quot;hand_pose_detection&quot;</span>);
+  <span class="hljs-keyword">if</span> (mb_ret != modelbox::STATUS_OK) {                           
+    MBLOG_ERROR &lt;&lt; <span class="hljs-string">&quot;flow init failed, ret &quot;</span> &lt;&lt; ret.Errormsg(); 
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;                                                 
   }
 
-  <span class="hljs-keyword">if</span> (!flow-&gt;Build()) {
-    MBLOG_ERROR &lt;&lt; <span class="hljs-string">&quot;build flow failed, &quot;</span> &lt;&lt; ret.WrapErrormsgs();
-    <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+  mb_ret = flow-&gt;StartRun();
+  <span class="hljs-keyword">if</span> (mb_ret != modelbox::STATUS_OK) {                           
+    MBLOG_ERROR &lt;&lt; <span class="hljs-string">&quot;flow start run failed, ret &quot;</span> &lt;&lt; ret.Errormsg(); 
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;                                                 
   }
 
-  <span class="hljs-keyword">if</span> (!flow-&gt;RunAsync()) {
-    MBLOG_ERROR &lt;&lt; <span class="hljs-string">&quot;flow run failed&quot;</span>;
-  }
-  MBLOG_INFO &lt;&lt; <span class="hljs-string">&quot;build hand_pose detection solution success&quot;</span>;
-
+  <span class="hljs-keyword">return</span> flow;
 }
 </code></pre>
 </li>
@@ -1863,38 +1860,35 @@ make package -j16 hand_pose_detection
 <pre><code class="lang-c++"><span class="hljs-comment">// &#x6570;&#x636E;&#x53D1;&#x9001;&#x83B7;&#x53D6;</span>
 modelbox::<span class="hljs-function">Status <span class="hljs-title">Process</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::Flow&gt; flow, <span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;test_file)</span> </span>{
   <span class="hljs-comment">// &#x521B;&#x5EFA;&#x8F93;&#x5165;&#x8F93;&#x51FA;&#x53E5;&#x67C4;</span>
-  <span class="hljs-keyword">auto</span> ext_data = flow-&gt;CreateExternalDataMap();
-  <span class="hljs-keyword">if</span> (ext_data == <span class="hljs-literal">nullptr</span>) {
-    MBLOG_ERROR &lt;&lt; <span class="hljs-string">&quot;create external data map failed.&quot;</span>;
-    <span class="hljs-keyword">return</span> modelbox::STATUS_FAULT;
-  }
-  <span class="hljs-keyword">auto</span> input_bufs = ext_data-&gt;CreateBufferList();
+  <span class="hljs-keyword">auto</span> stream_io = flow-&gt;CreateStreamIO();
+  modelbox::Status mb_ret;
 
-  <span class="hljs-comment">// push&#x8F93;&#x5165;&#x6570;&#x636E;</span>
-  <span class="hljs-keyword">if</span> (!BuildInputData(test_file, input_bufs)) {
-    <span class="hljs-keyword">return</span> modelbox::STATUS_FAULT;
-  }
-
-  <span class="hljs-keyword">if</span> (!ext_data-&gt;Send(<span class="hljs-string">&quot;input&quot;</span>, input_bufs)) {
-    MBLOG_ERROR &lt;&lt; <span class="hljs-string">&quot;send data to input failed.&quot;</span>;
-    <span class="hljs-keyword">return</span> modelbox::STATUS_FAULT;
+  <span class="hljs-comment">// &#x521B;&#x5EFA;&#x8F93;&#x5165;</span>
+  <span class="hljs-keyword">auto</span> buffer = stream_io-&gt;CreateBuffer();
+  mb_ret = BuildInputData(test_file, buffer);
+  <span class="hljs-keyword">if</span> (mb_ret != modelbox::STATUS_OK) {                           
+    MBLOG_ERROR &lt;&lt; <span class="hljs-string">&quot;flow build input data failed, ret &quot;</span> &lt;&lt; ret.Errormsg(); 
+    <span class="hljs-keyword">return</span> modelbox::STATUS_FAULT;                                                 
   }
 
-  <span class="hljs-comment">// &#x5173;&#x95ED;&#x8F93;&#x5165;</span>
-  <span class="hljs-keyword">if</span> (!ext_data-&gt;Close()) {
-    MBLOG_ERROR &lt;&lt; <span class="hljs-string">&quot;external data close failed.&quot;</span>;
-    <span class="hljs-keyword">return</span> modelbox::STATUS_FAULT;
+  stream_io-&gt;Send(<span class="hljs-string">&quot;input&quot;</span>, buffer);
+
+  <span class="hljs-comment">// &#x83B7;&#x53D6;&#x8F93;&#x51FA;</span>
+  <span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::Buffer&gt; output_buffer;
+  stream_io-&gt;Recv(<span class="hljs-string">&quot;output&quot;</span>, output_buffer);
+  mb_ret = ProcessOutputData(output_buffer);
+  <span class="hljs-keyword">if</span> (mb_ret != modelbox::STATUS_OK) {                           
+    MBLOG_ERROR &lt;&lt; <span class="hljs-string">&quot;flow process output failed, ret &quot;</span> &lt;&lt; ret.Errormsg(); 
+    <span class="hljs-keyword">return</span> modelbox::STATUS_FAULT;                                                 
   }
 
-  <span class="hljs-comment">// &#x83B7;&#x53D6;&#x63A8;&#x7406;&#x7ED3;&#x679C;</span>
-  RecvExternalData(ext_data);
-
+  <span class="hljs-keyword">return</span> modelbox::STATUS_OK;
 }
 </code></pre>
 <ul>
 <li>&#x521B;&#x5EFA;&#x8F93;&#x5165;</li>
 </ul>
-<pre><code class="lang-cpp">modelbox::<span class="hljs-function">Status <span class="hljs-title">BuildInputData</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;img_path, <span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::BufferList&gt; &amp;input_bufferlist)</span> </span>{
+<pre><code class="lang-cpp">modelbox::<span class="hljs-function">Status <span class="hljs-title">BuildInputData</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;img_path, <span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::Buffer&gt; &amp;input_buffer)</span> </span>{
   FILE *pImg = fopen(img_path.c_str(), <span class="hljs-string">&quot;rb&quot;</span>);
   <span class="hljs-keyword">if</span> (pImg == <span class="hljs-literal">nullptr</span>) {
     MBLOG_ERROR &lt;&lt; <span class="hljs-string">&quot;file open failed, file path: &quot;</span> &lt;&lt; img_path;
@@ -1905,58 +1899,29 @@ modelbox::<span class="hljs-function">Status <span class="hljs-title">Process</s
   <span class="hljs-keyword">auto</span> fSize = ftell(pImg);
   rewind(pImg);
 
-  input_bufferlist-&gt;Build({(<span class="hljs-keyword">size_t</span>)fSize});
-  input_bufferlist-&gt;EmplaceBack(pImg, fSize);
+  input_buffer-&gt;Build((<span class="hljs-keyword">size_t</span>)fSize);
+  <span class="hljs-keyword">auto</span> buffer_data = (<span class="hljs-keyword">char</span> *)input_buffer-&gt;MutableData();
+  fread(buffer_data, fSize, <span class="hljs-number">1</span>, pImg);
 
   fclose(pImg);
-  <span class="hljs-keyword">return</span> modelbox::STATUS_SUCCESS;
-}
-</code></pre>
-<ul>
-<li>&#x83B7;&#x53D6;&#x8F93;&#x51FA;&#x7ED3;&#x679C;</li>
-</ul>
-<pre><code class="lang-cpp">modelbox::<span class="hljs-function">Status <span class="hljs-title">RecvExternalData</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::ExternalDataMap&gt; ext_data)</span> </span>{
-  modelbox::OutputBufferList map_buffer_list;
-  <span class="hljs-comment">// &#x63A5;&#x6536;&#x6570;&#x636E;</span>
-  <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
-    <span class="hljs-keyword">auto</span> status = ext_data-&gt;Recv(map_buffer_list);
-    <span class="hljs-keyword">if</span> (status != modelbox::STATUS_SUCCESS) {
-      <span class="hljs-keyword">if</span> (status == modelbox::STATUS_EOF) {
-        <span class="hljs-comment">// &#x6570;&#x636E;&#x5904;&#x7406;&#x7ED3;&#x675F;</span>
-        MBLOG_INFO &lt;&lt; <span class="hljs-string">&quot;stream data is EOF, stop recv output buffer&quot;</span>;
-        <span class="hljs-keyword">break</span>;
-      }
-      <span class="hljs-comment">// &#x5904;&#x7406;&#x51FA;&#x9519;&#xFF0C;&#x5173;&#x95ED;&#x8F93;&#x51FA;&#x3002;</span>
-      <span class="hljs-keyword">auto</span> error = ext_data-&gt;GetLastError();
-      ext_data-&gt;Shutdown();
-      MBLOG_ERROR &lt;&lt; <span class="hljs-string">&quot;Recv failed, &quot;</span> &lt;&lt; status &lt;&lt; <span class="hljs-string">&quot;, error:&quot;</span> &lt;&lt;   error-&gt;GetDesc();
-      <span class="hljs-keyword">break</span>;
-    }
-    <span class="hljs-comment">// &#x5904;&#x7406;&#x7ED3;&#x679C;&#x6570;&#x636E;</span>
-    <span class="hljs-keyword">auto</span> buffer_list = map_buffer_list[<span class="hljs-string">&quot;output&quot;</span>];
-    ProcessOutputData(buffer_list);
-  }
-
   <span class="hljs-keyword">return</span> modelbox::STATUS_OK;
 }
 </code></pre>
 <ul>
-<li>&#x7ED3;&#x679C;&#x5904;&#x7406;</li>
+<li>&#x5904;&#x7406;&#x8F93;&#x51FA;</li>
 </ul>
-<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ProcessOutputData</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::BufferList&gt; &amp;output_buffer_list)</span> </span>{
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;buffer : *output_buffer_list) {
-    <span class="hljs-keyword">bool</span> has_hand{<span class="hljs-literal">false</span>};
-    buffer-&gt;Get(<span class="hljs-string">&quot;has_hand&quot;</span>, has_hand);
-    MBLOG_INFO &lt;&lt; <span class="hljs-string">&quot;has hand: &quot;</span> &lt;&lt; has_hand;
+<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ProcessOutputData</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;modelbox::Buffer&gt; &amp;output_buffer)</span> </span>{
+  <span class="hljs-keyword">bool</span> has_hand;
+  output_buffer-&gt;Get(<span class="hljs-string">&quot;has_hand&quot;</span>, has_hand);
+  MBLOG_INFO &lt;&lt; <span class="hljs-string">&quot;has hand: &quot;</span> &lt;&lt; has_hand;
 
-    <span class="hljs-keyword">int32_t</span> width, height;
-    buffer-&gt;Get(<span class="hljs-string">&quot;height&quot;</span>, height);
-    buffer-&gt;Get(<span class="hljs-string">&quot;width&quot;</span>, width);
-    cv::<span class="hljs-function">Mat <span class="hljs-title">image</span><span class="hljs-params">(height, width, CV_8UC3)</span></span>;
-    memcpy_s(image.data, image.total() * image.elemSize(),
-            buffer-&gt;ConstData(), buffer-&gt;GetBytes());
-    cv::imwrite(<span class="hljs-string">&quot;path_to_save_image&quot;</span>, image);
-  }
+  <span class="hljs-keyword">int32_t</span> width, height;
+  output_buffer-&gt;Get(<span class="hljs-string">&quot;height&quot;</span>, height);
+  output_buffer-&gt;Get(<span class="hljs-string">&quot;width&quot;</span>, width);
+  cv::<span class="hljs-function">Mat <span class="hljs-title">image</span><span class="hljs-params">(height, width, CV_8UC3)</span></span>;
+  memcpy_s(image.data, image.total() * image.elemSize(),
+           output_buffer-&gt;ConstData(), output_buffer-&gt;GetBytes());
+  cv::imwrite(<span class="hljs-string">&quot;path_to_result.jpg&quot;</span>, image);
 }
 </code></pre>
 </li>
@@ -1968,8 +1933,71 @@ modelbox::<span class="hljs-function">Status <span class="hljs-title">Process</s
 </code></pre>
 </li>
 </ul>
+<h3 id="python&#x6837;&#x4F8B;"><a name="python&#x6837;&#x4F8B;" class="anchor-navigation-ex-anchor" href="#python&#x6837;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a>Python&#x6837;&#x4F8B;</h3>
+<ul>
+<li><p><strong>&#x9700;&#x8981;&#x5F15;&#x5165;&#x7684;&#x5305;</strong></p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> modelbox
+<span class="hljs-keyword">import</span> cv2
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+</code></pre>
+</li>
+<li><p><strong>&#x5B9A;&#x4E49;&#x624B;&#x52BF;&#x8BC6;&#x522B;&#x7C7B;</strong></p>
+<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HandPoseDetection</span>:</span>
+  <span class="hljs-comment">## &#x521D;&#x59CB;&#x5316;&#xFF0C;&#x8BBE;&#x7F6E;&#x65E5;&#x5FD7;&#x7EA7;&#x522B;</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, log_level=modelbox.Log.Level.INFO)</span>:</span>
+      self.log = modelbox.Log()
+      self.log.set_log_level(log_level)
+
+  <span class="hljs-comment">## &#x521D;&#x59CB;&#x5316;&#x624B;&#x52BF;&#x8BC6;&#x522B;Solution</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">Init</span><span class="hljs-params">(self)</span>:</span>
+      self.flow = modelbox.Flow()
+      ret = self.flow.init_by_name(<span class="hljs-string">&quot;hand_pose_detection&quot;</span>)
+      <span class="hljs-keyword">if</span> ret == <span class="hljs-keyword">False</span>:
+          modelbox.error(ret)
+          <span class="hljs-keyword">return</span> ret
+
+      ret = self.flow.start_run()
+      <span class="hljs-keyword">if</span> ret == <span class="hljs-keyword">False</span>:
+          modelbox.error(ret)
+      <span class="hljs-keyword">return</span> ret
+
+  <span class="hljs-comment">## &#x8BBE;&#x7F6E;&#x8F93;&#x5165;&#x56FE;&#x7247;&#x8DEF;&#x5F84;&#xFF0C;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x4FDD;&#x5B58;&#x8DEF;&#x5F84;&#xFF0C;&#x8FD4;&#x56DE;&#x662F;&#x5426;&#x68C0;&#x6D4B;&#x5230;&#x624B;</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">Process</span><span class="hljs-params">(self, input_file, output_path)</span>:</span>
+      stream_io = self.flow.create_stream_io()
+
+      file = open(input_file, <span class="hljs-string">&quot;rb&quot;</span>)
+      input_buffer = stream_io.create_buffer(file.read())
+      file.close()
+      stream_io.send(<span class="hljs-string">&quot;input&quot;</span>, input_buffer)
+      stream_io.close_input()
+
+      result = stream_io.recv(<span class="hljs-string">&quot;output&quot;</span>)
+
+      has_hand = result.get(<span class="hljs-string">&quot;has_hand&quot;</span>)
+      msg = <span class="hljs-string">&quot;has hand: &quot;</span> + str(has_hand)
+      modelbox.info(<span class="hljs-string">&quot;has hand: &quot;</span>, msg)
+
+      <span class="hljs-keyword">if</span> has_hand:
+          width = result.get(<span class="hljs-string">&quot;width&quot;</span>)
+          height = result.get(<span class="hljs-string">&quot;height&quot;</span>)
+          channel = result.get(<span class="hljs-string">&quot;channel&quot;</span>)
+          out_img = np.array(result.as_object(), dtype=np.uint8)
+          out_img = out_img.reshape(height, width, channel)
+          cv2.imwrite(output_path, out_img)
+
+      <span class="hljs-keyword">return</span> has_hand
+</code></pre>
+</li>
+<li><p><strong>&#x4E3B;&#x51FD;&#x6570;</strong></p>
+<pre><code class="lang-python"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    hand_pose = HandPoseDetection()
+    hand_pose.Init()
+    hand_pose.Process(input_image_path, output_image_path)
+</code></pre>
+</li>
+</ul>
 <footer class="page-footer"><span class="copyright">&#xA9;2022 ModelBox Team all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-06-24 09:06:05
+2022-07-05 03:21:09
 </span></footer>
                                 
                                 </section>
@@ -2003,7 +2031,7 @@ modelbox::<span class="hljs-function">Status <span class="hljs-title">Process</s
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"手势识别","level":"1.10.1","depth":2,"next":{"title":"基础概念","level":"1.11","depth":1,"path":"basic-conception/basic-conception.md","ref":"basic-conception/basic-conception.md","articles":[{"title":"流程图","level":"1.11.1","depth":2,"path":"basic-conception/graph.md","ref":"basic-conception/graph.md","articles":[]},{"title":"功能单元","level":"1.11.2","depth":2,"path":"basic-conception/flowunit.md","ref":"basic-conception/flowunit.md","articles":[]},{"title":"数据流","level":"1.11.3","depth":2,"path":"basic-conception/stream.md","ref":"basic-conception/stream.md","articles":[]},{"title":"Buffer","level":"1.11.4","depth":2,"path":"basic-conception/buffer.md","ref":"basic-conception/buffer.md","articles":[]}]},"previous":{"title":"ModelBox应用","level":"1.10","depth":1,"path":"solution/solution.md","ref":"solution/solution.md","articles":[{"title":"手势识别","level":"1.10.1","depth":2,"path":"solution/hand-pose-detection.md","ref":"solution/hand-pose-detection.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore","anchor-navigation-ex"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导文档"},"file":{"path":"solution/hand-pose-detection.md","mtime":"2022-06-24T09:06:05.424Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-24T09:07:08.039Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"手势识别","level":"1.10.1","depth":2,"next":{"title":"基础概念","level":"1.11","depth":1,"path":"basic-conception/basic-conception.md","ref":"basic-conception/basic-conception.md","articles":[{"title":"流程图","level":"1.11.1","depth":2,"path":"basic-conception/graph.md","ref":"basic-conception/graph.md","articles":[]},{"title":"功能单元","level":"1.11.2","depth":2,"path":"basic-conception/flowunit.md","ref":"basic-conception/flowunit.md","articles":[]},{"title":"数据流","level":"1.11.3","depth":2,"path":"basic-conception/stream.md","ref":"basic-conception/stream.md","articles":[]},{"title":"Buffer","level":"1.11.4","depth":2,"path":"basic-conception/buffer.md","ref":"basic-conception/buffer.md","articles":[]}]},"previous":{"title":"ModelBox应用","level":"1.10","depth":1,"path":"solution/solution.md","ref":"solution/solution.md","articles":[{"title":"手势识别","level":"1.10.1","depth":2,"path":"solution/hand-pose-detection.md","ref":"solution/hand-pose-detection.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore","anchor-navigation-ex"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导文档"},"file":{"path":"solution/hand-pose-detection.md","mtime":"2022-07-05T03:21:09.036Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-07-05T03:21:57.164Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
