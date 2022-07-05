@@ -20,7 +20,7 @@ ModelBox提供了流程图的创建、运行、关闭等基础接口。下面是
 
 Python开发调用流程图时，需要先安装C++的运行包，然后再编写C++函数，调用Flow执行API执行流程图。Flow流程图接口调用过程如下图所示：
 
-![python-sdk alt rect_w_1000](../../assets/images/figure/develop/flow/Python-sdk.png)
+![python-sdk alt rect_w_1000](../../assets/images/figure/develop/flow/python-sdk.png)
 
 1. 安装Python SDK包
 1. 开发流程图，配置基础部分和图部分。
