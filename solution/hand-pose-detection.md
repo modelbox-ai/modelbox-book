@@ -55,33 +55,30 @@
   需要引入如下头文件，并在编译时链接modelbox库：
 
   ```cpp
-  #include <modelbox/solution.h>
   #include <modelbox/flow.h>
+  #include <opencv2/opencv.hpp>
   ```
 
 - **Solution创建初始化和启动**
   
   ```c++
-  modelbox::Flow CreateHandPoseDetectionSolution() {
-    ModelBoxLogger.GetLogger()->SetLogLevel  modelbox::LogLevel::LOG_INFO);
-    modelbox::Solution solution_test("hand_pose_detection");
+  std::shared_ptr<modelbox::Flow> CreateHandPoseDetectionSolution() {
+    ModelBoxLogger.GetLogger()->SetLogLevel(modelbox::LogLevel::LOG_INFO);
     auto flow = std::make_shared<modelbox::Flow>();
-  
-    if (!flow->Init(solution_test)) {
-      MBLOG_ERROR << "init flow failed, " << ret.WrapErrormsgs();
-      return nullptr;
+    modelbox::Status mb_ret;
+    mb_ret = flow->InitByName("hand_pose_detection");
+    if (mb_ret != modelbox::STATUS_OK) {                           
+      MBLOG_ERROR << "flow init failed, ret " << ret.Errormsg(); 
+      return nullptr;                                                 
     }
-  
-    if (!flow->Build()) {
-      MBLOG_ERROR << "build flow failed, " << ret.WrapErrormsgs();
-      return nullptr;
-    }
-  
-    if (!flow->RunAsync()) {
-      MBLOG_ERROR << "flow run failed";
-    }
-    MBLOG_INFO << "build hand_pose detection solution success";
 
+    mb_ret = flow->StartRun();
+    if (mb_ret != modelbox::STATUS_OK) {                           
+      MBLOG_ERROR << "flow start run failed, ret " << ret.Errormsg(); 
+      return nullptr;                                                 
+    }
+
+    return flow;
   }
 
   ```
@@ -94,39 +91,36 @@
   // 数据发送获取
   modelbox::Status Process(std::shared_ptr<modelbox::Flow> flow, const std::string &test_file) {
     // 创建输入输出句柄
-    auto ext_data = flow->CreateExternalDataMap();
-    if (ext_data == nullptr) {
-      MBLOG_ERROR << "create external data map failed.";
-      return modelbox::STATUS_FAULT;
-    }
-    auto input_bufs = ext_data->CreateBufferList();
-  
-    // push输入数据
-    if (!BuildInputData(test_file, input_bufs)) {
-      return modelbox::STATUS_FAULT;
-    }
-  
-    if (!ext_data->Send("input", input_bufs)) {
-      MBLOG_ERROR << "send data to input failed.";
-      return modelbox::STATUS_FAULT;
-    }
-  
-    // 关闭输入
-    if (!ext_data->Close()) {
-      MBLOG_ERROR << "external data close failed.";
-      return modelbox::STATUS_FAULT;
+    auto stream_io = flow->CreateStreamIO();
+    modelbox::Status mb_ret;
+
+    // 创建输入
+    auto buffer = stream_io->CreateBuffer();
+    mb_ret = BuildInputData(test_file, buffer);
+    if (mb_ret != modelbox::STATUS_OK) {                           
+      MBLOG_ERROR << "flow build input data failed, ret " << ret.Errormsg(); 
+      return modelbox::STATUS_FAULT;                                                 
     }
 
-    // 获取推理结果
-    RecvExternalData(ext_data);
-  
+    stream_io->Send("input", buffer);
+    
+    // 获取输出
+    std::shared_ptr<modelbox::Buffer> output_buffer;
+    stream_io->Recv("output", output_buffer);
+    mb_ret = ProcessOutputData(output_buffer);
+    if (mb_ret != modelbox::STATUS_OK) {                           
+      MBLOG_ERROR << "flow process output failed, ret " << ret.Errormsg(); 
+      return modelbox::STATUS_FAULT;                                                 
+    }
+
+    return modelbox::STATUS_OK;
   }
   ```
 
   - 创建输入
 
   ```cpp
-  modelbox::Status BuildInputData(const std::string &img_path, std::shared_ptr<modelbox::BufferList> &input_bufferlist) {
+  modelbox::Status BuildInputData(const std::string &img_path, std::shared_ptr<modelbox::Buffer> &input_buffer) {
     FILE *pImg = fopen(img_path.c_str(), "rb");
     if (pImg == nullptr) {
       MBLOG_ERROR << "file open failed, file path: " << img_path;
@@ -136,61 +130,31 @@
     fseek(pImg, 0, SEEK_END);
     auto fSize = ftell(pImg);
     rewind(pImg);
-
-    input_bufferlist->Build({(size_t)fSize});
-    input_bufferlist->EmplaceBack(pImg, fSize);
+  
+    input_buffer->Build((size_t)fSize);
+    auto buffer_data = (char *)input_buffer->MutableData();
+    fread(buffer_data, fSize, 1, pImg);
   
     fclose(pImg);
-    return modelbox::STATUS_SUCCESS;
-  }
-  ```
-
-  - 获取输出结果
-
-  ```cpp
-  modelbox::Status RecvExternalData(std::shared_ptr<modelbox::ExternalDataMap> ext_data) {
-    modelbox::OutputBufferList map_buffer_list;
-    // 接收数据
-    while (true) {
-      auto status = ext_data->Recv(map_buffer_list);
-      if (status != modelbox::STATUS_SUCCESS) {
-        if (status == modelbox::STATUS_EOF) {
-          // 数据处理结束
-          MBLOG_INFO << "stream data is EOF, stop recv output buffer";
-          break;
-        }
-        // 处理出错，关闭输出。
-        auto error = ext_data->GetLastError();
-        ext_data->Shutdown();
-        MBLOG_ERROR << "Recv failed, " << status << ", error:" <<   error->GetDesc();
-        break;
-      }
-      // 处理结果数据
-      auto buffer_list = map_buffer_list["output"];
-      ProcessOutputData(buffer_list);
-    }
-
     return modelbox::STATUS_OK;
   }
   ```
-  
-  - 结果处理
+
+  - 处理输出
 
   ```cpp
-  void ProcessOutputData(std::shared_ptr<modelbox::BufferList> &output_buffer_list) {
-    for (auto &buffer : *output_buffer_list) {
-      bool has_hand{false};
-      buffer->Get("has_hand", has_hand);
-      MBLOG_INFO << "has hand: " << has_hand;
-
-      int32_t width, height;
-      buffer->Get("height", height);
-      buffer->Get("width", width);
-      cv::Mat image(height, width, CV_8UC3);
-      memcpy_s(image.data, image.total() * image.elemSize(),
-              buffer->ConstData(), buffer->GetBytes());
-      cv::imwrite("path_to_save_image", image);
-    }
+  void ProcessOutputData(std::shared_ptr<modelbox::Buffer> &output_buffer) {
+    bool has_hand;
+    output_buffer->Get("has_hand", has_hand);
+    MBLOG_INFO << "has hand: " << has_hand;
+  
+    int32_t width, height;
+    output_buffer->Get("height", height);
+    output_buffer->Get("width", width);
+    cv::Mat image(height, width, CV_8UC3);
+    memcpy_s(image.data, image.total() * image.elemSize(),
+             output_buffer->ConstData(), output_buffer->GetBytes());
+    cv::imwrite("path_to_result.jpg", image);
   }
   ```
 
@@ -201,4 +165,72 @@
     // 结束执行
     flow->Stop();
   }
+  ```
+
+### Python样例
+
+- **需要引入的包**
+
+  ```python
+  import modelbox
+  import cv2
+  import numpy as np
+  ```
+
+- **定义手势识别类**
+
+  ```python
+  class HandPoseDetection:
+    ## 初始化，设置日志级别
+    def __init__(self, log_level=modelbox.Log.Level.INFO):
+        self.log = modelbox.Log()
+        self.log.set_log_level(log_level)
+
+    ## 初始化手势识别Solution
+    def Init(self):
+        self.flow = modelbox.Flow()
+        ret = self.flow.init_by_name("hand_pose_detection")
+        if ret == False:
+            modelbox.error(ret)
+            return ret
+        
+        ret = self.flow.start_run()
+        if ret == False:
+            modelbox.error(ret)
+        return ret
+    
+    ## 设置输入图片路径，输出结果保存路径，返回是否检测到手
+    def Process(self, input_file, output_path):
+        stream_io = self.flow.create_stream_io()
+
+        file = open(input_file, "rb")
+        input_buffer = stream_io.create_buffer(file.read())
+        file.close()
+        stream_io.send("input", input_buffer)
+        stream_io.close_input()
+
+        result = stream_io.recv("output")
+
+        has_hand = result.get("has_hand")
+        msg = "has hand: " + str(has_hand)
+        modelbox.info("has hand: ", msg)
+
+        if has_hand:
+            width = result.get("width")
+            height = result.get("height")
+            channel = result.get("channel")
+            out_img = np.array(result.as_object(), dtype=np.uint8)
+            out_img = out_img.reshape(height, width, channel)
+            cv2.imwrite(output_path, out_img)
+        
+        return has_hand
+  ```
+
+- **主函数**
+
+  ```python
+  if __name__ == '__main__':
+      hand_pose = HandPoseDetection()
+      hand_pose.Init()
+      hand_pose.Process(input_image_path, output_image_path)
   ```
