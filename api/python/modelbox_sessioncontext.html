@@ -1781,7 +1781,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#modelboxsessioncontext"><b></b>modelbox.SessionContext</a></li><ul><li><span class="title-icon "></span><a href="#modelboxsessioncontextsetprivatestring"><b></b>modelbox.SessionContext.set_private_string</a></li><li><span class="title-icon "></span><a href="#modelboxsessioncontextgetprivatestring"><b></b>modelbox.SessionContext.get_private_string</a></li><li><span class="title-icon "></span><a href="#modelboxsessioncontextsetprivateint"><b></b>modelbox.SessionContext.set_private_int</a></li><li><span class="title-icon "></span><a href="#modelboxsessioncontextgetprivateint"><b></b>modelbox.SessionContext.get_private_int</a></li><li><span class="title-icon "></span><a href="#modelboxsessioncontextgetsessionconfig"><b></b>modelbox.SessionContext.get_session_config</a></li><li><span class="title-icon "></span><a href="#modelboxsessioncontextgetsessionid"><b></b>modelbox.SessionContext.get_session_id</a></li></ul></ul></div><h1 id="modelboxsessioncontext"><a name="modelboxsessioncontext" class="anchor-navigation-ex-anchor" href="#modelboxsessioncontext"><i class="fa fa-link" aria-hidden="true"></i></a>modelbox.SessionContext</h1>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#modelboxsessioncontext"><b></b>modelbox.SessionContext</a></li><ul><li><span class="title-icon "></span><a href="#modelboxsessioncontextsetprivate"><b></b>modelbox.SessionContext.set_private</a></li><li><span class="title-icon "></span><a href="#modelboxsessioncontextgetprivate"><b></b>modelbox.SessionContext.get_private</a></li><li><span class="title-icon "></span><a href="#modelboxsessioncontextsetprivatestring"><b></b>modelbox.SessionContext.set_private_string</a></li><li><span class="title-icon "></span><a href="#modelboxsessioncontextgetprivatestring"><b></b>modelbox.SessionContext.get_private_string</a></li><li><span class="title-icon "></span><a href="#modelboxsessioncontextsetprivateint"><b></b>modelbox.SessionContext.set_private_int</a></li><li><span class="title-icon "></span><a href="#modelboxsessioncontextgetprivateint"><b></b>modelbox.SessionContext.get_private_int</a></li><li><span class="title-icon "></span><a href="#modelboxsessioncontextgetsessionconfig"><b></b>modelbox.SessionContext.get_session_config</a></li><li><span class="title-icon "></span><a href="#modelboxsessioncontextgetsessionid"><b></b>modelbox.SessionContext.get_session_id</a></li></ul></ul></div><h1 id="modelboxsessioncontext"><a name="modelboxsessioncontext" class="anchor-navigation-ex-anchor" href="#modelboxsessioncontext"><i class="fa fa-link" aria-hidden="true"></i></a>modelbox.SessionContext</h1>
 <table>
 <thead>
 <tr>
@@ -1790,6 +1790,14 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="#modelboxsessioncontextsetprivate">set_private</a></td>
+<td>&#x8BBE;&#x7F6E;SessionContext&#x4E2D;&#x7684;&#x79C1;&#x6709;&#x503C;</td>
+</tr>
+<tr>
+<td><a href="#modelboxsessioncontextgetprivate">get_private</a></td>
+<td>&#x83B7;&#x53D6;SessionContext&#x4E2D;&#x7684;&#x79C1;&#x6709;&#x503C;</td>
+</tr>
 <tr>
 <td><a href="#modelboxsessioncontextsetprivatestring">set_private_string</a></td>
 <td>&#x8BBE;&#x7F6E;SessionContext&#x4E2D;&#x7684;&#x79C1;&#x6709;&#x5B57;&#x7B26;&#x4E32;&#x503C;</td>
@@ -1817,6 +1825,25 @@
 </tbody>
 </table>
 <hr>
+<h2 id="modelboxsessioncontextsetprivate"><a name="modelboxsessioncontextsetprivate" class="anchor-navigation-ex-anchor" href="#modelboxsessioncontextsetprivate"><i class="fa fa-link" aria-hidden="true"></i></a>modelbox.SessionContext.set_private</h2>
+<p>&#x8BBE;&#x7F6E;SessionContext&#x79C1;&#x6709;&#x503C;&#x3002;</p>
+<p><strong>args:</strong>  </p>
+<ul>
+<li><p><strong>key</strong> (str)  &#x2014;&#x2014; &#x8BBE;&#x7F6E;&#x5B57;&#x7B26;&#x4E32;&#x578B;&#x503C;&#x7684;key</p>
+</li>
+<li><p><strong>value</strong> (str) &#x2014;&#x2014;  &#x8BBE;&#x7F6E;&#x4EFB;&#x610F;Python&#x5BF9;&#x8C61;</p>
+</li>
+</ul>
+<p><strong>return:</strong>  </p>
+<p>&#x65E0;</p>
+<h2 id="modelboxsessioncontextgetprivate"><a name="modelboxsessioncontextgetprivate" class="anchor-navigation-ex-anchor" href="#modelboxsessioncontextgetprivate"><i class="fa fa-link" aria-hidden="true"></i></a>modelbox.SessionContext.get_private</h2>
+<p>&#x83B7;&#x53D6;SessionContext&#x79C1;&#x6709;&#x503C;&#x3002;</p>
+<p><strong>args:</strong>  </p>
+<ul>
+<li><strong>key</strong> (str)  &#x2014;&#x2014;  &#x8BBE;&#x7F6E;&#x5B57;&#x7B26;&#x4E32;&#x578B;&#x503C;&#x5F97;key</li>
+</ul>
+<p><strong>return:</strong>  </p>
+<p>py::object  &#x83B7;&#x53D6;&#x5F53;&#x524D;key&#x503C;&#x7684;Python&#x5BF9;&#x8C61;</p>
 <h2 id="modelboxsessioncontextsetprivatestring"><a name="modelboxsessioncontextsetprivatestring" class="anchor-navigation-ex-anchor" href="#modelboxsessioncontextsetprivatestring"><i class="fa fa-link" aria-hidden="true"></i></a>modelbox.SessionContext.set_private_string</h2>
 <p>&#x8BBE;&#x7F6E;SessionContext&#x79C1;&#x6709;&#x5B57;&#x7B26;&#x4E32;&#x503C;&#x3002;</p>
 <p><strong>args:</strong>  </p>
@@ -1894,7 +1921,7 @@
         <span class="hljs-keyword">return</span> modelbox.Status()
 </code></pre>
 <footer class="page-footer"><span class="copyright">&#xA9;2022 ModelBox Team all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-07-05 03:21:09
+2022-08-03 02:13:01
 </span></footer>
                                 
                                 </section>
@@ -1928,7 +1955,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"SessionContext","level":"1.12.2.15","depth":3,"next":{"title":"Status","level":"1.12.2.16","depth":3,"path":"api/python/modelbox_status.md","ref":"api/python/modelbox_status.md","articles":[]},"previous":{"title":"Log","level":"1.12.2.14","depth":3,"path":"api/python/modelbox_log.md","ref":"api/python/modelbox_log.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore","anchor-navigation-ex"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导文档"},"file":{"path":"api/python/modelbox_sessioncontext.md","mtime":"2022-07-05T03:21:09.004Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-07-05T03:21:57.164Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"SessionContext","level":"1.12.2.15","depth":3,"next":{"title":"Status","level":"1.12.2.16","depth":3,"path":"api/python/modelbox_status.md","ref":"api/python/modelbox_status.md","articles":[]},"previous":{"title":"Log","level":"1.12.2.14","depth":3,"path":"api/python/modelbox_log.md","ref":"api/python/modelbox_log.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore","anchor-navigation-ex"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导文档"},"file":{"path":"api/python/modelbox_sessioncontext.md","mtime":"2022-08-03T02:13:01.012Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-08-03T02:13:53.803Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
