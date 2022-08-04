@@ -38,7 +38,6 @@ SDK模式的流程图的开发和标准模式基本一样，具体开发介绍�
 ```toml
 [driver]
 dir=""
-skip-default = false
 [graph]
 graphconf = '''digraph demo {
   input1[type=input] # 定义input类型端口，端口名为input1，用于外部输入数据

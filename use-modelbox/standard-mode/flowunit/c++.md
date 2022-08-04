@@ -577,7 +577,6 @@ TEST_F(ExampleFlowUnitTest, TestCase1) {
             [log]
             level="DEBUG"
             [driver]
-            skip-default=false
             dir=[")" + test_lib_dir +
                              "\"]\n    " +
                              R"([graph]

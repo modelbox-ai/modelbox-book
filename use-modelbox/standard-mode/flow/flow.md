@@ -40,8 +40,7 @@ ModelBox采用[TOML配置格式](https://toml.io/cn/v1.0.0-rc.1)作为流程图�
 
 ```toml
 [driver]                       
-dir=["dir1","dir2"]     
-skip-default=false       
+dir=["dir1","dir2"]           
 [graph]                 
 format = "graphviz"      
 graphconf = '''digraph demo {
@@ -61,7 +60,6 @@ graphconf = '''digraph demo {
 
   \[driver\]：用于配置功能单元的扫描路径。
   - `dir`: 指定功能单元等驱动加载路径，可以指定多个路径，通过[] 和 ，分隔。
-  - `skip-default`：true表示只扫描dir路径，false表示扫描系统目录和dir路径。
 
   \[graph\]：用于定义流程图的描述。
   - `format`指定流程图的格式，目前仅支持graphviz。
