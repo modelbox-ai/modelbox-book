@@ -101,8 +101,7 @@ ModelBox服务当前提供动态增加flow作业，动态删除flow作业，查�
           ]
         },
         "driver": {
-          "dir": "",
-          "skip-default": "false"
+          "dir": ""
         }
       }
   }
