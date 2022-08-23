@@ -35,3 +35,29 @@ Nvidia GPU和Huawei Ascend硬件接口均提供了异步接口，在ModelBox中�
 1. 指定功能单元、设备类型，不指定设备号，ModelBox会根据扫描到的指定设备类型的数量，自动使用这些设备上的功能单元处理数据。
 
 2. 指定功能单元，不指定设备类型、设备号，ModelBox首先根据功能单元名称，查找所有同名的不同设备类型的实现，然后查看环境中的设备类型，确定可用的功能单元，再根据每个类型的设备数量，实例化对应数量的功能单元。最后自动使用这些设备上的功能单元进行数据处理。
+
+配置样例:
+
+1. 通过`deivce`和`deviceid`指定单个设备
+
+    ``` graphviz
+    resize[type=flowunit, flowunit=resize, device=cuda, deviceid=0, image_width=480, image_height=320]
+    ```
+
+1. 通过`device`指定单个设备
+
+    ``` graphviz
+    resize[type=flowunit, flowunit=resize, device="cuda:0", image_width=480, image_height=320]
+    ```
+
+1. 通过`device`指定同类型多个设备
+
+    ``` graphviz
+    resize[type=flowunit, flowunit=resize, device="cuda:0,1,3", image_width=480, image_height=320]
+    ```
+
+1. 通过`device`指定多个类型的多个设备
+
+    ``` graphviz
+    resize[type=flowunit, flowunit=resize, device="cuda:0,1,3;ascend:2,3,5", image_width=480, image_height=320]
+    ```
