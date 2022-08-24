@@ -57,7 +57,7 @@ ModelBox可以给开发者提供如下能力：
 | 支持加速卡         | CPU, Nvidia GPU, Ascend 310, Ascend 710, RK3568|
 | 支持推理引擎         | TensorRT、TensorFlow、LibTorch、MindSpore、Ascend ACL |
 | 可视化编排         | 支持可视化UI的业务流程编排                 |
-| 支持开发语言        | C++ , Python  |
+| 支持开发语言        | C++ , Python, Java  |
 | 图编排能力         |支持展开，合并，条件，循环分支等|
 | 调测能力           | ModelBox Tool工具，性能跟踪Profiling工具                                                   |
 | 一次开发，多处运行  | Python功能单元，C++功能单元 |

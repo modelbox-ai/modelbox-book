@@ -1,14 +1,14 @@
 # API
 
-ModelBox 针对不同模块的开发提供了C++，Python多种编程语言API，具体API的支持语言如下：
+ModelBox 针对不同模块的开发提供了C++，Python, Java多种编程语言API，具体API的支持语言如下：
 
-| 模块                   | 说明                      | C++ | Python            |
-| ---------------------- | ------------------------- | --- | ----------------- |
-| ModelBox FlowUnit API     | ModelBox[功能单元开发](../use-modelbox/standard-mode/flowunit/flowunit.md)API。 | ✔️   | ✔️                 |
-| ModelBox SDK API       | ModelBox [SDK模式开发](../use-modelbox/sdk-mode/sdk-mode.md)集成API。 | ✔️   | ✔️                 |
-| ModelBox Plugin  API      | ModelBox[插件开发](../use-modelbox/standard-mode/service-plugin/service-plugin.md)API。     | ✔️   | ❌                 |
-| ModelBox Device API       | ModelBox[多设备开发](../other-features/device/device.md)API。         | ✔️   | ❌                 |
-| ModelBox Base API         | ModelBox基础工具API，如日志、配置等等。    | ✔️   | ✔️(部分支持)                 |
+| 模块                   | 说明                      | C++ | Python            |Java            |
+| ---------------------- | ------------------------- | --- | ----------------- |----------------- |
+| ModelBox FlowUnit API     | ModelBox[功能单元开发](../use-modelbox/standard-mode/flowunit/flowunit.md)API。 | ✔️   | ✔️  | ❌ |
+| ModelBox SDK API       | ModelBox [SDK模式开发](../use-modelbox/sdk-mode/sdk-mode.md)集成API。 | ✔️   | ✔️ |✔️ |
+| ModelBox Plugin  API      | ModelBox[插件开发](../use-modelbox/standard-mode/service-plugin/service-plugin.md)API。  | ✔️   | ❌ |❌ |
+| ModelBox Device API       | ModelBox[多设备开发](../other-features/device/device.md)API。         | ✔️   | ❌  |❌ |
+| ModelBox Base API         | ModelBox基础工具API，如日志、配置等等。    | ✔️   | ✔️(部分支持) |✔️(部分支持) |
 
 ModelBox各组件整体对外提供的API接口如下：
 

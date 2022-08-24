@@ -28,6 +28,7 @@
   * [SDK模式](use-modelbox/sdk-mode/sdk-mode.md)
     * [C++](use-modelbox/sdk-mode/c++.md)
     * [Python](use-modelbox/sdk-mode/python.md)
+    * [Java](use-modelbox/sdk-mode/java.md)
 * [特性列表](other-features/other-features.md)
   * [多设备开发](other-features/device/device.md)
     * [Huawei Ascend](other-features/device/ascend.md)
