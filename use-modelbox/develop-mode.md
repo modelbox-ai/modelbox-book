@@ -18,11 +18,11 @@ ModelBox开发套件包含如下部分：
 
 3. **自定义应用**
 
-    与ModelBox Server对应，如果业务需要更多的定制能力，业务可以直接使用ModelBox SDK提供的接口来驱动ModelBox，支持的语言有C++，Python等。
+    与ModelBox Server对应，如果业务需要更多的定制能力，业务可以直接使用ModelBox SDK提供的接口来驱动ModelBox，支持的语言有C++，Python, Java等。
 
 4. **ModelBox SDK**
 
-    ModelBox应用提供的开发API，包含了C++, Python等多种语言的支持。开发者可以使用自己熟悉的语言进行集成或扩展。
+    ModelBox应用提供的开发API，包含了C++, Python, Java等多种语言的支持。开发者可以使用自己熟悉的语言进行集成或扩展。
 
 5. **ModelBox Tool**
 
