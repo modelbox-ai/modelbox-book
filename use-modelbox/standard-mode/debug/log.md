@@ -135,9 +135,60 @@ def RegLog():
 RegLog()
 ```
 
-#### 流程
+* 流程
 
   1. 编写自定义函数，函数原型为`logfunc(level, file, lineno, func, msg)`。
   1. 初始化日志对象`modelbox.Log()`。
   1. 将`logfunc`调用`modelbox.Log::reg`注册为日志处理函数
   1. 调用`modelbox.Log::set_log_level(modelbox.Log.Level)`设置日志级别。
+
+### Java
+
+#### Java日志调用
+
+Java输出日志时，需要包含ModelBox包，使用上类似，print函数。
+
+```python
+import com.modelbox.Log
+
+Log.debug("this is debug")
+Log.info("this is info")
+Log.notice("this is notice")
+Log.warn("this is warning")
+Log.error("this is error")
+Log.fatal("this is fatal")
+```
+
+### Java日志捕获
+
+```java
+// 导入相关的包
+import com.modelbox.Log;
+
+  class CustomLog extends Log {
+    public void print(LogLevel level, String file, int lineno, String func, String msg) {
+      String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss.SSS").format(new Date());
+      System.out.printf("[%s][%s][%17s:%-4d] %s\n", timeStamp, level, file, lineno, msg);
+      lastMsg = msg;
+    }
+
+    public String lastMsg;
+  }
+
+  public void initLog() {
+    // 注册自定义log
+    TestLog log = new CustomLog();
+    Log.regLog(log);
+  }
+
+  public void deinitLog() {
+    Log.unRegLog();
+  }
+
+```
+
+* 流程
+
+  1. 编写自定义日志对象，从Log派生，实现print接口
+  1. 初始化时，调用`Log.regLog(log)`注册日志处理函数。
+  1. 调用`Log.getLogger->setLogLevel(level)`设置日志级别。
