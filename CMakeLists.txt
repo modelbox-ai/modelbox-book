@@ -29,7 +29,7 @@ add_custom_command(TARGET modelbox-book
     COMMENT "Building modelbox book package.."
     WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
     COMMAND [ ! -e ${NODE_MODULES_PATH}/node_modules ] || mv ${NODE_MODULES_PATH}/node_modules ${CMAKE_CURRENT_LIST_DIR}/node_modules 
-    COMMAND [ -e ${BOOK_INSTALL_FLAG} ] || ${NPM} install gitbook-cli 
+    COMMAND [ -e ${BOOK_INSTALL_FLAG} ] || ${NPM} install gitbook-cli
     # patch graceful-fs
     COMMAND [ -e ${BOOK_INSTALL_FLAG} ] || sed -i "'/stat = statFix/d'"  ${CMAKE_CURRENT_LIST_DIR}/node_modules/npm/node_modules/graceful-fs/polyfills.js
     COMMAND [ -e ${BOOK_INSTALL_FLAG} ] || ${GITBOOK} install ${CMAKE_CURRENT_LIST_DIR} 
@@ -40,6 +40,18 @@ add_custom_command(TARGET modelbox-book
     COMMAND 
     BYPRODUCTS ${BOOK_INSTALL_FLAG} ${BOOK_OUTPUT_DIR}
     )
+
+add_custom_target(modelbox-book-pdf)
+add_custom_command(TARGET modelbox-book-pdf
+    COMMENT "Building modelbox book pdf.."
+    COMMAND echo "Building modelbox book pdf.., if fail, please install calibre with command: apt install calibre"
+    WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+    COMMAND ${GITBOOK} pdf
+    COMMAND mv ${CMAKE_CURRENT_LIST_DIR}/book.pdf ${CMAKE_CURRENT_BINARY_DIR}
+    COMMAND 
+    BYPRODUCTS ${CMAKE_CURRENT_BINARY_DIR}/book.pdf 
+    )
+add_dependencies(modelbox-book-pdf modelbox-book)
 
 install(DIRECTORY 
     ${BOOK_OUTPUT_DIR}
