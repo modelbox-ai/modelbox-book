@@ -4,33 +4,58 @@
 
 ## Python SDK API接口说明
 
-ModelBox提供了流程图的创建、运行、关闭等基础接口。下面是Python中使用的API列表：
+| 类    | 方法  | 参数 | 功能 |
+| ----- | ---- |----- | -----|
+| modelbox.FlowConfig | set_queue_size | queue_size: 流程图中节点之间的数据队列大小 | 设置流程图中节点之间的数据队列大小 |
+|  | set_batch_size | batch_size: 流程图中节点处理的批数据大小 | 设置流程图中节点处理的批数据大小 |
+|  | set_drivers_dir | drivers_dir_list: 流程图中节点的额外扫描目录 | 设置流程图中节点的额外扫描目录 |
+|  | set_skip_default_drivers | is_skip: 是否跳过ModelBox默认的扫描路径 | 设置是否跳过ModelBox默认的扫描路径 |
+| modelbox.FlowGraphDesc | init | 无 | 初始化图描述 |
+|  | init | config: 图描述的配置 | 初始化图描述 |
+|  | add_input | input_name: 图输入端口名称 | 为图添加输入端口 |
+|  | add_output | output_name: 图输出端口名称<br>source_node_port: 作为图输出端口的节点输出端口 | 为图添加输出端口 |
+|  | add_output | output_name: 图输出端口名称<br>source_node: 作为图输出端口的单端口节点 | 为图添加输出端口 |
+|  | add_node | flowunit_name: 使用的功能单元名称<br>device: 节点依赖的设备<br>config: 节点的配置列表<br>source_node_ports: 其他节点输出端口与本节点输入端口的连接关系 | 添加一个功能单元作为流程图的节点 |
+|  | add_node | flowunit_name: 使用的功能单元名称<br>device: 节点依赖的设备<br>config: 节点的配置列表<br>source_node: 与当前节点连接的单输出节点 | 添加一个功能单元作为流程图的节点 |
+|  | add_node | flowunit_name: 使用的功能单元名称<br>device: 节点依赖的设备<br>source_node_ports: 其他节点输出端口与本节点输入端口的连接关系 | 添加一个功能单元作为流程图的节点 |
+|  | add_node | flowunit_name: 使用的功能单元名称<br>device: 节点依赖的设备<br>source_node: 与当前节点连接的单输出节点 | 添加一个功能单元作为流程图的节点 |
+|  | add_node | flowunit_name: 使用的功能单元名称<br>device: 节点依赖的设备<br>config: 节点的配置列表 | 添加一个功能单元作为流程图的节点 |
+| modelbox.Flow | init | configfile: 指定config文件的路径<br>format： 指定图文件的格式，可选项为 FORMAT_AUTO,FORMAT_TOML，FORMAT_JSON | 初始化ModelBox服务，主要包含功能如下：<br>1. 读取driver参数，获取driver的扫描路径<br>2. 扫描指定路径下的driver文件，并创建driver实例<br>3. 加载流程图并转换为ModelBox可识别的模型<br>4. 初始化设备信息，性能跟踪和数据统计单元 |
+|  | init | name: 指定的图的名称<br>graph: 存储图的字符串<br>format：指定图的格式 | 与上面init的区别是，上面通过读取文件的方式，而此函数通过读取字符串的方式，其他功能相同 |
+|  | init | config: Configuration指针，存储图信息  | 功能同上 |
+|  | init | flow_graph_desc: 图描述 | 功能同上 |
+|  | start_run | 无 | 启动流程图 |
+|  | stop | 无 | 停止流程图 |
+|  | create_stream_io | 无 | 在流程图中创建一个数据流的输入输出句柄 |
+| modelbox.FlowStreamIO | create_buffer | 无 | 创建空buffer用于存储数据 |
+|  | create_buffer | data: Python Buffer Protocol类型的数据 |　根据Python Buffer Protocol类型的data创建一个buffer, 如numpy的ndarray |
+|  | create_buffer | data: string类型的数据 | 根据string类型的data创建一个buffer |
+|  | send | input_name: 图的输入端口名<br>buffer: ModelBox的Buffer数据 | 发送数据到图的输入端口 |
+|  | send | input_name: 图的输入端口名<br>data: Python Buffer Protocol类型的数据 | 发送数据到图的输入端口 |
+|  | send | input_name: 图的输入端口名<br>data: string类型的数据 | 发送数据到图的输入端口 |
+|  | recv | output_name: 图的输出端口名<br>buffer: 输出数据<br>timeout: 等待超时 | 接受图的输出数据 |
+|  | recv | output_name: 图的输出端口名<br>timeout: 等待超时 | 接受图的输出数据 |
+|  | recv | output_name: 图的输出端口名 | 接受图的输出数据 |
+|  | close_input | 无 | 结束输入的数据流，将会告知ModelBox输入数据是否已经完毕 |
+| modelbox.Model | __init__ | path: 模型路径<br>name: 模型配置中描述的名称<br>in_names: 输入端口名<br>out_names: 输出端口名<br>max_batch_size: 一次推理的最大batch<br>device: 设备类型，"cpu", "gpu", "ascend"可选<br>device_id: 设备ID| 构建ModelBox单模型推理对象 |
+|  | start | 无 | 启动ModelBox单模型推理对象 |
+|  | stop | 无 | 停止ModelBox单模型推理对象 |
+|  | infer | data_list: 每个端口的输入组成的列表，与定义的端口顺序一致 | 单batch放入数据，底层执行推理时会自动合并batch |
+|  | infer_batch | data_list: 每个端口的多输入组成的列表，与定义的端口顺序一致 | 便于将一批数据送入，底层会按照模型的batch配置决定执行时的真实batch |
 
-| API接口                                               | 参数说明                                                     | 函数说明                                                     |
-| ----------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Flow::init   | configfile: 指定config文件的路径<br />format： 指定图文件的格式，可选项为 FORMAT_AUTO,FORMAT_TOML，FORMAT_JSON | 初始化ModelBox服务，主要包含功能如下：<br />1. 读取driver参数，获取driver的扫描路径<br />2. 扫描指定路径下的driver文件，并创建driver实例<br />3. 加载流程图并转换为ModelBox可识别的模型<br />4. 初始化设备信息，性能跟踪和数据统计单元 |
-| Flow::init   | name: 指定的图的名称<br />graph: 存储图的字符串<br />format：指定图的格式 | 与上面init的区别是，上面通过读取文件的方式，而此函数通过读取字符串的方式，其他功能相同 |
-| Flow::init    | config: Configuration指针，存储图信息  | 功能同上                                                     |
-| Flow::build() | / | 用于构建图，将图模型转为可以运行的Node节点并且建立好数据通道 |
-| Flow::run()    | / | 图的运行： 同步方式，图运行完成后返回  |
-| Flow::run_async  | / | 图的运行： 异步运行， 调用后直接返回， wait()函数判断运行是否结束 |
-| Flow::wait | millisecond: 超时时间， 以毫秒为单位<br />ret_val: 图运行的结果 | 等待图运行状态为结束，当图的运行时间超过millisecond表示的时间时，则强制停止图的运行，并返回TIMEOUT |
-| Flow::stop | / | 强制停止运行中的图 |
-| Flow::create_external_data_map   | / | 当图中的第一个节点为input节点时， 使用此函数可以创建一个输入的ExternalDataMap， 开发者可以通过向ExternalDataMap数据中赋值并传递数据给Input节点。具体使用方法可参考[外部数据交互](./python.md#外部数据交互)章节 |
+Python开发AI应用的大致流程如下：
 
-Python开发调用流程图时，需要先安装C++的运行包，然后再编写C++函数，调用Flow执行API执行流程图。Flow流程图接口调用过程如下图所示：
+1. 安装Python SDK包。
+1. 开发流程图之外的应用部分。
+1. 开发流程图的流程，以及流程中使用的功能单元。
+1. 使用Flow的接口创建流程图对象。
+1. 使用流程图对象写入数据。
+1. 在使用数据的地方读取数据。
+1. 不再使用流程图时，可调用stop释放图资源。
 
-![python-sdk alt rect_w_1000](../../assets/images/figure/develop/flow/python-sdk.png)
+## 使用场景
 
-1. 安装Python SDK包
-1. 开发流程图，配置基础部分和图部分。
-1. 调用Flow::init接口，输入流程图文件。
-1. 调用Flow::build初始化流程图。
-1. 调用Flow::run_async，异步执行流程图。
-1. 数据输入，数据处理，结果获取。
-1. 调用Flow::Stop释放图资源。
-
-## 流程图配置
+### 通过流程图配置初始化流程图对象
 
 SDK模式的流程图的开发和标准模式基本一样，具体开发介绍见[流程图开发](../standard-mode/flow/flow.md)章节。SDK模型区别可以通过设置input和output端口作为外部数据的输入和输出。具体配置如下：
 
@@ -55,96 +80,145 @@ format = "graphviz"
 
 如上图，input1和output1端口作为图的输入和输出，如果需要设置多个外部输入输出端口，可按照图配置规则配置多个。
 
-## 流程图运行
+配置好流程图之后，使用API初始化流程图对象
 
-* **导入ModelBox包**
+```python
+import modelbox
 
-  编写时，需要导入ModelBox的开发包。
-  
-  ```python
-  import modelbox
-  ```
-  
-  * 图创建初始化和启动
-  
-  ```python
-  def CreateFlow(flow_file):
-  
-      flow = modelbox.Flow()
-      # 初始化Flow接口
-      ret = flow.init(flow_file)
-      if ret == False:
-          modelbox.error(flow_file + " flow init failed")
-  
-      # 创建流程图
-      ret = flow.build()
-      if ret == False:
-          modelbox.error(flow_file + " flow build failed")
-  
-      # 异步执行流程图
-      ret = flow.run_async()
-      if ret == False:
-          modelbox.error(flow_file + " flow run async failed")
-      
-      return flow
-  ```
-  
-* **外部数据交互**
+flow = modelbox.Flow()
+flow.init(flow_file_path)
+```
 
-  业务数据往往需要输入给流程图进行处理，同时处理完成后需要获取结果。一次数据的发送和结果过程如下：
-  
-  ```python
-  
-  def send_external_data(extern_data, img_rgb):
-      # 申请Buffer
-      buffer_list = extern_data.create_buffer_list()
-      im_array = np.asarray(img_rgb[:,:])
-      buffer_list.push_back(im_array)
-      # 将数据发送到"input"。
-      extern_data.send("input1", buffer_list)
-      # 结束输入。
-      extern_data.close()
-  # 从图中接收数据
-  
-  def recv_flow_data(extern_data):
-      out_buffer = extern_data.create_buffer_list()
-      # 使用创建的external对象从output接收数据
-      while True:
-          ret = extern_data.recv(out_buffer)
-          if ret != modelbox.Status.StatusCode.STATUS_SUCCESS:
-              if ret == modelbox.Status.StatusCode.STATUS_EOF:
-                  break
-              extern_data.shundown()
-              print("recv data failed", ret)
-              break
-          result_buffer_list = out_buffer.get_buffer_list("output1")
-          # 循环处理数据
-          for i in range(result_buffer_list.size()):
-              aa = result_buffer_list[i]
-              np_image = np.array(aa, copy= False)
-              image = Image.fromarray(np_image)
-              # ....
-  
-  def Process(flow, img_rgb);
-      # 创建外部输入句柄
-      extern_data = flow.create_external_data_map()
-      
-      # 发送数据到流程图
-      send_external_data(extern_data, img_rgb)
-  
-      # 获取输出结果并处理
-      recv_flow_data(extern_data)
-  ```
+### 通过流程图描述初始化流程图对象
 
-* **图的资源释放**
+通过API直接描述流程图
 
-  ```c++
-  def FlowFtop(flow) {
-    // 结束执行
-    flow.stop();
-  }
-  ```
+```python
+import modelbox
 
-## Python日志
+# set graph config
+graph_cfg = modelbox.FlowGraphConfig();
+graph_cfg.set_queue_size(32)
+graph_cfg.set_batch_size(16)
+graph_cfg.set_skip_default_drivers(False)
+graph_cfg.set_drivers_dir(["/xxx/xxx/"])
 
-默认情况，ModelBox的SDK输出日志到console，业务需要注册相关的日志处理函数，注册方法可参考[日志](../standard-mode/debug/log.md#日志sdk)章节。
+# construct graph
+graph_desc = modelbox.FlowGraphDesc()
+graph_desc.init(graph_cfg)
+# graph_desc.init() # init by default config
+
+input = graph_desc.add_input("input1")
+resize = graph_desc.add_node("resize", "cuda", {"image_width=128", "image_height=128"}, input)
+model_detect = graph_desc.add_node("model_detect", "cuda", resize)
+yolobox_post = graph_desc.add_node("yolobox_post", "cpu", model_detect)
+graph_desc.add_output("output1", yolobox_post)
+
+# start flow
+flow = modelbox.Flow()
+flow.init(graph_desc)
+flow.start_run()
+```
+
+### 流程图数据输入输出
+
+通过上述两个方式构建好flow后，就可以使用flow进行数据处理了。
+
+```python
+stream_io = flow.create_stream_io()
+
+# write img
+img = cv.imread("path.jpg")
+## method 1
+buffer = stream_io.create_buffer(img)
+buffer.set("meta", "meta")
+stream_io.send("input1", buffer)
+## method 2
+stream_io.send(img)
+
+# write numpy
+tensor = numpy.ones((10, 10, 3))
+## method 1
+buffer = stream_io.create_buffer(tensor)
+buffer.set("meta", "meta")
+stream_io.send("input1", buffer)
+## method 2
+stream_io.send(tensor)
+
+# write str
+url = "rtsp://x.x.x.x/x.sdp"
+## method 1
+buffer = stream_io.create_buffer(url)
+buffer.set("meta", "meta")
+stream_io.send("input1", buffer)
+## method 2
+stream_io.send(url)
+
+# write list
+floats = numpy.array([1.0, 2.0, 3.0, 4.0])
+## method 1
+buffer = stream_io.create_buffer(floats)
+buffer.set("meta", "meta")
+stream_io.send("input1", buffer)
+## method 2
+stream_io.send("input1", floats)
+
+# recv buffer
+result = stream_io.recv("output1")
+
+# buffer to numpy
+data = numpy.array(result)
+
+# buffer to str
+data2 = str(result)
+```
+
+### 使用快捷的单模型推理接口
+
+对于想快速使用ModelBox对模型进行推理场景，可以使用如下的方式
+
+```python
+import modelbox
+
+# load model
+model = modelbox.Model(path, name, in_names, out_names, max_batch_size, device, device_id)
+model.start()
+
+# single batch inference
+data1_np = numpy.ones((3, 3, 3))
+data2_np = numpy.ones((10, 10, 3))
+input_list = [data1_np, data2_np]
+output_list = model.infer(input_list)
+output_buffer = output_list[output_index]
+output_np = numpy.array(output_buffer)
+
+# multi batch inference
+data1_batch_np = [numpy.ones((3, 3, 3)), numpy.ones((3, 3, 3))]
+data2_batch_np = [numpy.ones((10, 10, 3)), numpy.ones((10, 10, 3))]
+input_batch_list = [data1_batch_np, data2_batch_np]
+output_batch_list = model.infer_batch(input_batch_list)
+output_buffer = output_batch_list[output_index][batch_index]
+output_np = numpy.array(output_buffer)
+```
+
+### 日志接口
+
+应用程序可以设置modelbox的日志级别，并且可以使用modelbox的日志系统
+
+```python
+# set log level
+modelbox.set_log_level(modelbox.Log.Level.DEBUG)
+modelbox.set_log_level(modelbox.Log.Level.INFO)
+modelbox.set_log_level(modelbox.Log.Level.NOTICE)
+modelbox.set_log_level(modelbox.Log.Level.WARN)
+modelbox.set_log_level(modelbox.Log.Level.ERROR)
+modelbox.set_log_level(modelbox.Log.Level.FATAL)
+modelbox.set_log_level(modelbox.Log.Level.OFF)
+
+modelbox.debug("")
+modelbox.info("")
+modelbox.notice("")
+modelbox.warn("")
+modelbox.error("")
+modelbox.fatal("")
+```
