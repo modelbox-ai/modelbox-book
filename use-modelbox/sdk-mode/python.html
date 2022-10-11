@@ -1808,7 +1808,7 @@
 </thead>
 <tbody>
 <tr>
-<td>modelbox.FlowConfig</td>
+<td>modelbox.FlowGraphDesc</td>
 <td>set_queue_size</td>
 <td>queue_size: &#x6D41;&#x7A0B;&#x56FE;&#x4E2D;&#x8282;&#x70B9;&#x4E4B;&#x95F4;&#x7684;&#x6570;&#x636E;&#x961F;&#x5217;&#x5927;&#x5C0F;</td>
 <td>&#x8BBE;&#x7F6E;&#x6D41;&#x7A0B;&#x56FE;&#x4E2D;&#x8282;&#x70B9;&#x4E4B;&#x95F4;&#x7684;&#x6570;&#x636E;&#x961F;&#x5217;&#x5927;&#x5C0F;</td>
@@ -1832,16 +1832,16 @@
 <td>&#x8BBE;&#x7F6E;&#x662F;&#x5426;&#x8DF3;&#x8FC7;ModelBox&#x9ED8;&#x8BA4;&#x7684;&#x626B;&#x63CF;&#x8DEF;&#x5F84;</td>
 </tr>
 <tr>
-<td>modelbox.FlowGraphDesc</td>
-<td>init</td>
-<td>&#x65E0;</td>
-<td>&#x521D;&#x59CB;&#x5316;&#x56FE;&#x63CF;&#x8FF0;</td>
+<td></td>
+<td>set_profile_dir</td>
+<td>profile_dir: &#x6027;&#x80FD;&#x5206;&#x6790;&#x6587;&#x4EF6;&#x5B58;&#x50A8;&#x7684;&#x76EE;&#x5F55;</td>
+<td>&#x8BBE;&#x7F6E;&#x6027;&#x80FD;&#x5206;&#x6790;&#x6587;&#x4EF6;&#x5B58;&#x50A8;&#x7684;&#x76EE;&#x5F55;</td>
 </tr>
 <tr>
 <td></td>
-<td>init</td>
-<td>config: &#x56FE;&#x63CF;&#x8FF0;&#x7684;&#x914D;&#x7F6E;</td>
-<td>&#x521D;&#x59CB;&#x5316;&#x56FE;&#x63CF;&#x8FF0;</td>
+<td>set_profile_trace_enable</td>
+<td>profile_trace_enable: &#x8FFD;&#x8E2A;&#x6267;&#x884C;&#x4FE1;&#x606F;&#x7684;&#x5F00;&#x5173;</td>
+<td>&#x8BBE;&#x7F6E;&#x662F;&#x5426;&#x542F;&#x52A8;&#x8FFD;&#x8E2A;&#x6267;&#x884C;&#x4FE1;&#x606F;</td>
 </tr>
 <tr>
 <td></td>
@@ -1943,7 +1943,7 @@
 <td></td>
 <td>create_buffer</td>
 <td>data: Python Buffer Protocol&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;</td>
-<td>&#x3000;&#x6839;&#x636E;Python Buffer Protocol&#x7C7B;&#x578B;&#x7684;data&#x521B;&#x5EFA;&#x4E00;&#x4E2A;buffer, &#x5982;numpy&#x7684;ndarray</td>
+<td>&#x6839;&#x636E;Python Buffer Protocol&#x7C7B;&#x578B;&#x7684;data&#x521B;&#x5EFA;&#x4E00;&#x4E2A;buffer, &#x5982;numpy&#x7684;ndarray</td>
 </tr>
 <tr>
 <td></td>
@@ -1995,7 +1995,7 @@
 </tr>
 <tr>
 <td>modelbox.Model</td>
-<td><strong>init</strong></td>
+<td>__init__</td>
 <td>path: &#x6A21;&#x578B;&#x8DEF;&#x5F84;<br>name: &#x6A21;&#x578B;&#x914D;&#x7F6E;&#x4E2D;&#x63CF;&#x8FF0;&#x7684;&#x540D;&#x79F0;<br>in_names: &#x8F93;&#x5165;&#x7AEF;&#x53E3;&#x540D;<br>out_names: &#x8F93;&#x51FA;&#x7AEF;&#x53E3;&#x540D;<br>max_batch_size: &#x4E00;&#x6B21;&#x63A8;&#x7406;&#x7684;&#x6700;&#x5927;batch<br>device: &#x8BBE;&#x5907;&#x7C7B;&#x578B;&#xFF0C;&quot;cpu&quot;, &quot;gpu&quot;, &quot;ascend&quot;&#x53EF;&#x9009;<br>device_id: &#x8BBE;&#x5907;ID</td>
 <td>&#x6784;&#x5EFA;ModelBox&#x5355;&#x6A21;&#x578B;&#x63A8;&#x7406;&#x5BF9;&#x8C61;</td>
 </tr>
@@ -2067,27 +2067,30 @@ flow.init(flow_file_path)
 <pre><code class="lang-python"><span class="hljs-keyword">import</span> modelbox
 
 <span class="hljs-comment"># set graph config</span>
-graph_cfg = modelbox.FlowGraphConfig();
-graph_cfg.set_queue_size(<span class="hljs-number">32</span>)
-graph_cfg.set_batch_size(<span class="hljs-number">16</span>)
-graph_cfg.set_skip_default_drivers(<span class="hljs-keyword">False</span>)
-graph_cfg.set_drivers_dir([<span class="hljs-string">&quot;/xxx/xxx/&quot;</span>])
-
-<span class="hljs-comment"># construct graph</span>
 graph_desc = modelbox.FlowGraphDesc()
-graph_desc.init(graph_cfg)
-<span class="hljs-comment"># graph_desc.init() # init by default config</span>
+graph_desc.set_queue_size(<span class="hljs-number">32</span>)
+graph_desc.set_batch_size(<span class="hljs-number">16</span>)
+graph_desc.set_skip_default_drivers(<span class="hljs-keyword">False</span>)
+graph_desc.set_drivers_dir([<span class="hljs-string">&quot;/xxx/xxx/&quot;</span>])
+graph_desc.set_profile_dir(<span class="hljs-string">&quot;/tmp/app/&quot;</span>)
+graph_desc.set_profile_trace_enable(<span class="hljs-keyword">True</span>)
 
 input = graph_desc.add_input(<span class="hljs-string">&quot;input1&quot;</span>)
-resize = graph_desc.add_node(<span class="hljs-string">&quot;resize&quot;</span>, <span class="hljs-string">&quot;cuda&quot;</span>, {<span class="hljs-string">&quot;image_width=128&quot;</span>, <span class="hljs-string">&quot;image_height=128&quot;</span>}, input)
+resize = graph_desc.add_node(<span class="hljs-string">&quot;resize&quot;</span>, <span class="hljs-string">&quot;cuda&quot;</span>, [<span class="hljs-string">&quot;image_width=128&quot;</span>, <span class="hljs-string">&quot;image_height=128&quot;</span>], input)
 model_detect = graph_desc.add_node(<span class="hljs-string">&quot;model_detect&quot;</span>, <span class="hljs-string">&quot;cuda&quot;</span>, resize)
 yolobox_post = graph_desc.add_node(<span class="hljs-string">&quot;yolobox_post&quot;</span>, <span class="hljs-string">&quot;cpu&quot;</span>, model_detect)
 graph_desc.add_output(<span class="hljs-string">&quot;output1&quot;</span>, yolobox_post)
 
 <span class="hljs-comment"># start flow</span>
 flow = modelbox.Flow()
-flow.init(graph_desc)
-flow.start_run()
+ret = flow.init(graph_desc)
+<span class="hljs-keyword">if</span> ret.code() != modelbox.Status.StatusCode.STATUS_SUCCESS:
+  print(<span class="hljs-string">&quot;init flow failed, err {}&quot;</span>.format(ret.errormsg()))
+  <span class="hljs-keyword">return</span>
+ret = flow.start_run()
+<span class="hljs-keyword">if</span> ret.code() != modelbox.Status.StatusCode.STATUS_SUCCESS:
+  print(<span class="hljs-string">&quot;start flow failed, err {}&quot;</span>.format(ret.errormsg()))
+  <span class="hljs-keyword">return</span>
 </code></pre>
 <h3 id="&#x6D41;&#x7A0B;&#x56FE;&#x6570;&#x636E;&#x8F93;&#x5165;&#x8F93;&#x51FA;"><a name="&#x6D41;&#x7A0B;&#x56FE;&#x6570;&#x636E;&#x8F93;&#x5165;&#x8F93;&#x51FA;" class="anchor-navigation-ex-anchor" href="#&#x6D41;&#x7A0B;&#x56FE;&#x6570;&#x636E;&#x8F93;&#x5165;&#x8F93;&#x51FA;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6D41;&#x7A0B;&#x56FE;&#x6570;&#x636E;&#x8F93;&#x5165;&#x8F93;&#x51FA;</h3>
 <p>&#x901A;&#x8FC7;&#x4E0A;&#x8FF0;&#x4E24;&#x4E2A;&#x65B9;&#x5F0F;&#x6784;&#x5EFA;&#x597D;flow&#x540E;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;flow&#x8FDB;&#x884C;&#x6570;&#x636E;&#x5904;&#x7406;&#x4E86;&#x3002;</p>
@@ -2181,7 +2184,7 @@ modelbox.error(<span class="hljs-string">&quot;&quot;</span>)
 modelbox.fatal(<span class="hljs-string">&quot;&quot;</span>)
 </code></pre>
 <footer class="page-footer"><span class="copyright">&#xA9;2022 ModelBox Team all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-09-16 08:17:12
+2022-10-11 12:25:11
 </span></footer>
                                 
                                 </section>
@@ -2215,7 +2218,7 @@ modelbox.fatal(<span class="hljs-string">&quot;&quot;</span>)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Python","level":"1.4.3.2","depth":3,"next":{"title":"Java","level":"1.4.3.3","depth":3,"path":"use-modelbox/sdk-mode/java.md","ref":"use-modelbox/sdk-mode/java.md","articles":[]},"previous":{"title":"C++","level":"1.4.3.1","depth":3,"path":"use-modelbox/sdk-mode/c++.md","ref":"use-modelbox/sdk-mode/c++.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore","anchor-navigation-ex"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导文档"},"file":{"path":"use-modelbox/sdk-mode/python.md","mtime":"2022-09-16T08:17:12.989Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-09-16T08:18:15.899Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Python","level":"1.4.3.2","depth":3,"next":{"title":"Java","level":"1.4.3.3","depth":3,"path":"use-modelbox/sdk-mode/java.md","ref":"use-modelbox/sdk-mode/java.md","articles":[]},"previous":{"title":"C++","level":"1.4.3.1","depth":3,"path":"use-modelbox/sdk-mode/c++.md","ref":"use-modelbox/sdk-mode/c++.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore","anchor-navigation-ex"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导文档"},"file":{"path":"use-modelbox/sdk-mode/python.md","mtime":"2022-10-11T12:25:11.251Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-10-11T12:26:05.016Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
