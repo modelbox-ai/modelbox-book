@@ -20,7 +20,7 @@ ModelBox提供了统计功能单元，以及运行任务的时间统计功能，
 
 ```toml
 [profile]
-profile=true # 启用profile
+performance=true # 启用performance
 trace=true # 启用traceing
 dir="/tmp/modelbox/perf" # 设置跟踪文件路径
 ```

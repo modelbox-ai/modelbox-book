@@ -6,12 +6,12 @@
 
 | 类    | 方法  | 参数 | 功能 |
 | ----- | ---- |----- | -----|
-| modelbox.FlowConfig | set_queue_size | queue_size: 流程图中节点之间的数据队列大小 | 设置流程图中节点之间的数据队列大小 |
+| modelbox.FlowGraphDesc | set_queue_size | queue_size: 流程图中节点之间的数据队列大小 | 设置流程图中节点之间的数据队列大小 |
 |  | set_batch_size | batch_size: 流程图中节点处理的批数据大小 | 设置流程图中节点处理的批数据大小 |
 |  | set_drivers_dir | drivers_dir_list: 流程图中节点的额外扫描目录 | 设置流程图中节点的额外扫描目录 |
 |  | set_skip_default_drivers | is_skip: 是否跳过ModelBox默认的扫描路径 | 设置是否跳过ModelBox默认的扫描路径 |
-| modelbox.FlowGraphDesc | init | 无 | 初始化图描述 |
-|  | init | config: 图描述的配置 | 初始化图描述 |
+|  | set_profile_dir | profile_dir: 性能分析文件存储的目录 | 设置性能分析文件存储的目录 |
+|  | set_profile_trace_enable | profile_trace_enable: 追踪执行信息的开关 | 设置是否启动追踪执行信息 |
 |  | add_input | input_name: 图输入端口名称 | 为图添加输入端口 |
 |  | add_output | output_name: 图输出端口名称<br>source_node_port: 作为图输出端口的节点输出端口 | 为图添加输出端口 |
 |  | add_output | output_name: 图输出端口名称<br>source_node: 作为图输出端口的单端口节点 | 为图添加输出端口 |
@@ -28,7 +28,7 @@
 |  | stop | 无 | 停止流程图 |
 |  | create_stream_io | 无 | 在流程图中创建一个数据流的输入输出句柄 |
 | modelbox.FlowStreamIO | create_buffer | 无 | 创建空buffer用于存储数据 |
-|  | create_buffer | data: Python Buffer Protocol类型的数据 |　根据Python Buffer Protocol类型的data创建一个buffer, 如numpy的ndarray |
+|  | create_buffer | data: Python Buffer Protocol类型的数据 | 根据Python Buffer Protocol类型的data创建一个buffer, 如numpy的ndarray |
 |  | create_buffer | data: string类型的数据 | 根据string类型的data创建一个buffer |
 |  | send | input_name: 图的输入端口名<br>buffer: ModelBox的Buffer数据 | 发送数据到图的输入端口 |
 |  | send | input_name: 图的输入端口名<br>data: Python Buffer Protocol类型的数据 | 发送数据到图的输入端口 |
@@ -37,7 +37,7 @@
 |  | recv | output_name: 图的输出端口名<br>timeout: 等待超时 | 接受图的输出数据 |
 |  | recv | output_name: 图的输出端口名 | 接受图的输出数据 |
 |  | close_input | 无 | 结束输入的数据流，将会告知ModelBox输入数据是否已经完毕 |
-| modelbox.Model | __init__ | path: 模型路径<br>name: 模型配置中描述的名称<br>in_names: 输入端口名<br>out_names: 输出端口名<br>max_batch_size: 一次推理的最大batch<br>device: 设备类型，"cpu", "gpu", "ascend"可选<br>device_id: 设备ID| 构建ModelBox单模型推理对象 |
+| modelbox.Model | \_\_init\_\_ | path: 模型路径<br>name: 模型配置中描述的名称<br>in_names: 输入端口名<br>out_names: 输出端口名<br>max_batch_size: 一次推理的最大batch<br>device: 设备类型，"cpu", "gpu", "ascend"可选<br>device_id: 设备ID| 构建ModelBox单模型推理对象 |
 |  | start | 无 | 启动ModelBox单模型推理对象 |
 |  | stop | 无 | 停止ModelBox单模型推理对象 |
 |  | infer | data_list: 每个端口的输入组成的列表，与定义的端口顺序一致 | 单batch放入数据，底层执行推理时会自动合并batch |
@@ -69,7 +69,7 @@ graphconf = '''digraph demo {
   model_detect[type=flowunit, flowunit=model_detect, device=cuda]
   yolobox_post[type=flowunit, flowunit=yolobox_post, device=cpu]
   output1[type=output] # 定义output类型端口，端口名为output1，用于外部获取输出结果
-   
+
   input1 -> resize:in_image
   resize:out_image -> model_detect:in
   model_detect:output -> yolobox_post:in
@@ -97,27 +97,30 @@ flow.init(flow_file_path)
 import modelbox
 
 # set graph config
-graph_cfg = modelbox.FlowGraphConfig();
-graph_cfg.set_queue_size(32)
-graph_cfg.set_batch_size(16)
-graph_cfg.set_skip_default_drivers(False)
-graph_cfg.set_drivers_dir(["/xxx/xxx/"])
-
-# construct graph
 graph_desc = modelbox.FlowGraphDesc()
-graph_desc.init(graph_cfg)
-# graph_desc.init() # init by default config
+graph_desc.set_queue_size(32)
+graph_desc.set_batch_size(16)
+graph_desc.set_skip_default_drivers(False)
+graph_desc.set_drivers_dir(["/xxx/xxx/"])
+graph_desc.set_profile_dir("/tmp/app/")
+graph_desc.set_profile_trace_enable(True)
 
 input = graph_desc.add_input("input1")
-resize = graph_desc.add_node("resize", "cuda", {"image_width=128", "image_height=128"}, input)
+resize = graph_desc.add_node("resize", "cuda", ["image_width=128", "image_height=128"], input)
 model_detect = graph_desc.add_node("model_detect", "cuda", resize)
 yolobox_post = graph_desc.add_node("yolobox_post", "cpu", model_detect)
 graph_desc.add_output("output1", yolobox_post)
 
 # start flow
 flow = modelbox.Flow()
-flow.init(graph_desc)
-flow.start_run()
+ret = flow.init(graph_desc)
+if ret.code() != modelbox.Status.StatusCode.STATUS_SUCCESS:
+  print("init flow failed, err {}".format(ret.errormsg()))
+  return
+ret = flow.start_run()
+if ret.code() != modelbox.Status.StatusCode.STATUS_SUCCESS:
+  print("start flow failed, err {}".format(ret.errormsg()))
+  return
 ```
 
 ### 流程图数据输入输出
