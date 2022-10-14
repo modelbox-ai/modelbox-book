@@ -8,13 +8,14 @@ ModelBox提供了流程图的创建、运行、关闭等基础接口。下面是
 
 | API接口  |     参数说明       |                                             函数说明                                                         |
 | ------- |------------------- | ------------------------------------------------------------------------------------------------------------ |
-| Flow::init | configfile: 指定config文件的路径<br /> | 初始化ModelBox服务，主要包含功能如下：<br />1. 读取driver参数，获取driver的扫描路径<br />2. 扫描指定路径下的driver文件，并创建driver实例<br />3. 加载流程图并转换为ModelBox可识别的模型<br />4. 初始化设备信息，性能跟踪和数据统计单元 |
-| Flow::init | name: 指定的图的名称<br />graph: 存储图的字符串<br />format：指定图的格式 | 与上面Init的区别是，上面通过读取文件的方式，而此函数通过读取字符串的方式，其他功能相同 |
-| Flow::startRun | / | 图的运行： 异步运行， 调用后直接返回， 通过调用Wait()函数判断运行是否结束 |
-| Flow::waitFor | millisecond: 超时时间， 以毫秒为单位<br />ret_val: 图运行的结果 | 等待图运行结束，当图的运行时间超过millisecond表示的时间时，则强制停止图的运行，并返回TIMEOUT |
-| Flow::stop() | / | 强制停止运行中的图 |
-| Flow::createExternalDataMap | / | 当图中的第一个节点为input节点时， 使用此函数可以创建一个输入的ExternalDataMap， 开发者可以通过向ExternalDataMap数据中赋值并传递数据给Input节点。 |
-| Flow::createStreamIO | / | 功能类似createExternalDataMap， 但更加简单易用。当图中的第一个节点为input节点时， 使用此函数可以创建一个输入的FlowStreamIO， 开发者可以通过向FlowStreamIO数据中赋值并传递数据给Input节点。 |
+| Flow.init | configfile: 指定config文件的路径<br /> | 初始化ModelBox服务，主要包含功能如下：<br />1. 读取driver参数，获取driver的扫描路径<br />2. 扫描指定路径下的driver文件，并创建driver实例<br />3. 加载流程图并转换为ModelBox可识别的模型<br />4. 初始化设备信息，性能跟踪和数据统计单元 |
+| Flow.init | name: 指定的图的名称<br />graph: 存储图的字符串<br />format：指定图的格式 | 与上面Init的区别是，上面通过读取文件的方式，而此函数通过读取字符串的方式，其他功能相同 |
+| Flow.RegisterFlowUnit | flowunit_builder: 功能单元创建工厂 | 创建内联功能单元 |
+| Flow.startRun | / | 图的运行： 异步运行， 调用后直接返回， 通过调用Wait()函数判断运行是否结束 |
+| Flow.waitFor | millisecond: 超时时间， 以毫秒为单位<br />ret_val: 图运行的结果 | 等待图运行结束，当图的运行时间超过millisecond表示的时间时，则强制停止图的运行，并返回TIMEOUT |
+| Flow.stop() | / | 强制停止运行中的图 |
+| Flow.createExternalDataMap | / | 当图中的第一个节点为input节点时， 使用此函数可以创建一个输入的ExternalDataMap， 开发者可以通过向ExternalDataMap数据中赋值并传递数据给Input节点。 |
+| Flow.createStreamIO | / | 功能类似createExternalDataMap， 但更加简单易用。当图中的第一个节点为input节点时， 使用此函数可以创建一个输入的FlowStreamIO， 开发者可以通过向FlowStreamIO数据中赋值并传递数据给Input节点。 |
 
 Java开发调用流程图时，需要先安装Java的运行包，然后再编写Java函数，调用Flow执行API执行流程图。
 
@@ -24,6 +25,15 @@ Java开发调用流程图时，需要先安装Java的运行包，然后再编写
 1. 调用Flow::startRun初始化，并执行流程图。
 1. 数据输入，数据处理，结果获取。
 1. 调用Flow::stop释放图资源。
+
+## Java SDK包
+
+java SDK包包含两部分，一个是`libmodelbox-jni.so`, 一个是`modelbox-1.0.0.jar`，通过编译modelbox源代码可以生成上述文件
+
+```shell
+cmake .. -DWITH_JAVA=on
+make package
+```
 
 ## 流程图配置
 
@@ -136,6 +146,81 @@ format = "graphviz"
 
 开发者可以根据自身业务，选择在合适的地方调用图的启动停止和数据发送。如果用户业务是多线程时，可以将flow对象可作为多线程共享对象，每个线程都往同一流程图发生数据，这样可以充分利用ModelBox的bacth并发能力。
 
+## 内联功能单元
+
+在某些情况下，开发人员需要快速实现功能单元并参与流程图执行；`Flow.RegisterFlowUnit`接口提供了注册内联功能单元的功能，开发者人员可以使用此接口注册内联功能单元，具体方法如下：
+
+* 创建内联FlowUnit
+
+  ```java
+  // 自定义功能单元
+  public class CustomFlowUnit extends FlowUnit {
+      // 工厂类
+      public static class Builder extends FlowUnitBuilder {
+          // 功能单元注册信息回调函数
+          @Override
+          public void probe(FlowUnitDesc desc) {
+              // 功能单元类型: cpu
+              desc.SetFlowUnitType("cpu");
+              // 功能单元名称：参与流程图编排的时候使用
+              desc.SetFlowUnitName("CustomFlowUnit");
+              // 功能单元数据处理类型，NORMAL，或STREAM
+              desc.SetFlowType(FlowUnitDesc.FlowType.NORMAL);
+              // 输入端口
+              desc.AddFlowUnitInput(new FlowUnitInput("in_data"));
+              // 输出端口
+              desc.AddFlowUnitOutput(new FlowUnitOutput("out_data"));
+          }
+
+          @Override
+          public FlowUnit build() {
+              // 创建对应的功能单元实例。
+              return new CustomFlowUnit();
+          }
+      }
+
+      @Override
+      public void open(Configuration opt) throws ModelBoxException {
+        // 功能单元open处理函数
+      }
+
+      @Override
+      public Status process(DataContext context) throws ModelBoxException {
+          // 功能单元处理函数
+          BufferList in = context.input("in_data");
+          BufferList out = context.output("out_data");
+
+          // 处理每一个buffer。
+          for (int i = 0; i < in.size(); i++) {
+              out.pushBack(in.at(i));
+          }
+
+          return Status.OK();
+      }
+
+  }
+  ```
+
+* 注册到Flow流程图中
+
+  ```java
+  public void CreateFlow() {
+    try {
+      Flow flow = new Flow();
+      // 注册功能单元
+      flow.RegisterFlowUnit(new HelloWorldFlowUnit.Builder());
+      ...
+    } catch (ModelBoxException e) {
+      // 错误处理
+    }
+  ```
+
 ## Java日志
 
 默认情况，ModelBox的SDK输出日志到console，业务需要注册相关的日志处理函数，注册方法可参考[日志](../standard-mode/debug/log.md#日志sdk)章节。
+
+## Java样例工程
+
+本例提供了Java的HelloWorld样例工程，可以直接下载后使用。
+
+[http://download.modelbox-ai.com/example/project/java/hello-world.tar.gz](http://download.modelbox-ai.com/example/project/java/hello-world.tar.gz)
