@@ -164,26 +164,27 @@ Log.fatal("this is fatal")
 ```java
 // 导入相关的包
 import com.modelbox.Log;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-  class CustomLog extends Log {
-    public void print(LogLevel level, String file, int lineno, String func, String msg) {
-      String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss.SSS").format(new Date());
-      System.out.printf("[%s][%s][%17s:%-4d] %s\n", timeStamp, level, file, lineno, msg);
-      lastMsg = msg;
-    }
-
-    public String lastMsg;
+class CustomLog extends Log {
+  public void print(LogLevel level, String file, int lineno, String func, String msg) {
+    String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss.SSS").format(new Date());
+    System.out.printf("[%s][%s][%17s:%-4d] %s\n", timeStamp, level, file, lineno, msg);
   }
+}
 
-  public void initLog() {
-    // 注册自定义log
-    TestLog log = new CustomLog();
-    Log.regLog(log);
-  }
+public void initLog() {
+  // 注册自定义log
+  TestLog log = new CustomLog();
+  Log.regLog(log);
+  // 设置日志级别
+  Log.LogGetLogger().setLogLevel(LogLevel.LOG_INFO);
+}
 
-  public void deinitLog() {
-    Log.unRegLog();
-  }
+public void deinitLog() {
+  Log.unRegLog();
+}
 
 ```
 

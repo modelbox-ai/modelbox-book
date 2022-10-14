@@ -82,6 +82,22 @@ modelbox::Status  初始化流程图flow的返回状态
 
 modelbox::Status 构造流程图flow的返回状态
 
+## RegisterFlowUnit
+
+注册内联功能单元
+
+```c++
+    void RegisterFlowUnit(const std::shared_ptr<modelbox::FlowUnitBuilder>& flowunit_builder);
+```
+
+**args:**  
+
+* **flowunit_builder** (FlowUnitBuilder) ——  功能单元工厂类。
+
+**return:**  
+
+无
+
 ## Run
 
 同步运行flow，阻塞直至运行结束

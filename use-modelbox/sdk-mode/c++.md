@@ -12,6 +12,7 @@ ModelBox提供了流程图的创建、运行、关闭等基础接口。下面是
 | Flow::Init | name: 指定的图的名称<br />graph: 存储图的字符串<br />format：指定图的格式 | 与上面Init的区别是，上面通过读取文件的方式，而此函数通过读取字符串的方式，其他功能相同 |
 | Flow::Init | is: 图的输入流istream<br />fname: 输入的图名称 | 功能与上面Init相同， 区别在于输入的是流保存的图信息 |
 | Flow::Init | config: Configuration指针，存储图信息 | 功能同上 |
+| Flow::RegisterFlowUnit | flowunit_builder: 功能单元创建工厂 | 创建内联功能单元 |
 | Flow::Build | / | 用于构建图，将图模型转为可以运行的Node节点并且建立好数据通道 |
 | Flow::Run | / | 图的运行： 同步方式，图运行完成后返回 |
 | Flow::RunAsync | / | 图的运行： 异步运行， 调用后直接返回， 通过调用Wait()函数判断运行是否结束 |
@@ -179,6 +180,58 @@ format = "graphviz"
   ```
 
 开发者可以根据自身业务，选择在合适的地方调用图的启动停止和数据发送。如果用户业务是多线程时，可以将flow对象可作为多线程共享对象，每个线程都往同一流程图发生数据，这样可以充分利用ModelBox的bacth并发能力。
+
+## 内联功能单元
+
+在某些情况下，开发人员需要快速实现功能单元并参与流程图执行；`Flow.RegisterFlowUnit`接口提供了注册内联功能单元的功能，开发者人员可以使用此接口注册内联功能单元，具体方法如下：
+
+* 创建内联FlowUnit
+
+  ```c++
+  class CustomFlowUnit : public FlowUnit {
+  public:
+    Status Process(std::shared_ptr<DataContext> data_ctx) override {
+      // 功能单元处理函数
+      auto indata = data_ctx->Input("in");
+      auto output = data_ctx->Output("out");
+
+      for (const auto& buff : *indata) {
+        output->PushBack(buff);
+      }
+
+      return modelbox::STATUS_OK;
+    }
+
+    // 功能单元Builder类。
+    class Builder : public FlowUnitBuilder {
+    public:
+      // 设置功能单元信息
+      void Probe(std::shared_ptr<FlowUnitDesc>& desc) override {
+        // 设置功能单元类型
+        desc->SetFlowUnitType("cpu");
+        // 设置功能单元名称
+        desc->SetFlowUnitName("inlineflowunit");
+        // 设置功能单元输入/输出
+        desc->AddFlowUnitInput({"in"});
+        desc->AddFlowUnitOutput({"out"});
+      }
+
+      // 创建功能单元接口
+      std::shared_ptr<FlowUnit> Build() override {
+        return std::make_shared<CustomFlowUnit>();
+      }
+    };
+  };
+  ```
+
+* 注册到Flow流程图中
+
+  ```c++
+  modelbox::Flow CreateFlow(const std::string &file) {
+    auto flow = std::make_shared<Flow>();
+    flow->RegisterFlowUnit(std::make_shared<CustomFlowUnit::Builder>());
+  }
+  ```
 
 ## C++日志
 
