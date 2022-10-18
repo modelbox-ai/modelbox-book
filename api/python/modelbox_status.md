@@ -139,7 +139,7 @@ str
 |code|str_code|
 |-|-|
 |modelbox.Status.StatusCode.STATUS_SUCCESS| Success |
-|modelbox.Status.StatusCode.STATUS_SUCCESS|Fault|
+|modelbox.Status.StatusCode.STATUS_FAULT|Fault|
 |modelbox.Status.StatusCode.STATUS_AGAIN |Try again|
 |modelbox.Status.StatusCode.STATUS_NOSPACE|No space left|
 |modelbox.Status.StatusCode.STATUS_ALREADY|Operation already in progress|
@@ -156,7 +156,6 @@ str
 |modelbox.Status.StatusCode.STATUS_RANGE |Out of range|
 |modelbox.Status.StatusCode.STATUS_EXIST        |Already exists|
 |modelbox.Status.StatusCode.STATUS_RESET |Request reset|
-|modelbox.Status.StatusCode.STATUS_FAULT        |Fault|
 |modelbox.Status.StatusCode.STATUS_SHUTDOWN |Shutdown operation|
 |modelbox.Status.StatusCode.STATUS_INPROGRESS   |Operation now in progress|
 |modelbox.Status.StatusCode.STATUS_STOP |Stop operation|
