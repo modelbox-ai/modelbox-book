@@ -37,7 +37,7 @@
 |  | recv | output_name: 图的输出端口名<br>timeout: 等待超时 | 接受图的输出数据 |
 |  | recv | output_name: 图的输出端口名 | 接受图的输出数据 |
 |  | close_input | 无 | 结束输入的数据流，将会告知ModelBox输入数据是否已经完毕 |
-| modelbox.Model | \_\_init\_\_ | path: 模型路径<br>name: 模型配置中描述的名称<br>in_names: 输入端口名<br>out_names: 输出端口名<br>max_batch_size: 一次推理的最大batch<br>device: 设备类型，"cpu", "gpu", "ascend"可选<br>device_id: 设备ID| 构建ModelBox单模型推理对象 |
+| modelbox.Model | \_\_init\_\_ | path: 模型路径<br>name: 模型配置中描述的名称<br>max_batch_size: 一次推理的最大batch<br>device: 设备类型，"cpu", "gpu", "ascend"可选<br>device_id: 设备ID| 构建ModelBox单模型推理对象 |
 |  | start | 无 | 启动ModelBox单模型推理对象 |
 |  | stop | 无 | 停止ModelBox单模型推理对象 |
 |  | infer | data_list: 每个端口的输入组成的列表，与定义的端口顺序一致 | 单batch放入数据，底层执行推理时会自动合并batch |
@@ -184,7 +184,7 @@ data2 = str(result)
 import modelbox
 
 # load model
-model = modelbox.Model(path, name, in_names, out_names, max_batch_size, device, device_id)
+model = modelbox.Model(path, name, max_batch_size, device, device_id)
 model.start()
 
 # single batch inference
