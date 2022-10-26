@@ -1996,7 +1996,7 @@
 <tr>
 <td>modelbox.Model</td>
 <td>__init__</td>
-<td>path: &#x6A21;&#x578B;&#x8DEF;&#x5F84;<br>name: &#x6A21;&#x578B;&#x914D;&#x7F6E;&#x4E2D;&#x63CF;&#x8FF0;&#x7684;&#x540D;&#x79F0;<br>in_names: &#x8F93;&#x5165;&#x7AEF;&#x53E3;&#x540D;<br>out_names: &#x8F93;&#x51FA;&#x7AEF;&#x53E3;&#x540D;<br>max_batch_size: &#x4E00;&#x6B21;&#x63A8;&#x7406;&#x7684;&#x6700;&#x5927;batch<br>device: &#x8BBE;&#x5907;&#x7C7B;&#x578B;&#xFF0C;&quot;cpu&quot;, &quot;gpu&quot;, &quot;ascend&quot;&#x53EF;&#x9009;<br>device_id: &#x8BBE;&#x5907;ID</td>
+<td>path: &#x6A21;&#x578B;&#x8DEF;&#x5F84;<br>name: &#x6A21;&#x578B;&#x914D;&#x7F6E;&#x4E2D;&#x63CF;&#x8FF0;&#x7684;&#x540D;&#x79F0;<br>max_batch_size: &#x4E00;&#x6B21;&#x63A8;&#x7406;&#x7684;&#x6700;&#x5927;batch<br>device: &#x8BBE;&#x5907;&#x7C7B;&#x578B;&#xFF0C;&quot;cpu&quot;, &quot;gpu&quot;, &quot;ascend&quot;&#x53EF;&#x9009;<br>device_id: &#x8BBE;&#x5907;ID</td>
 <td>&#x6784;&#x5EFA;ModelBox&#x5355;&#x6A21;&#x578B;&#x63A8;&#x7406;&#x5BF9;&#x8C61;</td>
 </tr>
 <tr>
@@ -2146,7 +2146,7 @@ data2 = str(result)
 <pre><code class="lang-python"><span class="hljs-keyword">import</span> modelbox
 
 <span class="hljs-comment"># load model</span>
-model = modelbox.Model(path, name, in_names, out_names, max_batch_size, device, device_id)
+model = modelbox.Model(path, name, max_batch_size, device, device_id)
 model.start()
 
 <span class="hljs-comment"># single batch inference</span>
@@ -2184,7 +2184,7 @@ modelbox.error(<span class="hljs-string">&quot;&quot;</span>)
 modelbox.fatal(<span class="hljs-string">&quot;&quot;</span>)
 </code></pre>
 <footer class="page-footer"><span class="copyright">&#xA9;2022 ModelBox Team all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-10-19 01:18:15
+2022-10-26 03:00:02
 </span></footer>
                                 
                                 </section>
@@ -2218,7 +2218,7 @@ modelbox.fatal(<span class="hljs-string">&quot;&quot;</span>)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Python","level":"1.4.3.2","depth":3,"next":{"title":"Java","level":"1.4.3.3","depth":3,"path":"use-modelbox/sdk-mode/java.md","ref":"use-modelbox/sdk-mode/java.md","articles":[]},"previous":{"title":"C++","level":"1.4.3.1","depth":3,"path":"use-modelbox/sdk-mode/c++.md","ref":"use-modelbox/sdk-mode/c++.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore","anchor-navigation-ex"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导文档"},"file":{"path":"use-modelbox/sdk-mode/python.md","mtime":"2022-10-19T01:18:15.824Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-10-19T01:19:05.656Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Python","level":"1.4.3.2","depth":3,"next":{"title":"Java","level":"1.4.3.3","depth":3,"path":"use-modelbox/sdk-mode/java.md","ref":"use-modelbox/sdk-mode/java.md","articles":[]},"previous":{"title":"C++","level":"1.4.3.1","depth":3,"path":"use-modelbox/sdk-mode/c++.md","ref":"use-modelbox/sdk-mode/c++.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore","anchor-navigation-ex"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导文档"},"file":{"path":"use-modelbox/sdk-mode/python.md","mtime":"2022-10-26T03:00:02.185Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-10-26T03:01:11.469Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
