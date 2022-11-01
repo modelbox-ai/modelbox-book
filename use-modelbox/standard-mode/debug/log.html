@@ -1942,26 +1942,27 @@ Log.fatal(<span class="hljs-string">&quot;this is fatal&quot;</span>)
 <h3 id="java&#x65E5;&#x5FD7;&#x6355;&#x83B7;"><a name="java&#x65E5;&#x5FD7;&#x6355;&#x83B7;" class="anchor-navigation-ex-anchor" href="#java&#x65E5;&#x5FD7;&#x6355;&#x83B7;"><i class="fa fa-link" aria-hidden="true"></i></a>Java&#x65E5;&#x5FD7;&#x6355;&#x83B7;</h3>
 <pre><code class="lang-java"><span class="hljs-comment">// &#x5BFC;&#x5165;&#x76F8;&#x5173;&#x7684;&#x5305;</span>
 <span class="hljs-keyword">import</span> com.modelbox.Log;
+<span class="hljs-keyword">import</span> java.text.SimpleDateFormat;
+<span class="hljs-keyword">import</span> java.util.Date;
 
-  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomLog</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Log</span> </span>{
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(LogLevel level, String file, <span class="hljs-keyword">int</span> lineno, String func, String msg)</span> </span>{
-      String timeStamp = <span class="hljs-keyword">new</span> SimpleDateFormat(<span class="hljs-string">&quot;yyyy-MM-dd HH.mm.ss.SSS&quot;</span>).format(<span class="hljs-keyword">new</span> Date());
-      System.out.printf(<span class="hljs-string">&quot;[%s][%s][%17s:%-4d] %s\n&quot;</span>, timeStamp, level, file, lineno, msg);
-      lastMsg = msg;
-    }
-
-    <span class="hljs-keyword">public</span> String lastMsg;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomLog</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Log</span> </span>{
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(LogLevel level, String file, <span class="hljs-keyword">int</span> lineno, String func, String msg)</span> </span>{
+    String timeStamp = <span class="hljs-keyword">new</span> SimpleDateFormat(<span class="hljs-string">&quot;yyyy-MM-dd HH.mm.ss.SSS&quot;</span>).format(<span class="hljs-keyword">new</span> Date());
+    System.out.printf(<span class="hljs-string">&quot;[%s][%s][%17s:%-4d] %s\n&quot;</span>, timeStamp, level, file, lineno, msg);
   }
+}
 
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initLog</span><span class="hljs-params">()</span> </span>{
-    <span class="hljs-comment">// &#x6CE8;&#x518C;&#x81EA;&#x5B9A;&#x4E49;log</span>
-    TestLog log = <span class="hljs-keyword">new</span> CustomLog();
-    Log.regLog(log);
-  }
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initLog</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-comment">// &#x6CE8;&#x518C;&#x81EA;&#x5B9A;&#x4E49;log</span>
+  TestLog log = <span class="hljs-keyword">new</span> CustomLog();
+  Log.regLog(log);
+  <span class="hljs-comment">// &#x8BBE;&#x7F6E;&#x65E5;&#x5FD7;&#x7EA7;&#x522B;</span>
+  Log.LogGetLogger().setLogLevel(LogLevel.LOG_INFO);
+}
 
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">deinitLog</span><span class="hljs-params">()</span> </span>{
-    Log.unRegLog();
-  }
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">deinitLog</span><span class="hljs-params">()</span> </span>{
+  Log.unRegLog();
+}
 </code></pre>
 <ul>
 <li><p>&#x6D41;&#x7A0B;</p>
@@ -1973,7 +1974,7 @@ Log.fatal(<span class="hljs-string">&quot;this is fatal&quot;</span>)
 </li>
 </ul>
 <footer class="page-footer"><span class="copyright">&#xA9;2022 ModelBox Team all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-10-26 03:00:02
+2022-11-01 02:05:58
 </span></footer>
                                 
                                 </section>
@@ -2007,7 +2008,7 @@ Log.fatal(<span class="hljs-string">&quot;this is fatal&quot;</span>)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"日志","level":"1.4.2.6.2","depth":4,"next":{"title":"性能优化","level":"1.4.2.6.3","depth":4,"path":"use-modelbox/standard-mode/debug/profiling.md","ref":"use-modelbox/standard-mode/debug/profiling.md","articles":[]},"previous":{"title":"代码调试","level":"1.4.2.6.1","depth":4,"path":"use-modelbox/standard-mode/debug/code-debug.md","ref":"use-modelbox/standard-mode/debug/code-debug.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore","anchor-navigation-ex"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导文档"},"file":{"path":"use-modelbox/standard-mode/debug/log.md","mtime":"2022-10-26T03:00:02.185Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-10-26T03:01:11.469Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"日志","level":"1.4.2.6.2","depth":4,"next":{"title":"性能优化","level":"1.4.2.6.3","depth":4,"path":"use-modelbox/standard-mode/debug/profiling.md","ref":"use-modelbox/standard-mode/debug/profiling.md","articles":[]},"previous":{"title":"代码调试","level":"1.4.2.6.1","depth":4,"path":"use-modelbox/standard-mode/debug/code-debug.md","ref":"use-modelbox/standard-mode/debug/code-debug.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","-sharing","book-summary-scroll-position-saver","expandable-chapters","search-plus","splitter","tbfed-pagefooter","back-to-top-button","yahei","katex","theme-api","link-checker","theme-comscore","anchor-navigation-ex"],"styles":{"website":"style.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy;2022 ModelBox Team","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"link-checker":{"dieOnError":false,"fqdn":[]},"yahei":{},"book-summary-scroll-position-saver":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"msyh","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"theme-comscore":{},"theme-api":{"languages":[],"split":true,"theme":"light"},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"CE","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a3","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":30,"left":30,"top":30,"bottom":50},"toc":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"ModelBox User Refference","language":"zh-hans","gitbook":"*","description":"ModelBox指导文档"},"file":{"path":"use-modelbox/standard-mode/debug/log.md","mtime":"2022-11-01T02:05:58.589Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-11-01T02:06:55.333Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
