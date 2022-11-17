@@ -400,4 +400,11 @@ Python的Buffer处理与C++存在差异，由于Buffer类型为ModelBox特有类
 
 ## 功能单元调试运行
 
-Python功能单元无需编译，通常情况下调试阶段可以将此功能单元所在的文件夹路径配置到流程图的扫描路径`driver.dir`中，再通过**ModelBox-Tool**启动流程图运行，流程图启动时会按照配置路径扫描并加载Python功能单元。流程图的运行可参考[流程图运行](../flow-run.md)章节如果需要Python断点调试，可见[代码调试](../debug/code-debug.md)章节。
+Python功能单元无需编译，通常情况下调试阶段可以将此功能单元所在的文件夹路径配置到流程图的扫描路径`driver.dir`中，如
+   ```
+   [driver]
+    dir = [
+    "/opt/modelbox/application/xxx/flowunit",     # 打包默认安装路径，运行时使用
+    "/root/xxx/src/flowunit"                      # 代码工程原始路径，调试时使用
+   ```
+再通过**ModelBox-Tool**启动流程图运行，流程图启动时会按照配置路径扫描并加载Python功能单元。流程图的运行可参考[流程图运行](../flow-run.md)章节如果需要Python断点调试，可见[代码调试](../debug/code-debug.md)章节。

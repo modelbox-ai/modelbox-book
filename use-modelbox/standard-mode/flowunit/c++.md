@@ -546,6 +546,14 @@ ModelBox框架C++工程统一使用CMake进行编译，通过命令行或者可�
 功能单元编译生成的so命名需要以**libmodelbox-**开头，否则ModelBox无法扫描。
 通常情况开发cpu业务功能单元，开发者无需修改CMakeLists.txt即可完成编译，当存在引入第三方库时、设置cuda/ascend类型、修改编译选项等等诉求时需要自行修改。生成的so安装路径一般也无需修改，如果开发者需要改动，则需要将路径添加到图的扫描路径`driver.dir`中。
 
+C++自定义功能单元需要先编译成so，安装到图的扫描路径中，否则无法加载该功能单元。编译安装命令如下：
+```
+  mkdir build 
+  cd build
+  cmake ../
+  make install -j8 
+```
+
 ## 功能单元功能测试
 
 ModelBox框架提供了基于Gtest的单元测试框架， 开发者可以编写测试用例进行功能单元的基础功能测试。 测试用例需要放在 `$Project/test/flowunit/`目录下，测试用例基本写作基本步骤如下：
@@ -633,8 +641,11 @@ TEST_F(ExampleFlowUnitTest, TestCase1) {
 }
 ```
 
-测试用例的运行可以通过命令行，也可以通过vscode等IDE功能运行，方便调试。具体运行命令如下：  
+测试用例的运行可以通过命令行，也可以通过vscode等IDE功能运行，方便调试。具体编译运行命令如下：  
 
 ```shell
-$Project/build/test/unit/unit --gtest_filter=ExampleFlowUnitTest.*
+  cd bulid
+  cmake -DWITH_TEST=ON -DCMAKE_BUILD_TYPE=Debug ../
+  make unit-test -j8
+  ./test/flowunit/unit-test --gtest_filter=ExampleFlowUnitTest.*
 ```
