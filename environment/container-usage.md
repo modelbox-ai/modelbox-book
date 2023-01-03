@@ -16,7 +16,7 @@ ModelBox目前提供了支持CUDA，Ascend加速卡硬件和TensoFlow，LibTorch
 
 ## 容器镜像下载
 
-使用以下命令拉取相关的镜像。比如cuda11.2，TensorFlow的unbuntu开发镜像，则下载最新版本镜像命令如下：
+使用以下命令拉取相关的镜像。比如cuda11.2，TensorFlow的ubuntu开发镜像，则下载最新版本镜像命令如下：
 
 ```shell
 docker pull modelbox/modelbox-develop-tensorflow_2.6.0-cuda_11.2-ubuntu-x86_64:latest
